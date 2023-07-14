@@ -1,8 +1,6 @@
-import CurrentTaskDisplay from "@/components/CurrentTaskDisplay";
-import TimeDisplay from "@/components/TimeDisplay";
-import WelcomeDisplay from "@/components/WelcomeDisplay";
-
-import { useEffect } from "react";
+import WelcomeDisplay from "./components/WelcomeDisplay";
+import TimeDisplay from "./components/TimeDisplay";
+import CurrentTaskDisplay from "./components/CurrentTaskDisplay";
 
 export default function Home() {
   return (
