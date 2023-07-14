@@ -13,10 +13,9 @@ const TimeDisplay = () => {
   }, []);
 
   return (
-    <div className="text-center">
-      <div>
-        {format(currentDate, "EEEE")} - {format(currentDate, "pp")}
-      </div>
+    <div className="text-center py-6 text-3xl">
+      <div className="mb-4">{format(currentDate, "pp")}</div>
+      <div>Today is {format(currentDate, "EEEE")}!</div>
       <div>{format(currentDate, "PP")}</div>
     </div>
   );

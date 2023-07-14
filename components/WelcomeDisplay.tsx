@@ -5,8 +5,11 @@ const calmFont = localFont({
 
 const WelcomeDisplay = () => {
   return (
-    <div style={calmFont.style} className="text-7xl text-center">
-      is this a nice font?
+    <div
+      style={calmFont.style}
+      className="text-center text-3xl md:text-left md:text-5xl py-6 px-8 font-light"
+    >
+      Hello Shadow
     </div>
   );
 };

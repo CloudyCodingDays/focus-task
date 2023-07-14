@@ -1,3 +1,4 @@
+import CurrentTaskDisplay from "@/components/CurrentTaskDisplay";
 import TimeDisplay from "@/components/TimeDisplay";
 import WelcomeDisplay from "@/components/WelcomeDisplay";
 
@@ -9,6 +10,7 @@ export default function Home() {
       <div>
         <WelcomeDisplay />
         <TimeDisplay />
+        <CurrentTaskDisplay />
       </div>
     </div>
   );
