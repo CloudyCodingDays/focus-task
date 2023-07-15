@@ -10,17 +10,16 @@ const NoTaskDisplay = () => {
         to choose from the options below:{" "}
       </div>
       <div>
-        <div className="flex flex-row">
-          <div
-            className="rounded-lg bg-gradient-to-r from-red-600 via-yellow-600 via-yellow-400  via-green-500 via-blue-400 via-blue-600 to-indigo-800 p-1
-          hover:bg-gradient-to-r hover:from-red-500 hover:via-yellow-500 hover:via-yellow-300  hover:via-green-400 hover:via-blue-300 hover:via-blue-500 hover:to-indigo-950"
-          >
-            <button className="h-full w-full bg-neutral-800 hover:bg-neutral-400 text-white font-bold">
+        <div className="flex flex-row justify-center">
+          <div className="px-8">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
               I am feeling Lucky!
             </button>
           </div>
-          <div>
-            <button className="px-4 ">Let me pick!</button>
+          <div className="px-8">
+            <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full">
+              Let me Pick!
+            </button>
           </div>
         </div>
       </div>
