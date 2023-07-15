@@ -6,9 +6,15 @@ export default function Home() {
   return (
     <div>
       <div>
-        <WelcomeDisplay />
-        <TimeDisplay />
-        <CurrentTaskDisplay />
+        <div>
+          <WelcomeDisplay />
+        </div>
+        <div>
+          <TimeDisplay />
+        </div>
+        <div>
+          <CurrentTaskDisplay />
+        </div>
       </div>
     </div>
   );
