@@ -1,5 +1,5 @@
 const NoTaskDisplay = () => {
-  //grab whether task was completed today and detemine what to show
+  //TODO: grab whether task was completed today and detemine what to show
   return (
     <div>
       <div className="text-center text-3xl">
