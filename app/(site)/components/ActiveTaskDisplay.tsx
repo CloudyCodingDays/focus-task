@@ -12,9 +12,9 @@ const ActiveTaskDisplay = () => {
           Bonus Objective: Organize dishes in dish drainer!
         </div>
       </div>
-      <div className="py-6 grid grid-cols-2 rounded-lg text-4xl">
-        <button className="bg-yellow-400 mx-2">Do a different task</button>
-        <button className="bg-green-600 mx-2">Task Complete!</button>
+      <div className="py-6 grid grid-cols-2 text-4xl">
+        <button className="bg-blue-300 rounded-lg">Do a different task</button>
+        <button className="bg-green-300 rounded-lg">Task Complete!</button>
       </div>
       <div className="py-6 text-left"></div>
     </div>

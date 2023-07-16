@@ -9,7 +9,6 @@ const calmFont = localFont({
 
 const TimeDisplay = () => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
-
   useEffect(() => {
     const timeTicker = setInterval(() => {
       setCurrentDate(new Date());
@@ -29,7 +28,7 @@ const TimeDisplay = () => {
         <span className="text-1xl font-bold">{format(currentDate, "PPP")}</span>
       </div>
       <div style={calmFont.style} className="text-center text-8xl">
-        {format(currentDate, "K")}:{format(currentDate, "mm")}:
+        {format(currentDate, "h")}:{format(currentDate, "mm")}:
         {format(currentDate, "ss")} {format(currentDate, "aaa")}
       </div>
       <div></div>
