@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+
 const ActiveTaskDisplay = () => {
   return (
     <div>
@@ -13,8 +15,8 @@ const ActiveTaskDisplay = () => {
         </div>
       </div>
       <div className="py-6 grid grid-cols-2 text-4xl">
-        <button className="bg-blue-300 rounded-lg">Do a different task</button>
-        <button className="bg-green-300 rounded-lg">Task Complete!</button>
+        <Button>Do a different task</Button>
+        <Button>Task Complete!</Button>
       </div>
       <div className="py-6 text-left"></div>
     </div>

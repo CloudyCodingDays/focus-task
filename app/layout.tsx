@@ -6,8 +6,8 @@ import NavBar from "@/components/NavBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Go at My Pace",
-  description: "simple app to track current tasks in a stress free manner",
+  title: "Taking It Easy",
+  description: "simple app to track current task in a relaxed way",
 };
 
 export default function RootLayout({

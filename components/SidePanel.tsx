@@ -22,6 +22,12 @@ const SidePanel: React.FC<SidePanelProps> = ({ children }) => {
         active: pathname === "/manage",
         href: "/manage",
       },
+      {
+        //Icon: BiSearch,
+        label: "Settings",
+        active: pathname === "/setting",
+        href: "/setting",
+      },
     ],
     [pathname]
   );
