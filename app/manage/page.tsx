@@ -1,12 +1,12 @@
 import TaskListDisplay from "./components/TaskListDisplay";
-import WelcomeDisplay from "./components/WelcomeDisplay";
+import ManageHeader from "./components/ManageHeader";
 
 export default function Home() {
   return (
     <div>
       <div className="px-4">
         <div>
-          <WelcomeDisplay />
+          <ManageHeader />
         </div>
         <TaskListDisplay />
       </div>

@@ -1,4 +1,4 @@
-import WelcomeDisplay from "../manage/components/WelcomeDisplay";
+import WelcomeDisplay from "./components/WelcomeDisplay";
 import TimeDisplay from "./components/TimeDisplay";
 import CurrentTaskDisplay from "./components/CurrentTaskDisplay";
 

@@ -9,10 +9,10 @@ const calmFont = localFont({
 
 const TimeDisplay = () => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
+
   useEffect(() => {
     const timeTicker = setInterval(() => {
       setCurrentDate(new Date());
-
       return () => clearInterval(timeTicker);
     }, 1000);
   }, []);
