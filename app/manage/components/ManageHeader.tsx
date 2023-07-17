@@ -7,9 +7,6 @@ const ManageHeader = () => {
       <div>
         <Button>Add New Task</Button>
       </div>
-      <div>
-        <Button>Hide Bonus objectives</Button>
-      </div>
     </div>
   );
 };

@@ -1,67 +1,62 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import Image from "next/image";
+
+import pic from "@/dishes.jpg";
 
 const TaskListDisplay = () => {
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex flex-row justify-between rounded-lg border bg-card text-card-foreground shadow-sm items-center py-4 px-4">
-        <div className="flex gap-2 text-2xl">
-          <div>!</div>
-          <div>Washing Dishes</div>
+    <div>
+      <Card>
+        <div className="flex flex-1 items-center">
+          <div className="px-4 py-4">
+            <Image src={pic} width={300} height={400} alt="Wash Dishes"></Image>
+          </div>
+          <div>
+            <CardTitle>Washing Dishes and organizing dish drainer</CardTitle>
+            <CardDescription>
+              Summary: Wash dishes in one side of sink
+            </CardDescription>
+            <CardDescription>Category: Chores</CardDescription>
+            <CardDescription>Priority: Medium</CardDescription>
+          </div>
+          <div className="flex flex-col gap-y-4 ml-auto mr-4">
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="outline">View Details</Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Edit profile</DialogTitle>
+                  <DialogDescription>
+                    Make changes to your profile here. Click save when done
+                  </DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                  <Button type="submit">Save changes</Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+            <Button variant="outline">Actions V</Button>
+          </div>
         </div>
-        <div>
-          <p className="font-semibold">
-            Objective: Wash up dishes in atleast one side of the sink so that
-            one side is clear and can be used.
-          </p>
-          <p className="font-light">
-            Bonus: Organize dish drainer and/or wash up dishes in other side of
-            sink
-          </p>
-        </div>
-        <div>
-          <Button>View Details</Button>
-        </div>
-      </div>
-
-      <div className="flex flex-row justify-evenly rounded-lg border bg-card text-card-foreground shadow-sm items-center py-4">
-        <div className="text-2xl">
-          <div>Cooking meals</div>
-        </div>
-        <div>
-          <p className="font-semibold">
-            Objective: Wash up dishes in atleast one side of the sink so that
-            one side is clear and can be used.
-          </p>
-          <p className="font-light">
-            Bonus: Organize dish drainer and/or wash up dishes in other side of
-            sink
-          </p>
-        </div>
-        <div>
-          <Button>View Details</Button>
-        </div>
-      </div>
-
-      <div className="flex flex-row justify-evenly rounded-lg border bg-card text-card-foreground shadow-sm items-center py-4">
-        <div className="text-2xl">
-          <div>Cleaning Bathroom</div>
-        </div>
-        <div>
-          <p className="font-semibold">
-            Objective: Wash up dishes in atleast one side of the sink so that
-            one side is clear and can be used.
-          </p>
-          <p className="font-light">
-            Bonus: Organize dish drainer and/or wash up dishes in other side of
-            sink
-          </p>
-        </div>
-        <div>
-          <Button>View Details</Button>
-        </div>
-      </div>
+      </Card>
     </div>
   );
 };
