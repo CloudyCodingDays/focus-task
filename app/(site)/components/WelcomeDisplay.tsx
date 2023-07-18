@@ -2,11 +2,21 @@
 
 import { useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import format from "date-fns/format";
 import localFont from "next/font/local";
 import Image from "next/image";
 import MenuImage from "@/icons/menu.png";
 import UserImage from "@/icons/profile-user.png";
+import Link from "next/link";
 
 const calmFont = localFont({
   src: "./fonts/Pacifico.ttf",
@@ -20,6 +30,7 @@ const WelcomeDisplay = () => {
       return () => clearInterval(timeTicker);
     }, 1000);
   }, []);
+
   return (
     <div>
       <div className="text-green-500 pt-4 pb-4 flex flex-row justify-between px-4">
@@ -28,12 +39,20 @@ const WelcomeDisplay = () => {
           className="text-1xl flex flex-row items-center"
         >
           <button>
-            <Image
-              src={MenuImage}
-              width="25"
-              height="25"
-              alt="Hamburger Menu Icon"
-            ></Image>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Image
+                  src={MenuImage}
+                  width="25"
+                  height="25"
+                  alt="Hamburger Menu Icon"
+                ></Image>
+              </DialogTrigger>
+              <DialogContent className="h-full flex flex-col">
+                <Link href="/">Home</Link>
+                <Link href="/manage">Manage</Link>
+              </DialogContent>
+            </Dialog>
           </button>
           <div className="px-4">Take it Easy</div>
         </div>
@@ -51,7 +70,7 @@ const WelcomeDisplay = () => {
       </div>
       <div className="px-4">Hello Guest!</div>
       <div className="w-full flex flex-col items-center ">
-        <div className="w-[30em]  bg-gray-200 rounded-lg mt-4 mx-4 text-center">
+        <div className="w-[30em] bg-gray-200 rounded-lg mt-4 mx-4 text-center">
           <div className="">
             <div style={calmFont.style} className="text-5xl">
               {format(currentDate, "h")}:{format(currentDate, "mm")}:

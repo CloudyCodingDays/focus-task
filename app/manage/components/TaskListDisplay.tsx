@@ -1,62 +1,44 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import Image from "next/image";
 
 import pic from "@/dishes.jpg";
+import MeatballMenu from "@/icons/meatball-menu.png";
 
 const TaskListDisplay = () => {
   return (
     <div>
-      <Card>
-        <div className="flex flex-1 items-center">
-          <div className="px-4 py-4">
-            <Image src={pic} width={300} height={400} alt="Wash Dishes"></Image>
+      <div>
+        <input></input>Search
+      </div>
+      <div className="text-sm font-light mt-8">Current Tasks</div>
+      <div className="flex">
+        <div className="bg-gray-300 w-[30em] rounded-lg">
+          <div className="flex ml-4 mt-4">
+            <div className="mr-4">
+              <Image
+                src={pic}
+                width="75"
+                height="75"
+                alt="Hamburger Menu Icon"
+              ></Image>
+            </div>
+            <div className="flex-grow">
+              <div>Washing Dishes</div>
+              <div>Tags</div>
+            </div>
+            <div className="mr-4">
+              <Image
+                src={MeatballMenu}
+                width="25"
+                height="25"
+                alt="Hamburger Menu Icon"
+              ></Image>
+            </div>
           </div>
-          <div>
-            <CardTitle>Washing Dishes and organizing dish drainer</CardTitle>
-            <CardDescription>
-              Summary: Wash dishes in one side of sink
-            </CardDescription>
-            <CardDescription>Category: Chores</CardDescription>
-            <CardDescription>Priority: Medium</CardDescription>
-          </div>
-          <div className="flex flex-col gap-y-4 ml-auto mr-4">
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button variant="outline">View Details</Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Edit profile</DialogTitle>
-                  <DialogDescription>
-                    Make changes to your profile here. Click save when done
-                  </DialogDescription>
-                </DialogHeader>
-                <DialogFooter>
-                  <Button type="submit">Save changes</Button>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
-            <Button variant="outline">Actions V</Button>
+          <div className="mt-4 ml-4">
+            Wash all the dishes in one or both sides of sink
           </div>
         </div>
-      </Card>
+      </div>
     </div>
   );
 };

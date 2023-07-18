@@ -1,12 +1,35 @@
 import { Button } from "@/components/ui/button";
-
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import Image from "next/image";
+import MenuImage from "@/icons/menu.png";
+import Link from "next/link";
 const ManageHeader = () => {
   return (
-    <div className="flex flex-1 gap-x-6 text-center text-2xl md:text-left md:text-4xl py-4 px-4 font-light">
-      <div>Manage Tasks</div>
-      <div>
-        <Button>Add New Task</Button>
-      </div>
+    <div>
+      <button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Image
+              src={MenuImage}
+              width="25"
+              height="25"
+              alt="Hamburger Menu Icon"
+            ></Image>
+          </DialogTrigger>
+          <DialogContent className="h-full flex flex-col">
+            <Link href="/">Home</Link>
+            <Link href="/manage">Manage</Link>
+          </DialogContent>
+        </Dialog>
+      </button>
     </div>
   );
 };
