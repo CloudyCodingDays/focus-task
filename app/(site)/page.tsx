@@ -5,12 +5,15 @@ import CurrentTaskDisplay from "./components/CurrentTaskDisplay";
 export default function Home() {
   return (
     <div>
-      <div>
-        <TimeDisplay />
+      <div className="h-screen">
+        <div>
+          <WelcomeDisplay />
+        </div>
+        <div>
+          <CurrentTaskDisplay />
+        </div>
       </div>
-      <div>
-        <CurrentTaskDisplay />
-      </div>
+      <div>Footer</div>
     </div>
   );
 }

@@ -27,23 +27,31 @@ const TimeDisplay = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-col items-center">
-      <div className="w-[30em]  bg-gray-200 rounded-lg mt-4 mx-4 text-center">
-        <div className="">
-          <div style={calmFont.style} className="text-5xl">
-            {format(currentDate, "h")}:{format(currentDate, "mm")}:
-            {format(currentDate, "ss")} {format(currentDate, "aaa")}
+    <div>
+      <div
+        style={calmFont.style}
+        className="text-center text-2xl text-green-500 pt-8 pb-4"
+      >
+        Take it Easy
+      </div>
+      <div className="w-full flex flex-col items-center ">
+        <div className="w-[30em]  bg-gray-200 rounded-lg mt-4 mx-4 text-center">
+          <div className="">
+            <div style={calmFont.style} className="text-5xl">
+              {format(currentDate, "h")}:{format(currentDate, "mm")}:
+              {format(currentDate, "ss")} {format(currentDate, "aaa")}
+            </div>
           </div>
-        </div>
-        <div className="my-4 mx-24">
-          <Separator className="bg-green-300" />
-        </div>
-        <div className="text-md pb-4">
-          <div className="font-extralight">
-            Today is{" "}
-            <span className="font-bold">{format(currentDate, "EEEE")}</span>
+          <div className="my-4 mx-24">
+            <Separator className="bg-green-300" />
           </div>
-          <div className="">{format(currentDate, "PPP")}</div>
+          <div className="text-md pb-4">
+            <div className="font-extralight">
+              Today is{" "}
+              <span className="font-bold">{format(currentDate, "EEEE")}</span>
+            </div>
+            <div className="">{format(currentDate, "PPP")}</div>
+          </div>
         </div>
       </div>
     </div>
