@@ -2,7 +2,7 @@ import { Button } from "./ui/button";
 
 const NavBar = () => {
   return (
-    <div className="bg-green-500 flex flex-row justify-between items-center">
+    <div className="flex flex-row justify-between items-center">
       <div>Taking It Easy</div>
       <div className="py-2">
         <Button>Sign Up</Button>

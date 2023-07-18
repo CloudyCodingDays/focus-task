@@ -37,7 +37,7 @@ const SidePanel: React.FC<SidePanelProps> = ({ children }) => {
   };
   return (
     <div className="flex">
-      <div className="w-fit h-screen bg-green-600 ">
+      <div className="w-fit h-screen">
         <button className=" px-2 py-2 mb-2 text-md" onClick={toggleMenu}>
           {isOpen ? "Taking It Easy" : "TIE"}
         </button>
@@ -57,9 +57,7 @@ const SidePanel: React.FC<SidePanelProps> = ({ children }) => {
           ))}
         </div>
       </div>
-      <div className="flex flex-col flex-1 bg-green-200 text-black">
-        {children}
-      </div>
+      <div>{children}</div>
     </div>
   );
 };
