@@ -17,18 +17,25 @@ import Image from "next/image";
 import MenuImage from "@/icons/menu.png";
 import UserImage from "@/icons/profile-user.png";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const calmFont = localFont({
   src: "./fonts/Pacifico.ttf",
 });
 const WelcomeDisplay = () => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
+  const router = useRouter();
+
+  const HandleLogin = () => {
+    router.push("/login");
+  };
 
   useEffect(() => {
     const timeTicker = setInterval(() => {
       setCurrentDate(new Date());
-      return () => clearInterval(timeTicker);
     }, 1000);
+
+    return () => clearInterval(timeTicker);
   }, []);
 
   return (
@@ -58,7 +65,7 @@ const WelcomeDisplay = () => {
         </div>
 
         <div className="flex flex-row self-end">
-          <button>
+          <button onClick={HandleLogin}>
             <Image
               src={UserImage}
               width="25"
