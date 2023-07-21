@@ -1,4 +1,6 @@
-import { Button } from "@/components/ui/button";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
+import type { Database } from "@/types/supabase";
 import {
   Dialog,
   DialogContent,
@@ -11,7 +13,11 @@ import {
 import Image from "next/image";
 import MenuImage from "@/icons/menu.png";
 import Link from "next/link";
-const ManageHeader = () => {
+import supabase from "@/components/supabaseClient";
+const ManageHeader = async () => {
+  //const { data, error } = await supabase.auth.getSession(); //await supabase.auth.getUser();
+  const { data, error } = await supabase.from("tasks").select();
+  // return <pre>{JSON.stringify(data, null, 2)}</pre>;
   return (
     <div>
       <button>
@@ -30,6 +36,7 @@ const ManageHeader = () => {
           </DialogContent>
         </Dialog>
       </button>
+      <div>Hello -{data.user?.id}</div>
     </div>
   );
 };
