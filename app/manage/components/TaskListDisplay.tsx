@@ -1,20 +1,89 @@
+"use client";
 import Image from "next/image";
-
+import uniqid from "uniqid";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useRouter } from "next/navigation";
+import { FormEventHandler, useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import pic from "@/dishes.jpg";
-import ViewIcon from "@/icons/view.png";
-import EditIcon from "@/icons/edit.png";
-import DeleteIcon from "@/icons/delete.png";
-import Link from "next/link";
+import { error } from "console";
+import { Database } from "@/types/supabase";
+
+const HandleAddTask = () => {};
 
 const TaskListDisplay = () => {
+  const router = useRouter();
+  const supabase = createClientComponentClient<Database>();
+  const HandleAddTask = async (taskName: string, description: string) => {
+    const { error: supabaseError } = await supabase.from("tasks").insert({
+      id: "6bde71ff-5616-49d2-b1a3-45bb5ee2c1c6",
+      name: taskName,
+      description: description,
+    });
+
+    if (supabaseError) {
+      console.log(supabaseError.message);
+    }
+    router.refresh();
+  };
+
+  const HandleSubmit: React.FormEventHandler<HTMLFormElement> = (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    // Prevent the browser from reloading the page
+    e.preventDefault();
+
+    // Read the form data
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const taskName = formData.get("name") as string;
+    const description = formData.get("description") as string;
+
+    if (
+      taskName !== null &&
+      taskName !== "" &&
+      description !== null &&
+      description !== ""
+    ) {
+      HandleAddTask(taskName, description);
+    } else {
+      throw new Error("Form is missing data");
+    }
+  };
   return (
     <div>
       <div>
         <div className="bg-gray-300 rounded-lg text-right">
           <div>
-            <button className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4">
-              New Task
-            </button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <button className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4">
+                  New Task
+                </button>
+              </DialogTrigger>
+              <DialogContent className="h-full flex flex-col">
+                <form method="post" onSubmit={HandleSubmit}>
+                  <div>Name</div>
+                  <input name="name" className="border-2"></input>
+                  <div>Description</div>
+                  <input name="description" className="border-2"></input>
+                  <button
+                    type="submit"
+                    className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
+                  >
+                    New Task
+                  </button>
+                </form>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div>
