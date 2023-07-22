@@ -18,11 +18,14 @@ import supabase from "@/lib/supabaseClient";
 import Login from "@/app/login/components/login";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
+import { useUserInfo } from "@/hooks/useUserInfo";
 
 const ManageHeader = () => {
+  const { user } = useUserInfo();
   //const { data, error } = await supabase.from("tasks").select();
   return (
     <div>
+      {user?.id}
       <div>
         <Login />
       </div>

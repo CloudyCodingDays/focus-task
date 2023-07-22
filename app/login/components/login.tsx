@@ -1,25 +1,41 @@
 "use client";
 import supabase from "@/lib/supabaseClient";
+import { data } from "autoprefixer";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useSessionContext } from "@supabase/auth-helpers-react";
+import { useEffect } from "react";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
+import { Auth } from "@supabase/auth-ui-react";
 
-const HandleLogin = async () => {
-  const { data: sessionData, error: sessionError } =
-    await supabase.auth.getSession(); //await supabase.auth.getUser();
-  if (sessionData.session === null) {
-    let { data, error } = await supabase.auth.signInWithPassword({
+const Login = () => {
+  const router = useRouter();
+  const { session } = useSessionContext();
+
+  const HandleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+
+    router.refresh();
+  };
+
+  const HandleLogin = async () => {
+    const { data, error } = await supabase.auth.signInWithPassword({
       email: "plyn8750@gmail.com",
       password: "123456",
     });
-    if (error) console.log(error.message);
-    console.log(JSON.stringify(data, null, 2));
-  } else {
-    console.log(sessionData);
-  }
-};
-const Login = () => {
+    router.refresh();
+  };
+
   return (
     <div>
-      <div></div>
-      <button onClick={HandleLogin}>Login</button>
+      {JSON.stringify(session, null, 2)}
+      {!session ? (
+        <button onClick={HandleLogin}>Login</button>
+      ) : (
+        <button onClick={HandleLogout} className="border-4">
+          logout
+        </button>
+      )}
     </div>
   );
 };
