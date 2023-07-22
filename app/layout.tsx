@@ -1,9 +1,8 @@
-import SidePanel from "@/components/SidePanel";
+import NavBar from "@/components/NavBar";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import NavBar from "@/components/NavBar";
-import SupaBaseProvider from "@/provider/SupaBaseProvider";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SupaBaseProvider>{children}</SupaBaseProvider>
+        <NavBar>{children}</NavBar>
       </body>
     </html>
   );

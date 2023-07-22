@@ -1,4 +1,4 @@
-import supabase from "@/components/supabaseClient";
+import supabase from "@/lib/supabaseClient";
 
 const GetTasks = async () => {
   const { data, error } = await supabase.from("tasks").select();
