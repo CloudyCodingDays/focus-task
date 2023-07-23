@@ -1,6 +1,8 @@
-import { Task } from "@/types/supabase";
 import Image from "next/image";
+
+import { Task } from "@/types/supabase";
 import pic from "@/dishes.jpg";
+
 interface TaskItemProps {
   data: Task[];
 }
@@ -16,7 +18,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ data }) => {
                 src={pic}
                 width="75"
                 height="75"
-                alt="Hamburger Menu Icon"
+                alt="Task item Icon"
               ></Image>
             </div>
             <div className="flex-grow">

@@ -1,15 +1,11 @@
 import TaskListDisplay from "./components/TaskListDisplay";
-import ManageHeader from "./components/ManageHeader";
-import Refresh from "./components/Refresh";
+import ManageTaskHeader from "./components/ManageTaskHeader";
+
 export default function Home() {
   return (
     <div>
-      <div className="px-4">
-        <div>
-          <ManageHeader />
-        </div>
-        <TaskListDisplay />
-      </div>
+      <ManageTaskHeader />
+      <TaskListDisplay />
     </div>
   );
 }

@@ -1,11 +1,19 @@
 "use client";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import Login from "./components/login";
+
+import supabase from "@/lib/supabaseClient";
+import { useUserInfo } from "@/hooks/useUserInfo";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
-  const supabase = createClientComponentClient();
+  const { user } = useUserInfo();
+  const router = useRouter();
 
-  return <Login />;
+  useEffect(() => {
+    if (user?.id !== undefined) router.push("/manage");
+  }, [router, user?.id]);
+
+  return <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />;
 }

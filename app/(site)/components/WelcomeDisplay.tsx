@@ -1,27 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Separator } from "@/components/ui/separator";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import format from "date-fns/format";
 import localFont from "next/font/local";
 import Image from "next/image";
-import MenuImage from "@/icons/menu.png";
-import UserImage from "@/icons/profile-user.png";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { Separator } from "@/components/ui/separator";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+
+import MenuImage from "@/icons/menu.png";
+import UserImage from "@/icons/profile-user.png";
 
 const calmFont = localFont({
   src: "./fonts/Pacifico.ttf",
 });
+
 const WelcomeDisplay = () => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const router = useRouter();

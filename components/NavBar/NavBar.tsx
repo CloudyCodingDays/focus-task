@@ -1,5 +1,6 @@
-import Link from "next/link";
-import { Button } from "./ui/button";
+import NavBarMenu from "./NavBarMenu";
+import NavBarLogo from "./NavBarLogo";
+import NavBarLogin from "./NavBarLogin";
 
 interface NavBarProps {
   children: React.ReactNode;
@@ -8,14 +9,10 @@ interface NavBarProps {
 const NavBar: React.FC<NavBarProps> = ({ children }) => {
   return (
     <div>
+      <NavBarMenu />
       <div className="flex flex-row justify-between items-center">
-        <div>Taking It Easy</div>
-        <div className="py-2">
-          <Button>Sign Up</Button>
-          <Link href="/login">
-            <Button className="mx-2">Log In</Button>
-          </Link>
-        </div>
+        <NavBarLogo />
+        <NavBarLogin />
       </div>
       <div>{children}</div>
     </div>
