@@ -6,7 +6,7 @@ const TaskListDisplay = async () => {
 
   return (
     <div>
-      <div className="text-sm font-light mt-8">All Tasks</div>
+      <div className="text-sm font-light mt-8 mr-2">All Tasks</div>
       <ViewTaskItem data={tasks} />
     </div>
   );
