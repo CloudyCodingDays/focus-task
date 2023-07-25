@@ -9,8 +9,8 @@ interface NavBarProps {
 const NavBar: React.FC<NavBarProps> = ({ children }) => {
   return (
     <div>
-      <NavBarMenu />
       <div className="flex flex-row justify-between items-center">
+        <NavBarMenu />
         <NavBarLogo />
         <NavBarLogin />
       </div>

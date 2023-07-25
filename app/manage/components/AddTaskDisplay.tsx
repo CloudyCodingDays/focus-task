@@ -25,18 +25,20 @@ const AddTaskDisplay = () => {
               New Task
             </button>
           </DialogTrigger>
-          <DialogContent className="h-full flex flex-col">
+          <DialogContent className="h-full flex flex-col items-center">
             <form method="post" onSubmit={HandleSubmit}>
               <div>Name</div>
               <input name="name" className="border-2" required></input>
               <div>Description</div>
               <input name="description" className="border-2" required></input>
-              <button
-                type="submit"
-                className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
-              >
-                Add New Task
-              </button>
+              <div>
+                <button
+                  type="submit"
+                  className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
+                >
+                  Add New Task
+                </button>
+              </div>
             </form>
           </DialogContent>
         </Dialog>

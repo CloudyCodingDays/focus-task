@@ -1,12 +1,38 @@
+"use client";
+import { useState } from "react";
+import { useUserInfo } from "@/hooks/useUserInfo";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+
+import Login from "@/app/login/components/login";
+import UserImage from "@/icons/profile-user.png";
+
 const NavBarLogin = () => {
+  const [open, setOpen] = useState(false);
+  const { user } = useUserInfo();
   return (
     <div className="py-2">
-      <Button>Sign Up</Button>
-      <Link href="/login">
-        <Button className="mx-2">Log In</Button>
-      </Link>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger asChild>
+          <Link href="/login">
+            <div className="flex flex-row self-end">
+              <button>
+                <Image
+                  src={UserImage}
+                  width="25"
+                  height="25"
+                  alt="User Menu Icon"
+                ></Image>
+              </button>
+            </div>
+          </Link>
+        </DialogTrigger>
+        <DialogContent className="h-full flex flex-col">
+          <div>{user?.id}</div>
+          <Login />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

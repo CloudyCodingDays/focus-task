@@ -34,42 +34,6 @@ const WelcomeDisplay = () => {
 
   return (
     <div>
-      <div className="text-green-500 pt-4 pb-4 flex flex-row justify-between px-4">
-        <div
-          style={calmFont.style}
-          className="text-1xl flex flex-row items-center"
-        >
-          <button>
-            <Dialog>
-              <DialogTrigger asChild>
-                <Image
-                  src={MenuImage}
-                  width="25"
-                  height="25"
-                  alt="Hamburger Menu Icon"
-                ></Image>
-              </DialogTrigger>
-              <DialogContent className="h-full flex flex-col">
-                <Link href="/">Home</Link>
-                <Link href="/manage">Manage</Link>
-              </DialogContent>
-            </Dialog>
-          </button>
-          <div className="px-4">Take it Easy</div>
-        </div>
-
-        <div className="flex flex-row self-end">
-          <button onClick={HandleLogin}>
-            <Image
-              src={UserImage}
-              width="25"
-              height="25"
-              alt="User Menu Icon"
-            ></Image>
-          </button>
-        </div>
-      </div>
-      <div className="px-4">Hello Guest!</div>
       <div className="w-full flex flex-col items-center ">
         <div className="w-[30em] bg-gray-200 rounded-lg mt-4 mx-4 text-center">
           <div className="">

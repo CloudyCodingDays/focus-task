@@ -8,10 +8,6 @@ const ManageHeader = () => {
 
   return (
     <div>
-      <div>
-        <div>{user?.id}</div>
-        <Login />
-      </div>
       <div>Manage Tasks</div>
       <div>
         <AddTaskDisplay />

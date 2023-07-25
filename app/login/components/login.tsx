@@ -28,7 +28,6 @@ const Login = () => {
 
   return (
     <div>
-      {JSON.stringify(session, null, 2)}
       {!session ? (
         <button onClick={HandleLogin}>Login</button>
       ) : (
