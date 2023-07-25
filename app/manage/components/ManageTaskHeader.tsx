@@ -9,7 +9,7 @@ const ManageHeader = () => {
   return (
     <div>
       <div>
-        {user?.id}
+        <div>{user?.id}</div>
         <Login />
       </div>
       <div>Manage Tasks</div>
