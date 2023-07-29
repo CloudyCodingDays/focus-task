@@ -1,15 +1,15 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { FormSubmit } from "@/components/CRUDForm";
+import { FormSubmit } from "@/components/CRUD/HandleSubmitCRUD";
 import { useState } from "react";
 import { Task } from "@/types/supabase";
 import Link from "next/link";
 
-interface EditTaskProps {
+interface EditFormProps {
   data: string;
 }
 
-const EditTask: React.FC<EditTaskProps> = ({ data }) => {
+const EditForm: React.FC<EditFormProps> = ({ data }) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const item = JSON.parse(data);
@@ -18,8 +18,7 @@ const EditTask: React.FC<EditTaskProps> = ({ data }) => {
     e: React.FormEvent<HTMLFormElement>
   ) => {
     FormSubmit(e, "edit");
-    setOpen(false);
-    router.refresh();
+    router.push("/manage/list");
   };
 
   return (
@@ -31,6 +30,9 @@ const EditTask: React.FC<EditTaskProps> = ({ data }) => {
       </div>
       <div>
         <form method="post" onSubmit={HandleSubmit}>
+          <div>
+            <input name="id" type="hidden" value={item.id}></input>
+          </div>
           <div>Name</div>
           <input
             name="name"
@@ -57,4 +59,4 @@ const EditTask: React.FC<EditTaskProps> = ({ data }) => {
   );
 };
 
-export default EditTask;
+export default EditForm;

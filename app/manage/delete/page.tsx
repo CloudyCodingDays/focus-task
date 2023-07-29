@@ -1,4 +1,4 @@
-import DeleteTask from "../(CRUD)/DeleteTask";
+import DeleteTask from "../../../components/CRUD/DeleteForm";
 //TODO use context instead of search Params
 export default function Home({ searchParams }: any) {
   return (

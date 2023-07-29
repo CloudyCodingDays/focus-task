@@ -12,7 +12,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    if (user?.id !== undefined) router.push("/manage");
+    if (user?.id !== undefined) router.push("/manage/list");
   }, [router, user?.id]);
 
   return <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />;

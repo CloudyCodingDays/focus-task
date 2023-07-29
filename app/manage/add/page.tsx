@@ -1,4 +1,4 @@
-import AddForm from "../(CRUD)/AddTask";
+import AddForm from "../../../components/CRUD/AddForm";
 
 export default function Home() {
   return (

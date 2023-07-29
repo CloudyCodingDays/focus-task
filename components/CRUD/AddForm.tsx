@@ -1,17 +1,17 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { FormSubmit } from "@/components/CRUDForm";
+import { FormSubmit } from "@/components/CRUD/HandleSubmitCRUD";
 import { useState } from "react";
 import Link from "next/link";
 
-const AddTask = () => {
+const AddForm = () => {
   const router = useRouter();
 
   const HandleSubmit: React.FormEventHandler<HTMLFormElement> = (
     e: React.FormEvent<HTMLFormElement>
   ) => {
     FormSubmit(e, "add");
-    router.push("/manage");
+    router.push("/manage/list");
   };
   return (
     <div>
@@ -39,4 +39,4 @@ const AddTask = () => {
   );
 };
 
-export default AddTask;
+export default AddForm;

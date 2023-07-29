@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import GetTasks from "../../(CRUD)/GetTasks";
+import GetTasks from "../../../../components/CRUD/GetTasks";
 import TaskItem from "./TaskItem";
 import { Task } from "@/types/supabase";
 

@@ -3,8 +3,8 @@ import Image from "next/image";
 import { Task } from "@/types/supabase";
 import pic from "@/dishes.jpg";
 
-import EditTaskDisplay from "../../(CRUD)/EditTask";
-import DeleteTaskDisplay from "../../(CRUD)/DeleteTask";
+import EditTaskDisplay from "../../../../components/CRUD/EditForm";
+import DeleteTaskDisplay from "../../../../components/CRUD/DeleteForm";
 import Link from "next/link";
 
 interface TaskItemProps {
