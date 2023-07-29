@@ -1,10 +1,10 @@
 import TaskListDisplay from "./components/TaskListDisplay";
-import ManageTaskHeader from "./components/ManageTaskHeader";
+import Header from "./components/Header";
 
 export default function Home() {
   return (
     <div>
-      <ManageTaskHeader />
+      <Header />
       <TaskListDisplay />
     </div>
   );

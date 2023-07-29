@@ -16,7 +16,7 @@ const Routes = () => {
       {
         //Icon: BiSearch,
         label: "Manage",
-        active: pathname === "/manage",
+        active: pathname === "/manage/list",
         href: "/manage",
       },
       {
