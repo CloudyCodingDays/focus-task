@@ -14,13 +14,16 @@ const CurrentTaskDisplay = () => {
   const { user } = useUserInfo();
   const [task, setTask] = useState<Task[]>();
   const { updateTaskList, setUpdateTaskList } = useTaskListContext();
-
+  const [activeTaskExists, setActiveTaskExists] = useState<boolean>();
   useEffect(() => {
     const getActiveTask = async () => {
       if (user !== null) {
         const activeTask = await GetActiveTask(user.id);
-        const taskDetails = await GetActiveTaskDetails(activeTask);
-        setTask(taskDetails);
+        if (activeTask.length > 0) {
+          const taskDetails = await GetActiveTaskDetails(activeTask);
+          if (taskDetails.length > 0) setActiveTaskExists(true);
+          setTask(taskDetails);
+        }
       }
     };
     getActiveTask().catch(console.error);
@@ -28,12 +31,7 @@ const CurrentTaskDisplay = () => {
   }, [updateTaskList, setUpdateTaskList, user]);
   return (
     <div>
-      <div>{JSON.stringify(task)}</div>
-      {JSON.stringify(task) !== "[]" ? (
-        <ActiveTaskDisplay data={task} />
-      ) : (
-        <NoTaskDisplay />
-      )}
+      {activeTaskExists ? <ActiveTaskDisplay data={task} /> : <NoTaskDisplay />}
     </div>
   );
 };

@@ -1,17 +1,22 @@
 import supabase from "@/lib/supabaseClient";
 import { Task } from "@/types/supabase";
 
-const GetActiveTaskDetails = async (task: Task[]) => {
-  let taskData;
-  task.map(async (item) => {
+const GetActiveTaskDetails = async (task: any) => {
+  let taskId;
+  if (task.length > 0) {
+    task.map(async (item: any) => {
+      taskId = item.task_id;
+    });
     const { data, error } = await supabase
       .from("tasks")
       .select("id, name, description")
-      .eq("id", item.id);
+      .eq("id", taskId);
+
     if (error) throw new Error(error.message);
-    taskData = data;
-  });
-  return (taskData as any) || [];
+    return (data as any) || [];
+  } else {
+    return [];
+  }
 };
 
 export default GetActiveTaskDetails;
