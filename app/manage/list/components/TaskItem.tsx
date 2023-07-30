@@ -1,24 +1,17 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Task } from "@/types/supabase";
 import pic from "@/dishes.jpg";
-
-import EditTaskDisplay from "../../../../components/CRUD/EditForm";
-import DeleteTaskDisplay from "../../../../components/CRUD/DeleteForm";
-import Link from "next/link";
-import { useContext } from "react";
-import { useTaskListContext } from "@/providers/TaskListContextProvider";
 
 interface TaskItemProps {
   data: Task[] | undefined;
 }
 
 const TaskItem: React.FC<TaskItemProps> = ({ data }) => {
-  const { UpdateTaskList, setUpdateTaskList } = useTaskListContext();
   return data?.map((item) => (
     <div key={item.id} className="bg-gray-300 w-[30em] rounded-lg">
-      <div>{JSON.stringify(UpdateTaskList)}</div>
       <div>
         <div className="flex flex-row ml-4 mt-4 items-start">
           <div className="mr-4">

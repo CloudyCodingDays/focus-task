@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import UserProvider from "@/providers/UserProvider";
 import SupaBaseProvider from "@/providers/SupabaseProvider";
+import TaskListContextProvider from "@/providers/TaskListContextProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <SupaBaseProvider>
           <UserProvider>
-            <NavBar>{children}</NavBar>
+            <TaskListContextProvider>
+              <NavBar>{children}</NavBar>
+            </TaskListContextProvider>
           </UserProvider>
         </SupaBaseProvider>
       </body>

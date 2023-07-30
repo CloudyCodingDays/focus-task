@@ -1,10 +1,9 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { FormSubmit } from "@/components/CRUD/HandleSubmitCRUD";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { useState } from "react";
-import { Task } from "@/types/supabase";
 import Link from "next/link";
+import { useTaskListContext } from "@/providers/TaskListContextProvider";
 
 interface DeleteFormProps {
   data: string;
@@ -14,12 +13,13 @@ const DeleteForm: React.FC<DeleteFormProps> = ({ data }) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const item = JSON.parse(data);
+  const { updateTaskList, setUpdateTaskList } = useTaskListContext();
 
   const HandleSubmit: React.FormEventHandler<HTMLFormElement> = (
     e: React.FormEvent<HTMLFormElement>
   ) => {
     FormSubmit(e, "delete");
-    setOpen(false);
+    if (setUpdateTaskList !== undefined) setUpdateTaskList(true);
     router.push("/manage/list");
   };
 

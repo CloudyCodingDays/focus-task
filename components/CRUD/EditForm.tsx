@@ -2,8 +2,8 @@
 import { useRouter } from "next/navigation";
 import { FormSubmit } from "@/components/CRUD/HandleSubmitCRUD";
 import { useState } from "react";
-import { Task } from "@/types/supabase";
 import Link from "next/link";
+import { useTaskListContext } from "@/providers/TaskListContextProvider";
 
 interface EditFormProps {
   data: string;
@@ -13,11 +13,13 @@ const EditForm: React.FC<EditFormProps> = ({ data }) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const item = JSON.parse(data);
+  const { updateTaskList, setUpdateTaskList } = useTaskListContext();
 
   const HandleSubmit: React.FormEventHandler<HTMLFormElement> = (
     e: React.FormEvent<HTMLFormElement>
   ) => {
     FormSubmit(e, "edit");
+    if (setUpdateTaskList !== undefined) setUpdateTaskList(true);
     router.push("/manage/list");
   };
 

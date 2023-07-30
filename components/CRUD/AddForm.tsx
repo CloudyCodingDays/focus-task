@@ -1,16 +1,19 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { FormSubmit } from "@/components/CRUD/HandleSubmitCRUD";
-import { useState } from "react";
 import Link from "next/link";
+import { useTaskListContext } from "@/providers/TaskListContextProvider";
 
 const AddForm = () => {
   const router = useRouter();
+  const { updateTaskList, setUpdateTaskList } = useTaskListContext();
 
   const HandleSubmit: React.FormEventHandler<HTMLFormElement> = (
     e: React.FormEvent<HTMLFormElement>
   ) => {
     FormSubmit(e, "add");
+
+    if (setUpdateTaskList !== undefined) setUpdateTaskList(true);
     router.push("/manage/list");
   };
   return (

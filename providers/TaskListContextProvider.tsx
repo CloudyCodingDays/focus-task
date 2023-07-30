@@ -1,4 +1,5 @@
 "use client";
+import { Task } from "@/types/supabase";
 import {
   Dispatch,
   SetStateAction,
@@ -8,8 +9,8 @@ import {
 } from "react";
 
 interface TaskListContextType {
-  UpdateTaskList?: boolean;
-  setUpdateTaskList?: Dispatch<SetStateAction<boolean>>;
+  updateTaskList?: boolean;
+  setUpdateTaskList?: Dispatch<SetStateAction<boolean | undefined>>;
 }
 
 const TaskListContext = createContext<TaskListContextType>(
@@ -22,10 +23,10 @@ interface TaskListContextProviderProps {
 const TaskListContextProvider: React.FC<TaskListContextProviderProps> = ({
   children,
 }) => {
-  const [UpdateTaskList, setUpdateTaskList] = useState<boolean>(false);
+  const [updateTaskList, setUpdateTaskList] = useState<boolean>();
 
   return (
-    <TaskListContext.Provider value={{ UpdateTaskList, setUpdateTaskList }}>
+    <TaskListContext.Provider value={{ updateTaskList, setUpdateTaskList }}>
       {children}
     </TaskListContext.Provider>
   );
