@@ -1,45 +1,42 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { FormSubmit } from "@/components/CRUD/HandleSubmitCRUD";
-import Link from "next/link";
 import useTaskListContext from "@/hooks/useTaskListContext";
+import { useUserInfo } from "@/hooks/useUserInfo";
+import { useRouter } from "next/navigation";
 
-const AddForm = () => {
+interface AssignFormProps {
+  data: string;
+}
+
+const AssignForm: React.FC<AssignFormProps> = ({ data }) => {
   const router = useRouter();
+  const { user } = useUserInfo();
+  const item = JSON.parse(data);
   const { updateTaskList, setUpdateTaskList } = useTaskListContext();
 
   const HandleSubmit: React.FormEventHandler<HTMLFormElement> = (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    FormSubmit(e, "add");
-
+    FormSubmit(e, "assign", user?.id);
     if (setUpdateTaskList !== undefined) setUpdateTaskList(true);
-    router.push("/manage/list");
+    router.push("/");
   };
   return (
     <div>
-      <div className="my-8">
-        <Link href="/manage/list" className="bg-green-400 rounded-lg py-4 px-4">
-          Back to Manage Tasks
-        </Link>
-      </div>
-
       <form method="post" onSubmit={HandleSubmit}>
-        <div>Name</div>
-        <input name="name" className="border-2" required></input>
-        <div>Description</div>
-        <input name="description" className="border-2" required></input>
+        <div>
+          <input name="id" type="hidden" value={item.id}></input>
+        </div>
         <div>
           <button
             type="submit"
             className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
           >
-            Add New Task
+            Are you sure?
           </button>
         </div>
       </form>
     </div>
   );
 };
-
-export default AddForm;
+export default AssignForm;

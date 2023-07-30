@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
 
 const NoTaskDisplay = () => {
   //TODO: grab whether task was completed today and detemine what to show
@@ -14,7 +14,8 @@ const NoTaskDisplay = () => {
 
           <div className="flex flex-col items-center py-8">
             <div className="">You do not have an active task assigned!</div>
-            <button
+            <Link
+              href="/assign"
               className="
           hover:bg-green-400 
           my-4
@@ -29,7 +30,7 @@ const NoTaskDisplay = () => {
         self-end"
             >
               Assign New task
-            </button>
+            </Link>
           </div>
         </div>
       </div>

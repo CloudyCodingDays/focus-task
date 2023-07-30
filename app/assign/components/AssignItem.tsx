@@ -1,14 +1,14 @@
 import Image from "next/image";
-import Link from "next/link";
 
 import { Task } from "@/types/supabase";
 import pic from "@/dishes.jpg";
+import Link from "next/link";
 
-interface TaskItemProps {
+interface AssignItemProps {
   data: Task[] | undefined;
 }
 
-const TaskItem: React.FC<TaskItemProps> = ({ data }) => {
+const AssignItem: React.FC<AssignItemProps> = ({ data }) => {
   return data?.map((item) => (
     <div key={item.id} className="bg-gray-300 w-[30em] rounded-lg">
       <div>
@@ -30,30 +30,12 @@ const TaskItem: React.FC<TaskItemProps> = ({ data }) => {
         <div className="flex justify-around">
           <Link
             href={{
-              pathname: "/manage/delete",
-              query: { data: JSON.stringify(item) },
-            }}
-            className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
-          >
-            Delete Task
-          </Link>
-          <Link
-            href={{
-              pathname: "/manage/detail",
+              pathname: "/assign/details",
               query: { data: JSON.stringify(item) },
             }}
             className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
           >
             View Details
-          </Link>
-          <Link
-            href={{
-              pathname: "/manage/edit",
-              query: { data: JSON.stringify(item) },
-            }}
-            className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
-          >
-            Edit Task
           </Link>
         </div>
       </div>
@@ -61,4 +43,4 @@ const TaskItem: React.FC<TaskItemProps> = ({ data }) => {
   ));
 };
 
-export default TaskItem;
+export default AssignItem;

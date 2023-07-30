@@ -2,7 +2,8 @@ import supabase from "@/lib/supabaseClient";
 
 export const FormSubmit = async (
   e: React.FormEvent<HTMLFormElement>,
-  submitType: string
+  submitType: string,
+  userId?: string
 ) => {
   e.preventDefault();
 
@@ -18,6 +19,14 @@ export const FormSubmit = async (
     EditTask(taskId, taskName, taskDescription);
   } else if (submitType.trim() == "delete") {
     DeleteTask(taskId);
+  }
+
+  if (submitType.trim() == "assign") {
+    AssignTask(taskId, userId as string);
+  } else if (submitType.trim() == "unassign") {
+    UnassignTask(taskId, userId as string);
+  } else if (submitType.trim() == "complete") {
+    CompleteTask(taskId, taskName, taskDescription, userId as string);
   }
 };
 
@@ -63,5 +72,66 @@ const DeleteTask = async (taskId: string) => {
 
   if (supabaseError) {
     throw new Error(supabaseError.message);
+  }
+};
+
+const AssignTask = async (taskId: string, userId: string) => {
+  const { error: supabaseError } = await supabase
+    .from("user_current_task")
+    .insert({
+      user_id: userId,
+      task_id: taskId,
+    });
+
+  if (supabaseError) {
+    throw new Error(supabaseError.message);
+  }
+};
+
+const UnassignTask = async (taskId: string, userId: string) => {
+  const { error: supabaseError } = await supabase
+    .from("user_current_task")
+    .delete()
+    .eq("user_id", userId);
+
+  if (supabaseError) {
+    throw new Error(supabaseError.message);
+  }
+};
+
+const CompleteTask = async (
+  taskId: string,
+  taskName: string,
+  taskDescription: string,
+  userId: string
+) => {
+  const { error: currentTaskError } = await supabase
+    .from("user_current_task")
+    .delete()
+    .eq("user_id", userId);
+
+  if (currentTaskError) {
+    throw new Error(currentTaskError.message);
+  }
+  const { error: completedTaskError } = await supabase
+    .from("completed_tasks")
+    .insert({
+      task_id: taskId,
+      name: taskName,
+      description: taskDescription,
+      completed_by_user_id: userId,
+    });
+
+  if (completedTaskError) {
+    throw new Error(completedTaskError.message);
+  }
+
+  const { error: deleteTaskError } = await supabase
+    .from("tasks")
+    .delete()
+    .eq("id", taskId);
+
+  if (deleteTaskError) {
+    throw new Error(deleteTaskError.message);
   }
 };

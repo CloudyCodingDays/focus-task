@@ -1,6 +1,4 @@
 "use client";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Task } from "@/types/supabase";
 import Link from "next/link";
 import { useState } from "react";
 

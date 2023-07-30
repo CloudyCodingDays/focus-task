@@ -1,5 +1,4 @@
 "use client";
-import { Task } from "@/types/supabase";
 import {
   Dispatch,
   SetStateAction,
@@ -13,7 +12,7 @@ interface TaskListContextType {
   setUpdateTaskList?: Dispatch<SetStateAction<boolean | undefined>>;
 }
 
-const TaskListContext = createContext<TaskListContextType>(
+export const TaskListContext = createContext<TaskListContextType>(
   {} as TaskListContextType
 );
 
@@ -33,12 +32,3 @@ const TaskListContextProvider: React.FC<TaskListContextProviderProps> = ({
 };
 
 export default TaskListContextProvider;
-
-export const useTaskListContext = () => {
-  const taskListContext = useContext(TaskListContext);
-
-  if (TaskListContext === undefined) {
-    throw new Error("useTaskListContext must be inside a TaskListContext");
-  }
-  return taskListContext;
-};
