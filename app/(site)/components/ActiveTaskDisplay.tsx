@@ -22,7 +22,7 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ data }) => {
   ) => {
     FormSubmit(e, "unassign", user?.id);
     if (setUpdateTaskList !== undefined) setUpdateTaskList(true);
-    router.refresh();
+    window.location.reload();
   };
 
   const HandleComplete: React.FormEventHandler<HTMLFormElement> = (
@@ -30,7 +30,7 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ data }) => {
   ) => {
     FormSubmit(e, "complete", user?.id);
     if (setUpdateTaskList !== undefined) setUpdateTaskList(true);
-    router.refresh();
+    window.location.reload();
   };
 
   return data?.map((item) => (
