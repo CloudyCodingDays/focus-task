@@ -20,7 +20,6 @@ const NavBarMenu = () => {
         </DialogTrigger>
         <DialogContent className="h-full flex flex-col">
           <button
-            className="border-4"
             onClick={() => {
               setOpen(false);
             }}

@@ -32,8 +32,10 @@ const Routes = () => {
   return (
     <div>
       {routes.map((item) => (
-        <div className="py-4 border-2" key={item.label}>
-          <Link href={item.href}>{item.label}</Link>
+        <div className="flex flex-col" key={item.label}>
+          <Link className="border-2" href={item.href}>
+            {item.label}
+          </Link>
         </div>
       ))}
     </div>
