@@ -3,7 +3,7 @@ import ViewTask from "../../../components/CRUD/ViewTask";
 export default function Home({ searchParams }: any) {
   return (
     <div>
-      <ViewTask data={searchParams.data} />
+      <ViewTask id={searchParams.id} />
     </div>
   );
 }

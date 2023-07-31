@@ -3,7 +3,7 @@ import DeleteForm from "../../../components/CRUD/DeleteForm";
 export default function Home({ searchParams }: any) {
   return (
     <div>
-      <DeleteForm data={searchParams.data} />
+      <DeleteForm id={searchParams.id} />
     </div>
   );
 }

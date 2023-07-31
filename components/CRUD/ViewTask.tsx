@@ -1,14 +1,22 @@
 "use client";
+import GetTaskDetails from "@/app/manage/list/components/GetTaskDetails";
+import { Task } from "@/types/supabase";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface ViewTaskProps {
-  data: string;
+  id: string;
 }
 
-const ViewTask: React.FC<ViewTaskProps> = ({ data }) => {
-  const [open, setOpen] = useState(false);
-  const item = JSON.parse(data);
+const ViewTask: React.FC<ViewTaskProps> = ({ id }) => {
+  const [taskDetail, setTaskDetail] = useState<Task[]>();
+
+  useEffect(() => {
+    const getTaskDetails = async () => {
+      setTaskDetail(await GetTaskDetails(id));
+    };
+    getTaskDetails().catch(console.error);
+  }, [id]);
   return (
     <div>
       <div className="my-8">
@@ -16,9 +24,13 @@ const ViewTask: React.FC<ViewTaskProps> = ({ data }) => {
           Back to Manage Tasks
         </Link>
       </div>
-      <div>ID: {item.id}</div>
-      <div>Name: {item.name}</div>
-      <div>Description: {item.description}</div>
+      {taskDetail?.map((item) => (
+        <div key={item.id}>
+          <div>ID: {item.id}</div>
+          <div>Name: {item.name}</div>
+          <div>Description: {item.description}</div>
+        </div>
+      ))}
     </div>
   );
 };

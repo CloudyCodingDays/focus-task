@@ -1,18 +1,18 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { FormSubmit } from "@/components/CRUD/HandleSubmitCRUD";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import useTaskListContext from "@/hooks/useTaskListContext";
+import { Task } from "@/types/supabase";
+import GetTaskDetails from "@/app/manage/list/components/GetTaskDetails";
 
 interface DeleteFormProps {
-  data: string;
+  id: string;
 }
 
-const DeleteForm: React.FC<DeleteFormProps> = ({ data }) => {
+const DeleteForm: React.FC<DeleteFormProps> = ({ id }) => {
   const router = useRouter();
-  const [open, setOpen] = useState(false);
-  const item = JSON.parse(data);
   const { updateTaskList, setUpdateTaskList } = useTaskListContext();
 
   const HandleSubmit: React.FormEventHandler<HTMLFormElement> = (
@@ -33,7 +33,7 @@ const DeleteForm: React.FC<DeleteFormProps> = ({ data }) => {
       <div>
         <form method="post" onSubmit={HandleSubmit}>
           <div>
-            <input name="id" type="hidden" value={item.id}></input>
+            <input name="id" type="hidden" value={id}></input>
           </div>
           <div>
             <button

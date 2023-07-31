@@ -3,7 +3,7 @@ import EditTask from "../../../components/CRUD/EditForm";
 export default function Home({ searchParams }: any) {
   return (
     <div>
-      <EditTask data={searchParams.data} />
+      <EditTask id={searchParams.id} />
     </div>
   );
 }
