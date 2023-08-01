@@ -9,15 +9,15 @@ const Header = () => {
   return (
     <div>
       <div>Manage Tasks</div>
-      <div>
-        <div className="my-8">
-          <Link
-            href="/manage/add"
-            className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
-          >
-            New Task
-          </Link>
-        </div>
+      <div>test</div>
+
+      <div className="absolute bottom-8 right-8">
+        <Link
+          href="/manage/add"
+          className="bg-green-400 text-3xl rounded-lg pb-2 px-4"
+        >
+          +
+        </Link>
       </div>
     </div>
   );
