@@ -11,51 +11,51 @@ interface TaskItemProps {
 const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
   const { id, description, name } = task;
   return (
-    <div key={id} className="bg-gray-300 w-[30em] rounded-lg">
-      <div>
-        <div className="flex flex-row ml-4 mt-4 items-start">
-          <div className="mr-4">
-            <Image
-              src={pic}
-              width="75"
-              height="75"
-              alt="Task item Icon"
-            ></Image>
-          </div>
-          <div className="flex-grow">
-            <div>{name}</div>
-            <div>Tags</div>
-          </div>
+    <div key={id} className="bg-gray-300 rounded-lg">
+      <div className="flex flex-row mt-4 px-2 py-2">
+        <div>
+          <Image
+            src={pic}
+            width="250"
+            height="250"
+            alt="Task item Icon"
+          ></Image>
         </div>
-        <div className="mt-4 ml-4">{description}</div>
-        <div className="flex justify-around">
-          <Link
-            href={{
-              pathname: "/manage/delete",
-              query: { id: id },
-            }}
-            className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
-          >
-            Delete Task
-          </Link>
-          <Link
-            href={{
-              pathname: "/manage/detail",
-              query: { id: id },
-            }}
-            className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
-          >
-            View Details
-          </Link>
-          <Link
-            href={{
-              pathname: "/manage/edit",
-              query: { id: id },
-            }}
-            className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
-          >
-            Edit Task
-          </Link>
+        <div className="ml-4">
+          <div className="text-md font-semibold text-center">{name}</div>
+          <div className="text-sm font-extralight"> Tags</div>
+          <div className="text-sm mt-2 mb-4">
+            {description}zxczxczx czxc asda sdsa
+          </div>
+          <div className="flex flex-row self-end">
+            <Link
+              href={{
+                pathname: "/manage/delete",
+                query: { id: id },
+              }}
+              className="bg-green-400 rounded-lg mx-2"
+            >
+              Delete
+            </Link>
+            <Link
+              href={{
+                pathname: "/manage/detail",
+                query: { id: id },
+              }}
+              className="bg-green-400 rounded-lg mx-2"
+            >
+              View
+            </Link>
+            <Link
+              href={{
+                pathname: "/manage/edit",
+                query: { id: id },
+              }}
+              className="bg-green-400 rounded-lg mx-2"
+            >
+              Edit
+            </Link>
+          </div>
         </div>
       </div>
     </div>

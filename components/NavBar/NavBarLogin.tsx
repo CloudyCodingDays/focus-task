@@ -20,8 +20,8 @@ const NavBarLogin = () => {
               <button>
                 <Image
                   src={UserImage}
-                  width="25"
-                  height="25"
+                  width="30"
+                  height="30"
                   alt="User Menu Icon"
                 ></Image>
               </button>

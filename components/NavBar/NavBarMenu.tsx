@@ -13,19 +13,13 @@ const NavBarMenu = () => {
         <DialogTrigger asChild>
           <Image
             src={MenuImage}
-            width="25"
-            height="25"
+            width="30"
+            height="30"
             alt="Hamburger Menu Icon"
           ></Image>
         </DialogTrigger>
-        <DialogContent className="h-full flex flex-col">
-          <button
-            onClick={() => {
-              setOpen(false);
-            }}
-          >
-            <Routes />
-          </button>
+        <DialogContent className="py-8 h-screen flex flex-col px-16">
+          <Routes onRoute={setOpen} />
         </DialogContent>
       </Dialog>
     </button>

@@ -1,9 +1,11 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { useMemo } from "react";
+import { Dispatch, SetStateAction, useMemo } from "react";
 import Link from "next/link";
-
-const Routes = () => {
+interface RoutesProp {
+  onRoute: Dispatch<SetStateAction<boolean>>;
+}
+const Routes: React.FC<RoutesProp> = ({ onRoute }) => {
   const pathname = usePathname();
   const routes = useMemo(
     () => [
@@ -30,13 +32,18 @@ const Routes = () => {
   );
 
   return (
-    <div>
-      {routes.map((item) => (
-        <div className="flex flex-col" key={item.label}>
-          <Link className="border-2" href={item.href}>
-            {item.label}
-          </Link>
-        </div>
+    <div className="border-l-2 border-r-2">
+      {routes.map((item, index) => (
+        <Link
+          key={item.label}
+          href={item.href}
+          onClick={() => {
+            onRoute(false);
+          }}
+          className="flex flex-col text-center py-8 w-full border-t-2 border-b-2"
+        >
+          {item.label}
+        </Link>
       ))}
     </div>
   );

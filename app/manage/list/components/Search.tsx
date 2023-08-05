@@ -6,19 +6,39 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({ onSearch }) => {
   return (
-    <div>
-      <form onSubmit={onSearch}>
-        <input name="SearchTerm" className="border-2"></input>
-        <input name="NameFilter" type="checkbox" defaultChecked={true} />
-        <label>Filter by Name</label>
-
-        <input name="DescriptionFilter" type="checkbox" />
-        <label>Filter by Description</label>
-
-        <button className="border-2" type="submit">
-          Search
-        </button>
-      </form>
+    <div className="px-4 pt-8">
+      <div className="border-2 pt-8">
+        <form onSubmit={onSearch}>
+          <div className="flex flex-row w-full">
+            <div className="px-4 w-full">
+              <input
+                style={{ width: "100%" }}
+                name="SearchTerm"
+                className="border-2"
+              ></input>
+            </div>
+            <div className="pr-4">
+              <button className="border-2" type="submit">
+                Search
+              </button>
+            </div>
+          </div>
+          <div className="py-4">
+            <div className="px-4 flex flex-row">
+              <input name="NameFilter" type="checkbox" defaultChecked={true} />
+              <div className="px-4">
+                <label>Filter by Name</label>
+              </div>
+            </div>
+            <div className="px-4 flex flex-row">
+              <input name="DescriptionFilter" type="checkbox" />
+              <div className="px-4">
+                <label>Filter by Description</label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

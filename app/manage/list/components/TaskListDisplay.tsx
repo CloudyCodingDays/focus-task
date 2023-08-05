@@ -78,16 +78,18 @@ const TaskListDisplay = () => {
   }, [updateTaskList, setUpdateTaskList]);
 
   return (
-    <div>
+    <div className="flex flex-col w-full">
       <div>
         <Search onSearch={HandleSearch} />
       </div>
-      <div className="text-sm font-light mt-8 mr-2">All Tasks</div>
-      {filteredTasks?.map((item) => (
-        <div key={item.id}>
-          <TaskItem task={item} />
-        </div>
-      ))}
+      <div className="text-sm font-light mt-8 px-4">All Tasks</div>
+      <div className="px-4">
+        {filteredTasks?.map((item) => (
+          <div key={item.id}>
+            <TaskItem task={item} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
