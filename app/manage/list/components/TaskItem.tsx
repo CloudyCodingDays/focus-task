@@ -5,12 +5,13 @@ import { Task } from "@/types/supabase";
 import pic from "@/dishes.jpg";
 
 interface TaskItemProps {
-  data: Task[] | undefined;
+  task: Task;
 }
 
-const TaskItem: React.FC<TaskItemProps> = ({ data }) => {
-  return data?.map((item) => (
-    <div key={item.id} className="bg-gray-300 w-[30em] rounded-lg">
+const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
+  const { id, description, name } = task;
+  return (
+    <div key={id} className="bg-gray-300 w-[30em] rounded-lg">
       <div>
         <div className="flex flex-row ml-4 mt-4 items-start">
           <div className="mr-4">
@@ -22,16 +23,16 @@ const TaskItem: React.FC<TaskItemProps> = ({ data }) => {
             ></Image>
           </div>
           <div className="flex-grow">
-            <div>{item.name}</div>
+            <div>{name}</div>
             <div>Tags</div>
           </div>
         </div>
-        <div className="mt-4 ml-4">{item.description}</div>
+        <div className="mt-4 ml-4">{description}</div>
         <div className="flex justify-around">
           <Link
             href={{
               pathname: "/manage/delete",
-              query: { id: JSON.stringify(item.id) },
+              query: { id: JSON.stringify(id) },
             }}
             className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
           >
@@ -40,7 +41,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ data }) => {
           <Link
             href={{
               pathname: "/manage/detail",
-              query: { id: JSON.stringify(item.id) },
+              query: { id: JSON.stringify(id) },
             }}
             className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
           >
@@ -49,7 +50,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ data }) => {
           <Link
             href={{
               pathname: "/manage/edit",
-              query: { id: JSON.stringify(item.id) },
+              query: { id: JSON.stringify(id) },
             }}
             className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
           >
@@ -58,7 +59,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ data }) => {
         </div>
       </div>
     </div>
-  ));
+  );
 };
 
 export default TaskItem;

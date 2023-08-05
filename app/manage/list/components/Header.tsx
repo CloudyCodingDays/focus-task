@@ -9,8 +9,6 @@ const Header = () => {
   return (
     <div>
       <div>Manage Tasks</div>
-      <div>test</div>
-
       <div className="absolute bottom-8 right-8">
         <Link
           href="/manage/add"
