@@ -1,9 +1,9 @@
-import EditTask from "../../../components/CRUD/EditForm";
-//TODO use context instead of search Params
+import EditForm from "../../../components/CRUD/EditForm";
+
 export default function Home({ searchParams }: any) {
   return (
     <div>
-      <EditTask id={searchParams.id} />
+      <EditForm id={searchParams.id} />
     </div>
   );
 }

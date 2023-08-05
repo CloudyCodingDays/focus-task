@@ -9,7 +9,7 @@ interface ViewTaskProps {
 }
 
 const ViewTask: React.FC<ViewTaskProps> = ({ id }) => {
-  const [taskDetail, setTaskDetail] = useState<Task[]>();
+  const [taskDetail, setTaskDetail] = useState<Task[]>([]);
 
   useEffect(() => {
     const getTaskDetails = async () => {

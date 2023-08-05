@@ -12,9 +12,9 @@ import GetActiveTaskDetails from "./GetActiveTaskDetails";
 const CurrentTaskDisplay = () => {
   // get user info to determine if there is an active task to show the correct panel
   const { user } = useUserInfo();
-  const [task, setTask] = useState<Task[]>();
+  const [task, setTask] = useState<Task>({ id: "", name: "", description: "" });
   const { updateTaskList, setUpdateTaskList } = useTaskListContext();
-  const [activeTaskExists, setActiveTaskExists] = useState<boolean>();
+  const [activeTaskExists, setActiveTaskExists] = useState<boolean>(false);
   useEffect(() => {
     const getActiveTask = async () => {
       if (user !== null) {
@@ -31,7 +31,7 @@ const CurrentTaskDisplay = () => {
   }, [updateTaskList, setUpdateTaskList, user]);
   return (
     <div>
-      {activeTaskExists ? <ActiveTaskDisplay data={task} /> : <NoTaskDisplay />}
+      {activeTaskExists ? <ActiveTaskDisplay task={task} /> : <NoTaskDisplay />}
     </div>
   );
 };

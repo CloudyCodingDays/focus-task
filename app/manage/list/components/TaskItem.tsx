@@ -32,7 +32,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
           <Link
             href={{
               pathname: "/manage/delete",
-              query: { id: JSON.stringify(id) },
+              query: { id: id },
             }}
             className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
           >
@@ -41,7 +41,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
           <Link
             href={{
               pathname: "/manage/detail",
-              query: { id: JSON.stringify(id) },
+              query: { id: id },
             }}
             className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
           >
@@ -50,7 +50,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
           <Link
             href={{
               pathname: "/manage/edit",
-              query: { id: JSON.stringify(id) },
+              query: { id: id },
             }}
             className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
           >

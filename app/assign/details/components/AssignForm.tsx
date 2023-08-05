@@ -5,13 +5,12 @@ import { useUserInfo } from "@/hooks/useUserInfo";
 import { useRouter } from "next/navigation";
 
 interface AssignFormProps {
-  data: string;
+  id: string;
 }
 
-const AssignForm: React.FC<AssignFormProps> = ({ data }) => {
+const AssignForm: React.FC<AssignFormProps> = ({ id }) => {
   const router = useRouter();
   const { user } = useUserInfo();
-  const item = JSON.parse(data);
   const { updateTaskList, setUpdateTaskList } = useTaskListContext();
 
   const HandleSubmit: React.FormEventHandler<HTMLFormElement> = (
@@ -25,7 +24,7 @@ const AssignForm: React.FC<AssignFormProps> = ({ data }) => {
     <div>
       <form method="post" onSubmit={HandleSubmit}>
         <div>
-          <input name="id" type="hidden" value={item.id}></input>
+          <input name="id" type="hidden" value={id}></input>
         </div>
         <div>
           <button

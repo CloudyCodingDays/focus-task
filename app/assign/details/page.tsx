@@ -4,8 +4,8 @@ import AssignForm from "./components/AssignForm";
 export default function Home({ searchParams }: any) {
   return (
     <div>
-      <ViewTask data={searchParams.data} />
-      <AssignForm data={searchParams.data} />
+      <ViewTask id={searchParams.id} />
+      <AssignForm id={searchParams.id} />
     </div>
   );
 }

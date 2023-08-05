@@ -13,7 +13,7 @@ interface EditFormProps {
 
 const EditForm: React.FC<EditFormProps> = ({ id }) => {
   const router = useRouter();
-  const [taskDetail, setTaskDetail] = useState<Task[]>();
+  const [taskDetail, setTaskDetail] = useState<Task[]>([]);
   const { updateTaskList, setUpdateTaskList } = useTaskListContext();
 
   const HandleSubmit: React.FormEventHandler<HTMLFormElement> = (

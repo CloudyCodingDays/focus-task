@@ -9,13 +9,15 @@ import { useRouter } from "next/navigation";
 import useTaskListContext from "@/hooks/useTaskListContext";
 
 interface ActiveTaskDisplayProps {
-  data: Task[] | undefined;
+  task: Task;
 }
 
-const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ data }) => {
+const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
   const router = useRouter();
   const { user } = useUserInfo();
   const { updateTaskList, setUpdateTaskList } = useTaskListContext();
+
+  const { id, name, description } = task;
 
   const HandleUnassign: React.FormEventHandler<HTMLFormElement> = (
     e: React.FormEvent<HTMLFormElement>
@@ -33,8 +35,8 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ data }) => {
     window.location.reload();
   };
 
-  return data?.map((item) => (
-    <div key={item.id} className="bg-gray-300 w-[30em] rounded-lg">
+  return (
+    <div key={id} className="bg-gray-300 w-[30em] rounded-lg">
       <div>
         <div className="flex flex-row ml-4 mt-4 items-start">
           <div className="mr-4">
@@ -46,20 +48,16 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ data }) => {
             ></Image>
           </div>
           <div className="flex-grow">
-            <div>{item.name}</div>
+            <div>{name}</div>
             <div>Tags</div>
           </div>
         </div>
-        <div className="mt-4 ml-4">{item.description}</div>
+        <div className="mt-4 ml-4">{description}</div>
         <div className="flex justify-around">
           <form method="post" onSubmit={HandleUnassign}>
-            <input name="id" type="hidden" value={item.id}></input>
-            <input name="name" type="hidden" value={item.name}></input>
-            <input
-              name="description"
-              type="hidden"
-              value={item.description}
-            ></input>
+            <input name="id" type="hidden" value={id}></input>
+            <input name="name" type="hidden" value={name}></input>
+            <input name="description" type="hidden" value={description}></input>
             <button
               type="submit"
               className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
@@ -68,13 +66,9 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ data }) => {
             </button>
           </form>
           <form method="post" onSubmit={HandleComplete}>
-            <input name="id" type="hidden" value={item.id}></input>
-            <input name="name" type="hidden" value={item.name}></input>
-            <input
-              name="description"
-              type="hidden"
-              value={item.description}
-            ></input>
+            <input name="id" type="hidden" value={id}></input>
+            <input name="name" type="hidden" value={name}></input>
+            <input name="description" type="hidden" value={description}></input>
             <button
               type="submit"
               className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
@@ -85,7 +79,7 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ data }) => {
         </div>
       </div>
     </div>
-  ));
+  );
 };
 
 export default ActiveTaskDisplay;

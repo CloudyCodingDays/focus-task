@@ -8,7 +8,7 @@ import GetTasks from "@/app/manage/list/components/GetTasks";
 import useTaskListContext from "@/hooks/useTaskListContext";
 
 const AssignTaskDisplay = () => {
-  const [tasks, setTasks] = useState<Task[]>();
+  const [tasks, setTasks] = useState<Task[]>([]);
   const { updateTaskList, setUpdateTaskList } = useTaskListContext();
 
   useEffect(() => {
@@ -22,7 +22,9 @@ const AssignTaskDisplay = () => {
   return (
     <div>
       <div className="text-sm font-light mt-8 mr-2">All Tasks</div>
-      <AssignItem data={tasks} />
+      {tasks?.map((item) => (
+        <AssignItem key={item.id} task={item} />
+      ))}
     </div>
   );
 };

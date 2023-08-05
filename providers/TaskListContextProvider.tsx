@@ -1,15 +1,9 @@
 "use client";
-import {
-  Dispatch,
-  SetStateAction,
-  createContext,
-  useContext,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, createContext, useState } from "react";
 
 interface TaskListContextType {
   updateTaskList?: boolean;
-  setUpdateTaskList?: Dispatch<SetStateAction<boolean | undefined>>;
+  setUpdateTaskList?: Dispatch<SetStateAction<boolean>>;
 }
 
 export const TaskListContext = createContext<TaskListContextType>(
@@ -22,7 +16,7 @@ interface TaskListContextProviderProps {
 const TaskListContextProvider: React.FC<TaskListContextProviderProps> = ({
   children,
 }) => {
-  const [updateTaskList, setUpdateTaskList] = useState<boolean>();
+  const [updateTaskList, setUpdateTaskList] = useState<boolean>(false);
 
   return (
     <TaskListContext.Provider value={{ updateTaskList, setUpdateTaskList }}>

@@ -5,12 +5,13 @@ import pic from "@/dishes.jpg";
 import Link from "next/link";
 
 interface AssignItemProps {
-  data: Task[] | undefined;
+  task: Task;
 }
 
-const AssignItem: React.FC<AssignItemProps> = ({ data }) => {
-  return data?.map((item) => (
-    <div key={item.id} className="bg-gray-300 w-[30em] rounded-lg">
+const AssignItem: React.FC<AssignItemProps> = ({ task }) => {
+  const { id, name, description } = task;
+  return (
+    <div key={id} className="bg-gray-300 w-[30em] rounded-lg">
       <div>
         <div className="flex flex-row ml-4 mt-4 items-start">
           <div className="mr-4">
@@ -22,16 +23,16 @@ const AssignItem: React.FC<AssignItemProps> = ({ data }) => {
             ></Image>
           </div>
           <div className="flex-grow">
-            <div>{item.name}</div>
+            <div>{name}</div>
             <div>Tags</div>
           </div>
         </div>
-        <div className="mt-4 ml-4">{item.description}</div>
+        <div className="mt-4 ml-4">{description}</div>
         <div className="flex justify-around">
           <Link
             href={{
               pathname: "/assign/details",
-              query: { data: JSON.stringify(item) },
+              query: { id: id },
             }}
             className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
           >
@@ -40,7 +41,7 @@ const AssignItem: React.FC<AssignItemProps> = ({ data }) => {
         </div>
       </div>
     </div>
-  ));
+  );
 };
 
 export default AssignItem;
