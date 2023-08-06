@@ -22,6 +22,9 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
   const HandleUnassign: React.FormEventHandler<HTMLFormElement> = (
     e: React.FormEvent<HTMLFormElement>
   ) => {
+    console.log(task);
+    console.log(name);
+    console.log(description);
     FormSubmit(e, "unassign", user?.id);
     if (setUpdateTaskList !== undefined) setUpdateTaskList(true);
     window.location.reload();
@@ -36,9 +39,9 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
   };
 
   return (
-    <div key={id} className="bg-gray-300 w-[30em] rounded-lg">
+    <div key={id} className="bg-gray-300 w-[30em] rounded-lg mx-4">
       <div>
-        <div className="flex flex-row ml-4 mt-4 items-start">
+        <div className="flex flex-row mt-4 items-start">
           <div className="mr-4">
             <Image
               src={pic}

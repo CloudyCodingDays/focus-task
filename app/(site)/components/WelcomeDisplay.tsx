@@ -34,21 +34,24 @@ const WelcomeDisplay = () => {
 
   return (
     <div>
-      <div className="w-full flex flex-col items-center ">
+      <div className="text-sm px-4 font-light">Hi Peter!</div>
+      <div className="w-full flex flex-col">
         <div className="w-[30em] bg-gray-200 rounded-lg mt-4 mx-4 text-center">
           <div className="">
-            <div style={calmFont.style} className="text-5xl">
+            <div style={calmFont.style} className="text-4xl">
               {format(currentDate, "h")}:{format(currentDate, "mm")}:
               {format(currentDate, "ss")} {format(currentDate, "aaa")}
             </div>
           </div>
-          <div className="my-8 mx-24">
-            <Separator className="bg-green-300  pt-0.5" />
+          <div className="mt-6 mb-2 mx-24">
+            <Separator className="bg-green-300  pt-0.25" />
           </div>
           <div className="text-md pb-4 font-extralight">
             <div>
               Today is{" "}
-              <span className="font-bold">{format(currentDate, "EEEE")}</span>
+              <span className="font-bold text-lg">
+                {format(currentDate, "EEEE")}
+              </span>
             </div>
             <div className="">{format(currentDate, "PPP")}</div>
           </div>

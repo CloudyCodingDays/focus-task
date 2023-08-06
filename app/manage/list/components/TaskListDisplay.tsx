@@ -6,6 +6,7 @@ import { Task } from "@/types/supabase";
 import useTaskListContext from "@/hooks/useTaskListContext";
 import Search from "./Search";
 import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
 
 const TaskListDisplay = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -80,24 +81,52 @@ const TaskListDisplay = () => {
 
   return (
     <div>
-      <div className="border-2 mx-4 rounded-lg bg-gray-100 mt-8">
-        <div className="text-right mx-4 mt-4">
-          <Link
-            href="/manage/add"
-            className="hover:bg-green-500 hover:text-white bg-green-300 text-green-600 text-md rounded-sm px-2 py-2 "
-          >
-            Add Task
-          </Link>
-          <Search onSearch={HandleSearch} />
-        </div>
-        <div className="text-sm font-light mt-4 px-4">All Tasks</div>
-      </div>
-      <div className="md:flex md:flex-row md:flex-wrap px-4">
-        {filteredTasks?.map((item) => (
-          <div key={item.id} className="md:basis-1/3 lg:basis-1/4 my-2">
-            <TaskItem task={item} />
+      <div className=" flex flex-row justify-center">
+        <div className="border-2 mx-4 rounded-lg bg-gray-100 mt-8 w-[650px] drop-shadow-lg">
+          <div className="text-right mx-4 my-4">
+            <Search onSearch={HandleSearch} />
           </div>
-        ))}
+        </div>
+      </div>
+      <div className="flex flex-row justify-between items-end px-8 mt-8 mb-1">
+        <div className="text-sm font-light">Search Results</div>
+        <Link
+          href="/manage/add"
+          className="
+          hover:bg-green-500
+           hover:text-white 
+           bg-green-300 
+           text-green-600 
+           text-sm 
+           rounded-sm 
+           px-2 
+           py-2  
+           drop-shadow"
+        >
+          Add Task
+        </Link>
+      </div>
+      <div className="px-8">
+        <Separator className="bg-green-300 pt-0.25" />
+      </div>
+      <div>
+        <div
+          className="
+          grid
+          sm:grid-cols-2
+          md:grid-cols-3
+          lg:grid-cols-4
+          px-8"
+        >
+          {filteredTasks?.map((item) => (
+            <div
+              key={item.id}
+              className="border-2 border-gray-300 my-4 mx-2 drop-shadow-md"
+            >
+              <TaskItem task={item} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
