@@ -6,7 +6,7 @@ const NoTaskDisplay = () => {
   return (
     <div>
       <div className="w-full flex flex-col items-center">
-        <div className="w-[30em]  bg-gray-200 rounded-lg my-4 mx-4">
+        <div className="w-[30em]  bg-gray-200 rounded-lg my-4 mx-4 drop-shadow-lg">
           <div className="font-light py-4">
             <div className="px-8">Current Task</div>
             <Separator className="bg-green-300 pt-0.25 mt-4" />

@@ -40,7 +40,7 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
 
   return (
     <div key={id} className="w-full flex flex-col items-center">
-      <div className="w-[30em]  bg-gray-200 rounded-lg my-4 mx-4">
+      <div className="w-[30em]  bg-gray-200 rounded-lg my-4 mx-4 drop-shadow-lg">
         <div>
           <div className="mr-4">
             <Image

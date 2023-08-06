@@ -36,7 +36,7 @@ const WelcomeDisplay = () => {
     <div>
       <div className="text-sm px-4 font-light">Hi Peter!</div>
       <div className="w-full flex flex-col items-center">
-        <div className="w-[30em] bg-gray-200 rounded-lg mt-4 mx-4 text-center">
+        <div className="w-[30em] bg-gray-200 rounded-lg mt-4 mx-4 text-center drop-shadow-lg">
           <div className="">
             <div style={calmFont.style} className="text-4xl">
               {format(currentDate, "h")}:{format(currentDate, "mm")}:
