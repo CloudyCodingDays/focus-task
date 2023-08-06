@@ -19,7 +19,7 @@ const CatPanel = () => {
   };
 
   const query = useQuery<CatPictureData[], Error>("CatPicture", getCatData, {
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 60 * 12,
   });
 
   if (query.isLoading) return "Loading...";
@@ -32,16 +32,13 @@ const CatPanel = () => {
         <div
           key={cat.id}
           className="
-          bg-gray-100 
           w-[600px] 
-          h-[425px] 
           flex
           flex-col
           items-center
           px-4 
           pt-4 
-          mx-4 
-          my-8"
+          mx-4"
         >
           <div className="pb-4">Cat picture to brighten your day!</div>
           <Image

@@ -5,7 +5,7 @@ import CatPanel from "./components/CatPanel";
 export default function Home() {
   return (
     <div>
-      <div className="flex flex-row justify-evenly">
+      <div className="md:flex md:flex-row md:justify-evenly">
         <div>
           <WelcomeDisplay />
           <CurrentTaskDisplay />
