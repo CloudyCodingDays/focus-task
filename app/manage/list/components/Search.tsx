@@ -6,8 +6,8 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({ onSearch }) => {
   return (
-    <div className="px-4 pt-8">
-      <div className="border-2 pt-8">
+    <div className="pt-4">
+      <div className="border-2 pt-8 bg-white">
         <form onSubmit={onSearch}>
           <div className="flex flex-row w-full">
             <div className="px-4 w-full">

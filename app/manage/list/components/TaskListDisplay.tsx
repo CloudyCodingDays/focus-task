@@ -5,6 +5,7 @@ import TaskItem from "./TaskItem";
 import { Task } from "@/types/supabase";
 import useTaskListContext from "@/hooks/useTaskListContext";
 import Search from "./Search";
+import Link from "next/link";
 
 const TaskListDisplay = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -79,16 +80,24 @@ const TaskListDisplay = () => {
 
   return (
     <div className="flex flex-col w-full">
-      <div>
-        <Search onSearch={HandleSearch} />
-      </div>
-      <div className="text-sm font-light mt-8 px-4">All Tasks</div>
-      <div className="px-4">
-        {filteredTasks?.map((item) => (
-          <div key={item.id}>
-            <TaskItem task={item} />
-          </div>
-        ))}
+      <div className="border-2 mx-8 rounded-lg bg-gray-200">
+        <div className="text-right mx-4 mt-4">
+          <Link
+            href="/manage/add"
+            className="hover:bg-green-500 hover:text-white bg-green-300 text-green-600 text-md rounded-sm px-2 py-2 "
+          >
+            Add Task
+          </Link>
+          <Search onSearch={HandleSearch} />
+        </div>
+        <div className="text-sm font-light mt-4 px-4">All Tasks</div>
+        <div className="px-4">
+          {filteredTasks?.map((item) => (
+            <div key={item.id}>
+              <TaskItem task={item} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
