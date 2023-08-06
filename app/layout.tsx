@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import UserProvider from "@/providers/UserProvider";
 import SupaBaseProvider from "@/providers/SupabaseProvider";
 import TaskListContextProvider from "@/providers/TaskListContextProvider";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +25,9 @@ export default function RootLayout({
         <SupaBaseProvider>
           <UserProvider>
             <TaskListContextProvider>
-              <NavBar>{children}</NavBar>
+              <ReactQueryProvider>
+                <NavBar>{children}</NavBar>
+              </ReactQueryProvider>
             </TaskListContextProvider>
           </UserProvider>
         </SupaBaseProvider>

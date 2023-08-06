@@ -1,18 +1,19 @@
 import WelcomeDisplay from "./components/WelcomeDisplay";
 import CurrentTaskDisplay from "./components/CurrentTaskDisplay";
+import CatPanel from "./components/CatPanel";
 
 export default function Home() {
   return (
     <div>
-      <div className="h-screen">
+      <div className="flex flex-row justify-evenly">
         <div>
           <WelcomeDisplay />
-        </div>
-        <div>
           <CurrentTaskDisplay />
         </div>
+        <div>
+          <CatPanel />
+        </div>
       </div>
-      <div>Footer</div>
     </div>
   );
 }
