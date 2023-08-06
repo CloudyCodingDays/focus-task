@@ -39,9 +39,9 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
   };
 
   return (
-    <div key={id} className="bg-gray-300 w-[30em] rounded-lg mx-4">
-      <div>
-        <div className="flex flex-row mt-4 items-start">
+    <div key={id} className="w-full flex flex-col items-center">
+      <div className="w-[30em]  bg-gray-200 rounded-lg my-4 mx-4">
+        <div>
           <div className="mr-4">
             <Image
               src={pic}
@@ -63,7 +63,18 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
             <input name="description" type="hidden" value={description}></input>
             <button
               type="submit"
-              className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
+              className="          
+              hover:bg-green-500 
+              hover:text-green-700 
+              my-4
+              mt-12
+              mr-8
+              rounded-lg
+              py-4
+              px-4
+            bg-white 
+            font-semibold
+            text-green-500"
             >
               Unassign Task
             </button>
@@ -74,7 +85,17 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
             <input name="description" type="hidden" value={description}></input>
             <button
               type="submit"
-              className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
+              className="          
+              hover:bg-green-400 
+              my-4
+              mt-12
+              mr-8
+              rounded-lg
+              py-4
+              px-4
+            bg-green-500 
+            font-semibold
+            text-green-300"
             >
               Complete Task
             </button>
