@@ -1,6 +1,6 @@
 "use client";
-import GetTaskDetails from "@/app/manage/list/components/GetTaskDetails";
-import { Task } from "@/types/supabase";
+import GetTaskDetails from "@/components/GetTaskDetails";
+import { Task } from "@/types/Task";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 

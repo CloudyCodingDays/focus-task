@@ -1,12 +1,9 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { FormSubmit } from "@/components/CRUD/HandleSubmitCRUD";
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import useTaskListContext from "@/hooks/useTaskListContext";
-import { Task } from "@/types/supabase";
-import GetTaskDetails from "@/app/manage/list/components/GetTaskDetails";
 
+import { useRouter } from "next/navigation";
+import { FormSubmit } from "@/components/CRUD/HandleSubmitCRUD";
 interface DeleteFormProps {
   id: string;
 }

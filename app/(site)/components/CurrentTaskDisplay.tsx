@@ -7,6 +7,7 @@ import GetActiveTask from "./GetActiveTask";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { useEffect, useState } from "react";
 import { Task } from "@/types/Task";
+import GetTaskDetails from "@/components/GetTaskDetails";
 
 const CurrentTaskDisplay = () => {
   const { user } = useUserInfo();
@@ -16,7 +17,7 @@ const CurrentTaskDisplay = () => {
   useEffect(() => {
     const getActiveTask = async () => {
       if (user !== null) {
-        const activeTask = await GetActiveTask(user.id);
+        const activeTask = await GetTaskDetails(user.id, "user");
 
         setTask(activeTask);
       }
