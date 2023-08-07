@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Task } from "@/types/supabase";
 import Image from "next/image";
 import Link from "next/link";
 import pic from "@/dishes.jpg";
@@ -7,6 +6,8 @@ import { FormSubmit } from "@/components/CRUD/HandleSubmitCRUD";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { useRouter } from "next/navigation";
 import useTaskListContext from "@/hooks/useTaskListContext";
+import { Task } from "@/types/Task";
+import TaskItem from "@/components/TaskItem";
 
 interface ActiveTaskDisplayProps {
   task: Task;
@@ -17,14 +18,9 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
   const { user } = useUserInfo();
   const { updateTaskList, setUpdateTaskList } = useTaskListContext();
 
-  const { id, name, description } = task;
-
   const HandleUnassign: React.FormEventHandler<HTMLFormElement> = (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    console.log(task);
-    console.log(name);
-    console.log(description);
     FormSubmit(e, "unassign", user?.id);
     if (setUpdateTaskList !== undefined) setUpdateTaskList(true);
     window.location.reload();
@@ -39,28 +35,18 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
   };
 
   return (
-    <div key={id} className="w-full flex flex-col items-center">
+    <div key={task.id} className="w-full flex flex-col items-center">
       <div className="w-[30em]  bg-gray-200 rounded-lg my-4 mx-4 drop-shadow-lg">
-        <div>
-          <div className="mr-4">
-            <Image
-              src={pic}
-              width="75"
-              height="75"
-              alt="Task item Icon"
-            ></Image>
-          </div>
-          <div className="flex-grow">
-            <div>{name}</div>
-            <div>Tags</div>
-          </div>
-        </div>
-        <div className="mt-4 ml-4">{description}</div>
+        <TaskItem task={task} />
         <div className="flex justify-around">
           <form method="post" onSubmit={HandleUnassign}>
-            <input name="id" type="hidden" value={id}></input>
-            <input name="name" type="hidden" value={name}></input>
-            <input name="description" type="hidden" value={description}></input>
+            <input name="id" type="hidden" value={task.id}></input>
+            <input name="name" type="hidden" value={task.name}></input>
+            <input
+              name="description"
+              type="hidden"
+              value={task.description}
+            ></input>
             <button
               type="submit"
               className="          
@@ -80,9 +66,13 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
             </button>
           </form>
           <form method="post" onSubmit={HandleComplete}>
-            <input name="id" type="hidden" value={id}></input>
-            <input name="name" type="hidden" value={name}></input>
-            <input name="description" type="hidden" value={description}></input>
+            <input name="id" type="hidden" value={task.id}></input>
+            <input name="name" type="hidden" value={task.name}></input>
+            <input
+              name="description"
+              type="hidden"
+              value={task.description}
+            ></input>
             <button
               type="submit"
               className="          

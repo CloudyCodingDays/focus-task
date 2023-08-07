@@ -1,12 +1,13 @@
 "use client";
 import { FormEventHandler, useEffect, useState } from "react";
 import GetTasks from "./GetTasks";
-import TaskItem from "./TaskItem";
-import { Task } from "@/types/supabase";
+import TaskItem from "../../../../components/TaskItem";
+
 import useTaskListContext from "@/hooks/useTaskListContext";
 import Search from "./Search";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
+import { Task } from "@/types/Task";
 
 const TaskListDisplay = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -123,7 +124,14 @@ const TaskListDisplay = () => {
               key={item.id}
               className="border-2 border-gray-300 my-4 mx-2 drop-shadow-md"
             >
-              <TaskItem task={item} />
+              <Link
+                href={{
+                  pathname: "/manage/delete",
+                  query: { id: item.id },
+                }}
+              >
+                <TaskItem task={item} />
+              </Link>
             </div>
           ))}
         </div>
