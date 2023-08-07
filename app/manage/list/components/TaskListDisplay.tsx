@@ -8,15 +8,13 @@ import Search from "./Search";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 import { Task } from "@/types/Task";
+import TaskItemActions from "./TaskItemActions";
 
 const TaskListDisplay = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
-
   const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
-
   const [byName, setByName] = useState<Task[]>([]);
   const [byDesc, setByDesc] = useState<Task[]>([]);
-
   const { updateTaskList, setUpdateTaskList } = useTaskListContext();
 
   const HandleSearch: React.FormEventHandler<HTMLFormElement> = (
@@ -82,14 +80,37 @@ const TaskListDisplay = () => {
 
   return (
     <div>
-      <div className=" flex flex-row justify-center">
-        <div className="border-2 mx-4 rounded-lg bg-gray-100 mt-8 w-[650px] drop-shadow-lg">
+      <div
+        className=" 
+      flex 
+      flex-row 
+      justify-center"
+      >
+        <div
+          className="
+        border-2 
+        mx-4 
+        rounded-lg 
+        bg-gray-100 
+        mt-8 
+        w-[650px] 
+        drop-shadow-lg"
+        >
           <div className="text-right mx-4 my-4">
             <Search onSearch={HandleSearch} />
           </div>
         </div>
       </div>
-      <div className="flex flex-row justify-between items-end px-8 mt-8 mb-1">
+      <div
+        className="
+      flex 
+      flex-row 
+      justify-between 
+      items-end 
+      px-8 
+      mt-8 
+      mb-1"
+      >
         <div className="text-sm font-light">Search Results</div>
         <Link
           href="/manage/add"
@@ -101,7 +122,7 @@ const TaskListDisplay = () => {
            text-sm 
            rounded-sm 
            px-2 
-           py-2  
+           py-2
            drop-shadow"
         >
           Add Task
@@ -122,16 +143,22 @@ const TaskListDisplay = () => {
           {filteredTasks?.map((item) => (
             <div
               key={item.id}
-              className="border-2 border-gray-300 my-4 mx-2 drop-shadow-md"
+              className="
+              bg-gray-100
+              rounded-lg
+              my-4 
+              mx-2 
+              drop-shadow-md"
             >
-              <Link
-                href={{
-                  pathname: "/manage/delete",
-                  query: { id: item.id },
-                }}
-              >
-                <TaskItem task={item} />
-              </Link>
+              <div>
+                <div>
+                  <TaskItem task={item} />
+                </div>
+                <Separator className="bg-green-300 pt-0.25" />
+                <div className="pt-4">
+                  <TaskItemActions id={item.id} task={item} />
+                </div>
+              </div>
             </div>
           ))}
         </div>

@@ -1,8 +1,8 @@
 import Image from "next/image";
 
-import { Task } from "@/types/supabase";
 import pic from "@/dishes.jpg";
 import Link from "next/link";
+import { Task } from "@/types/Task";
 
 interface AssignItemProps {
   task: Task;

@@ -4,11 +4,14 @@ import useTaskListContext from "@/hooks/useTaskListContext";
 
 import { useRouter } from "next/navigation";
 import { FormSubmit } from "@/components/CRUD/HandleSubmitCRUD";
+import TaskItemDetails from "../TaskItemDetails";
+import { Dispatch, SetStateAction } from "react";
 interface DeleteFormProps {
   id: string;
+  onBack: Dispatch<SetStateAction<boolean>>;
 }
 
-const DeleteForm: React.FC<DeleteFormProps> = ({ id }) => {
+const DeleteForm: React.FC<DeleteFormProps> = ({ id, onBack }) => {
   const router = useRouter();
   const { updateTaskList, setUpdateTaskList } = useTaskListContext();
 
@@ -20,26 +23,48 @@ const DeleteForm: React.FC<DeleteFormProps> = ({ id }) => {
     router.push("/manage/list");
   };
 
+  const HandleBack = () => {
+    onBack(false);
+  };
+
   return (
-    <div>
-      <div className="my-8">
-        <Link href="/manage/list" className="bg-green-400 rounded-lg py-4 px-4">
-          Back to Manage Tasks
-        </Link>
-      </div>
+    <div className="grid grid-cols-2">
       <div>
+        <button
+          className="
+            hover:bg-green-200
+            hover:text-gray-500
+            bg-white
+            border-green-300 
+            border-2 
+            rounded-lg 
+            ml-4 
+            py-4 
+            px-4
+            mx-4"
+          onClick={HandleBack}
+        >
+          Back
+        </button>
+      </div>
+      <div className="text-right">
         <form method="post" onSubmit={HandleSubmit}>
           <div>
             <input name="id" type="hidden" value={id}></input>
           </div>
-          <div>
-            <button
-              type="submit"
-              className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
-            >
-              Are you sure?
-            </button>
-          </div>
+          <button
+            type="submit"
+            className="
+              hover:bg-red-600
+              hover:text-white
+              bg-red-400
+              border-2 
+              rounded-lg 
+              py-4 
+              px-4"
+          >
+            Delete Task
+          </button>
         </form>
       </div>
     </div>

@@ -1,5 +1,3 @@
-import { Task } from "@/types/supabase";
-
 interface SearchProps {
   onSearch: React.FormEventHandler<HTMLFormElement>;
 }

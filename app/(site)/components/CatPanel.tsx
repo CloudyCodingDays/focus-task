@@ -33,6 +33,7 @@ const CatPanel = () => {
           key={cat.id}
           className="
         bg-gray-100
+        rounded-lg
         py-4
         px-4
         mx-4
@@ -45,10 +46,7 @@ const CatPanel = () => {
             className="
           w-[600px]
           h-[400px] 
-          flex
-          flex-col
-          items-center
-          drop-shadow-xl"
+          drop-shadow-sm"
           >
             <Image src={cat.url} fill={true} alt="Cat Picture"></Image>
           </div>

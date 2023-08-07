@@ -11,7 +11,7 @@ interface TaskItemProps {
 const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
   const { id, description, name } = task;
   return (
-    <div key={id} className="rounded-lg bg-gray-100 h-full">
+    <div key={id} className="rounded-lg h-full">
       <div className="">
         <div className="flex flex-row justify-center">
           <Image
