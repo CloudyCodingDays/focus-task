@@ -1,5 +1,5 @@
 "use client";
-import { FormSubmit } from "@/components/CRUD/HandleSubmitCRUD";
+import { FormSubmit } from "@/app/manage/list/components/HandleSubmitCRUD";
 import useTaskListContext from "@/hooks/useTaskListContext";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { useRouter } from "next/navigation";

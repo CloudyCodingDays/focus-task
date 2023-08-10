@@ -1,75 +1,32 @@
 "use client";
-import { FormEventHandler, useEffect, useState } from "react";
-import GetTasks from "./GetTasks";
+import { useEffect, useState } from "react";
 import TaskItem from "../../../../components/TaskItem";
-
 import useTaskListContext from "@/hooks/useTaskListContext";
-import Search from "./Search";
-import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 import { Task } from "@/types/Task";
 import TaskItemActions from "./TaskItemActions";
+import FilterSearchResults from "./FilterSearchResults";
+import GetTaskDetails from "@/components/GetTaskDetails";
+
+import SearchForm from "./SearchForm";
+import AddTask from "./AddTask";
 
 const TaskListDisplay = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
-  const [byName, setByName] = useState<Task[]>([]);
-  const [byDesc, setByDesc] = useState<Task[]>([]);
   const { updateTaskList, setUpdateTaskList } = useTaskListContext();
 
   const HandleSearch: React.FormEventHandler<HTMLFormElement> = (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    const searchTerm = formData.get("SearchTerm") as string;
-    const nameFilter = formData.get("NameFilter");
-    const descriptionFilter = formData.get("DescriptionFilter");
-
-    if (nameFilter !== null) {
-      setByName(
-        tasks?.filter((task) => {
-          return task.name.includes(searchTerm);
-        })
-      );
-    } else {
-      setByName([]);
-    }
-
-    if (descriptionFilter !== null) {
-      setByDesc(
-        tasks?.filter((task) => {
-          return task.description.includes(searchTerm);
-        })
-      );
-    } else {
-      setByDesc([]);
-    }
-
-    return tasks;
+    let SearchResults: Task[];
+    SearchResults = FilterSearchResults(e, tasks);
+    setFilteredTasks(SearchResults);
   };
 
   useEffect(() => {
-    let finalFilteredResults: Task[] = [];
-    if (byName.length !== 0) {
-      Array.prototype.push.apply(finalFilteredResults, byName);
-    }
-
-    if (byDesc.length !== 0) {
-      Array.prototype.push.apply(finalFilteredResults, byDesc);
-    }
-
-    finalFilteredResults = Array.from(
-      new Map(finalFilteredResults.map((v) => [v.id, v])).values()
-    );
-
-    setFilteredTasks(finalFilteredResults);
-  }, [byName, byDesc]);
-
-  useEffect(() => {
     const getTasks = async () => {
-      const newTasks = await GetTasks();
+      const newTasks = await GetTaskDetails();
       setTasks(newTasks);
       setFilteredTasks(newTasks);
     };
@@ -80,58 +37,10 @@ const TaskListDisplay = () => {
 
   return (
     <div>
-      <div
-        className=" 
-      flex 
-      flex-row 
-      justify-center"
-      >
-        <div
-          className="
-        border-2 
-        mx-4 
-        rounded-lg 
-        bg-gray-100 
-        mt-8 
-        w-[650px] 
-        drop-shadow-lg"
-        >
-          <div className="text-right mx-4 my-4">
-            <Search onSearch={HandleSearch} />
-          </div>
-        </div>
-      </div>
-      <div
-        className="
-      flex 
-      flex-row 
-      justify-between 
-      items-end 
-      px-8 
-      mt-8 
-      mb-1"
-      >
-        <div className="text-sm font-light">Search Results</div>
-        <Link
-          href="/manage/add"
-          className="
-          hover:bg-green-500
-           hover:text-white 
-           bg-green-300 
-           text-green-600 
-           text-sm 
-           rounded-sm 
-           px-2 
-           py-2
-           drop-shadow"
-        >
-          Add Task
-        </Link>
-      </div>
-      <div className="px-8">
-        <Separator className="bg-green-300 pt-0.25" />
-      </div>
-      <div>
+      <SearchForm onSearch={HandleSearch} />
+
+      <div className="w-4/5 mx-auto">
+        <AddTask taskCount={filteredTasks.length} />
         <div
           className="
           grid
@@ -154,7 +63,6 @@ const TaskListDisplay = () => {
                 <div>
                   <TaskItem task={item} />
                 </div>
-                <Separator className="bg-green-300 pt-0.25" />
                 <div className="pt-4">
                   <TaskItemActions id={item.id} task={item} />
                 </div>

@@ -3,8 +3,8 @@ import Link from "next/link";
 import useTaskListContext from "@/hooks/useTaskListContext";
 
 import { useRouter } from "next/navigation";
-import { FormSubmit } from "@/components/CRUD/HandleSubmitCRUD";
-import TaskItemDetails from "../TaskItemDetails";
+import { FormSubmit } from "@/app/manage/list/components/HandleSubmitCRUD";
+import TaskItemDetails from "../../../../components/TaskItemDetails";
 import { Dispatch, SetStateAction } from "react";
 interface DeleteFormProps {
   id: string;

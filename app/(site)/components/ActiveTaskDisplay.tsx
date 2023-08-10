@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import pic from "@/dishes.jpg";
-import { FormSubmit } from "@/components/CRUD/HandleSubmitCRUD";
+import { FormSubmit } from "@/app/manage/list/components/HandleSubmitCRUD";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { useRouter } from "next/navigation";
 import useTaskListContext from "@/hooks/useTaskListContext";

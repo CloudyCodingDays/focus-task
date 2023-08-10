@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 
-import { Task } from "@/types/supabase";
 import AssignItem from "./AssignItem";
-import GetTasks from "@/app/manage/list/components/GetTasks";
 import useTaskListContext from "@/hooks/useTaskListContext";
+import { Task } from "@/types/Task";
+import GetTaskDetails from "@/components/GetTaskDetails";
 
 const AssignTaskDisplay = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -13,7 +13,7 @@ const AssignTaskDisplay = () => {
 
   useEffect(() => {
     const getTasks = async () => {
-      setTasks(await GetTasks());
+      setTasks(await GetTaskDetails());
     };
 
     getTasks().catch(console.error);

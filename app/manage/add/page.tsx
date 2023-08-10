@@ -1,4 +1,4 @@
-import AddForm from "../../../components/CRUD/AddForm";
+import AddForm from "../list/components/AddForm";
 
 export default function Home() {
   return (

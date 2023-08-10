@@ -3,7 +3,7 @@ import GetTaskDetails from "@/components/GetTaskDetails";
 import { Task } from "@/types/Task";
 import Link from "next/link";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import TaskItemDetails from "../TaskItemDetails";
+import TaskItemDetails from "./TaskItemDetails";
 
 interface ViewTaskProps {
   id: string;

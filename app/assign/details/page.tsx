@@ -1,4 +1,4 @@
-import ViewTask from "../../../components/CRUD/ViewTask";
+import ViewTask from "../../../components/ViewTask";
 import AssignForm from "./components/AssignForm";
 //TODO use context instead of search Params
 export default function Home({ searchParams }: any) {

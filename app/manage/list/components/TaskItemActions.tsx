@@ -5,11 +5,11 @@ import DeleteIcon from "@/icons/delete.png";
 import ViewIcon from "@/icons/view.png";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { useState } from "react";
-import DeleteForm from "@/components/CRUD/DeleteForm";
+import DeleteForm from "@/app/manage/list/components/DeleteForm";
 import { Task } from "@/types/Task";
 import TaskItemDetails from "@/components/TaskItemDetails";
-import EditForm from "@/components/CRUD/EditForm";
-import ViewTask from "@/components/CRUD/ViewTask";
+import EditForm from "@/app/manage/list/components/EditForm";
+import ViewTask from "@/components/ViewTask";
 
 interface TaskItemActionsProps {
   id: string;

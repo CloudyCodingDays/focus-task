@@ -1,10 +1,15 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { FormSubmit } from "@/components/CRUD/HandleSubmitCRUD";
+import { FormSubmit } from "@/app/manage/list/components/HandleSubmitCRUD";
 import Link from "next/link";
 import useTaskListContext from "@/hooks/useTaskListContext";
+import { Dispatch, SetStateAction } from "react";
 
-const AddForm = () => {
+interface AddFormProps {
+  onBack: Dispatch<SetStateAction<boolean>>;
+}
+
+const AddForm: React.FC<AddFormProps> = ({ onBack }) => {
   const router = useRouter();
   const { updateTaskList, setUpdateTaskList } = useTaskListContext();
 
@@ -14,23 +19,39 @@ const AddForm = () => {
     FormSubmit(e, "add");
 
     if (setUpdateTaskList !== undefined) setUpdateTaskList(true);
+    HandleBack();
     router.refresh();
-    router.push("/manage/list");
   };
+
+  const HandleBack = () => {
+    onBack(false);
+  };
+
   return (
     <div>
-      <div className="my-8">
-        <Link href="/manage/list" className="bg-green-400 rounded-lg py-4 px-4">
-          Back to Manage Tasks
-        </Link>
-      </div>
-
       <form method="post" onSubmit={HandleSubmit}>
         <div>Name</div>
         <input name="name" className="border-2" required></input>
         <div>Description</div>
         <input name="description" className="border-2" required></input>
         <div>
+          <button
+            className="
+            hover:bg-green-200
+            hover:text-gray-500
+            bg-white
+            border-green-300 
+            border-2 
+            rounded-lg 
+            ml-4 
+            py-4 
+            px-4
+            mx-4"
+            onClick={HandleBack}
+            type="button"
+          >
+            Cancel
+          </button>
           <button
             type="submit"
             className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
