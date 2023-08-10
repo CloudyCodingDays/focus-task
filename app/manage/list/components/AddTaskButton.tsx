@@ -5,11 +5,11 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { useState } from "react";
 import AddForm from "@/app/manage/list/components/AddForm";
 
-interface AddTaskProps {
+interface AddTaskButtonProps {
   taskCount: number;
 }
 
-const AddTask: React.FC<AddTaskProps> = ({ taskCount }) => {
+const AddTaskButton: React.FC<AddTaskButtonProps> = ({ taskCount }) => {
   const [addOpen, setAddOpen] = useState<boolean>(false);
   return (
     <div>
@@ -44,4 +44,4 @@ const AddTask: React.FC<AddTaskProps> = ({ taskCount }) => {
   );
 };
 
-export default AddTask;
+export default AddTaskButton;

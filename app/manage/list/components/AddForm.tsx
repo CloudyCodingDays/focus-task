@@ -4,6 +4,7 @@ import { FormSubmit } from "@/app/manage/list/components/HandleSubmitCRUD";
 import Link from "next/link";
 import useTaskListContext from "@/hooks/useTaskListContext";
 import { Dispatch, SetStateAction } from "react";
+import TaskItemEdittableFormLayout from "./TaskItemEdittableFormLayout";
 
 interface AddFormProps {
   onBack: Dispatch<SetStateAction<boolean>>;
@@ -30,35 +31,7 @@ const AddForm: React.FC<AddFormProps> = ({ onBack }) => {
   return (
     <div>
       <form method="post" onSubmit={HandleSubmit}>
-        <div>Name</div>
-        <input name="name" className="border-2" required></input>
-        <div>Description</div>
-        <input name="description" className="border-2" required></input>
-        <div>
-          <button
-            className="
-            hover:bg-green-200
-            hover:text-gray-500
-            bg-white
-            border-green-300 
-            border-2 
-            rounded-lg 
-            ml-4 
-            py-4 
-            px-4
-            mx-4"
-            onClick={HandleBack}
-            type="button"
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
-          >
-            Add New Task
-          </button>
-        </div>
+        <TaskItemEdittableFormLayout isEdit={false} onBack={HandleBack} />
       </form>
     </div>
   );

@@ -29,7 +29,9 @@ const Login = () => {
   return (
     <div>
       {!session ? (
-        <button onClick={HandleLogin}>Login</button>
+        <button onClick={HandleLogin}>
+          Login as Authenticated Guest, Mr. touchy fingers
+        </button>
       ) : (
         <button onClick={HandleLogout} className="border-4">
           logout

@@ -9,7 +9,7 @@ import FilterSearchResults from "./FilterSearchResults";
 import GetTaskDetails from "@/components/GetTaskDetails";
 
 import SearchForm from "./SearchForm";
-import AddTask from "./AddTask";
+import AddTaskButton from "./AddTaskButton";
 
 const TaskListDisplay = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -29,10 +29,10 @@ const TaskListDisplay = () => {
       const newTasks = await GetTaskDetails();
       setTasks(newTasks);
       setFilteredTasks(newTasks);
+      if (setUpdateTaskList !== undefined) setUpdateTaskList(false);
     };
 
     getTasks().catch(console.error);
-    if (setUpdateTaskList !== undefined) setUpdateTaskList(false);
   }, [updateTaskList, setUpdateTaskList]);
 
   return (
@@ -40,7 +40,7 @@ const TaskListDisplay = () => {
       <SearchForm onSearch={HandleSearch} />
 
       <div className="w-4/5 mx-auto">
-        <AddTask taskCount={filteredTasks.length} />
+        <AddTaskButton taskCount={filteredTasks.length} />
         <div
           className="
           grid
