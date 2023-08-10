@@ -11,9 +11,7 @@ export default function Home() {
           <WelcomeDisplay />
           <CurrentTaskDisplay />
         </div>
-        <div>
-          <CatPanel />
-        </div>
+        <div>{/*<CatPanel /> turn off api call while testing */}</div>
       </div>
     </div>
   );

@@ -20,7 +20,8 @@ const DeleteForm: React.FC<DeleteFormProps> = ({ id, onBack }) => {
   ) => {
     FormSubmit(e, "delete");
     if (setUpdateTaskList !== undefined) setUpdateTaskList(true);
-    router.push("/manage/list");
+    HandleBack();
+    router.refresh();
   };
 
   const HandleBack = () => {
@@ -28,10 +29,14 @@ const DeleteForm: React.FC<DeleteFormProps> = ({ id, onBack }) => {
   };
 
   return (
-    <div className="grid grid-cols-2">
-      <div>
-        <button
-          className="
+    <div>
+      <div className="text-center mt-4">
+        <form method="post" onSubmit={HandleSubmit}>
+          <div>
+            <input name="id" type="hidden" value={id}></input>
+          </div>
+          <button
+            className="
             hover:bg-green-200
             hover:text-gray-500
             bg-white
@@ -42,16 +47,11 @@ const DeleteForm: React.FC<DeleteFormProps> = ({ id, onBack }) => {
             py-4 
             px-4
             mx-4"
-          onClick={HandleBack}
-        >
-          Back
-        </button>
-      </div>
-      <div className="text-right">
-        <form method="post" onSubmit={HandleSubmit}>
-          <div>
-            <input name="id" type="hidden" value={id}></input>
-          </div>
+            onClick={HandleBack}
+            type="button"
+          >
+            Cancel
+          </button>
           <button
             type="submit"
             className="

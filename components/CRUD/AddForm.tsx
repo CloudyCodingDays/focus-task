@@ -14,6 +14,7 @@ const AddForm = () => {
     FormSubmit(e, "add");
 
     if (setUpdateTaskList !== undefined) setUpdateTaskList(true);
+    router.refresh();
     router.push("/manage/list");
   };
   return (

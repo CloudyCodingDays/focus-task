@@ -32,8 +32,14 @@ export const FormSubmit = async (
 
 const AddTask = async (taskName: string, taskDescription: string) => {
   const { error: supabaseError } = await supabase.from("tasks").insert({
-    name: taskName,
+    created_at: new Date(),
     description: taskDescription,
+    due_date: new Date(),
+    image_path: "",
+    is_recurring: false,
+    name: taskName,
+    priority: "Low",
+    recurring_type: "",
   });
 
   if (supabaseError) {
@@ -46,22 +52,24 @@ const EditTask = async (
   taskName: string,
   taskDescription: string
 ) => {
+  console.log(taskId);
   const { error: supabaseError } = await supabase
     .from("tasks")
-    .update({ name: taskName, description: taskDescription })
+    .update({
+      created_at: new Date(),
+      description: taskDescription,
+      due_date: new Date(),
+      image_path: "",
+      is_recurring: false,
+      name: taskName,
+      priority: "Low",
+      recurring_type: "",
+    })
     .eq("id", taskId);
 
   if (supabaseError) {
     throw new Error(supabaseError.message);
   }
-  console.log(
-    "edit sucesss - Name:" +
-      taskName +
-      "id: " +
-      taskId +
-      "Desc: " +
-      taskDescription
-  );
 };
 
 const DeleteTask = async (taskId: string) => {

@@ -25,7 +25,8 @@ const GetTaskDetails = async (id: string, type?: string) => {
     await supabase
       .from("tasks")
       .select(
-        `name, 
+        `id, 
+        name, 
       description, 
       is_recurring, 
       recurring_type, 

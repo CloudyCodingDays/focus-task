@@ -18,7 +18,7 @@ const NavBarMenu = () => {
             alt="Hamburger Menu Icon"
           ></Image>
         </DialogTrigger>
-        <DialogContent className="py-16 h-full flex flex-col">
+        <DialogContent className="h-full w-[600px] grid left-[13%] pt-24">
           <Routes onRoute={setOpen} />
         </DialogContent>
       </Dialog>

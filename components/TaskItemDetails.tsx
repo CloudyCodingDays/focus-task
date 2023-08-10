@@ -8,10 +8,21 @@ interface TaskItemDetailsProps {
 }
 
 const TaskItemDetails: React.FC<TaskItemDetailsProps> = ({ task }) => {
-  const { id, description, name, is_recurring, created_at } = task;
+  const {
+    id,
+    description,
+    name,
+    is_recurring,
+    created_at,
+    due_date,
+    priority,
+    recurring_type,
+    image_path,
+  } = task;
   return (
-    <div key={id} className="rounded-lg bg-gray-100 h-full">
+    <div key={id} className="rounded-lg bg-gray-100">
       <div className="flex flex-row">
+        {/* Change to grid*/}
         <div className="">
           <Image
             src={pic}
@@ -20,7 +31,6 @@ const TaskItemDetails: React.FC<TaskItemDetailsProps> = ({ task }) => {
             alt="Task item Icon"
           ></Image>
         </div>
-
         <div className="ml-4 w-full">
           <div className="break-words">
             <div className="text-lg font-bold">
@@ -35,6 +45,7 @@ const TaskItemDetails: React.FC<TaskItemDetailsProps> = ({ task }) => {
           <div className="text-sm mt-2 mb-4 font-light text-gray-400 ">
             <p className="break-words">{description}</p>
           </div>
+          <Separator className="bg-green-200 pt-0.5 w-1/2 mx-auto my-8" />
           <div
             className="
           md:flex 
@@ -98,7 +109,7 @@ const TaskItemDetails: React.FC<TaskItemDetailsProps> = ({ task }) => {
             >
               <div className="text-md font-semibold">Priority</div>
               <div>
-                <div className="pt-4 font-light">Low</div>
+                <div className="pt-4 font-light">{priority}</div>
               </div>
             </div>
 
@@ -118,7 +129,7 @@ const TaskItemDetails: React.FC<TaskItemDetailsProps> = ({ task }) => {
               <div className="text-md font-semibold">Due Date</div>
               <div>
                 <div className="pt-4 font-light">
-                  {new Date(created_at).toDateString()}
+                  {new Date().toDateString()}
                 </div>
               </div>
             </div>
@@ -139,7 +150,7 @@ const TaskItemDetails: React.FC<TaskItemDetailsProps> = ({ task }) => {
               <div className="text-md font-semibold">Created Date</div>
               <div>
                 <div className="pt-4 font-light">
-                  {new Date(created_at).toDateString()}
+                  {new Date().toDateString()}
                 </div>
               </div>
             </div>

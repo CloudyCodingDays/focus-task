@@ -32,7 +32,7 @@ const Routes: React.FC<RoutesProp> = ({ onRoute }) => {
   );
 
   return (
-    <div className=" bg-green-100">
+    <div>
       {routes.map((item, index) => (
         <Link
           key={item.label}
@@ -44,7 +44,9 @@ const Routes: React.FC<RoutesProp> = ({ onRoute }) => {
           hover:bg-green-600
           hover:text-white
           first:border-b-2 
-          last:border-t-2 
+          first:border-t-2
+          last:border-t-2
+          last:border-b-2 
           flex 
           flex-col 
           text-green-500

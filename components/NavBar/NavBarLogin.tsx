@@ -15,20 +15,18 @@ const NavBarLogin = () => {
     <div className="py-2">
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Link href="/login">
-            <div className="flex flex-row self-end">
-              <button>
-                <Image
-                  src={UserImage}
-                  width="30"
-                  height="30"
-                  alt="User Menu Icon"
-                ></Image>
-              </button>
-            </div>
-          </Link>
+          <div className="flex flex-row self-end">
+            <button>
+              <Image
+                src={UserImage}
+                width="30"
+                height="30"
+                alt="User Menu Icon"
+              ></Image>
+            </button>
+          </div>
         </DialogTrigger>
-        <DialogContent className="h-full flex flex-col">
+        <DialogContent className="w-[600px]">
           <div>{user?.id}</div>
           <Login />
         </DialogContent>
