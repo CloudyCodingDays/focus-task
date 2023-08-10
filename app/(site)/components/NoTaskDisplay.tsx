@@ -17,7 +17,8 @@ const NoTaskDisplay = () => {
             <Link
               href="/assign"
               className="
-          hover:bg-green-400 
+          hover:bg-green-400
+          hover:text-green-100 
           my-4
           mt-12
           mr-8

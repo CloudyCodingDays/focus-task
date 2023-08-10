@@ -2,7 +2,6 @@
 import ActiveTaskDisplay from "./ActiveTaskDisplay";
 import NoTaskDisplay from "./NoTaskDisplay";
 import useTaskListContext from "@/hooks/useTaskListContext";
-import GetActiveTask from "./GetActiveTask";
 
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { useEffect, useState } from "react";
@@ -20,10 +19,10 @@ const CurrentTaskDisplay = () => {
         const activeTask = await GetTaskDetails(user.id, "user");
 
         setTask(activeTask);
+        if (setUpdateTaskList !== undefined) setUpdateTaskList(false);
       }
     };
     getActiveTask().catch(console.error);
-    if (setUpdateTaskList !== undefined) setUpdateTaskList(false);
   }, [updateTaskList, setUpdateTaskList, user]);
   return (
     <div>
