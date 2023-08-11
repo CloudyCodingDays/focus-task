@@ -5,7 +5,7 @@ const calmFont = localFont({
 const NavBarLogo = () => {
   return (
     <div>
-      <div style={calmFont.style} className="text-3xl text-green-500 pl-24">
+      <div style={calmFont.style} className="text-3xl text-green-500">
         Take It Easy
       </div>
     </div>

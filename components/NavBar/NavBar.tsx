@@ -2,9 +2,11 @@
 import NavBarMenu from "./NavBarMenu";
 import NavBarLogo from "./NavBarLogo";
 import NavBarLogin from "./NavBarLogin";
+import MenuImage from "@/icons/menu.png";
 import { useEffect, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 interface NavBarProps {
   children: React.ReactNode;
@@ -41,31 +43,62 @@ const NavBar: React.FC<NavBarProps> = ({ children }) => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="flex flex-row bg-white h-full">
-      <div className="bg-green-600">
-        <button className="text-md" onClick={toggleMenu}>
-          {isOpen ? "Taking It Easy" : "TIE"}
+    <div className="h-full">
+      <div className="flex flex-row border-b-2">
+        <button className="text-md mx-4" onClick={toggleMenu}>
+          <Image
+            src={MenuImage}
+            width="20"
+            height="20"
+            alt="Hamburger Menu Icon"
+          ></Image>
         </button>
-
-        <div className="px-2 text-sm">
-          {routes.map((item) => (
-            <div key={item.label}>
-              <Link href={item.href} className={`${isOpen ? "hidden" : ""}`}>
-                {item.label}
-              </Link>
-              <div className="py-1"></div>
-              <Link href={item.href} className={`${isOpen ? "" : "hidden"}`}>
-                {item.label} {" Open"}
-              </Link>
-              <div></div>
-            </div>
-          ))}
+        <div className="flex flex-row justify-between items-baseline px-4 mx-auto w-full">
+          {/* <NavBarMenu /> */}
+          <NavBarLogo />
+          <NavBarLogin />
         </div>
       </div>
-      <div className="flex flex-col items-baseline px-4 mx-auto">
-        {/* <NavBarMenu /> <NavBarLogo />*/}
-        <NavBarLogin />
-        <div>{children}</div>
+      <div className="flex flex-row w-full h-full">
+        <div
+          className={`${isOpen ? "flex flex-col basis-1/4  border-r-2" : ""}`}
+        >
+          <div className="px-2 text-md">
+            {routes.map((item) => (
+              <div key={item.label}>
+                <Link
+                  href={item.href}
+                  className={`${isOpen ? "hidden" : ""}`}
+                ></Link>
+                {isOpen ? (
+                  <Link
+                    href={item.href}
+                    onClick={toggleMenu}
+                    className="
+                      hover:bg-green-600
+                      hover:text-white
+                      border-b-2
+                      flex 
+                      flex-col 
+                      text-green-500
+                      text-center 
+                      py-4
+                      w-full"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <Link href={item.href} className="hidden">
+                    {item.label}
+                  </Link>
+                )}
+
+                <div></div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex flex-col items-center w-full">{children}</div>
       </div>
     </div>
   );
