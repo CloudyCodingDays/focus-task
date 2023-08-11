@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const useDebounceSearch = (value: string, delay: number = 500) => {
+const useDebounceSearch = (value: string, delay = 500) => {
   const [debouncedValue, setDebouncedValue] = useState("");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 

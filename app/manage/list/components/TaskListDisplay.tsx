@@ -21,11 +21,9 @@ const TaskListDisplay = () => {
   useEffect(() => {
     count.current = count.current + 1;
   });
-  const HandleSearch: React.FormEventHandler<HTMLFormElement> = (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
-    let SearchResults: Task[];
-    SearchResults = FilterSearchResults(e, tasks);
+  const HandleSearch = (SearchResults: Task[]) => {
+    //let SearchResults: Task[];
+    //SearchResults = FilterSearchResults(e, tasks);
     setFilteredTasks(SearchResults);
   };
 

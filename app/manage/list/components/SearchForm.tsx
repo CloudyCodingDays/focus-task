@@ -1,12 +1,30 @@
 "use client";
 
+import GetTaskDetails from "@/components/GetTaskDetails";
 import { Separator } from "@/components/ui/separator";
+import useDebounceSearch from "@/hooks/useDebounceSearch";
+import { Task } from "@/types/Task";
+import { useCallback, useEffect, useState } from "react";
+import FilterSearchResults from "./FilterSearchResults";
 
 interface SearchFormProps {
-  onSearch: React.FormEventHandler<HTMLFormElement>;
+  onSearch: (searchResults: Task[]) => void;
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const debouncedValue = useDebounceSearch(searchTerm, 500);
+
+  const searchResults = useCallback(async () => {
+    const getSearchResults = await FilterSearchResults(debouncedValue);
+
+    onSearch(getSearchResults);
+  }, [debouncedValue, onSearch]);
+
+  useEffect(() => {
+    searchResults();
+  }, [debouncedValue, searchResults]);
+
   return (
     <div>
       <div
@@ -27,10 +45,17 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
         >
           <div className="text-right mx-4 my-4">
             <div>
-              <form onSubmit={onSearch}>
+              <form>
                 <div className="flex flex-row w-full">
                   <div className="px-4 w-full drop-shadow-lg">
-                    <input style={{ width: "100%" }} name="SearchTerm"></input>
+                    <input
+                      style={{ width: "100%" }}
+                      name="SearchTerm"
+                      value={searchTerm}
+                      onChange={(e) => {
+                        setSearchTerm(e.target.value);
+                      }}
+                    ></input>
                     <Separator className="bg-green-200 pt-0.5" />
                   </div>
                   <div className="pr-4">
