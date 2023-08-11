@@ -2,7 +2,7 @@
 import NavBarMenu from "./NavBarMenu";
 import NavBarLogo from "./NavBarLogo";
 import NavBarLogin from "./NavBarLogin";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
