@@ -3,7 +3,7 @@ import EditIcon from "@/icons/edit.jpg";
 import DeleteIcon from "@/icons/delete.png";
 import ViewIcon from "@/icons/view.png";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DeleteForm from "@/app/manage/list/components/DeleteForm";
 import { Task } from "@/types/Task";
 import TaskItemDetails from "@/components/TaskItemDetails";
@@ -19,8 +19,15 @@ const TaskItemActions: React.FC<TaskItemActionsProps> = ({ id, task }) => {
   const [deleteOpen, setDeleteOpen] = useState<boolean>(false);
   const [editOpen, setEditOpen] = useState<boolean>(false);
   const [viewOpen, setViewOpen] = useState<boolean>(false);
+
+  const count = useRef(0);
+
+  useEffect(() => {
+    count.current = count.current + 1;
+  });
   return (
     <div className="flex flex-row justify-around">
+      <h1>Render Count: {count.current}</h1>
       <button>
         <Dialog open={deleteOpen} onOpenChange={setDeleteOpen}>
           <DialogTrigger asChild>

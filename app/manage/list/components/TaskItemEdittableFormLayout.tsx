@@ -54,7 +54,7 @@ const TaskItemEdittableFormLayout: React.FC<
         <div></div>
       )}
 
-      <div className="lg:w-2/5 md:w-2/3 text-left mx-auto w-4/5  bg-gray-100 rounded-lg py-4 px-4">
+      <div className="lg:w-2/5 md:w-2/3 text-left mx-auto w-11/12 bg-gray-100 rounded-lg py-4 px-4">
         <div className="mb-4">
           <div>Task Name</div>
           <input
