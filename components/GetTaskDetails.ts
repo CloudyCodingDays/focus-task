@@ -2,7 +2,7 @@ import supabase from "@/lib/supabaseClient";
 import { Task } from "@/types/Task";
 
 const GetTaskDetails = async (id?: string, type?: string) => {
-  if (id === undefined) {
+  if (id === undefined && !type) {
     const { data: TaskData, error: TaskError } = await supabase
       .from("tasks")
       .select(
@@ -31,9 +31,10 @@ const GetTaskDetails = async (id?: string, type?: string) => {
 
         if (ActiveTaskError) throw new Error(ActiveTaskError.message);
 
-        if (ActiveTaskData === null) {
-          throw new Error("Task Data could not be retreived");
+        if (ActiveTaskData.length === 0) {
+          return [];
         }
+
         UserTaskId = ActiveTaskData[0].task_id;
       } else {
         throw new Error("could not get data");

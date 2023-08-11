@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Routes from "@/components/Routes";
 import EditIcon from "@/icons/edit.jpg";
 import DeleteIcon from "@/icons/delete.png";
 import ViewIcon from "@/icons/view.png";
