@@ -8,7 +8,7 @@ import { useCallback, useEffect, useState } from "react";
 import FilterSearchResults from "./FilterSearchResults";
 
 interface SearchFormProps {
-  onSearch: (searchResults: Task[]) => void;
+  onSearch: (debouncedValue: string, oldSearchTerm: string) => Promise<void>;
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
@@ -16,11 +16,9 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
   const [oldSearchTerm, setOldSearchTerm] = useState("");
   const debouncedValue = useDebounceSearch(searchTerm, 500);
 
-  const searchResults = useCallback(async () => {
-    const getSearchResults = await FilterSearchResults(debouncedValue);
-
-    onSearch(getSearchResults);
-  }, [debouncedValue, onSearch]);
+  const searchResults = useCallback(() => {
+    onSearch(debouncedValue, oldSearchTerm);
+  }, [debouncedValue, onSearch, oldSearchTerm]);
 
   useEffect(() => {
     if (debouncedValue !== oldSearchTerm) searchResults();

@@ -21,11 +21,17 @@ const TaskListDisplay = () => {
   useEffect(() => {
     count.current = count.current + 1;
   });
-  const HandleSearch = useCallback((SearchResults: Task[]) => {
-    //let SearchResults: Task[];
-    //SearchResults = FilterSearchResults(e, tasks);
-    setFilteredTasks(SearchResults);
-  }, []);
+  const HandleSearch = useCallback(
+    async (debouncedValue: string, oldSearchTerm: string) => {
+      if (debouncedValue !== oldSearchTerm) {
+        const getSearchResults = await FilterSearchResults(debouncedValue);
+        //let SearchResults: Task[];
+        //SearchResults = FilterSearchResults(e, tasks);
+        setFilteredTasks(getSearchResults);
+      }
+    },
+    []
+  );
 
   useEffect(() => {
     const getTasks = async () => {
