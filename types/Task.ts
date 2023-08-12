@@ -2,7 +2,7 @@ export interface Task {
   id: string;
   name: string;
   description: string;
-  is_recurring: boolean;
+  is_recurring: string;
   recurring_type: string;
   priority: string;
   due_date: string;

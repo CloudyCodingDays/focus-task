@@ -30,6 +30,7 @@ const TaskListDisplay = () => {
   useEffect(() => {
     const getTasks = async () => {
       const newTasks = await GetTaskDetails();
+
       setTasks(newTasks);
       setFilteredTasks(newTasks);
       if (setUpdateTaskList !== undefined) setUpdateTaskList(false);
