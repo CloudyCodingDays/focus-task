@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import TaskItem from "../../../../components/TaskItem";
 import useTaskListContext from "@/hooks/useTaskListContext";
 import { Separator } from "@/components/ui/separator";
@@ -16,18 +16,16 @@ const TaskListDisplay = () => {
   const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
   const { updateTaskList, setUpdateTaskList } = useTaskListContext();
 
+  //PERFORMANCE LOGGING
   const count = useRef(0);
-
   useEffect(() => {
     count.current = count.current + 1;
   });
-  const HandleSearch: React.FormEventHandler<HTMLFormElement> = (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
-    let SearchResults: Task[];
-    SearchResults = FilterSearchResults(e, tasks);
-    setFilteredTasks(SearchResults);
-  };
+  //PERFORMANCE LOGGING
+
+  const HandleSearch = useCallback((searchResults: Task[]) => {
+    setFilteredTasks(searchResults);
+  }, []);
 
   useEffect(() => {
     const getTasks = async () => {
@@ -42,7 +40,9 @@ const TaskListDisplay = () => {
 
   return (
     <div>
+      {/*//PERFORMANCE LOGGING */}
       <h1>Render Count: {count.current}</h1>
+      {/*PERFORMANCE LOGGING */}
       <SearchForm onSearch={HandleSearch} />
 
       <div className="w-11/12 mx-auto">

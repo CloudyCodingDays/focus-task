@@ -1,36 +1,22 @@
+import GetTaskDetails from "@/components/GetTaskDetails";
+import GetTaskDetailsByDesc from "@/components/GetTaskDetailsByDesc";
+import GetTaskDetailsByName from "@/components/GetTaskDetailsByName";
 import { Task } from "@/types/Task";
 
-const FilterSearchResults = (
-  e: React.FormEvent<HTMLFormElement>,
-  tasks: Task[]
-) => {
-  e.preventDefault();
-  const form = e.currentTarget;
-  const formData = new FormData(form);
-  const searchTerm = formData.get("SearchTerm") as string;
-  const nameFilter = formData.get("NameFilter");
-  const descriptionFilter = formData.get("DescriptionFilter");
-
+const FilterSearchResults = async (debouncedValue: string) => {
   let finalFilteredResults: Task[] = [];
-  let filteredByName;
-  let filteredbyDesc;
 
-  if (nameFilter !== null) {
-    filteredByName = tasks?.filter((task) => {
-      return task.name.includes(searchTerm);
-    });
-    if (filteredByName.length !== 0) {
-      Array.prototype.push.apply(finalFilteredResults, filteredByName);
-    }
+  if (debouncedValue === "") return await GetTaskDetails();
+
+  const filteredByName = await GetTaskDetailsByName(debouncedValue);
+  const filteredbyDesc = await GetTaskDetailsByDesc(debouncedValue);
+
+  if (filteredByName.length !== 0) {
+    Array.prototype.push.apply(finalFilteredResults, filteredByName);
   }
 
-  if (descriptionFilter !== null) {
-    filteredbyDesc = tasks?.filter((task) => {
-      return task.description.includes(searchTerm);
-    });
-    if (filteredbyDesc.length !== 0) {
-      Array.prototype.push.apply(finalFilteredResults, filteredbyDesc);
-    }
+  if (filteredbyDesc.length !== 0) {
+    Array.prototype.push.apply(finalFilteredResults, filteredbyDesc);
   }
 
   finalFilteredResults = Array.from(

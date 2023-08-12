@@ -1,14 +1,41 @@
 "use client";
 
+import GetTaskDetails from "@/components/GetTaskDetails";
 import { Separator } from "@/components/ui/separator";
+import useDebounceSearch from "@/hooks/useDebounceSearch";
+import { Task } from "@/types/Task";
+import { useCallback, useEffect, useState } from "react";
+import FilterSearchResults from "./FilterSearchResults";
 
 interface SearchFormProps {
-  onSearch: React.FormEventHandler<HTMLFormElement>;
+  onSearch: (SearchResults: Task[]) => void;
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [oldSearchTerm, setOldSearchTerm] = useState("");
+  const debouncedValue = useDebounceSearch(searchTerm, 500);
+
+  const GetSearchResults = useCallback(async () => {
+    const searchResults = await FilterSearchResults(debouncedValue);
+    onSearch(searchResults);
+  }, [debouncedValue, onSearch]);
+
+  useEffect(() => {
+    GetSearchResults();
+  }, [GetSearchResults]);
+
   return (
     <div>
+      {/*//PERFORMANCE LOGGING */}
+      <div>
+        <p>Value real-time: {searchTerm}</p>
+        <p>Debounced value: {debouncedValue}</p>
+      </div>
+
+      {searchTerm}
+      {oldSearchTerm}
+      {/*//PERFORMANCE LOGGING */}
       <div
         className=" 
           flex 
@@ -27,10 +54,18 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
         >
           <div className="text-right mx-4 my-4">
             <div>
-              <form onSubmit={onSearch}>
+              <form>
                 <div className="flex flex-row w-full">
                   <div className="px-4 w-full drop-shadow-lg">
-                    <input style={{ width: "100%" }} name="SearchTerm"></input>
+                    <input
+                      style={{ width: "100%" }}
+                      name="SearchTerm"
+                      value={searchTerm}
+                      onChange={(e) => {
+                        setOldSearchTerm(debouncedValue);
+                        setSearchTerm(e.target.value);
+                      }}
+                    ></input>
                     <Separator className="bg-green-200 pt-0.5" />
                   </div>
                   <div className="pr-4">
