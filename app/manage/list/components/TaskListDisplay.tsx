@@ -16,22 +16,16 @@ const TaskListDisplay = () => {
   const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
   const { updateTaskList, setUpdateTaskList } = useTaskListContext();
 
+  //PERFORMANCE LOGGING
   const count = useRef(0);
-
   useEffect(() => {
     count.current = count.current + 1;
   });
-  const HandleSearch = useCallback(
-    async (debouncedValue: string, oldSearchTerm: string) => {
-      if (debouncedValue !== oldSearchTerm) {
-        const getSearchResults = await FilterSearchResults(debouncedValue);
-        //let SearchResults: Task[];
-        //SearchResults = FilterSearchResults(e, tasks);
-        setFilteredTasks(getSearchResults);
-      }
-    },
-    []
-  );
+  //PERFORMANCE LOGGING
+
+  const HandleSearch = useCallback((searchResults: Task[]) => {
+    setFilteredTasks(searchResults);
+  }, []);
 
   useEffect(() => {
     const getTasks = async () => {
@@ -46,7 +40,9 @@ const TaskListDisplay = () => {
 
   return (
     <div>
+      {/*//PERFORMANCE LOGGING */}
       <h1>Render Count: {count.current}</h1>
+      {/*PERFORMANCE LOGGING */}
       <SearchForm onSearch={HandleSearch} />
 
       <div className="w-11/12 mx-auto">

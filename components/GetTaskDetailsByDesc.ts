@@ -15,7 +15,7 @@ const GetTaskDetailsByDesc = async (desc: string) => {
       created_at,
       image_path`
     )
-    .eq("description", desc);
+    .ilike("description", `%${desc}%`);
 
   if (NameFilterError) throw new Error(NameFilterError.message);
 

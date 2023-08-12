@@ -8,7 +8,7 @@ import { useCallback, useEffect, useState } from "react";
 import FilterSearchResults from "./FilterSearchResults";
 
 interface SearchFormProps {
-  onSearch: (debouncedValue: string, oldSearchTerm: string) => Promise<void>;
+  onSearch: (SearchResults: Task[]) => void;
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
@@ -16,16 +16,18 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
   const [oldSearchTerm, setOldSearchTerm] = useState("");
   const debouncedValue = useDebounceSearch(searchTerm, 500);
 
-  const searchResults = useCallback(() => {
-    onSearch(debouncedValue, oldSearchTerm);
-  }, [debouncedValue, onSearch, oldSearchTerm]);
+  const GetSearchResults = useCallback(async () => {
+    const searchResults = await FilterSearchResults(debouncedValue);
+    onSearch(searchResults);
+  }, [debouncedValue, onSearch]);
 
   useEffect(() => {
-    if (debouncedValue !== oldSearchTerm) searchResults();
-  }, [debouncedValue, searchResults, oldSearchTerm]);
+    GetSearchResults();
+  }, [GetSearchResults]);
 
   return (
     <div>
+      {/*//PERFORMANCE LOGGING */}
       <div>
         <p>Value real-time: {searchTerm}</p>
         <p>Debounced value: {debouncedValue}</p>
@@ -33,6 +35,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
 
       {searchTerm}
       {oldSearchTerm}
+      {/*//PERFORMANCE LOGGING */}
       <div
         className=" 
           flex 

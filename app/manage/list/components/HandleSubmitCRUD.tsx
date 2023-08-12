@@ -11,7 +11,7 @@ export const FormSubmit = async (
   const formData = new FormData(form);
   const taskId = formData.get("id") as string;
 
-  const taskName = formData.get("old_name")
+  const taskName = formData.get("name")
     ? (formData.get("name") as string)
     : (formData.get("old_name") as string);
 
