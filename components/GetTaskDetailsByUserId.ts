@@ -2,10 +2,12 @@ import supabase from "@/lib/supabaseClient";
 import { Task } from "@/types/Task";
 
 const GetTaskDetailsByUserId = async (userId: string) => {
+  //TODO: only retrieve tasks created by current user
   const { data: UserTaskData, error: UserTaskError } = await supabase
     .from("user_current_task")
-    .select("id, user_id, task_id")
-    .eq("user_id", userId);
+    .select("id, user_id, task_id, is_assigned")
+    .eq("user_id", userId)
+    .eq("is_assigned", true);
 
   if (UserTaskError) throw new Error(UserTaskError.message);
 
@@ -13,7 +15,7 @@ const GetTaskDetailsByUserId = async (userId: string) => {
     return [];
   }
 
-  let UserTaskId = UserTaskData[0].task_id;
+  let TaskId = UserTaskData[0].task_id;
 
   const { data: UserTaskDetailsData, error: UserTaskDetailsError } =
     await supabase
@@ -27,9 +29,10 @@ const GetTaskDetailsByUserId = async (userId: string) => {
       due_date, 
       priority, 
       created_at,
+      created_by,
       image_path`
       )
-      .eq("id", UserTaskId);
+      .eq("id", TaskId);
 
   if (UserTaskDetailsError) throw new Error(UserTaskDetailsError.message);
 
