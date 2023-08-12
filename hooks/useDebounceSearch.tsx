@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 
-const useDebounceSearch = (value: string, delay = 500) => {
-  const [debouncedValue, setDebouncedValue] = useState("");
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+const useDebounceSearch = (value: string, delay?: number) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
 
   useEffect(() => {
-    timerRef.current = setTimeout(() => setDebouncedValue(value), delay);
+    const timer = setTimeout(() => setDebouncedValue(value), delay || 500);
 
     return () => {
-      clearTimeout(timerRef.current as NodeJS.Timeout);
+      clearTimeout(timer);
+      console.log("clear timeout");
     };
   }, [value, delay]);
 

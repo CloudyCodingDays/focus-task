@@ -13,6 +13,7 @@ interface SearchFormProps {
 
 const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [oldSearchTerm, setOldSearchTerm] = useState("");
   const debouncedValue = useDebounceSearch(searchTerm, 500);
 
   const searchResults = useCallback(async () => {
@@ -22,11 +23,18 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
   }, [debouncedValue, onSearch]);
 
   useEffect(() => {
-    searchResults();
-  }, [debouncedValue, searchResults]);
+    if (debouncedValue !== oldSearchTerm) searchResults();
+  }, [debouncedValue, searchResults, oldSearchTerm]);
 
   return (
     <div>
+      <div>
+        <p>Value real-time: {searchTerm}</p>
+        <p>Debounced value: {debouncedValue}</p>
+      </div>
+
+      {searchTerm}
+      {oldSearchTerm}
       <div
         className=" 
           flex 
@@ -53,6 +61,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
                       name="SearchTerm"
                       value={searchTerm}
                       onChange={(e) => {
+                        setOldSearchTerm(debouncedValue);
                         setSearchTerm(e.target.value);
                       }}
                     ></input>
