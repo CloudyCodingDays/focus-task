@@ -13,7 +13,6 @@ const GetTaskDetailsByTaskId = async (TaskId: string) => {
       due_date, 
       priority, 
       created_at,
-      created_by,
       image_path`
     )
     .eq("id", TaskId);

@@ -1,4 +1,28 @@
-import { OldTaskType, Task, TaskType } from "@/types/Task";
+import { Task } from "@/types/Task";
+
+type OldTaskType = {
+  old_created_at: string;
+  old_description: string;
+  old_name: string;
+  old_due_date: string;
+  old_image_path: string;
+  old_is_recurring: string;
+  old_recurring_type: string;
+  old_priority: string;
+};
+
+type TaskType = {
+  id: string;
+  name: string;
+  description: string;
+  is_recurring: string;
+  recurring_type: string;
+  priority: string;
+  due_date: string;
+  created_at: string;
+  user_id?: string;
+  image_path?: string;
+};
 
 const ExtractFormData = (formData: FormData) => {
   const entries = formData.entries();
