@@ -16,7 +16,7 @@ const DeleteForm: React.FC<DeleteFormProps> = ({ id, onBack }) => {
   const router = useRouter();
   const queryClient = useQueryClient();
 
-  const HandleSubmit: React.FormEventHandler<HTMLFormElement> = async (
+  const HandleSubmit: React.FormEventHandler<HTMLFormElement> = (
     e: React.FormEvent<HTMLFormElement>
   ) => {
     await FormSubmit(e, "delete");
