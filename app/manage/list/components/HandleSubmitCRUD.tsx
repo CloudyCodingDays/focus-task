@@ -7,7 +7,7 @@ import AssignTaskQuery from "./task_queries/AssignTaskQuery";
 import UnassignTaskQuery from "./task_queries/UnassignTaskQuery";
 import CompleteTaskQuery from "./task_queries/CompleteTaskQuery";
 
-export const FormSubmit = (
+export const FormSubmit = async (
   e: React.FormEvent<HTMLFormElement>,
   submitType: string,
   userId?: string
@@ -19,8 +19,8 @@ export const FormSubmit = (
 
   const taskData: Task = ExtractFormData(formData);
 
-  if (submitType.trim() == "add" && userId) {
-    AddTaskQuery(taskData, userId);
+  if (submitType.trim() == "add") {
+    AddTaskQuery(taskData);
   } else if (submitType.trim() == "edit") {
     EditTaskQuery(taskData);
   } else if (submitType.trim() == "delete") {

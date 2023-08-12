@@ -13,7 +13,6 @@ const GetTaskDetails = async () => {
     due_date, 
     priority, 
     created_at,
-    created_by,
     image_path`
     );
 

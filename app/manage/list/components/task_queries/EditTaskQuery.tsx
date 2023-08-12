@@ -6,7 +6,6 @@ const EditTaskQuery = async (taskData: Task) => {
     .from("tasks")
     .update({
       created_at: new Date(),
-      created_by: taskData.created_by,
       description: taskData.description,
       due_date: new Date(), //taskData.due_date
       image_path: taskData.image_path,
