@@ -21,7 +21,6 @@ const AddForm: React.FC<AddFormProps> = ({ onBack }) => {
     await FormSubmit(e, "add");
 
     queryClient.invalidateQueries({ queryKey: ["Tasks"] });
-    queryClient.invalidateQueries({ queryKey: ["TaskDetails"] });
 
     HandleBack();
     router.refresh();

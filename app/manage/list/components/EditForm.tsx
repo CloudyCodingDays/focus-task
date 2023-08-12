@@ -23,7 +23,6 @@ const EditForm: React.FC<EditFormProps> = ({ task, onBack }) => {
     await FormSubmit(e, "edit");
 
     queryClient.invalidateQueries({ queryKey: ["Tasks"] });
-    queryClient.invalidateQueries({ queryKey: ["TaskDetails"] });
 
     HandleBack();
     router.refresh();
