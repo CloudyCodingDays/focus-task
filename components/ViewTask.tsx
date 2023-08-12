@@ -4,6 +4,7 @@ import { Task } from "@/types/Task";
 import Link from "next/link";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import TaskItemDetails from "./TaskItemDetails";
+import GetTaskDetailsByTaskId from "./GetTaskDetailsByTaskId";
 
 interface ViewTaskProps {
   id: string;
@@ -19,7 +20,7 @@ const ViewTask: React.FC<ViewTaskProps> = ({ id, onBack }) => {
 
   useEffect(() => {
     const getTaskDetails = async () => {
-      setTaskDetail(await GetTaskDetails(id));
+      setTaskDetail(await GetTaskDetailsByTaskId(id));
     };
     getTaskDetails().catch(console.error);
   }, [id]);

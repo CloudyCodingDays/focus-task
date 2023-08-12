@@ -4,7 +4,6 @@ import { FormSubmit } from "@/app/manage/list/components/HandleSubmitCRUD";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Link from "next/link";
 import useTaskListContext from "@/hooks/useTaskListContext";
-import GetTaskDetails from "@/components/GetTaskDetails";
 import { Task } from "@/types/Task";
 import TaskItemEdittableFormLayout from "./TaskItemEdittableFormLayout";
 

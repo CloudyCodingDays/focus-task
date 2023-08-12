@@ -6,7 +6,7 @@ import useTaskListContext from "@/hooks/useTaskListContext";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { useEffect, useState } from "react";
 import { Task } from "@/types/Task";
-import GetTaskDetails from "@/components/GetTaskDetails";
+import GetTaskDetailsByUserId from "@/components/GetTaskDetailsByUserId";
 
 const CurrentTaskDisplay = () => {
   const { user } = useUserInfo();
@@ -16,7 +16,7 @@ const CurrentTaskDisplay = () => {
   useEffect(() => {
     const getActiveTask = async () => {
       if (user !== null) {
-        const activeTask = await GetTaskDetails(user.id, "user");
+        const activeTask = await GetTaskDetailsByUserId(user.id);
 
         setTask(activeTask);
         if (setUpdateTaskList !== undefined) setUpdateTaskList(false);
