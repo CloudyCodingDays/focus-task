@@ -22,7 +22,6 @@ const DeleteForm: React.FC<DeleteFormProps> = ({ id, onBack }) => {
     await FormSubmit(e, "delete");
 
     queryClient.invalidateQueries({ queryKey: ["Tasks"] });
-    queryClient.invalidateQueries({ queryKey: ["TaskDetails"] });
 
     HandleBack();
     router.refresh();
