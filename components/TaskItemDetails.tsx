@@ -70,7 +70,7 @@ const TaskItemDetails: React.FC<TaskItemDetailsProps> = ({ task }) => {
               <div className="text-md font-semibold">Recurring</div>
               <div>
                 <div className="pt-4 font-light">
-                  {is_recurring ? "Yes" : "No"}
+                  {is_recurring ? "true" : "false"}
                 </div>
               </div>
             </div>

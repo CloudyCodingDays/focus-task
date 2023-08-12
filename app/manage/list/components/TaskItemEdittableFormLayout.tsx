@@ -37,7 +37,7 @@ const TaskItemEdittableFormLayout: React.FC<
           <input
             name="old_is_recurring"
             type="hidden"
-            value={task.is_recurring ? "TRUE" : "FALSE"}
+            value={task.is_recurring ? "true" : "false"}
           ></input>
           <input
             name="old_recurring_type"
@@ -83,7 +83,11 @@ const TaskItemEdittableFormLayout: React.FC<
             name="is_recurring"
             type="checkbox"
             className="ml-4 scale-125"
-            defaultChecked={isEdit && task !== undefined ? true : false}
+            defaultChecked={
+              isEdit && task !== undefined
+                ? task.is_recurring === "true"
+                : false
+            }
           ></input>
         </div>
 
