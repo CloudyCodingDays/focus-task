@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { useState } from "react";
 import AddForm from "@/app/manage/list/components/AddForm";
+import { useRouter } from "next/navigation";
+import { FormSubmit } from "./HandleSubmitCRUD";
 
 interface AddTaskButtonProps {
   taskCount: number;
@@ -11,6 +13,7 @@ interface AddTaskButtonProps {
 
 const AddTaskButton: React.FC<AddTaskButtonProps> = ({ taskCount }) => {
   const [addOpen, setAddOpen] = useState<boolean>(false);
+
   return (
     <div>
       <div
@@ -24,18 +27,16 @@ const AddTaskButton: React.FC<AddTaskButtonProps> = ({ taskCount }) => {
         mb-1"
       >
         <div className="text-md font-light">{taskCount} results</div>
-        <button>
-          <Dialog open={addOpen} onOpenChange={setAddOpen}>
-            <DialogTrigger asChild>
-              <button>Add Task</button>
-            </DialogTrigger>
-            <DialogContent className="h-full">
-              <div className="mt-12">
-                <AddForm onBack={setAddOpen} />
-              </div>
-            </DialogContent>
-          </Dialog>
-        </button>
+        <Dialog open={addOpen} onOpenChange={setAddOpen}>
+          <DialogTrigger asChild>
+            <button>Add Task</button>
+          </DialogTrigger>
+          <DialogContent className="h-full">
+            <div className="mt-12">
+              <AddForm onBack={setAddOpen} />
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
       <div className="px-8">
         <Separator className="bg-green-300 pt-0.25" />

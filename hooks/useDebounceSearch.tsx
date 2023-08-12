@@ -8,7 +8,6 @@ const useDebounceSearch = (value: string, delay?: number) => {
 
     return () => {
       clearTimeout(timer);
-      console.log("clear timeout");
     };
   }, [value, delay]);
 

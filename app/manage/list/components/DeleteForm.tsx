@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { FormSubmit } from "@/app/manage/list/components/HandleSubmitCRUD";
 import TaskItemDetails from "../../../../components/TaskItemDetails";
 import { Dispatch, SetStateAction } from "react";
+import { useQueryClient } from "react-query";
 interface DeleteFormProps {
   id: string;
   onBack: Dispatch<SetStateAction<boolean>>;
@@ -13,13 +14,16 @@ interface DeleteFormProps {
 
 const DeleteForm: React.FC<DeleteFormProps> = ({ id, onBack }) => {
   const router = useRouter();
-  const { updateTaskList, setUpdateTaskList } = useTaskListContext();
+  const queryClient = useQueryClient();
 
-  const HandleSubmit: React.FormEventHandler<HTMLFormElement> = (
+  const HandleSubmit: React.FormEventHandler<HTMLFormElement> = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    FormSubmit(e, "delete");
-    if (setUpdateTaskList !== undefined) setUpdateTaskList(true);
+    await FormSubmit(e, "delete");
+
+    queryClient.invalidateQueries({ queryKey: ["Tasks"] });
+    queryClient.invalidateQueries({ queryKey: ["TaskDetails"] });
+
     HandleBack();
     router.refresh();
   };

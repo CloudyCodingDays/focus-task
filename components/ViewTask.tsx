@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import TaskItemDetails from "./TaskItemDetails";
 import GetTaskDetailsByTaskId from "./GetTaskDetailsByTaskId";
+import { useQuery, useQueryClient } from "react-query";
 
 interface ViewTaskProps {
   id: string;
@@ -13,21 +14,30 @@ interface ViewTaskProps {
 
 const ViewTask: React.FC<ViewTaskProps> = ({ id, onBack }) => {
   const [taskDetail, setTaskDetail] = useState<Task[]>([]);
-
+  const queryClient = useQueryClient();
   const HandleBack = () => {
     onBack(false);
   };
 
-  useEffect(() => {
-    const getTaskDetails = async () => {
-      setTaskDetail(await GetTaskDetailsByTaskId(id));
-    };
-    getTaskDetails().catch(console.error);
-  }, [id]);
+  const getTasks = async () => {
+    if (queryClient.getQueryData(["Tasks", id])) {
+      return queryClient.getQueryData(["Tasks", id]) as Task[];
+    } else {
+      return await GetTaskDetailsByTaskId(id);
+    }
+  };
+
+  const { data, error, isLoading, isError } = useQuery<Task[], Error>({
+    queryKey: ["Tasks", id],
+    queryFn: getTasks,
+  });
+
+  if (isLoading) return "Loading...";
+  if (isError) return "Error has occured : " + error.message;
 
   return (
     <div>
-      {taskDetail?.map((item) => (
+      {data?.map((item) => (
         <div key={item.id}>
           <TaskItemDetails task={item} />
         </div>

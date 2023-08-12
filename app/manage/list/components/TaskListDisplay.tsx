@@ -10,12 +10,11 @@ import GetTaskDetails from "@/components/GetTaskDetails";
 
 import SearchForm from "./SearchForm";
 import AddTaskButton from "./AddTaskButton";
+import { useQuery, useQueryClient } from "react-query";
 
 const TaskListDisplay = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
-  const { updateTaskList, setUpdateTaskList } = useTaskListContext();
-
+  const [debouncedValue, setDebouncedValue] = useState("");
+  const queryClient = useQueryClient();
   //PERFORMANCE LOGGING
   const count = useRef(0);
   useEffect(() => {
@@ -23,31 +22,31 @@ const TaskListDisplay = () => {
   });
   //PERFORMANCE LOGGING
 
-  const HandleSearch = useCallback((searchResults: Task[]) => {
-    setFilteredTasks(searchResults);
-  }, []);
+  const getTasks = async () => {
+    if (queryClient.getQueryData(["Tasks", debouncedValue])) {
+      return queryClient.getQueryData(["Tasks", debouncedValue]) as Task[];
+    } else {
+      return await FilterSearchResults(debouncedValue);
+    }
+  };
 
-  useEffect(() => {
-    const getTasks = async () => {
-      const newTasks = await GetTaskDetails();
+  const query = useQuery<Task[], Error>({
+    queryKey: ["Tasks", debouncedValue],
+    queryFn: getTasks,
+  });
 
-      setTasks(newTasks);
-      setFilteredTasks(newTasks);
-      if (setUpdateTaskList !== undefined) setUpdateTaskList(false);
-    };
-
-    getTasks().catch(console.error);
-  }, [updateTaskList, setUpdateTaskList]);
+  if (query.isLoading) return "Loading...";
+  if (query.error) return "Error has occured : " + query.error.message;
 
   return (
     <div>
       {/*//PERFORMANCE LOGGING */}
       <h1>Render Count: {count.current}</h1>
       {/*PERFORMANCE LOGGING */}
-      <SearchForm onSearch={HandleSearch} />
+      <SearchForm onSearch={setDebouncedValue} />
 
       <div className="w-11/12 mx-auto">
-        <AddTaskButton taskCount={filteredTasks.length} />
+        <AddTaskButton taskCount={query.data ? query.data.length : 0} />
         <div
           className="
           grid
@@ -56,7 +55,7 @@ const TaskListDisplay = () => {
           lg:grid-cols-4
           px-8"
         >
-          {filteredTasks?.map((item) => (
+          {query.data?.map((item) => (
             <div
               key={item.id}
               className="

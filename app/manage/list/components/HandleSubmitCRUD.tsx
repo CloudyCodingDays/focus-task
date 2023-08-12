@@ -1,7 +1,7 @@
 import { Task } from "@/types/Task";
 import ExtractFormData from "./ExtractFormData";
-import AddTaskQuery from "./task_queries/AddtaskQuery";
-import EditTaskQuery from "./task_queries/EdittaskQuery";
+import AddTaskQuery from "./task_queries/AddTaskQuery";
+import EditTaskQuery from "./task_queries/EditTaskQuery";
 import DeleteTaskQuery from "./task_queries/DeleteTaskQuery";
 import AssignTaskQuery from "./task_queries/AssignTaskQuery";
 import UnassignTaskQuery from "./task_queries/UnassignTaskQuery";

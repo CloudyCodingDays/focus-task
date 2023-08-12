@@ -1,11 +1,12 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { FormSubmit } from "@/app/manage/list/components/HandleSubmitCRUD";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import Link from "next/link";
 import useTaskListContext from "@/hooks/useTaskListContext";
 import { Task } from "@/types/Task";
 import TaskItemEdittableFormLayout from "./TaskItemEdittableFormLayout";
+import { useQueryClient } from "react-query";
 
 interface EditFormProps {
   task: Task;
@@ -14,13 +15,16 @@ interface EditFormProps {
 
 const EditForm: React.FC<EditFormProps> = ({ task, onBack }) => {
   const router = useRouter();
-  const { updateTaskList, setUpdateTaskList } = useTaskListContext();
+  const queryClient = useQueryClient();
 
-  const HandleSubmit: React.FormEventHandler<HTMLFormElement> = (
+  const HandleSubmit: React.FormEventHandler<HTMLFormElement> = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    FormSubmit(e, "edit");
-    if (setUpdateTaskList !== undefined) setUpdateTaskList(true);
+    await FormSubmit(e, "edit");
+
+    queryClient.invalidateQueries({ queryKey: ["Tasks"] });
+    queryClient.invalidateQueries({ queryKey: ["TaskDetails"] });
+
     HandleBack();
     router.refresh();
   };
