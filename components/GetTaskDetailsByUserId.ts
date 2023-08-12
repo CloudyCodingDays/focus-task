@@ -27,6 +27,7 @@ const GetTaskDetailsByUserId = async (userId: string) => {
       due_date, 
       priority, 
       created_at,
+      created_by,
       image_path`
       )
       .eq("id", UserTaskId);

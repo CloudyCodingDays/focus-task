@@ -1,9 +1,10 @@
 import supabaseClient from "@/lib/supabaseClient";
 import { Task } from "@/types/Task";
 
-const AddTaskQuery = async (taskData: Task) => {
+const AddTaskQuery = async (taskData: Task, userId: string) => {
   const { error: supabaseError } = await supabaseClient.from("tasks").insert({
     created_at: new Date(),
+    created_by: userId,
     description: taskData.description,
     due_date: new Date(), //taskData.due_date
     image_path: taskData.image_path,

@@ -6,6 +6,7 @@ import useTaskListContext from "@/hooks/useTaskListContext";
 import { Dispatch, SetStateAction } from "react";
 import TaskItemEdittableFormLayout from "./TaskItemEdittableFormLayout";
 import { useQueryClient } from "react-query";
+import { useUserInfo } from "@/hooks/useUserInfo";
 
 interface AddFormProps {
   onBack: Dispatch<SetStateAction<boolean>>;
@@ -13,12 +14,13 @@ interface AddFormProps {
 
 const AddForm: React.FC<AddFormProps> = ({ onBack }) => {
   const router = useRouter();
+  const { user } = useUserInfo();
   const queryClient = useQueryClient();
 
-  const HandleSubmit: React.FormEventHandler<HTMLFormElement> = async (
+  const HandleSubmit: React.FormEventHandler<HTMLFormElement> = (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    await FormSubmit(e, "add");
+    FormSubmit(e, "add", user?.id);
 
     queryClient.invalidateQueries({ queryKey: ["Tasks"] });
 
