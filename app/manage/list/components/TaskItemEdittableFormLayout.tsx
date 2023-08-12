@@ -80,6 +80,7 @@ const TaskItemEdittableFormLayout: React.FC<
 
         <div className="mb-4">
           Is this a Recurring Task?
+          {/* TODO: Fix type issue*/}
           <input
             name="is_recurring"
             type="checkbox"
