@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import TaskItem from "../../../../components/TaskItem";
 import useTaskListContext from "@/hooks/useTaskListContext";
 import { Separator } from "@/components/ui/separator";
@@ -21,11 +21,11 @@ const TaskListDisplay = () => {
   useEffect(() => {
     count.current = count.current + 1;
   });
-  const HandleSearch = (SearchResults: Task[]) => {
+  const HandleSearch = useCallback((SearchResults: Task[]) => {
     //let SearchResults: Task[];
     //SearchResults = FilterSearchResults(e, tasks);
     setFilteredTasks(SearchResults);
-  };
+  }, []);
 
   useEffect(() => {
     const getTasks = async () => {
