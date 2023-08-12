@@ -78,13 +78,12 @@ const TaskItemEdittableFormLayout: React.FC<
 
         <div className="mb-4">
           Is this a Recurring Task?
+          {/* TODO: Fix type issue*/}
           <input
             name="is_recurring"
             type="checkbox"
             className="ml-4 scale-125"
-            defaultChecked={
-              isEdit && task !== undefined ? task.is_recurring : false
-            }
+            defaultChecked={isEdit && task !== undefined ? true : false}
           ></input>
         </div>
 
@@ -118,7 +117,7 @@ const TaskItemEdittableFormLayout: React.FC<
             name="due_date"
             type="date"
             className="border-2 w-full"
-            value={
+            placeholder={
               isEdit && task !== undefined
                 ? task.due_date
                 : new Date().toDateString()
