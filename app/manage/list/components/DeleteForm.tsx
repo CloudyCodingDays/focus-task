@@ -33,11 +33,8 @@ const DeleteForm: React.FC<DeleteFormProps> = ({ id, onBack }) => {
 
   return (
     <div>
-      <div className="text-center mt-4">
+      <div className="text-center">
         <form method="post" onSubmit={HandleSubmit}>
-          <div>
-            <input name="id" type="hidden" value={id}></input>
-          </div>
           <button
             className="
             hover:bg-green-200
@@ -46,7 +43,7 @@ const DeleteForm: React.FC<DeleteFormProps> = ({ id, onBack }) => {
             border-green-300 
             border-2 
             rounded-lg 
-            ml-4 
+            mr-24 
             py-4 
             px-4
             mx-4"
@@ -63,11 +60,15 @@ const DeleteForm: React.FC<DeleteFormProps> = ({ id, onBack }) => {
               bg-red-400
               border-2 
               rounded-lg 
+              ml-24
               py-4 
               px-4"
           >
             Delete Task
           </button>
+          <div>
+            <input name="id" type="hidden" value={id}></input>
+          </div>
         </form>
       </div>
     </div>

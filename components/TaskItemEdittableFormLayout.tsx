@@ -56,7 +56,6 @@ const TaskItemEdittableFormLayout: React.FC<
       )}
 
       <div className="lg:w-2/5 md:w-2/3 text-left mx-auto w-11/12 bg-gray-100 rounded-lg py-4 px-4">
-        {JSON.stringify(oldTask)}
         <div className="mb-4">
           <div>Task Name</div>
           <input
@@ -80,7 +79,6 @@ const TaskItemEdittableFormLayout: React.FC<
 
         <div className="mb-4">
           Is this a Recurring Task?
-          {/* TODO: Fix type issue*/}
           <input
             name="is_recurring"
             type="checkbox"

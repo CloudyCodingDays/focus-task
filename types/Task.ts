@@ -52,3 +52,17 @@ export type TaskType = {
   user_id?: string;
   image_path?: string;
 };
+export const TaskFields = [
+  "id",
+  "name",
+  "description",
+  "is_recurring",
+  "recurring_type",
+  "priority",
+  "due_date",
+  "created_at",
+  "created_by",
+  "updated_at",
+  "user_id",
+  "image_path",
+];

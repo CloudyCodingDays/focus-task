@@ -1,161 +1,77 @@
+import { OldTaskType, Task, TaskFields } from "@/types/Task";
 import Image from "next/image";
-import { Task } from "@/types/Task";
 import pic from "@/dishes.jpg";
-import { Separator } from "./ui/separator";
 
 interface TaskItemDetailsProps {
   task: Task;
 }
-
 const TaskItemDetails: React.FC<TaskItemDetailsProps> = ({ task }) => {
-  const {
-    id,
-    description,
-    name,
-    is_recurring,
-    created_at,
-    due_date,
-    priority,
-    recurring_type,
-    image_path,
-    updated_at,
-  } = task;
   return (
-    <div key={id} className="rounded-lg bg-gray-100">
-      <div className="flex flex-row">
-        {/* Change to grid*/}
-        <div className="">
-          <Image
-            src={pic}
-            width="600"
-            height="600"
-            alt="Task item Icon"
-          ></Image>
+    <div className="h-fit">
+      <div className="flex flex-row justify-center">
+        <Image src={pic} width="600" height="300" alt="Task item Icon"></Image>
+      </div>
+      <div className="text-left mx-auto w-11/12 bg-gray-100 rounded-lg py-4 px-4">
+        <div className="mb-4">
+          <div>Task Name</div>
+          <input
+            name="name"
+            className="border-2 w-full"
+            placeholder={task.name}
+            disabled
+          ></input>
         </div>
-        <div className="ml-4 w-full">
-          <div className="break-words">
-            <div className="text-lg font-bold">
-              {name} Tags asdqw asdq wdas Tags asdqw asdq wdas Tags asdqw asdq
-              wdas Tags asdqw asdq wdas title
-            </div>
-            <div className="text-sm font-extralight">
-              Tags asdqw asdq wdas Tags asdqw asdq wdas Tags asdqw asdq wdas
-              Tags asdqw asdq wdas Tags asdqw asdq wdas
-            </div>
-          </div>
-          <div className="text-sm mt-2 mb-4 font-light text-gray-400 ">
-            <p className="break-words">{description}</p>
-          </div>
-          <Separator className="bg-green-200 pt-0.5 w-1/2 mx-auto my-8" />
-          <div
-            className="
-          md:flex 
-          md:flex-row 
-          md:justify-between
-          md:flex-wrap
-          mr-4"
-          >
-            {/*Is Recurring Card*/}
-            <div
-              className="
-          flex 
-          flex-col 
-          items-center 
-          w-[10em] 
-          bg-green-100 
-          rounded-md 
-          border-2 
-          border-green-400
-          mb-4"
-            >
-              <div className="text-md font-semibold">Recurring</div>
-              <div>
-                <div className="pt-4 font-light">
-                  {is_recurring ? "true" : "false"}
-                </div>
-              </div>
-            </div>
 
-            {/*Recurring Type Card*/}
-            <div
-              className="          
-            flex 
-            flex-col 
-            items-center 
-            w-[10em] 
-            bg-green-100 
-            rounded-md 
-            border-2 
-            border-green-400
-            mb-4"
-            >
-              <div className="text-md font-semibold">Recurring Type</div>
-              <div>
-                <div className="pt-4 font-light">Weekly</div>
-              </div>
-            </div>
+        <div className="mb-4">
+          <div>Task Description</div>
+          <input
+            name="description"
+            className="border-2 w-full"
+            placeholder={task.description}
+            disabled
+          ></input>
+        </div>
 
-            {/*Priority Card*/}
-            <div
-              className="          
-            flex 
-            flex-col 
-            items-center 
-            w-[10em] 
-            bg-green-100 
-            rounded-md 
-            border-2 
-            border-green-400
-            mb-4"
-            >
-              <div className="text-md font-semibold">Priority</div>
-              <div>
-                <div className="pt-4 font-light">{priority}</div>
-              </div>
-            </div>
+        <div className="mb-4">
+          Is this a Recurring Task?
+          <input
+            name="is_recurring"
+            type="checkbox"
+            className="ml-4 scale-125"
+            defaultChecked={task.is_recurring === "true"}
+            disabled
+          ></input>
+        </div>
 
-            {/*Due Date Card*/}
-            <div
-              className="          
-            flex 
-            flex-col 
-            items-center 
-            w-[10em] 
-            bg-green-100 
-            rounded-md 
-            border-2 
-            border-green-400
-            mb-4"
-            >
-              <div className="text-md font-semibold">Due Date</div>
-              <div>
-                <div className="pt-4 font-light">
-                  {new Date().toDateString()}
-                </div>
-              </div>
-            </div>
+        <div className="mb-4">
+          <div>Recurring Type</div>
+          <input
+            name="recurring_type"
+            className="border-2 w-full"
+            placeholder={task.recurring_type}
+            disabled
+          ></input>
+        </div>
 
-            {/*Created Date Card*/}
-            <div
-              className="          
-            flex 
-            flex-col 
-            items-center 
-            w-[10em] 
-            bg-green-100 
-            rounded-md 
-            border-2 
-            border-green-400
-            mb-4"
-            >
-              <div className="text-md font-semibold">Created Date</div>
-              <div>
-                <div className="pt-4 font-light">
-                  {new Date().toDateString()}
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="mb-4">
+          <div>Task Priority</div>
+          <input
+            name="priority"
+            className="border-2 w-full"
+            placeholder={task.priority}
+            disabled
+          ></input>
+        </div>
+
+        <div className="">
+          <div>Task Due Date</div>
+          <input
+            name="due_date"
+            type="date"
+            className="border-2 w-full"
+            placeholder={task.due_date}
+            disabled
+          ></input>
         </div>
       </div>
     </div>
