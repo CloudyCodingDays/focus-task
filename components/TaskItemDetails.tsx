@@ -18,6 +18,7 @@ const TaskItemDetails: React.FC<TaskItemDetailsProps> = ({ task }) => {
     priority,
     recurring_type,
     image_path,
+    updated_at,
   } = task;
   return (
     <div key={id} className="rounded-lg bg-gray-100">
