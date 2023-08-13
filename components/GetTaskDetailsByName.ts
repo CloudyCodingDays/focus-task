@@ -14,7 +14,8 @@ const GetTaskDetailsByName = async (name: string) => {
       priority, 
       created_at,
       created_by,
-      image_path`
+      image_path,
+      updated_at`
     )
     .ilike("name", `%${name}%`);
 

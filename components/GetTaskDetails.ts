@@ -14,7 +14,8 @@ const GetTaskDetails = async () => {
     priority, 
     created_at,
     created_by,
-    image_path`
+    image_path,
+    updated_at`
     );
 
   if (TaskError) throw new Error(TaskError.message);

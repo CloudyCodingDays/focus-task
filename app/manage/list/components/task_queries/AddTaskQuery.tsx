@@ -3,15 +3,16 @@ import { Task } from "@/types/Task";
 
 const AddTaskQuery = async (taskData: Task, userId: string) => {
   const { error: supabaseError } = await supabaseClient.from("tasks").insert({
-    created_at: new Date(),
-    created_by: userId,
-    description: taskData.description,
-    due_date: new Date(), //taskData.due_date
-    image_path: taskData.image_path,
-    is_recurring: taskData.is_recurring,
     name: taskData.name,
-    priority: taskData.priority,
+    description: taskData.description,
+    is_recurring: taskData.is_recurring,
     recurring_type: taskData.recurring_type,
+    priority: taskData.priority,
+    due_date: taskData.due_date,
+    updated_at: new Date(),
+    created_by: userId,
+    created_at: new Date(),
+    image_path: taskData.image_path,
   });
 
   if (supabaseError) {

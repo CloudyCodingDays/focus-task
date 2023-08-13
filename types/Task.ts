@@ -8,7 +8,7 @@ export interface Task {
   due_date: string;
   created_at: string;
   created_by: string;
-
+  updated_at: string;
   //active current task
   user_id?: string;
   //Image for task
@@ -27,17 +27,15 @@ export interface Task {
 ]; */
 
 export type OldTaskType = {
-  id: string;
-  name: string;
-  description: string;
-  is_recurring: string;
-  recurring_type: string;
-  priority: string;
-  due_date: string;
-  created_at: string;
-  created_by: string;
-  user_id?: string;
-  image_path?: string;
+  old_created_at: string;
+  old_description: string;
+  old_name: string;
+  old_due_date: string;
+  old_image_path: string;
+  old_is_recurring: string;
+  old_recurring_type: string;
+  old_priority: string;
+  old_updated_at: string;
 };
 
 export type TaskType = {
@@ -50,6 +48,7 @@ export type TaskType = {
   due_date: string;
   created_at: string;
   created_by: string;
+  updated_at: string;
   user_id?: string;
   image_path?: string;
 };

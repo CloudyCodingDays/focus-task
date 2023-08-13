@@ -14,7 +14,8 @@ const GetTaskDetailsByDesc = async (desc: string) => {
       priority, 
       created_at,
       created_by,
-      image_path`
+      image_path,
+      updated_at`
     )
     .ilike("description", `%${desc}%`);
 

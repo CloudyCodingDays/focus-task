@@ -23,8 +23,8 @@ export const FormSubmit = (
     AddTaskQuery(taskData, userId);
   } else if (submitType.trim() == "edit") {
     EditTaskQuery(taskData);
-  } else if (submitType.trim() == "delete") {
-    DeleteTaskQuery(taskData.id);
+  } else if (submitType.trim() == "delete" && userId) {
+    DeleteTaskQuery(taskData.id, userId);
   }
 
   if (submitType.trim() == "assign" && userId) {
