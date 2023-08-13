@@ -6,11 +6,15 @@ const AssignTaskQuery = async (taskId: string, userId: string) => {
     .insert({
       user_id: userId,
       task_id: taskId,
+      is_assigned: true,
+      is_current: true,
+      action_at: new Date(),
     });
 
   if (supabaseError) {
     throw new Error(supabaseError.message);
   }
+  console.log(taskId);
 };
 
 export default AssignTaskQuery;

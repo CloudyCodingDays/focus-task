@@ -1,12 +1,7 @@
 "use client";
-
 import { Separator } from "@/components/ui/separator";
 import useDebounceSearch from "@/hooks/useDebounceSearch";
-import { useUserInfo } from "@/hooks/useUserInfo";
-import { Task } from "@/types/Task";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { useQuery, useQueryClient } from "react-query";
-import FilterSearchResults from "./FilterSearchResults";
 
 interface SearchFormProps {
   setDebouncedValue: Dispatch<SetStateAction<string>>;
@@ -17,7 +12,6 @@ const SearchForm: React.FC<SearchFormProps> = ({ setDebouncedValue }) => {
   const debouncedValue = useDebounceSearch(searchTerm, 500);
 
   useEffect(() => {
-    console.log(debouncedValue);
     setDebouncedValue(debouncedValue);
   }, [debouncedValue, setDebouncedValue]);
   return (

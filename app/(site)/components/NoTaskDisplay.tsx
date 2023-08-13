@@ -1,4 +1,3 @@
-import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import Link from "next/link";
 import noTaskImage from "@/sarah-dorweiler-unsplash-compressed.png";

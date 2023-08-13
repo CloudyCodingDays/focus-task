@@ -1,6 +1,5 @@
 "use client";
-import { FormSubmit } from "@/app/manage/list/components/HandleSubmitCRUD";
-import useTaskListContext from "@/hooks/useTaskListContext";
+import { AssignFormSubmit } from "@/app/(site)/components/HandleSubmitAssign";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { useRouter } from "next/navigation";
 
@@ -11,13 +10,11 @@ interface AssignFormProps {
 const AssignForm: React.FC<AssignFormProps> = ({ id }) => {
   const router = useRouter();
   const { user } = useUserInfo();
-  const { updateTaskList, setUpdateTaskList } = useTaskListContext();
 
   const HandleSubmit: React.FormEventHandler<HTMLFormElement> = (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    FormSubmit(e, "assign", user?.id);
-    if (setUpdateTaskList !== undefined) setUpdateTaskList(true);
+    AssignFormSubmit(e, "assign", user?.id);
     router.push("/");
   };
   return (
@@ -25,14 +22,10 @@ const AssignForm: React.FC<AssignFormProps> = ({ id }) => {
       <form method="post" onSubmit={HandleSubmit}>
         <div>
           <input name="id" type="hidden" value={id}></input>
+          <input name="userId" type="hidden" value={user?.id}></input>
         </div>
-        <div>
-          <button
-            type="submit"
-            className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
-          >
-            Are you sure?
-          </button>
+        <div className="hover:bg-green-500 hover:text-white bg-green-200 text-green-600 rounded-lg px-4 py-4 mt-8 w-fit mx-auto">
+          <button type="submit">Assign Task</button>
         </div>
       </form>
     </div>

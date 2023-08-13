@@ -2,15 +2,9 @@
 
 import format from "date-fns/format";
 import localFont from "next/font/local";
-import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-
-import MenuImage from "@/icons/menu.png";
-import UserImage from "@/icons/profile-user.png";
 
 const calmFont = localFont({
   src: "./fonts/Pacifico.ttf",

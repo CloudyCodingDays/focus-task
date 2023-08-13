@@ -1,10 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { FormSubmit } from "@/app/manage/list/components/HandleSubmitCRUD";
-import Link from "next/link";
-import useTaskListContext from "@/hooks/useTaskListContext";
 import { Dispatch, SetStateAction } from "react";
-import TaskItemEdittableFormLayout from "./TaskItemEdittableFormLayout";
+import TaskItemEdittableFormLayout from "../../../../components/TaskItemEdittableFormLayout";
 import { useQueryClient } from "react-query";
 
 import { useUserInfo } from "@/hooks/useUserInfo";
@@ -24,7 +22,7 @@ const AddForm: React.FC<AddFormProps> = ({ onBack }) => {
   ) => {
     FormSubmit(e, "add", user?.id);
 
-    queryClient.invalidateQueries({ queryKey: ["Tasks"] });
+    queryClient.invalidateQueries();
 
     HandleBack();
     router.refresh();

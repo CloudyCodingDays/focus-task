@@ -1,7 +1,5 @@
-import GetTaskDetails from "@/components/GetAllTasksforUser";
 import GetTaskDetailsByDesc from "@/components/GetTaskDetailsByDesc";
 import GetTaskDetailsByName from "@/components/GetTaskDetailsByName";
-import GetTaskDetailsByUserId from "@/components/GetActiveTaskByUserId";
 import { Task } from "@/types/Task";
 import GetAllTasksforUser from "@/components/GetAllTasksforUser";
 
