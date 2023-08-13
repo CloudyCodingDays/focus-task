@@ -2,16 +2,24 @@
 
 import { Separator } from "@/components/ui/separator";
 import useDebounceSearch from "@/hooks/useDebounceSearch";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useUserInfo } from "@/hooks/useUserInfo";
+import { Task } from "@/types/Task";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useQuery, useQueryClient } from "react-query";
+import FilterSearchResults from "./FilterSearchResults";
 
 interface SearchFormProps {
-  onSearch: Dispatch<SetStateAction<string>>;
+  setDebouncedValue: Dispatch<SetStateAction<string>>;
 }
 
-const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
+const SearchForm: React.FC<SearchFormProps> = ({ setDebouncedValue }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedValue = useDebounceSearch(searchTerm, 500);
 
+  useEffect(() => {
+    console.log(debouncedValue);
+    setDebouncedValue(debouncedValue);
+  }, [debouncedValue, setDebouncedValue]);
   return (
     <div>
       {/*//PERFORMANCE LOGGING */}
@@ -49,7 +57,6 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
                       value={searchTerm}
                       onChange={(e) => {
                         setSearchTerm(e.target.value);
-                        onSearch(debouncedValue);
                       }}
                     ></input>
                     <Separator className="bg-green-200 pt-0.5" />

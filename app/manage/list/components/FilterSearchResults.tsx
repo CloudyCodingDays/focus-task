@@ -11,8 +11,8 @@ const FilterSearchResults = async (debouncedValue: string, userId: string) => {
   } else {
     let finalFilteredResults: Task[] = [];
 
-    const filteredByName = await GetTaskDetailsByName(debouncedValue);
-    const filteredbyDesc = await GetTaskDetailsByDesc(debouncedValue);
+    const filteredByName = await GetTaskDetailsByName(debouncedValue, userId);
+    const filteredbyDesc = await GetTaskDetailsByDesc(debouncedValue, userId);
 
     if (filteredByName.length !== 0) {
       Array.prototype.push.apply(finalFilteredResults, filteredByName);

@@ -17,10 +17,10 @@ const EditForm: React.FC<EditFormProps> = ({ task, onBack }) => {
   const router = useRouter();
   const queryClient = useQueryClient();
 
-  const HandleSubmit: React.FormEventHandler<HTMLFormElement> = async (
+  const HandleSubmit: React.FormEventHandler<HTMLFormElement> = (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    await FormSubmit(e, "edit");
+    FormSubmit(e, "edit");
 
     queryClient.invalidateQueries({ queryKey: ["Tasks"] });
 

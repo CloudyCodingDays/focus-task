@@ -9,7 +9,6 @@ import { useQueryClient } from "react-query";
 
 import { useUserInfo } from "@/hooks/useUserInfo";
 
-
 interface AddFormProps {
   onBack: Dispatch<SetStateAction<boolean>>;
 }
@@ -20,12 +19,10 @@ const AddForm: React.FC<AddFormProps> = ({ onBack }) => {
 
   const queryClient = useQueryClient();
 
-  const HandleSubmit: React.FormEventHandler<HTMLFormElement> = async (
+  const HandleSubmit: React.FormEventHandler<HTMLFormElement> = (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-
     FormSubmit(e, "add", user?.id);
-
 
     queryClient.invalidateQueries({ queryKey: ["Tasks"] });
 

@@ -15,8 +15,8 @@ const CurrentTaskDisplay = () => {
 
   const getTasks = async () => {
     if (user !== null) {
-      if (queryClient.getQueryData(["Tasks", user.id])) {
-        return queryClient.getQueryData(["Tasks", user.id]) as Task[];
+      if (queryClient.getQueryData(["ActiveTask", user.id])) {
+        return queryClient.getQueryData(["ActiveTask", user.id]) as Task[];
       } else {
         return await GetTaskDetailsByUserId(user.id);
       }
@@ -25,7 +25,7 @@ const CurrentTaskDisplay = () => {
   };
 
   const { data, error, isLoading, isError } = useQuery<Task[], Error>({
-    queryKey: ["Tasks", user?.id],
+    queryKey: ["ActiveTask", user?.id],
     queryFn: getTasks,
   });
 

@@ -11,9 +11,9 @@ interface AssignItemProps {
 const AssignItem: React.FC<AssignItemProps> = ({ task }) => {
   const { id, name, description } = task;
   return (
-    <div key={id} className="bg-gray-300 w-[30em] rounded-lg">
-      <div>
-        <div className="flex flex-row ml-4 mt-4 items-start">
+    <div key={id}>
+      <div className="flex flex-row w-11/12 rounded-lg border-2 mx-auto">
+        <div className="flex flex-col items-start w-11/12  border-4">
           <div className="mr-4">
             <Image
               src={pic}
@@ -26,19 +26,17 @@ const AssignItem: React.FC<AssignItemProps> = ({ task }) => {
             <div>{name}</div>
             <div>Tags</div>
           </div>
+          <div className="mt-4 ml-4">{description}</div>
         </div>
-        <div className="mt-4 ml-4">{description}</div>
-        <div className="flex justify-around">
-          <Link
-            href={{
-              pathname: "/assign/details",
-              query: { id: id },
-            }}
-            className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
-          >
-            View Details
-          </Link>
-        </div>
+        <Link
+          href={{
+            pathname: "/assign/details",
+            query: { id: id },
+          }}
+          className="bg-green-400 rounded-lg my-4 mx-4 py-4 px-4"
+        >
+          View Details
+        </Link>
       </div>
     </div>
   );
