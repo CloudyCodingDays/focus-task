@@ -5,14 +5,16 @@ const EditTaskQuery = async (taskData: Task) => {
   const { error: supabaseError } = await supabaseClient
     .from("tasks")
     .update({
-      created_at: new Date(),
-      description: taskData.description,
-      due_date: new Date(), //taskData.due_date
-      image_path: taskData.image_path,
-      is_recurring: taskData.is_recurring,
       name: taskData.name,
-      priority: taskData.priority,
+      description: taskData.description,
+      is_recurring: taskData.is_recurring,
       recurring_type: taskData.recurring_type,
+      priority: taskData.priority,
+      due_date: taskData.due_date,
+      updated_at: new Date(),
+      created_by: taskData.created_by,
+      created_at: taskData.created_at,
+      image_path: taskData.image_path,
     })
     .eq("id", taskData.id);
 
