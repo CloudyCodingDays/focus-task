@@ -17,12 +17,12 @@ const AddForm: React.FC<AddFormProps> = ({ onBack }) => {
 
   const queryClient = useQueryClient();
 
-  const HandleSubmit: React.FormEventHandler<HTMLFormElement> = (
+  const HandleSubmit: React.FormEventHandler<HTMLFormElement> = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    FormSubmit(e, "add", user?.id);
+    await FormSubmit(e, "add", user?.id);
 
-    queryClient.invalidateQueries();
+    queryClient.resetQueries("Tasks");
 
     HandleBack();
     router.refresh();

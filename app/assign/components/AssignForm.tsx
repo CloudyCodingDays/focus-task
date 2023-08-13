@@ -2,6 +2,7 @@
 import { AssignFormSubmit } from "@/app/(site)/components/HandleSubmitAssign";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { useRouter } from "next/navigation";
+import { useQueryClient } from "react-query";
 
 interface AssignFormProps {
   id: string;
@@ -10,11 +11,13 @@ interface AssignFormProps {
 const AssignForm: React.FC<AssignFormProps> = ({ id }) => {
   const router = useRouter();
   const { user } = useUserInfo();
+  const queryClient = useQueryClient();
 
-  const HandleSubmit: React.FormEventHandler<HTMLFormElement> = (
+  const HandleSubmit: React.FormEventHandler<HTMLFormElement> = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    AssignFormSubmit(e, "assign", user?.id);
+    await AssignFormSubmit(e, "assign", user?.id);
+    queryClient.resetQueries("ActiveTask");
     router.push("/");
   };
   return (

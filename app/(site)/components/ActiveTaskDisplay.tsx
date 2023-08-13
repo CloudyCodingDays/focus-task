@@ -14,12 +14,12 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
 
-  const HandleUnassign: React.FormEventHandler<HTMLFormElement> = (
+  const HandleUnassign: React.FormEventHandler<HTMLFormElement> = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    AssignFormSubmit(e, "unassign", user?.id);
+    await AssignFormSubmit(e, "unassign", user?.id);
 
-    queryClient.invalidateQueries();
+    queryClient.resetQueries("ActiveTask");
 
     router.refresh();
   };

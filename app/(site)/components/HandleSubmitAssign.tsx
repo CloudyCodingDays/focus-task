@@ -1,7 +1,7 @@
 import AssignTaskQuery from "@/app/manage/list/components/task_queries/AssignTaskQuery";
 import UnassignTaskQuery from "@/app/manage/list/components/task_queries/UnassignTaskQuery";
 
-export const AssignFormSubmit = (
+export const AssignFormSubmit = async (
   e: React.FormEvent<HTMLFormElement>,
   submitType: string,
   userId?: string
@@ -13,9 +13,9 @@ export const AssignFormSubmit = (
   const id = formData.get("id") as string;
 
   if (submitType.trim() == "assign" && userId) {
-    AssignTaskQuery(id, userId);
+    await AssignTaskQuery(id, userId);
   } else if (submitType.trim() == "unassign" && userId) {
-    UnassignTaskQuery(userId);
+    await UnassignTaskQuery(userId);
   } else if (submitType.trim() == "complete" && userId) {
     //CompleteTaskQuery([] as Task, userId);
   }

@@ -28,7 +28,7 @@ const TaskItemDisplay = ({
   //PERFORMANCE LOGGING
 
   const query = useQuery<Task[], Error>({
-    queryKey: ["SearchResults", debouncedValue, user?.id],
+    queryKey: ["Tasks", debouncedValue, user?.id],
     queryFn: async () => {
       if (user) {
         if (queryClient.getQueryData([debouncedValue, user.id])) {

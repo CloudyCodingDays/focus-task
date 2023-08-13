@@ -13,6 +13,7 @@ const CurrentTaskDisplay = () => {
   const getTasks = async () => {
     if (user !== null) {
       if (queryClient.getQueryData(["ActiveTask", user.id])) {
+        console.log("cache");
         return queryClient.getQueryData(["ActiveTask", user.id]) as Task[];
       } else {
         return await GetTaskDetailsByUserId(user.id);
