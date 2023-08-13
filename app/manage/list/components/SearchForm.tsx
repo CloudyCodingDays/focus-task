@@ -1,11 +1,8 @@
 "use client";
 
-import GetTaskDetails from "@/components/GetTaskDetails";
 import { Separator } from "@/components/ui/separator";
 import useDebounceSearch from "@/hooks/useDebounceSearch";
-import { Task } from "@/types/Task";
 import { Dispatch, SetStateAction, useState } from "react";
-import FilterSearchResults from "./FilterSearchResults";
 
 interface SearchFormProps {
   onSearch: Dispatch<SetStateAction<string>>;

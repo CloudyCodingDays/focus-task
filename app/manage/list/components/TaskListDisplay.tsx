@@ -6,13 +6,15 @@ import { Separator } from "@/components/ui/separator";
 import { Task } from "@/types/Task";
 import TaskItemActions from "./TaskItemActions";
 import FilterSearchResults from "./FilterSearchResults";
-import GetTaskDetails from "@/components/GetTaskDetails";
+import GetTaskDetails from "@/components/GetAllTasksforUser";
 
 import SearchForm from "./SearchForm";
 import AddTaskButton from "./AddTaskButton";
 import { useQuery, useQueryClient } from "react-query";
+import { useUserInfo } from "@/hooks/useUserInfo";
 
 const TaskListDisplay = () => {
+  const { user } = useUserInfo();
   const [debouncedValue, setDebouncedValue] = useState("");
   const queryClient = useQueryClient();
   //PERFORMANCE LOGGING
@@ -23,11 +25,13 @@ const TaskListDisplay = () => {
   //PERFORMANCE LOGGING
 
   const getTasks = async () => {
+    if (!user) return [] as Task[];
+
     if (queryClient.getQueryData(["Tasks", debouncedValue])) {
       return queryClient.getQueryData(["Tasks", debouncedValue]) as Task[];
-    } else {
-      return await FilterSearchResults(debouncedValue);
     }
+
+    return await FilterSearchResults(debouncedValue, user.id);
   };
 
   const query = useQuery<Task[], Error>({

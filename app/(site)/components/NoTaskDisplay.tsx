@@ -1,7 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import Link from "next/link";
-import noTaskImage from "@/sarah-dorweiler-unsplash-compressed.jpg";
+import noTaskImage from "@/sarah-dorweiler-unsplash-compressed.png";
 
 const NoTaskDisplay = () => {
   //TODO: grab whether task was completed today and detemine what to show
@@ -12,7 +12,7 @@ const NoTaskDisplay = () => {
           <Image
             src={noTaskImage}
             width="480"
-            height="400"
+            height="351"
             priority
             alt="What would you like to do today?"
           />
@@ -33,7 +33,7 @@ const NoTaskDisplay = () => {
           px-4
         bg-green-100 
         font-semibold
-        text-green-600
+        text-green-500
         self-center"
             >
               Assign New task

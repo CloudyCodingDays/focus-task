@@ -1,7 +1,7 @@
 import supabase from "@/lib/supabaseClient";
 import { Task } from "@/types/Task";
 
-const GetTaskDetails = async () => {
+const GetAllTasksforUser = async (userId: string) => {
   const { data: TaskData, error: TaskError } = await supabase
     .from("tasks")
     .select(
@@ -16,11 +16,12 @@ const GetTaskDetails = async () => {
     created_by,
     image_path,
     updated_at`
-    );
+    )
+    .eq("created_by", userId);
 
   if (TaskError) throw new Error(TaskError.message);
 
   return (TaskData as Task[]) || [];
 };
 
-export default GetTaskDetails;
+export default GetAllTasksforUser;

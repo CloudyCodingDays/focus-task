@@ -1,11 +1,13 @@
-import GetTaskDetails from "@/components/GetTaskDetails";
+import GetTaskDetails from "@/components/GetAllTasksforUser";
 import GetTaskDetailsByDesc from "@/components/GetTaskDetailsByDesc";
 import GetTaskDetailsByName from "@/components/GetTaskDetailsByName";
+import GetTaskDetailsByUserId from "@/components/GetActiveTaskByUserId";
 import { Task } from "@/types/Task";
+import GetAllTasksforUser from "@/components/GetAllTasksforUser";
 
-const FilterSearchResults = async (debouncedValue: string) => {
+const FilterSearchResults = async (debouncedValue: string, userId: string) => {
   if (debouncedValue === "") {
-    return await GetTaskDetails();
+    return await GetAllTasksforUser(userId);
   } else {
     let finalFilteredResults: Task[] = [];
 

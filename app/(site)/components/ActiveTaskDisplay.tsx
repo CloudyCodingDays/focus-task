@@ -23,7 +23,7 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
   ) => {
     FormSubmit(e, "unassign", user?.id);
     if (setUpdateTaskList !== undefined) setUpdateTaskList(true);
-    router.refresh();
+    window.location.reload();
   };
 
   const HandleComplete: React.FormEventHandler<HTMLFormElement> = (

@@ -6,7 +6,7 @@ import useTaskListContext from "@/hooks/useTaskListContext";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { useState } from "react";
 import { Task } from "@/types/Task";
-import GetTaskDetailsByUserId from "@/components/GetTaskDetailsByUserId";
+import GetTaskDetailsByUserId from "@/components/GetActiveTaskByUserId";
 import { useQuery, useQueryClient } from "react-query";
 
 const CurrentTaskDisplay = () => {

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import AssignItem from "./AssignItem";
 import useTaskListContext from "@/hooks/useTaskListContext";
 import { Task } from "@/types/Task";
-import GetTaskDetails from "@/components/GetTaskDetails";
+import GetTaskDetails from "@/components/GetAllTasksforUser";
 
 const AssignTaskDisplay = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
