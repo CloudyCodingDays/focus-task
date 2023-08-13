@@ -9,7 +9,7 @@ const TaskItemDetails: React.FC<TaskItemDetailsProps> = ({ task }) => {
   return (
     <div className="h-fit">
       <div className="flex flex-row justify-center">
-        <Image src={pic} width="600" height="300" alt="Task item Icon"></Image>
+        <Image src={pic} width="650" height="300" alt="Task item Icon"></Image>
       </div>
       <div className="text-left mx-auto w-11/12 bg-gray-100 rounded-lg py-4 px-4">
         <div className="mb-4">

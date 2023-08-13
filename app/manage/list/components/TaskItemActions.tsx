@@ -38,7 +38,7 @@ const TaskItemActions: React.FC<TaskItemActionsProps> = ({ id, task }) => {
               alt="Delete Icon"
             ></Image>
           </DialogTrigger>
-          <DialogContent className="left-[50%] h-full">
+          <DialogContent className="left-[50%] w-[760px] h-fit">
             <TaskItemDetails task={task} />
             <DeleteForm id={id} onBack={setDeleteOpen} />
           </DialogContent>
@@ -69,7 +69,7 @@ const TaskItemActions: React.FC<TaskItemActionsProps> = ({ id, task }) => {
               alt="Delete Icon"
             ></Image>
           </DialogTrigger>
-          <DialogContent className="left-[50%] w-[700px] h-fit">
+          <DialogContent className="left-[50%] w-[760px] h-fit">
             <ViewTask id={id} onBack={setViewOpen} />
           </DialogContent>
         </Dialog>
