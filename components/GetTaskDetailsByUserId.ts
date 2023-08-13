@@ -43,7 +43,7 @@ const GetTaskDetailsByUserId = async (userId: string) => {
 
   if (UserTaskDetailsError) throw new Error(UserTaskDetailsError.message);
 
-  return UserTaskDetailsData as Task[];
+  return (UserTaskDetailsData as Task[]) || [];
 };
 
 export default GetTaskDetailsByUserId;
