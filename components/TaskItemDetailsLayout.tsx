@@ -97,32 +97,29 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
 
         <div className="mb-4">
           <div>Recurring Type</div>
-          <input
+          <select
             name="recurring_type"
-            className="border-2 w-full"
-            placeholder={
-              isEdit && task !== undefined
-                ? task.recurring_type
-                : "Recurring Type"
-            }
-            defaultValue={
-              !isEdit && task !== undefined ? task.recurring_type : ""
-            }
             disabled={!isEdit}
-          ></input>
+            defaultValue={task !== undefined ? task.recurring_type : ""}
+          >
+            <option value="Daily">Daily</option>
+            <option value="Weekly">Weekly</option>
+            <option value="Bi-Weekly">Bi-Weekly</option>
+            <option value="Monthly">Monthly</option>
+          </select>
         </div>
 
         <div className="mb-4">
           <div>Task Priority</div>
-          <input
+          <select
             name="priority"
-            className="border-2 w-full"
-            placeholder={
-              isEdit && task !== undefined ? task.priority : "Priority"
-            }
-            defaultValue={!isEdit && task !== undefined ? task.priority : ""}
             disabled={!isEdit}
-          ></input>
+            defaultValue={task !== undefined ? task.priority : ""}
+          >
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
         </div>
 
         {isEdit ? (

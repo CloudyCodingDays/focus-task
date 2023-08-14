@@ -35,7 +35,7 @@ const TaskItemLayout: React.FC<TaskItemProps> = ({ task }) => {
   return (
     <div key={id} className="rounded-lg">
       <div className={MarkRed ? "top-to-bottom py-4" : "py-4"}>
-        <div className="text-sm text-center font-semibold">{name}</div>
+        <div className="text-md px-4 text-start font-semibold">{name}</div>
         <div className="text-sm mt-2 mb-4 px-4 font-light text-gray-700 text-start">
           <p className="break-words">{description}</p>
         </div>
