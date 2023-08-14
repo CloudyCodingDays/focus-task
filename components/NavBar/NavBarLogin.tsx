@@ -14,7 +14,7 @@ const NavBarLogin = () => {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <div className="flex flex-row items-baseline">
-            <div className="text-sm font-light">Hi Mr. touchy fingers!</div>
+            {/*<div className="text-sm font-light">Hi Mr. touchy fingers!</div>*/}
             <button>
               <User />
             </button>
