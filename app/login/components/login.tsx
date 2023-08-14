@@ -1,12 +1,7 @@
 "use client";
 import supabase from "@/lib/supabaseClient";
-import { data } from "autoprefixer";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSessionContext } from "@supabase/auth-helpers-react";
-import { useEffect } from "react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { Auth } from "@supabase/auth-ui-react";
 
 const Login = () => {
   const router = useRouter();

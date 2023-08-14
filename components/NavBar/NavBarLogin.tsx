@@ -2,11 +2,8 @@
 import { useState } from "react";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import Image from "next/image";
-import Link from "next/link";
 
 import Login from "@/app/login/components/login";
-import UserImage from "@/icons/profile-user.png";
 import { User } from "lucide-react";
 
 const NavBarLogin = () => {

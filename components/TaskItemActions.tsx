@@ -11,7 +11,6 @@ interface TaskItemActionsProps {
   id: string;
   task: Task;
 }
-
 const TaskItemActions: React.FC<TaskItemActionsProps> = ({ id, task }) => {
   const [deleteOpen, setDeleteOpen] = useState<boolean>(false);
   const [editOpen, setEditOpen] = useState<boolean>(false);
