@@ -1,5 +1,3 @@
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 const HandleRegister = async () => {
   const supabase = createClientComponentClient();

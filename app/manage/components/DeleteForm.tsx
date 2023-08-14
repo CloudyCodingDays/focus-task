@@ -1,8 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { FormSubmit } from "@/app/manage/list/components/HandleSubmitCRUD";
 import { Dispatch, SetStateAction } from "react";
 import { useQueryClient } from "react-query";
+import { FormSubmit } from "./HandleSubmitCRUD";
 interface DeleteFormProps {
   id: string;
   onBack: Dispatch<SetStateAction<boolean>>;

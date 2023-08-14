@@ -1,14 +1,8 @@
 "use client";
-
 import format from "date-fns/format";
-import localFont from "next/font/local";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
-
-const calmFont = localFont({
-  src: "./fonts/Pacifico.ttf",
-});
 
 const WelcomeDisplay = () => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
@@ -31,7 +25,7 @@ const WelcomeDisplay = () => {
       <div className="w-full flex flex-col items-center">
         <div className="w-[30em] bg-gray-200 rounded-lg mt-4 mx-4 text-center drop-shadow-lg">
           <div className="">
-            <div style={calmFont.style} className="text-4xl text-gray-500">
+            <div className="text-4xl text-gray-500">
               {format(currentDate, "h")}:{format(currentDate, "mm")}:
               {format(currentDate, "ss")} {format(currentDate, "aaa")}
             </div>

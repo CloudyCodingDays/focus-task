@@ -27,7 +27,7 @@ const CurrentTaskDisplay = () => {
     queryFn: getTasks,
   });
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return <NoTaskDisplay />;
   if (isError) return "Error has occured : " + error.message;
 
   return (

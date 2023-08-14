@@ -2,7 +2,6 @@
 import { Separator } from "@/components/ui/separator";
 import useDebounceSearch from "@/hooks/useDebounceSearch";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-
 interface SearchFormProps {
   setDebouncedValue: Dispatch<SetStateAction<string>>;
 }
@@ -16,14 +15,6 @@ const SearchForm: React.FC<SearchFormProps> = ({ setDebouncedValue }) => {
   }, [debouncedValue, setDebouncedValue]);
   return (
     <div>
-      {/*//PERFORMANCE LOGGING */}
-      <div>
-        <p>Value real-time: {searchTerm}</p>
-        <p>Debounced value: {debouncedValue}</p>
-      </div>
-
-      {searchTerm}
-      {/*//PERFORMANCE LOGGING */}
       <div
         className=" 
           flex 
@@ -32,10 +23,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ setDebouncedValue }) => {
       >
         <div
           className="
-          border-2 
           mx-4 
-          rounded-lg 
-          bg-gray-100 
           mt-8 
           w-[650px] 
           drop-shadow-lg"
@@ -49,6 +37,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ setDebouncedValue }) => {
                       style={{ width: "100%" }}
                       name="SearchTerm"
                       value={searchTerm}
+                      placeholder="Search..."
                       onChange={(e) => {
                         setSearchTerm(e.target.value);
                       }}

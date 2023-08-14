@@ -1,14 +1,16 @@
 import { OldTaskType, Task } from "@/types/Task";
+import { Dispatch, SetStateAction } from "react";
 
-interface TaskItemEdittableFormLayoutProps {
+interface TaskFormLayoutProps {
   isEdit: boolean;
-  onBack: () => void;
+  onBack: Dispatch<SetStateAction<boolean>>;
   task?: Task;
 }
-const TaskItemEdittableFormLayout: React.FC<
-  TaskItemEdittableFormLayoutProps
-> = ({ isEdit, onBack, task }) => {
-  let oldTask = {} as OldTaskType;
+const TaskFormLayout: React.FC<TaskFormLayoutProps> = ({
+  isEdit,
+  onBack,
+  task,
+}) => {
   return (
     <div>
       {isEdit && task !== undefined ? (
@@ -52,7 +54,7 @@ const TaskItemEdittableFormLayout: React.FC<
           ></input>
         </div>
       ) : (
-        <div></div>
+        <></>
       )}
 
       <div className="lg:w-2/5 md:w-2/3 text-left mx-auto w-11/12 bg-gray-100 rounded-lg py-4 px-4">
@@ -63,6 +65,7 @@ const TaskItemEdittableFormLayout: React.FC<
             className="border-2 w-full"
             placeholder={isEdit && task !== undefined ? task.name : "Name"}
             required
+            disabled={!isEdit}
           ></input>
         </div>
 
@@ -74,6 +77,7 @@ const TaskItemEdittableFormLayout: React.FC<
             placeholder={
               isEdit && task !== undefined ? task.description : "Description"
             }
+            disabled={!isEdit}
           ></input>
         </div>
 
@@ -88,6 +92,7 @@ const TaskItemEdittableFormLayout: React.FC<
                 ? task.is_recurring === "true"
                 : false
             }
+            disabled={!isEdit}
           ></input>
         </div>
 
@@ -101,6 +106,7 @@ const TaskItemEdittableFormLayout: React.FC<
                 ? task.recurring_type
                 : "Recurring Type"
             }
+            disabled={!isEdit}
           ></input>
         </div>
 
@@ -112,6 +118,7 @@ const TaskItemEdittableFormLayout: React.FC<
             placeholder={
               isEdit && task !== undefined ? task.priority : "Priority"
             }
+            disabled={!isEdit}
           ></input>
         </div>
 
@@ -126,17 +133,19 @@ const TaskItemEdittableFormLayout: React.FC<
                 ? task.due_date
                 : new Date().toDateString()
             }
+            disabled={!isEdit}
           ></input>
         </div>
 
-        <div className="mb-4">
-          <div className="font-light mb-2">Upload image (Optional)</div>
-          <input type="file" id="TaskImage" name="TaskImage"></input>
-        </div>
-
-        <div className="mb-4 text-center">
-          <button
-            className="
+        {isEdit ? (
+          <div>
+            <div className="mb-4">
+              <div className="font-light mb-2">Upload image (Optional)</div>
+              <input type="file" id="TaskImage" name="TaskImage"></input>
+            </div>
+            <div className="mb-4 text-center">
+              <button
+                className="
               hover:bg-green-200
               hover:text-gray-500
               bg-white
@@ -147,14 +156,16 @@ const TaskItemEdittableFormLayout: React.FC<
               py-4 
               px-4
               mx-4"
-            onClick={onBack}
-            type="button"
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            className="              
+                onClick={() => {
+                  onBack(false);
+                }}
+                type="button"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="              
               hover:bg-green-300
               hover:text-gray-100
               bg-green-400
@@ -164,13 +175,17 @@ const TaskItemEdittableFormLayout: React.FC<
               py-4 
               px-4
               mx-4"
-          >
-            Save
-          </button>
-        </div>
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );
 };
 
-export default TaskItemEdittableFormLayout;
+export default TaskFormLayout;

@@ -1,26 +1,24 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { FormSubmit } from "@/app/manage/list/components/HandleSubmitCRUD";
 import { Dispatch, SetStateAction } from "react";
-import TaskItemEdittableFormLayout from "../../../../components/TaskItemEdittableFormLayout";
+import { Task } from "@/types/Task";
 import { useQueryClient } from "react-query";
+import { FormSubmit } from "./HandleSubmitCRUD";
+import TaskFormLayout from "@/components/TaskFormLayout";
 
-import { useUserInfo } from "@/hooks/useUserInfo";
-
-interface AddFormProps {
+interface EditFormProps {
+  task: Task;
   onBack: Dispatch<SetStateAction<boolean>>;
 }
 
-const AddForm: React.FC<AddFormProps> = ({ onBack }) => {
+const EditForm: React.FC<EditFormProps> = ({ task, onBack }) => {
   const router = useRouter();
-  const { user } = useUserInfo();
-
   const queryClient = useQueryClient();
 
   const HandleSubmit: React.FormEventHandler<HTMLFormElement> = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    await FormSubmit(e, "add", user?.id);
+    await FormSubmit(e, "edit");
 
     queryClient.resetQueries("Tasks");
 
@@ -34,11 +32,13 @@ const AddForm: React.FC<AddFormProps> = ({ onBack }) => {
 
   return (
     <div>
-      <form method="post" onSubmit={HandleSubmit}>
-        <TaskItemEdittableFormLayout isEdit={false} onBack={HandleBack} />
-      </form>
+      <div>
+        <form method="post" onSubmit={HandleSubmit}>
+          <TaskFormLayout task={task} isEdit onBack={HandleBack} />
+        </form>
+      </div>
     </div>
   );
 };
 
-export default AddForm;
+export default EditForm;
