@@ -2,12 +2,14 @@ import { useUserInfo } from "@/hooks/useUserInfo";
 import { useQuery, useQueryClient } from "react-query";
 import FilterSearchResults from "./FilterSearchResults";
 import { Task } from "@/types/Task";
-import TaskItem from "@/components/TaskItemRowLayout";
 import TaskItemActions from "./TaskItemActions";
 import { useState } from "react";
-import AssignItemButton from "@/app/(site)/components/AssignItemButton";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Separator } from "./ui/separator";
-import AddTaskButton from "@/app/manage/components/AddTaskButton";
+import AddTaskButton from "@/components/AddTaskButton";
+import TaskItemRowLayout from "@/components/TaskItemRowLayout";
+import AssignForm from "@/app/assign/components/AssignForm";
+import TaskFormLayout from "./TaskFormLayout";
 
 const TaskItemDisplay = ({
   debouncedValue,
@@ -45,26 +47,41 @@ const TaskItemDisplay = ({
       <Separator className="pt-0.25 bg-green-500 mb-4 mt-2" />
       <div>
         {query.data?.map((item) => (
-          <div
-            key={item.id}
-            className="
-            bg-gray-100
-            rounded-lg
-            mb-8
-            drop-shadow-lg"
-          >
-            <div>
-              <TaskItem task={item} />
-              {ShowTaskActions ? (
-                <TaskItemActions id={item.id} task={item} />
-              ) : (
-                <AssignItemButton
-                  task={item}
-                  assignOpen={assignOpen}
-                  setAssignOpen={setAssignOpen}
-                />
-              )}
-            </div>
+          <div key={item.id}>
+            {ShowTaskActions ? (
+              <div
+                className="
+                bg-gray-100
+                rounded-lg
+                mb-8
+                drop-shadow-lg"
+              >
+                <div>
+                  <TaskItemRowLayout task={item} />
+                  <TaskItemActions id={item.id} task={item} />
+                </div>
+              </div>
+            ) : (
+              <Dialog open={assignOpen} onOpenChange={setAssignOpen}>
+                <DialogTrigger asChild>
+                  <div className="mb-8 bg-gray-100 rounded-lg drop-shadow-md">
+                    <button type="button" className="w-full">
+                      <TaskItemRowLayout task={item} />
+                    </button>
+                  </div>
+                </DialogTrigger>
+                <DialogContent className="left-[50%] lg:w-[1300px]">
+                  <div className="h-fit ">
+                    <TaskFormLayout
+                      task={item}
+                      isEdit={false}
+                      onBack={setAssignOpen}
+                    />
+                    <AssignForm id={item.id} />
+                  </div>
+                </DialogContent>
+              </Dialog>
+            )}
           </div>
         ))}
       </div>

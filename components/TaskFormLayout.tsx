@@ -1,29 +1,71 @@
-import { OldTaskType, Task, TaskFields } from "@/types/Task";
-import Image from "next/image";
-import pic from "@/dishes.jpg";
+import { OldTaskType, Task } from "@/types/Task";
+import { Dispatch, SetStateAction } from "react";
 
-interface TaskItemDetailsProps {
-  task: Task;
+interface TaskFormLayoutProps {
+  isEdit: boolean;
+  onBack: Dispatch<SetStateAction<boolean>>;
+  task?: Task;
 }
-const TaskFormLayout: React.FC<TaskItemDetailsProps> = ({ task }) => {
+const TaskFormLayout: React.FC<TaskFormLayoutProps> = ({
+  isEdit,
+  onBack,
+  task,
+}) => {
   return (
-    <div className="h-fit">
-      <div className="flex flex-row justify-center">
-        <Image
-          src="/noImage.png"
-          width="650"
-          height="300"
-          alt="Task item Icon"
-        ></Image>
-      </div>
-      <div className="text-left mx-auto w-11/12 bg-gray-100 rounded-lg py-4 px-4">
+    <div>
+      {isEdit && task !== undefined ? (
+        <div>
+          <input name="id" type="hidden" value={task.id}></input>
+          <input
+            name="old_created_at"
+            type="hidden"
+            value={task.created_at}
+          ></input>
+          <input
+            name="old_description"
+            type="hidden"
+            value={task.description}
+          ></input>
+          <input name="old_name" type="hidden" value={task.name}></input>
+          <input
+            name="old_due_date"
+            type="hidden"
+            value={task.due_date}
+          ></input>
+          <input
+            name="old_image_path"
+            type="hidden"
+            value={task.image_path}
+          ></input>
+          <input
+            name="old_is_recurring"
+            type="hidden"
+            value={task.is_recurring ? "true" : "false"}
+          ></input>
+          <input
+            name="old_recurring_type"
+            type="hidden"
+            value={task.recurring_type}
+          ></input>
+          <input
+            name="old_priority"
+            type="hidden"
+            value={task.priority}
+          ></input>
+        </div>
+      ) : (
+        <></>
+      )}
+
+      <div className="lg:w-2/5 md:w-2/3 text-left mx-auto w-11/12 bg-gray-100 rounded-lg py-4 px-4">
         <div className="mb-4">
           <div>Task Name</div>
           <input
             name="name"
             className="border-2 w-full"
-            placeholder={task.name}
-            disabled
+            placeholder={isEdit && task !== undefined ? task.name : "Name"}
+            required
+            disabled={!isEdit}
           ></input>
         </div>
 
@@ -32,8 +74,10 @@ const TaskFormLayout: React.FC<TaskItemDetailsProps> = ({ task }) => {
           <input
             name="description"
             className="border-2 w-full"
-            placeholder={task.description}
-            disabled
+            placeholder={
+              isEdit && task !== undefined ? task.description : "Description"
+            }
+            disabled={!isEdit}
           ></input>
         </div>
 
@@ -43,8 +87,12 @@ const TaskFormLayout: React.FC<TaskItemDetailsProps> = ({ task }) => {
             name="is_recurring"
             type="checkbox"
             className="ml-4 scale-125"
-            defaultChecked={task.is_recurring === "true"}
-            disabled
+            defaultChecked={
+              isEdit && task !== undefined
+                ? task.is_recurring === "true"
+                : false
+            }
+            disabled={!isEdit}
           ></input>
         </div>
 
@@ -53,8 +101,12 @@ const TaskFormLayout: React.FC<TaskItemDetailsProps> = ({ task }) => {
           <input
             name="recurring_type"
             className="border-2 w-full"
-            placeholder={task.recurring_type}
-            disabled
+            placeholder={
+              isEdit && task !== undefined
+                ? task.recurring_type
+                : "Recurring Type"
+            }
+            disabled={!isEdit}
           ></input>
         </div>
 
@@ -63,21 +115,74 @@ const TaskFormLayout: React.FC<TaskItemDetailsProps> = ({ task }) => {
           <input
             name="priority"
             className="border-2 w-full"
-            placeholder={task.priority}
-            disabled
+            placeholder={
+              isEdit && task !== undefined ? task.priority : "Priority"
+            }
+            disabled={!isEdit}
           ></input>
         </div>
 
-        <div className="">
+        <div className="mb-4">
           <div>Task Due Date</div>
           <input
             name="due_date"
-            type="text"
+            type="date"
             className="border-2 w-full"
-            placeholder={task.due_date}
-            disabled
+            placeholder={
+              isEdit && task !== undefined
+                ? task.due_date
+                : new Date().toDateString()
+            }
+            disabled={!isEdit}
           ></input>
         </div>
+
+        {isEdit ? (
+          <div>
+            <div className="mb-4">
+              <div className="font-light mb-2">Upload image (Optional)</div>
+              <input type="file" id="TaskImage" name="TaskImage"></input>
+            </div>
+            <div className="mb-4 text-center">
+              <button
+                className="
+              hover:bg-green-200
+              hover:text-gray-500
+              bg-white
+              border-green-300 
+              border-2 
+              rounded-lg 
+              ml-4 
+              py-4 
+              px-4
+              mx-4"
+                onClick={() => {
+                  onBack(false);
+                }}
+                type="button"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="              
+              hover:bg-green-300
+              hover:text-gray-100
+              bg-green-400
+              text-green-600
+              rounded-lg               
+              ml-4 
+              py-4 
+              px-4
+              mx-4"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

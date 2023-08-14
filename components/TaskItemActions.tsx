@@ -1,11 +1,10 @@
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { useState } from "react";
 import { Task } from "@/types/Task";
-import TaskItemDetails from "@/components/TaskFormLayout";
-import ViewTask from "@/components/ViewTask";
 import DeleteForm from "@/app/manage/components/DeleteForm";
 import { Eye, FileEdit, Trash2 } from "lucide-react";
 import EditForm from "@/app/manage/components/EditForm";
+import TaskFormLayout from "./TaskFormLayout";
 
 interface TaskItemActionsProps {
   id: string;
@@ -25,7 +24,7 @@ const TaskItemActions: React.FC<TaskItemActionsProps> = ({ id, task }) => {
           </button>
         </DialogTrigger>
         <DialogContent className="left-[50%] w-[760px] h-fit">
-          <TaskItemDetails task={task} />
+          <TaskFormLayout task={task} isEdit={false} onBack={setDeleteOpen} />
           <DeleteForm id={id} onBack={setDeleteOpen} />
         </DialogContent>
       </Dialog>
@@ -36,10 +35,10 @@ const TaskItemActions: React.FC<TaskItemActionsProps> = ({ id, task }) => {
           </button>
         </DialogTrigger>
         <DialogContent className="left-[50%] w-[760px] h-fit">
-          <ViewTask id={id} onBack={setViewOpen} />
+          <TaskFormLayout task={task} isEdit={false} onBack={setViewOpen} />
         </DialogContent>
       </Dialog>
-      <Dialog open={viewOpen} onOpenChange={setViewOpen}>
+      <Dialog open={editOpen} onOpenChange={setEditOpen}>
         <DialogTrigger asChild>
           <button className="hover:bg-green-100 py-2">
             <FileEdit size={24} className="w-full mx-auto" />

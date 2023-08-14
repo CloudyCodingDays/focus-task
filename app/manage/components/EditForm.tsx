@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction } from "react";
 import { Task } from "@/types/Task";
 import { useQueryClient } from "react-query";
 import { FormSubmit } from "./HandleSubmitCRUD";
-import TaskEdittableFormLayout from "@/components/TaskEdittableFormLayout";
+import TaskFormLayout from "@/components/TaskFormLayout";
 
 interface EditFormProps {
   task: Task;
@@ -34,7 +34,7 @@ const EditForm: React.FC<EditFormProps> = ({ task, onBack }) => {
     <div>
       <div>
         <form method="post" onSubmit={HandleSubmit}>
-          <TaskEdittableFormLayout task={task} isEdit onBack={HandleBack} />
+          <TaskFormLayout task={task} isEdit onBack={HandleBack} />
         </form>
       </div>
     </div>

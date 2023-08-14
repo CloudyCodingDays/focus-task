@@ -4,8 +4,8 @@ import { Dispatch, SetStateAction } from "react";
 import { useQueryClient } from "react-query";
 
 import { useUserInfo } from "@/hooks/useUserInfo";
-import { FormSubmit } from "./HandleSubmitCRUD";
-import TaskEdittableFormLayout from "@/components/TaskEdittableFormLayout";
+import { FormSubmit } from "../app/manage/components/HandleSubmitCRUD";
+import TaskFormLayout from "@/components/TaskFormLayout";
 
 interface AddFormProps {
   onBack: Dispatch<SetStateAction<boolean>>;
@@ -35,7 +35,7 @@ const AddForm: React.FC<AddFormProps> = ({ onBack }) => {
   return (
     <div>
       <form method="post" onSubmit={HandleSubmit}>
-        <TaskEdittableFormLayout isEdit={false} onBack={HandleBack} />
+        <TaskFormLayout isEdit onBack={HandleBack} />
       </form>
     </div>
   );

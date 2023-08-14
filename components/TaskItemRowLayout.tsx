@@ -19,14 +19,15 @@ const TaskItemRowLayout: React.FC<TaskItemProps> = ({ task }) => {
           ></Image>
         </div>
 
-        <div className="ml-4 w-full">
+        <div className="ml-4">
           <div className="flex flex-row">
             <div className="text-lg">{name}</div>
             <div className="text-sm font-extralight"> Tags</div>
           </div>
           <div className="text-sm mt-2 mb-4 font-light text-gray-400 ">
             <p className="break-words">
-              {description}zxczxczx czxc asda sdsa..
+              {description}zxczxczx czxc asda sdsa..asdasdasdas asd qwd qwd qwd
+              d asd qw wdqd qwd qwd qwd
             </p>
           </div>
           <div className="flex flex-row">

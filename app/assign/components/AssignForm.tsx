@@ -21,13 +21,13 @@ const AssignForm: React.FC<AssignFormProps> = ({ id }) => {
     router.push("/");
   };
   return (
-    <div>
+    <div className="w-fit mx-auto">
       <form method="post" onSubmit={HandleSubmit}>
         <div>
           <input name="id" type="hidden" value={id}></input>
           <input name="userId" type="hidden" value={user?.id}></input>
         </div>
-        <div className="hover:bg-green-500 hover:text-white bg-green-200 text-green-600 rounded-lg px-4 py-4 mt-8 w-fit mx-auto">
+        <div className="hover:bg-green-500 hover:text-white bg-green-200 text-green-600 rounded-lg px-4 py-4 mt-8">
           <button type="submit">Assign Task</button>
         </div>
       </form>

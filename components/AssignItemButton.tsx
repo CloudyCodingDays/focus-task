@@ -17,9 +17,7 @@ const AssignItemButton = ({
   return (
     <Dialog open={assignOpen} onOpenChange={setAssignOpen}>
       <DialogTrigger asChild>
-        <button className="hover:bg-green-500 hover:rounded-lg px-4">
-          Select Task
-        </button>
+        <button className="hover:bg-green-500 px-4 w-full">Select Task</button>
       </DialogTrigger>
       <DialogContent className="left-[50%] lg:w-[1300px]">
         <div className="mt-12">
