@@ -3,14 +3,9 @@ import { Dispatch, SetStateAction } from "react";
 
 interface TaskFormLayoutProps {
   isEdit: boolean;
-  onBack: Dispatch<SetStateAction<boolean>>;
   task?: Task;
 }
-const TaskFormLayout: React.FC<TaskFormLayoutProps> = ({
-  isEdit,
-  onBack,
-  task,
-}) => {
+const TaskFormLayout: React.FC<TaskFormLayoutProps> = ({ isEdit, task }) => {
   return (
     <div>
       {isEdit && task !== undefined ? (
@@ -138,47 +133,9 @@ const TaskFormLayout: React.FC<TaskFormLayoutProps> = ({
         </div>
 
         {isEdit ? (
-          <div>
-            <div className="mb-4">
-              <div className="font-light mb-2">Upload image (Optional)</div>
-              <input type="file" id="TaskImage" name="TaskImage"></input>
-            </div>
-            <div className="mb-4 text-center">
-              <button
-                className="
-              hover:bg-green-200
-              hover:text-gray-500
-              bg-white
-              border-green-300 
-              border-2 
-              rounded-lg 
-              ml-4 
-              py-4 
-              px-4
-              mx-4"
-                onClick={() => {
-                  onBack(false);
-                }}
-                type="button"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                className="              
-              hover:bg-green-300
-              hover:text-gray-100
-              bg-green-400
-              text-green-600
-              rounded-lg               
-              ml-4 
-              py-4 
-              px-4
-              mx-4"
-              >
-                Save
-              </button>
-            </div>
+          <div className="mb-4">
+            <div className="font-light mb-2">Upload image (Optional)</div>
+            <input type="file" id="TaskImage" name="TaskImage"></input>
           </div>
         ) : (
           <></>

@@ -5,6 +5,7 @@ import DeleteForm from "@/app/manage/components/DeleteForm";
 import { Eye, FileEdit, Trash2 } from "lucide-react";
 import EditForm from "@/app/manage/components/EditForm";
 import TaskFormLayout from "./TaskFormLayout";
+import FormSubmitButtons from "./FormSubmitButtons";
 
 interface TaskItemActionsProps {
   id: string;
@@ -24,7 +25,7 @@ const TaskItemActions: React.FC<TaskItemActionsProps> = ({ id, task }) => {
           </button>
         </DialogTrigger>
         <DialogContent className="left-[50%] lg:w-[760px] h-fit">
-          <TaskFormLayout task={task} isEdit={false} onBack={setDeleteOpen} />
+          <TaskFormLayout task={task} isEdit={false} />
           <DeleteForm id={id} onBack={setDeleteOpen} />
         </DialogContent>
       </Dialog>
@@ -35,7 +36,7 @@ const TaskItemActions: React.FC<TaskItemActionsProps> = ({ id, task }) => {
           </button>
         </DialogTrigger>
         <DialogContent className="left-[50%] lg:w-[760px] h-fit">
-          <TaskFormLayout task={task} isEdit={false} onBack={setViewOpen} />
+          <TaskFormLayout task={task} isEdit={false} />
         </DialogContent>
       </Dialog>
       <Dialog open={editOpen} onOpenChange={setEditOpen}>
@@ -45,7 +46,7 @@ const TaskItemActions: React.FC<TaskItemActionsProps> = ({ id, task }) => {
           </button>
         </DialogTrigger>
         <DialogContent className="left-[50%] lg:w-[760px] h-fit">
-          <EditForm task={task} onBack={setViewOpen} />
+          <EditForm task={task} onBack={setEditOpen} />
         </DialogContent>
       </Dialog>
     </div>

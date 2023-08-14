@@ -6,6 +6,7 @@ import { useQueryClient } from "react-query";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { FormSubmit } from "../app/manage/components/HandleSubmitCRUD";
 import TaskFormLayout from "@/components/TaskFormLayout";
+import FormSubmitButtons from "./FormSubmitButtons";
 
 interface AddFormProps {
   onBack: Dispatch<SetStateAction<boolean>>;
@@ -24,18 +25,19 @@ const AddForm: React.FC<AddFormProps> = ({ onBack }) => {
 
     queryClient.resetQueries("Tasks");
 
-    HandleBack();
-    router.refresh();
-  };
-
-  const HandleBack = () => {
     onBack(false);
+    router.refresh();
   };
 
   return (
     <div>
       <form method="post" onSubmit={HandleSubmit}>
-        <TaskFormLayout isEdit onBack={HandleBack} />
+        <TaskFormLayout isEdit />
+        <FormSubmitButtons
+          cancelText="Cancel"
+          submitText="Add Task"
+          onBack={onBack}
+        />
       </form>
     </div>
   );

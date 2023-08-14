@@ -72,12 +72,8 @@ const TaskItemDisplay = ({
                 </DialogTrigger>
                 <DialogContent className="left-[50%] lg:w-[1300px]">
                   <div className="h-fit ">
-                    <TaskFormLayout
-                      task={item}
-                      isEdit={false}
-                      onBack={setAssignOpen}
-                    />
-                    <AssignForm id={item.id} />
+                    <TaskFormLayout task={item} isEdit={false} />
+                    <AssignForm id={item.id} onBack={setAssignOpen} />
                   </div>
                 </DialogContent>
               </Dialog>

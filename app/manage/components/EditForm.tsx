@@ -5,6 +5,7 @@ import { Task } from "@/types/Task";
 import { useQueryClient } from "react-query";
 import { FormSubmit } from "./HandleSubmitCRUD";
 import TaskFormLayout from "@/components/TaskFormLayout";
+import FormSubmitButtons from "@/components/FormSubmitButtons";
 
 interface EditFormProps {
   task: Task;
@@ -22,19 +23,16 @@ const EditForm: React.FC<EditFormProps> = ({ task, onBack }) => {
 
     queryClient.resetQueries("Tasks");
 
-    HandleBack();
-    router.refresh();
-  };
-
-  const HandleBack = () => {
     onBack(false);
+    router.refresh();
   };
 
   return (
     <div>
       <div>
         <form method="post" onSubmit={HandleSubmit}>
-          <TaskFormLayout task={task} isEdit onBack={HandleBack} />
+          <TaskFormLayout task={task} isEdit />
+          <FormSubmitButtons submitText="Edit Task" onBack={onBack} />
         </form>
       </div>
     </div>
