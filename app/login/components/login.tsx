@@ -24,11 +24,22 @@ const Login = () => {
   return (
     <div>
       {!session ? (
-        <button onClick={HandleLogin}>
-          Login as Authenticated Guest, Mr. touchy fingers
-        </button>
+        <div className="w-full">
+          <div className="break-words mb-4">
+            Login as Authenticated Guest, Mr. touchy fingers
+          </div>
+          <button
+            onClick={HandleLogin}
+            className="hover:bg-green-500 hover:text-white bg-green-300 text-green-600  mx-auto w-full py-2"
+          >
+            Login
+          </button>
+        </div>
       ) : (
-        <button onClick={HandleLogout} className="border-4">
+        <button
+          onClick={HandleLogout}
+          className="hover:border-green-300 hover:text-green-300 border-green-500 text-green-500 border-2 mx-auto w-full py-2"
+        >
           logout
         </button>
       )}

@@ -7,14 +7,16 @@ const NoTaskDisplay = () => {
   return (
     <div>
       <div className="w-full flex flex-col items-center">
-        <div className="flex flex-col items-center py-8">
-          <Image
-            src="/sarah-dorweiler-unsplash-compressed.png"
-            width="480"
-            height="351"
-            priority
-            alt="What would you like to do today?"
-          />
+        <div className="flex flex-col items-center py-4">
+          <div className="drop-shadow-lg">
+            <Image
+              src="/sarah-dorweiler-unsplash-compressed.png"
+              width="480"
+              height="351"
+              priority
+              alt="What would you like to do today?"
+            />
+          </div>
           <div className="w-[30em] bg-gray-200 rounded-lg mt-4 pb-8 text-center drop-shadow-lg text-gray-500">
             <div className="my-8 text-2xl">
               What would you like to do today?

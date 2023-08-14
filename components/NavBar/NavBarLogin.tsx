@@ -20,7 +20,7 @@ const NavBarLogin = () => {
             </button>
           </div>
         </DialogTrigger>
-        <DialogContent className="w-[600px]">
+        <DialogContent className="lg:w-[600px]">
           <div>{user?.id}</div>
           <Login />
         </DialogContent>

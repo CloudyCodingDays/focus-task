@@ -23,7 +23,7 @@ const TaskItemActions: React.FC<TaskItemActionsProps> = ({ id, task }) => {
             <Trash2 color="red" size={24} className="w-full mx-auto" />
           </button>
         </DialogTrigger>
-        <DialogContent className="left-[50%] w-[760px] h-fit">
+        <DialogContent className="left-[50%] lg:w-[760px] h-fit">
           <TaskFormLayout task={task} isEdit={false} onBack={setDeleteOpen} />
           <DeleteForm id={id} onBack={setDeleteOpen} />
         </DialogContent>
@@ -34,7 +34,7 @@ const TaskItemActions: React.FC<TaskItemActionsProps> = ({ id, task }) => {
             <Eye size={24} className="w-full mx-auto" />
           </button>
         </DialogTrigger>
-        <DialogContent className="left-[50%] w-[760px] h-fit">
+        <DialogContent className="left-[50%] lg:w-[760px] h-fit">
           <TaskFormLayout task={task} isEdit={false} onBack={setViewOpen} />
         </DialogContent>
       </Dialog>
@@ -44,7 +44,7 @@ const TaskItemActions: React.FC<TaskItemActionsProps> = ({ id, task }) => {
             <FileEdit size={24} className="w-full mx-auto" />
           </button>
         </DialogTrigger>
-        <DialogContent className="left-[50%] w-[760px] h-fit">
+        <DialogContent className="left-[50%] lg:w-[760px] h-fit">
           <EditForm task={task} onBack={setViewOpen} />
         </DialogContent>
       </Dialog>
