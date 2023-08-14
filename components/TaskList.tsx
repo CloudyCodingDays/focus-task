@@ -7,7 +7,7 @@ const TaskList = ({ ShowTaskActions }: { ShowTaskActions: boolean }) => {
   const [debouncedValue, setDebouncedValue] = useState("");
 
   const TaskItemDisplay = dynamic(() => import("./TaskItemDisplay"), {
-    loading: () => <p>Loading...</p>,
+    loading: () => <p>Loading..</p>,
   });
 
   return (
