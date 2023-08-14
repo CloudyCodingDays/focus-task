@@ -1,6 +1,6 @@
-import NavBarMenu from "./NavBarMenu";
-import NavBarLogo from "./NavBarLogo";
 import NavBarLogin from "./NavBarLogin";
+import NavBarLogo from "./NavBarLogo";
+import NavBarMenu from "./NavBarMenu";
 
 interface NavBarProps {
   children: React.ReactNode;

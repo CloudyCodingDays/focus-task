@@ -1,11 +1,13 @@
-import { OldTaskType, Task } from "@/types/Task";
-import { Dispatch, SetStateAction } from "react";
+import { Task } from "@/types/Task";
 
-interface TaskFormLayoutProps {
+interface TaskItemDetailsLayoutProps {
   isEdit: boolean;
   task?: Task;
 }
-const TaskFormLayout: React.FC<TaskFormLayoutProps> = ({ isEdit, task }) => {
+const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
+  isEdit,
+  task,
+}) => {
   return (
     <div>
       {isEdit && task !== undefined ? (
@@ -59,6 +61,7 @@ const TaskFormLayout: React.FC<TaskFormLayoutProps> = ({ isEdit, task }) => {
             name="name"
             className="border-2 w-full"
             placeholder={isEdit && task !== undefined ? task.name : "Name"}
+            defaultValue={!isEdit && task !== undefined ? task.name : ""}
             required
             disabled={!isEdit}
           ></input>
@@ -72,6 +75,7 @@ const TaskFormLayout: React.FC<TaskFormLayoutProps> = ({ isEdit, task }) => {
             placeholder={
               isEdit && task !== undefined ? task.description : "Description"
             }
+            defaultValue={!isEdit && task !== undefined ? task.description : ""}
             disabled={!isEdit}
           ></input>
         </div>
@@ -83,8 +87,8 @@ const TaskFormLayout: React.FC<TaskFormLayoutProps> = ({ isEdit, task }) => {
             type="checkbox"
             className="ml-4 scale-125"
             defaultChecked={
-              isEdit && task !== undefined
-                ? task.is_recurring === "true"
+              task !== undefined
+                ? JSON.stringify(task.is_recurring) === "true"
                 : false
             }
             disabled={!isEdit}
@@ -101,6 +105,9 @@ const TaskFormLayout: React.FC<TaskFormLayoutProps> = ({ isEdit, task }) => {
                 ? task.recurring_type
                 : "Recurring Type"
             }
+            defaultValue={
+              !isEdit && task !== undefined ? task.recurring_type : ""
+            }
             disabled={!isEdit}
           ></input>
         </div>
@@ -113,26 +120,38 @@ const TaskFormLayout: React.FC<TaskFormLayoutProps> = ({ isEdit, task }) => {
             placeholder={
               isEdit && task !== undefined ? task.priority : "Priority"
             }
-            disabled={!isEdit}
-          ></input>
-        </div>
-
-        <div className="mb-4">
-          <div>Task Due Date</div>
-          <input
-            name="due_date"
-            type="date"
-            className="border-2 w-full"
-            placeholder={
-              isEdit && task !== undefined
-                ? task.due_date
-                : new Date().toDateString()
-            }
+            defaultValue={!isEdit && task !== undefined ? task.priority : ""}
             disabled={!isEdit}
           ></input>
         </div>
 
         {isEdit ? (
+          <div className="mb-4">
+            <div>Task Due Date</div>
+            <input
+              name="due_date"
+              type="date"
+              className="border-2 w-full"
+              placeholder={
+                isEdit && task !== undefined
+                  ? task.due_date
+                  : new Date().toDateString()
+              }
+            ></input>
+          </div>
+        ) : (
+          <div className="mb-4">
+            <div>Task Due Date</div>
+            <input
+              name="due_date"
+              type="text"
+              className="border-2 w-full"
+              defaultValue={!isEdit && task !== undefined ? task.due_date : ""}
+            ></input>
+          </div>
+        )}
+
+        {false ? (
           <div className="mb-4">
             <div className="font-light mb-2">Upload image (Optional)</div>
             <input type="file" id="TaskImage" name="TaskImage"></input>
@@ -145,4 +164,4 @@ const TaskFormLayout: React.FC<TaskFormLayoutProps> = ({ isEdit, task }) => {
   );
 };
 
-export default TaskFormLayout;
+export default TaskItemDetailsLayout;

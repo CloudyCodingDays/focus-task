@@ -1,8 +1,8 @@
+import AddTaskQuery from "@/components/task_queries/AddTaskQuery";
+import DeleteTaskQuery from "@/components/task_queries/DeleteTaskQuery";
+import EditTaskQuery from "@/components/task_queries/EditTaskQuery";
 import { Task } from "@/types/Task";
 import ExtractFormData from "./ExtractFormData";
-import AddTaskQuery from "@/components/task_queries/AddTaskQuery";
-import EditTaskQuery from "@/components/task_queries/EditTaskQuery";
-import DeleteTaskQuery from "@/components/task_queries/DeleteTaskQuery";
 
 export const FormSubmit = async (
   e: React.FormEvent<HTMLFormElement>,

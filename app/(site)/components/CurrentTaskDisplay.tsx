@@ -1,10 +1,10 @@
 "use client";
-import ActiveTaskDisplay from "./ActiveTaskDisplay";
-import NoTaskDisplay from "./NoTaskDisplay";
+import GetTaskDetailsByUserId from "@/components/GetActiveTaskByUserId";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { Task } from "@/types/Task";
-import GetTaskDetailsByUserId from "@/components/GetActiveTaskByUserId";
 import { useQuery, useQueryClient } from "react-query";
+import ActiveTaskDisplay from "./ActiveTaskDisplay";
+import NoTaskDisplay from "./NoTaskDisplay";
 
 const CurrentTaskDisplay = () => {
   const { user } = useUserInfo();

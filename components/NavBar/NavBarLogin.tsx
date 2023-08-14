@@ -1,10 +1,9 @@
 "use client";
-import { useState } from "react";
-import { useUserInfo } from "@/hooks/useUserInfo";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-
 import Login from "@/app/login/components/login";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { useUserInfo } from "@/hooks/useUserInfo";
 import { User } from "lucide-react";
+import { useState } from "react";
 
 const NavBarLogin = () => {
   const [open, setOpen] = useState(false);

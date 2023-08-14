@@ -1,11 +1,10 @@
 "use client";
+import TaskItemDetailsLayout from "@/components/TaskItemDetailsLayout";
+import { useUserInfo } from "@/hooks/useUserInfo";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import { useQueryClient } from "react-query";
-
-import { useUserInfo } from "@/hooks/useUserInfo";
 import { FormSubmit } from "../app/manage/components/HandleSubmitCRUD";
-import TaskFormLayout from "@/components/TaskFormLayout";
 import FormSubmitButtons from "./FormSubmitButtons";
 
 interface AddFormProps {
@@ -32,7 +31,7 @@ const AddForm: React.FC<AddFormProps> = ({ onBack }) => {
   return (
     <div>
       <form method="post" onSubmit={HandleSubmit}>
-        <TaskFormLayout isEdit />
+        <TaskItemDetailsLayout isEdit />
         <FormSubmitButtons
           cancelText="Cancel"
           submitText="Add Task"

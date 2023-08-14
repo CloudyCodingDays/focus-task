@@ -2,6 +2,7 @@
 import { Separator } from "@/components/ui/separator";
 import useDebounceSearch from "@/hooks/useDebounceSearch";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+
 interface SearchFormProps {
   setDebouncedValue: Dispatch<SetStateAction<string>>;
 }

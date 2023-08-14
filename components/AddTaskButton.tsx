@@ -1,8 +1,8 @@
 "use client";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Plus } from "lucide-react";
 import { useState } from "react";
 import AddForm from "./AddForm";
-import { Plus } from "lucide-react";
 
 const AddTaskButton = () => {
   const [addOpen, setAddOpen] = useState<boolean>(false);
@@ -13,8 +13,7 @@ const AddTaskButton = () => {
         className="
         w-fit
         mx-auto
-        px-8 
-        mt-8"
+        mt-2"
       >
         <Dialog open={addOpen} onOpenChange={setAddOpen}>
           <DialogTrigger asChild>

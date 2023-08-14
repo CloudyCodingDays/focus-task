@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useQuery, useMutation, useQueryClient } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 
 interface CatPictureData {
   id: string;

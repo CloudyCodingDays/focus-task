@@ -1,7 +1,8 @@
 "use client";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Dispatch, SetStateAction, useMemo } from "react";
-import Link from "next/link";
+
 interface RoutesProp {
   onRoute: Dispatch<SetStateAction<boolean>>;
 }

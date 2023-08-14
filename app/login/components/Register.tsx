@@ -1,4 +1,5 @@
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+
 const HandleRegister = async () => {
   const supabase = createClientComponentClient();
   let { data, error } = await supabase.auth.signUp({
