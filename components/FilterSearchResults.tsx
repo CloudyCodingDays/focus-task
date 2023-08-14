@@ -1,16 +1,16 @@
-import GetTaskDetails from "@/components/GetTaskDetails";
 import GetTaskDetailsByDesc from "@/components/GetTaskDetailsByDesc";
 import GetTaskDetailsByName from "@/components/GetTaskDetailsByName";
 import { Task } from "@/types/Task";
+import GetAllTasksforUser from "@/components/GetAllTasksforUser";
 
-const FilterSearchResults = async (debouncedValue: string) => {
+const FilterSearchResults = async (debouncedValue: string, userId: string) => {
   if (debouncedValue === "") {
-    return await GetTaskDetails();
+    return await GetAllTasksforUser(userId);
   } else {
     let finalFilteredResults: Task[] = [];
 
-    const filteredByName = await GetTaskDetailsByName(debouncedValue);
-    const filteredbyDesc = await GetTaskDetailsByDesc(debouncedValue);
+    const filteredByName = await GetTaskDetailsByName(debouncedValue, userId);
+    const filteredbyDesc = await GetTaskDetailsByDesc(debouncedValue, userId);
 
     if (filteredByName.length !== 0) {
       Array.prototype.push.apply(finalFilteredResults, filteredByName);

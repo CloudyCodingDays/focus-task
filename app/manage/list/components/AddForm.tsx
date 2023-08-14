@@ -1,8 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { FormSubmit } from "@/app/manage/list/components/HandleSubmitCRUD";
-import Link from "next/link";
-import useTaskListContext from "@/hooks/useTaskListContext";
 import { Dispatch, SetStateAction } from "react";
 import TaskItemEdittableFormLayout from "../../../../components/TaskItemEdittableFormLayout";
 import { useQueryClient } from "react-query";
@@ -22,9 +20,9 @@ const AddForm: React.FC<AddFormProps> = ({ onBack }) => {
   const HandleSubmit: React.FormEventHandler<HTMLFormElement> = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    FormSubmit(e, "add", user?.id);
+    await FormSubmit(e, "add", user?.id);
 
-    queryClient.invalidateQueries({ queryKey: ["Tasks"] });
+    queryClient.resetQueries("Tasks");
 
     HandleBack();
     router.refresh();

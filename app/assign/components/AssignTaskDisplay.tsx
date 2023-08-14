@@ -1,30 +1,35 @@
 "use client";
+import { useEffect, useRef, useState } from "react";
 
-import { useEffect, useState } from "react";
-
-import AssignItem from "./AssignItem";
-import useTaskListContext from "@/hooks/useTaskListContext";
-import { Task } from "@/types/Task";
-import GetTaskDetails from "@/components/GetTaskDetails";
+import SearchForm from "@/app/manage/list/components/SearchForm";
+import TaskItemDisplay from "@/components/TaskItemDisplay";
 
 const AssignTaskDisplay = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const { updateTaskList, setUpdateTaskList } = useTaskListContext();
+  const [debouncedValue, setDebouncedValue] = useState("");
 
+  //PERFORMANCE LOGGING
+  const count = useRef(0);
   useEffect(() => {
-    const getTasks = async () => {
-      setTasks(await GetTaskDetails());
-    };
-
-    getTasks().catch(console.error);
-  }, []);
+    count.current = count.current + 1;
+  });
+  //PERFORMANCE LOGGING
 
   return (
     <div>
-      <div className="text-sm font-light mt-8 mr-2">All Tasks</div>
-      {tasks?.map((item) => (
-        <AssignItem key={item.id} task={item} />
-      ))}
+      {/*//PERFORMANCE LOGGING */}
+      <h1>Render Count: {count.current}</h1>
+      {/*PERFORMANCE LOGGING */}
+
+      <div className="font-semibold text-green-600 bg-gray-200 my-8 text-1xl w-fit mx-auto rounded-lg p-4">
+        Select the task that you want to do
+        <SearchForm setDebouncedValue={setDebouncedValue} />
+      </div>
+      <div className="w-11/12 mx-auto">
+        <TaskItemDisplay
+          debouncedValue={debouncedValue}
+          ShowTaskActions={false}
+        />
+      </div>
     </div>
   );
 };

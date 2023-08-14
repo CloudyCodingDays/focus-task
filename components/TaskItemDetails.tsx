@@ -67,7 +67,7 @@ const TaskItemDetails: React.FC<TaskItemDetailsProps> = ({ task }) => {
           <div>Task Due Date</div>
           <input
             name="due_date"
-            type="date"
+            type="text"
             className="border-2 w-full"
             placeholder={task.due_date}
             disabled

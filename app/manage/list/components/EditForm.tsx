@@ -2,8 +2,6 @@
 import { useRouter } from "next/navigation";
 import { FormSubmit } from "@/app/manage/list/components/HandleSubmitCRUD";
 import { Dispatch, SetStateAction } from "react";
-import Link from "next/link";
-import useTaskListContext from "@/hooks/useTaskListContext";
 import { Task } from "@/types/Task";
 import TaskItemEdittableFormLayout from "../../../../components/TaskItemEdittableFormLayout";
 import { useQueryClient } from "react-query";
@@ -22,7 +20,7 @@ const EditForm: React.FC<EditFormProps> = ({ task, onBack }) => {
   ) => {
     await FormSubmit(e, "edit");
 
-    queryClient.invalidateQueries({ queryKey: ["Tasks"] });
+    queryClient.resetQueries("Tasks");
 
     HandleBack();
     router.refresh();

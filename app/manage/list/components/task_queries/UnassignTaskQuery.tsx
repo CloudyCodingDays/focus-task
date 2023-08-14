@@ -1,14 +1,15 @@
 import supabaseClient from "@/lib/supabaseClient";
 
 const UnassignTaskQuery = async (userId: string) => {
-  const { error: supabaseError } = await supabaseClient
+  const { error: OldActiveError } = await supabaseClient
     .from("user_current_task")
-    .delete()
-    .eq("user_id", userId);
+    .update({ is_assigned: false, is_current: false, action_at: new Date() })
+    .eq("user_id", userId)
+    .eq("is_current", true)
+    .eq("is_assigned", true);
 
-  if (supabaseError) {
-    throw new Error(supabaseError.message);
-  }
+  if (OldActiveError) throw new Error(OldActiveError.message);
+  console.log(userId);
 };
 
 export default UnassignTaskQuery;

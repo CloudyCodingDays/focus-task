@@ -1,13 +1,9 @@
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import Link from "next/link";
-import pic from "@/dishes.jpg";
-import { FormSubmit } from "@/app/manage/list/components/HandleSubmitCRUD";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { useRouter } from "next/navigation";
-import useTaskListContext from "@/hooks/useTaskListContext";
 import { Task } from "@/types/Task";
 import TaskItem from "@/components/TaskItem";
+import { useQueryClient } from "react-query";
+import { AssignFormSubmit } from "./HandleSubmitAssign";
 
 interface ActiveTaskDisplayProps {
   task: Task;
@@ -16,22 +12,22 @@ interface ActiveTaskDisplayProps {
 const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
   const router = useRouter();
   const { user } = useUserInfo();
-  const { updateTaskList, setUpdateTaskList } = useTaskListContext();
+  const queryClient = useQueryClient();
 
-  const HandleUnassign: React.FormEventHandler<HTMLFormElement> = (
+  const HandleUnassign: React.FormEventHandler<HTMLFormElement> = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    FormSubmit(e, "unassign", user?.id);
-    if (setUpdateTaskList !== undefined) setUpdateTaskList(true);
+    await AssignFormSubmit(e, "unassign", user?.id);
+
+    queryClient.resetQueries("ActiveTask");
+
     router.refresh();
   };
 
   const HandleComplete: React.FormEventHandler<HTMLFormElement> = (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    FormSubmit(e, "complete", user?.id);
-    if (setUpdateTaskList !== undefined) setUpdateTaskList(true);
-    window.location.reload();
+    AssignFormSubmit(e, "complete", user?.id);
   };
 
   return (

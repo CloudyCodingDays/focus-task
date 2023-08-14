@@ -1,33 +1,39 @@
 "use client";
 import ActiveTaskDisplay from "./ActiveTaskDisplay";
 import NoTaskDisplay from "./NoTaskDisplay";
-import useTaskListContext from "@/hooks/useTaskListContext";
-
 import { useUserInfo } from "@/hooks/useUserInfo";
-import { useEffect, useState } from "react";
 import { Task } from "@/types/Task";
-import GetTaskDetailsByUserId from "@/components/GetTaskDetailsByUserId";
+import GetTaskDetailsByUserId from "@/components/GetActiveTaskByUserId";
+import { useQuery, useQueryClient } from "react-query";
 
 const CurrentTaskDisplay = () => {
   const { user } = useUserInfo();
-  const [task, setTask] = useState<Task[]>([]);
-  const { updateTaskList, setUpdateTaskList } = useTaskListContext();
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    const getActiveTask = async () => {
-      if (user !== null) {
-        const activeTask = await GetTaskDetailsByUserId(user.id);
-
-        setTask(activeTask);
-        if (setUpdateTaskList !== undefined) setUpdateTaskList(false);
+  const getTasks = async () => {
+    if (user !== null) {
+      if (queryClient.getQueryData(["ActiveTask", user.id])) {
+        console.log("cache");
+        return queryClient.getQueryData(["ActiveTask", user.id]) as Task[];
+      } else {
+        return await GetTaskDetailsByUserId(user.id);
       }
-    };
-    getActiveTask().catch(console.error);
-  }, [updateTaskList, setUpdateTaskList, user]);
+    }
+    return [];
+  };
+
+  const { data, error, isLoading, isError } = useQuery<Task[], Error>({
+    queryKey: ["ActiveTask", user?.id],
+    queryFn: getTasks,
+  });
+
+  if (isLoading) return "Loading...";
+  if (isError) return "Error has occured : " + error.message;
+
   return (
     <div>
-      {task.length > 0 ? (
-        task.map((item) => (
+      {data?.length !== 0 ? (
+        data?.map((item) => (
           <div key={item.id}>
             <ActiveTaskDisplay task={item} />
           </div>

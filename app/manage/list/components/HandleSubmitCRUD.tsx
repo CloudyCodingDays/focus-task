@@ -3,11 +3,8 @@ import ExtractFormData from "./ExtractFormData";
 import AddTaskQuery from "./task_queries/AddTaskQuery";
 import EditTaskQuery from "./task_queries/EditTaskQuery";
 import DeleteTaskQuery from "./task_queries/DeleteTaskQuery";
-import AssignTaskQuery from "./task_queries/AssignTaskQuery";
-import UnassignTaskQuery from "./task_queries/UnassignTaskQuery";
-import CompleteTaskQuery from "./task_queries/CompleteTaskQuery";
 
-export const FormSubmit = (
+export const FormSubmit = async (
   e: React.FormEvent<HTMLFormElement>,
   submitType: string,
   userId?: string
@@ -20,18 +17,10 @@ export const FormSubmit = (
   const taskData: Task = ExtractFormData(formData);
 
   if (submitType.trim() == "add" && userId) {
-    AddTaskQuery(taskData, userId);
+    await AddTaskQuery(taskData, userId);
   } else if (submitType.trim() == "edit") {
-    EditTaskQuery(taskData);
-  } else if (submitType.trim() == "delete" && userId) {
-    DeleteTaskQuery(taskData.id, userId);
-  }
-
-  if (submitType.trim() == "assign" && userId) {
-    AssignTaskQuery(taskData.id, userId);
-  } else if (submitType.trim() == "unassign" && userId) {
-    UnassignTaskQuery(userId);
-  } else if (submitType.trim() == "complete" && userId) {
-    CompleteTaskQuery(taskData, userId);
+    await EditTaskQuery(taskData);
+  } else if (submitType.trim() == "delete") {
+    await DeleteTaskQuery(taskData.id);
   }
 };

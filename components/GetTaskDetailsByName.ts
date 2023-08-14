@@ -1,7 +1,7 @@
 import supabase from "@/lib/supabaseClient";
 import { Task } from "@/types/Task";
 
-const GetTaskDetailsByName = async (name: string) => {
+const GetTaskDetailsByName = async (name: string, userId: string) => {
   const { data: NameFilterData, error: NameFilterError } = await supabase
     .from("tasks")
     .select(
@@ -17,7 +17,8 @@ const GetTaskDetailsByName = async (name: string) => {
       image_path,
       updated_at`
     )
-    .ilike("name", `%${name}%`);
+    .ilike("name", `%${name}%`)
+    .eq("created_by", userId);
 
   if (NameFilterError) throw new Error(NameFilterError.message);
 
