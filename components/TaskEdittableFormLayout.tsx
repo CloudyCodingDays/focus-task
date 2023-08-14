@@ -1,14 +1,15 @@
 import { OldTaskType, Task } from "@/types/Task";
 
-interface TaskItemEdittableFormLayoutProps {
+interface TaskEdittableFormLayoutProps {
   isEdit: boolean;
   onBack: () => void;
   task?: Task;
 }
-const TaskItemEdittableFormLayout: React.FC<
-  TaskItemEdittableFormLayoutProps
-> = ({ isEdit, onBack, task }) => {
-  let oldTask = {} as OldTaskType;
+const TaskEdittableFormLayout: React.FC<TaskEdittableFormLayoutProps> = ({
+  isEdit,
+  onBack,
+  task,
+}) => {
   return (
     <div>
       {isEdit && task !== undefined ? (
@@ -173,4 +174,4 @@ const TaskItemEdittableFormLayout: React.FC<
   );
 };
 
-export default TaskItemEdittableFormLayout;
+export default TaskEdittableFormLayout;

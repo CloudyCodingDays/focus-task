@@ -1,5 +1,5 @@
-import AssignTaskQuery from "@/app/manage/list/components/task_queries/AssignTaskQuery";
-import UnassignTaskQuery from "@/app/manage/list/components/task_queries/UnassignTaskQuery";
+import AssignTaskQuery from "@/app/manage/components/task_queries/AssignTaskQuery";
+import UnassignTaskQuery from "@/app/manage/components/task_queries/UnassignTaskQuery";
 
 export const AssignFormSubmit = async (
   e: React.FormEvent<HTMLFormElement>,

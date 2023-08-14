@@ -6,7 +6,7 @@ interface TaskItemProps {
   task: Task;
 }
 
-const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
+const TaskItemRowLayout: React.FC<TaskItemProps> = ({ task }) => {
   const { id, description, name } = task;
   return (
     <div key={id} className="rounded-lg h-full">
@@ -14,8 +14,8 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
         <div>
           <Image
             src={pic}
-            width="200"
-            height="200"
+            width="150"
+            height="150"
             alt="Task item Icon"
           ></Image>
         </div>
@@ -41,4 +41,4 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
   );
 };
 
-export default TaskItem;
+export default TaskItemRowLayout;

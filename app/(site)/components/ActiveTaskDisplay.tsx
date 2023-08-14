@@ -1,7 +1,7 @@
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { useRouter } from "next/navigation";
 import { Task } from "@/types/Task";
-import TaskItem from "@/components/TaskItem";
+import TaskItem from "@/components/TaskItemRowLayout";
 import { useQueryClient } from "react-query";
 import { AssignFormSubmit } from "./HandleSubmitAssign";
 

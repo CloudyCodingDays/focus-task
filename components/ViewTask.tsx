@@ -1,18 +1,18 @@
 "use client";
 import { Task } from "@/types/Task";
-import { useState } from "react";
-import TaskItemDetails from "./TaskItemDetails";
+import TaskItemDetails from "./TaskFormLayout";
 import GetTaskDetailsByTaskId from "./GetTaskDetailsByTaskId";
 import { useQuery, useQueryClient } from "react-query";
 import { useUserInfo } from "@/hooks/useUserInfo";
+import { Dispatch, SetStateAction } from "react";
 
 interface ViewTaskProps {
   id: string;
+  onBack: Dispatch<SetStateAction<boolean>>;
 }
 
-const ViewTask: React.FC<ViewTaskProps> = ({ id }) => {
+const ViewTask: React.FC<ViewTaskProps> = ({ id, onBack }) => {
   const { user } = useUserInfo();
-  const [taskDetail, setTaskDetail] = useState<Task[]>([]);
   const queryClient = useQueryClient();
 
   const getTasks = async () => {

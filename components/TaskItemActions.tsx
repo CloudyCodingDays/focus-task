@@ -4,11 +4,11 @@ import DeleteIcon from "@/icons/delete.png";
 import ViewIcon from "@/icons/view.png";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { useEffect, useRef, useState } from "react";
-import DeleteForm from "@/app/manage/list/components/DeleteForm";
 import { Task } from "@/types/Task";
-import TaskItemDetails from "@/components/TaskItemDetails";
-import EditForm from "@/app/manage/list/components/EditForm";
+import TaskItemDetails from "@/components/TaskFormLayout";
 import ViewTask from "@/components/ViewTask";
+import DeleteForm from "@/app/manage/components/DeleteForm";
+import EditForm from "@/app/manage/components/EditForm";
 
 interface TaskItemActionsProps {
   id: string;

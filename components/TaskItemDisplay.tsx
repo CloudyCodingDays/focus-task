@@ -2,12 +2,10 @@ import { useUserInfo } from "@/hooks/useUserInfo";
 import { useQuery, useQueryClient } from "react-query";
 import FilterSearchResults from "./FilterSearchResults";
 import { Task } from "@/types/Task";
-import TaskItem from "@/components/TaskItem";
+import TaskItem from "@/components/TaskItemRowLayout";
 import TaskItemActions from "./TaskItemActions";
-import { useEffect, useRef, useState } from "react";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import TaskItemDetails from "./TaskItemDetails";
-import AssignForm from "@/app/assign/components/AssignForm";
+import { useState } from "react";
+import AssignItemButton from "@/app/(site)/components/AssignItemButton";
 
 const TaskItemDisplay = ({
   debouncedValue,
@@ -19,13 +17,6 @@ const TaskItemDisplay = ({
   const { user } = useUserInfo();
   const [assignOpen, setAssignOpen] = useState<boolean>(false);
   const queryClient = useQueryClient();
-
-  //PERFORMANCE LOGGING
-  const count = useRef(0);
-  useEffect(() => {
-    count.current = count.current + 1;
-  });
-  //PERFORMANCE LOGGING
 
   const query = useQuery<Task[], Error>({
     queryKey: ["Tasks", debouncedValue, user?.id],
@@ -49,49 +40,35 @@ const TaskItemDisplay = ({
         {query.data ? query.data.length : 0} results
       </div>
       <div className="px-8">
-        {/*//PERFORMANCE LOGGING */}
-        <h1>Render Count: {count.current}</h1>
-        {/*PERFORMANCE LOGGING */}
         {query.data?.map((item) => (
           <div
             key={item.id}
             className="
             bg-gray-100
             rounded-lg
+            mb-4
             drop-shadow-lg"
           >
-            {!ShowTaskActions ? (
+            {ShowTaskActions ? (
+              <div>
+                <div className="flex flex-row items-center">
+                  <TaskItem task={item} />
+                </div>
+                <div className="pt-4">
+                  <TaskItemActions id={item.id} task={item} />
+                </div>
+              </div>
+            ) : (
               <div className="flex flex-row">
                 <div className="w-11/12">
                   <TaskItem task={item} />
                 </div>
-
-                <Dialog open={assignOpen} onOpenChange={setAssignOpen}>
-                  <DialogTrigger asChild>
-                    <button className="hover:bg-green-500 hover:rounded-lg px-4">
-                      Select Task
-                    </button>
-                  </DialogTrigger>
-                  <DialogContent className="left-[50%] lg:w-[1300px]">
-                    <div className="mt-12">
-                      <TaskItemDetails task={item} />
-                      <AssignForm id={item.id} />
-                    </div>
-                  </DialogContent>
-                </Dialog>
+                <AssignItemButton
+                  task={item}
+                  assignOpen={assignOpen}
+                  setAssignOpen={setAssignOpen}
+                />
               </div>
-            ) : (
-              <div className="flex flex-row items-center">
-                <TaskItem task={item} />
-              </div>
-            )}
-
-            {ShowTaskActions ? (
-              <div className="pt-4">
-                <TaskItemActions id={item.id} task={item} />
-              </div>
-            ) : (
-              <></>
             )}
           </div>
         ))}

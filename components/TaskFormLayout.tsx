@@ -5,7 +5,7 @@ import pic from "@/dishes.jpg";
 interface TaskItemDetailsProps {
   task: Task;
 }
-const TaskItemDetails: React.FC<TaskItemDetailsProps> = ({ task }) => {
+const TaskFormLayout: React.FC<TaskItemDetailsProps> = ({ task }) => {
   return (
     <div className="h-fit">
       <div className="flex flex-row justify-center">
@@ -78,4 +78,4 @@ const TaskItemDetails: React.FC<TaskItemDetailsProps> = ({ task }) => {
   );
 };
 
-export default TaskItemDetails;
+export default TaskFormLayout;

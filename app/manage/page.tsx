@@ -1,4 +1,4 @@
-import TaskListDisplay from "../../../components/TaskListDisplay";
+import TaskListDisplay from "../../components/TaskList";
 
 export default function Home() {
   return (
