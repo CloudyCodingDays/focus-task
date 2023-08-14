@@ -6,6 +6,8 @@ import TaskItem from "@/components/TaskItemRowLayout";
 import TaskItemActions from "./TaskItemActions";
 import { useState } from "react";
 import AssignItemButton from "@/app/(site)/components/AssignItemButton";
+import { Separator } from "./ui/separator";
+import AddTaskButton from "@/app/manage/components/AddTaskButton";
 
 const TaskItemDisplay = ({
   debouncedValue,
@@ -36,40 +38,33 @@ const TaskItemDisplay = ({
 
   return (
     <div>
-      <div className="text-md font-light">
+      <div className="flex flex-row justify-between items-baseline text-md font-light">
         {query.data ? query.data.length : 0} results
+        <AddTaskButton />
       </div>
-      <div className="px-8">
+      <Separator className="pt-0.25 bg-green-500 mb-4 mt-2" />
+      <div>
         {query.data?.map((item) => (
           <div
             key={item.id}
             className="
             bg-gray-100
             rounded-lg
-            mb-4
+            mb-8
             drop-shadow-lg"
           >
-            {ShowTaskActions ? (
-              <div>
-                <div className="flex flex-row items-center">
-                  <TaskItem task={item} />
-                </div>
-                <div className="pt-4">
-                  <TaskItemActions id={item.id} task={item} />
-                </div>
-              </div>
-            ) : (
-              <div className="flex flex-row">
-                <div className="w-11/12">
-                  <TaskItem task={item} />
-                </div>
+            <div>
+              <TaskItem task={item} />
+              {ShowTaskActions ? (
+                <TaskItemActions id={item.id} task={item} />
+              ) : (
                 <AssignItemButton
                   task={item}
                   assignOpen={assignOpen}
                   setAssignOpen={setAssignOpen}
                 />
-              </div>
-            )}
+              )}
+            </div>
           </div>
         ))}
       </div>

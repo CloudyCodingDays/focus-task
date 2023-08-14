@@ -1,9 +1,9 @@
-import TaskListDisplay from "../../components/TaskList";
+import TaskList from "../../components/TaskList";
 
 export default function Home() {
   return (
     <div>
-      <TaskListDisplay />
+      <TaskList />
     </div>
   );
 }

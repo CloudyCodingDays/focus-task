@@ -17,7 +17,7 @@ const Routes: React.FC<RoutesProp> = ({ onRoute }) => {
       },
       {
         //Icon: BiSearch,
-        label: "Manage",
+        label: "Manage Tasks",
         active: pathname === "/manage",
         href: "/manage",
       },

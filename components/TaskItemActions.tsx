@@ -1,13 +1,10 @@
-import Image from "next/image";
-import EditIcon from "@/icons/edit.jpg";
-import DeleteIcon from "@/icons/delete.png";
-import ViewIcon from "@/icons/view.png";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Task } from "@/types/Task";
 import TaskItemDetails from "@/components/TaskFormLayout";
 import ViewTask from "@/components/ViewTask";
 import DeleteForm from "@/app/manage/components/DeleteForm";
+import { Eye, FileEdit, Trash2 } from "lucide-react";
 import EditForm from "@/app/manage/components/EditForm";
 
 interface TaskItemActionsProps {
@@ -20,60 +17,39 @@ const TaskItemActions: React.FC<TaskItemActionsProps> = ({ id, task }) => {
   const [editOpen, setEditOpen] = useState<boolean>(false);
   const [viewOpen, setViewOpen] = useState<boolean>(false);
 
-  const count = useRef(0);
-
-  useEffect(() => {
-    count.current = count.current + 1;
-  });
   return (
-    <div className="flex flex-row justify-around">
-      <h1>Render Count: {count.current}</h1>
-      <button>
-        <Dialog open={deleteOpen} onOpenChange={setDeleteOpen}>
-          <DialogTrigger asChild>
-            <Image
-              src={DeleteIcon}
-              width="30"
-              height="30"
-              alt="Delete Icon"
-            ></Image>
-          </DialogTrigger>
-          <DialogContent className="left-[50%] w-[760px] h-fit">
-            <TaskItemDetails task={task} />
-            <DeleteForm id={id} onBack={setDeleteOpen} />
-          </DialogContent>
-        </Dialog>
-      </button>
-      <button>
-        <Dialog open={editOpen} onOpenChange={setEditOpen}>
-          <DialogTrigger asChild>
-            <Image
-              src={EditIcon}
-              width="30"
-              height="30"
-              alt="Delete Icon"
-            ></Image>
-          </DialogTrigger>
-          <DialogContent className="left-[50%] h-full">
-            <EditForm onBack={setEditOpen} task={task} />
-          </DialogContent>
-        </Dialog>
-      </button>
-      <button>
-        <Dialog open={viewOpen} onOpenChange={setViewOpen}>
-          <DialogTrigger asChild>
-            <Image
-              src={ViewIcon}
-              width="30"
-              height="30"
-              alt="Delete Icon"
-            ></Image>
-          </DialogTrigger>
-          <DialogContent className="left-[50%] w-[760px] h-fit">
-            <ViewTask id={id} onBack={setViewOpen} />
-          </DialogContent>
-        </Dialog>
-      </button>
+    <div className="grid grid-cols-3 border-t-2 mt-8">
+      <Dialog open={deleteOpen} onOpenChange={setDeleteOpen}>
+        <DialogTrigger asChild>
+          <button className="hover:bg-green-100 py-2 border-r-2">
+            <Trash2 color="red" size={24} className="w-full mx-auto" />
+          </button>
+        </DialogTrigger>
+        <DialogContent className="left-[50%] w-[760px] h-fit">
+          <TaskItemDetails task={task} />
+          <DeleteForm id={id} onBack={setDeleteOpen} />
+        </DialogContent>
+      </Dialog>
+      <Dialog open={viewOpen} onOpenChange={setViewOpen}>
+        <DialogTrigger asChild>
+          <button className="hover:bg-green-100 py-2 border-r-2">
+            <Eye size={24} className="w-full mx-auto" />
+          </button>
+        </DialogTrigger>
+        <DialogContent className="left-[50%] w-[760px] h-fit">
+          <ViewTask id={id} onBack={setViewOpen} />
+        </DialogContent>
+      </Dialog>
+      <Dialog open={viewOpen} onOpenChange={setViewOpen}>
+        <DialogTrigger asChild>
+          <button className="hover:bg-green-100 py-2">
+            <FileEdit size={24} className="w-full mx-auto" />
+          </button>
+        </DialogTrigger>
+        <DialogContent className="left-[50%] w-[760px] h-fit">
+          <EditForm task={task} onBack={setViewOpen} />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
