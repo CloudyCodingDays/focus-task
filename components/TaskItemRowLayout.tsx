@@ -1,5 +1,4 @@
 import Image from "next/image";
-import pic from "@/dishes.jpg";
 import { Task } from "@/types/Task";
 
 interface TaskItemProps {
@@ -13,7 +12,7 @@ const TaskItemRowLayout: React.FC<TaskItemProps> = ({ task }) => {
       <div className="flex flex-row">
         <div>
           <Image
-            src={pic}
+            src="/noImage.png"
             width="150"
             height="150"
             alt="Task item Icon"

@@ -9,7 +9,7 @@ const NoTaskDisplay = () => {
       <div className="w-full flex flex-col items-center">
         <div className="flex flex-col items-center py-8">
           <Image
-            src={noTaskImage}
+            src="/sarah-dorweiler-unsplash-compressed.png"
             width="480"
             height="351"
             priority
