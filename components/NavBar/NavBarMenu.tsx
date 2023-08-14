@@ -14,7 +14,7 @@ const NavBarMenu = () => {
         <DialogTrigger asChild>
           <Menu />
         </DialogTrigger>
-        <DialogContent className="h-full w-[600px] grid left-[13%] pt-4">
+        <DialogContent className="h-full grid lg:left-[13%] lg:w-[600px] pt-4">
           <Routes onRoute={setOpen} />
         </DialogContent>
       </Dialog>

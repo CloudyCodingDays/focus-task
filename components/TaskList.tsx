@@ -1,24 +1,23 @@
 "use client";
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import SearchForm from "@/app/manage/components/SearchForm";
 
-const TaskList = () => {
+const TaskList = ({ ShowTaskActions }: { ShowTaskActions: boolean }) => {
   const [debouncedValue, setDebouncedValue] = useState("");
-  const SearchForm = dynamic(
-    () => import("@/app/manage/components/SearchForm"),
-    {
-      loading: () => <p>Loading...</p>,
-    }
-  );
+
   const TaskItemDisplay = dynamic(() => import("./TaskItemDisplay"), {
-    loading: () => <p>Loading...</p>,
+    loading: () => <p>Loading..</p>,
   });
 
   return (
     <div>
       <SearchForm setDebouncedValue={setDebouncedValue} />
       <div className="w-11/12 mx-auto">
-        <TaskItemDisplay debouncedValue={debouncedValue} ShowTaskActions />
+        <TaskItemDisplay
+          debouncedValue={debouncedValue}
+          ShowTaskActions={ShowTaskActions}
+        />
       </div>
     </div>
   );
