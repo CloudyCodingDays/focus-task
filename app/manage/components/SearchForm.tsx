@@ -2,6 +2,7 @@
 import { Separator } from "@/components/ui/separator";
 import useDebounceSearch from "@/hooks/useDebounceSearch";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+
 interface SearchFormProps {
   setDebouncedValue: Dispatch<SetStateAction<string>>;
 }
@@ -25,14 +26,15 @@ const SearchForm: React.FC<SearchFormProps> = ({ setDebouncedValue }) => {
           className="
           mx-4 
           mt-8 
-          w-[650px] 
+          w-full
+          lg:w-[1000px] 
           drop-shadow-lg"
         >
-          <div className="text-right mx-4 my-4">
+          <div className="mx-4 my-4">
             <div>
               <form>
                 <div className="flex flex-row w-full">
-                  <div className="px-4 w-full drop-shadow-lg">
+                  <div className="px-4 w-10/12 drop-shadow-lg">
                     <input
                       style={{ width: "100%" }}
                       name="SearchTerm"
@@ -44,7 +46,9 @@ const SearchForm: React.FC<SearchFormProps> = ({ setDebouncedValue }) => {
                     ></input>
                     <Separator className="bg-green-200 pt-0.5" />
                   </div>
-                  <div className="pr-4"></div>
+                  <div className="text-sm font-light border-2">
+                    Hide Filters
+                  </div>
                 </div>
               </form>
             </div>

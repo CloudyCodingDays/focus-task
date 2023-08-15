@@ -1,8 +1,8 @@
 "use client";
+import { Separator } from "@/components/ui/separator";
 import format from "date-fns/format";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Separator } from "@/components/ui/separator";
 
 const WelcomeDisplay = () => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());

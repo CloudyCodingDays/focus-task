@@ -1,10 +1,11 @@
 "use client";
+import FormSubmitButtons from "@/components/FormSubmitButtons";
+import TaskItemDetailsLayout from "@/components/TaskItemDetailsLayout";
+import { Task } from "@/types/Task";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
-import { Task } from "@/types/Task";
 import { useQueryClient } from "react-query";
 import { FormSubmit } from "./HandleSubmitCRUD";
-import TaskFormLayout from "@/components/TaskFormLayout";
 
 interface EditFormProps {
   task: Task;
@@ -22,19 +23,16 @@ const EditForm: React.FC<EditFormProps> = ({ task, onBack }) => {
 
     queryClient.resetQueries("Tasks");
 
-    HandleBack();
-    router.refresh();
-  };
-
-  const HandleBack = () => {
     onBack(false);
+    router.refresh();
   };
 
   return (
     <div>
       <div>
         <form method="post" onSubmit={HandleSubmit}>
-          <TaskFormLayout task={task} isEdit onBack={HandleBack} />
+          <TaskItemDetailsLayout task={task} isEdit />
+          <FormSubmitButtons submitText="Edit Task" onBack={onBack} />
         </form>
       </div>
     </div>

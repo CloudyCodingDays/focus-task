@@ -1,7 +1,7 @@
 "use client";
 import supabase from "@/lib/supabaseClient";
-import { useRouter } from "next/navigation";
 import { useSessionContext } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
   const router = useRouter();

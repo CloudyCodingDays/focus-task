@@ -81,3 +81,21 @@ html,
 body {
   height: 100%;
 }
+
+.top-to-bottom {
+  border-width: 3px;
+  border-style: solid;
+  -webkit-border-image: -webkit-gradient(
+      linear,
+      0 0,
+      0 100%,
+      from(black),
+      to(rgba(0, 0, 0, 0))
+    )
+    1 100%;
+  -webkit-border-image: -webkit-linear-gradient(darkred, rgba(0, 0, 0, 0)) 1
+    100%;
+  -moz-border-image: -moz-linear-gradient(darkredred, rgba(0, 0, 0, 0)) 1 100%;
+  -o-border-image: -o-linear-gradient(darkred, rgba(0, 0, 0, 0)) 1 100%;
+  border-image: linear-gradient(to bottom, darkred, rgba(0, 0, 0, 0)) 1 100%;
+}

@@ -1,14 +1,17 @@
 "use client";
 import { AssignFormSubmit } from "@/app/(site)/components/HandleSubmitAssign";
+import FormSubmitButtons from "@/components/FormSubmitButtons";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { useRouter } from "next/navigation";
+import { Dispatch, SetStateAction } from "react";
 import { useQueryClient } from "react-query";
 
 interface AssignFormProps {
   id: string;
+  onBack: Dispatch<SetStateAction<boolean>>;
 }
 
-const AssignForm: React.FC<AssignFormProps> = ({ id }) => {
+const AssignForm: React.FC<AssignFormProps> = ({ id, onBack }) => {
   const router = useRouter();
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
@@ -27,9 +30,7 @@ const AssignForm: React.FC<AssignFormProps> = ({ id }) => {
           <input name="id" type="hidden" value={id}></input>
           <input name="userId" type="hidden" value={user?.id}></input>
         </div>
-        <div className="hover:bg-green-500 hover:text-white bg-green-200 text-green-600 rounded-lg px-4 py-4 mt-8">
-          <button type="submit">Assign Task</button>
-        </div>
+        <FormSubmitButtons submitText="Assign Task" onBack={onBack} />
       </form>
     </div>
   );

@@ -1,10 +1,9 @@
 "use client";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import Image from "next/image";
 import Routes from "@/components/Routes";
-import MenuImage from "@/icons/menu.png";
-import { useState } from "react";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Menu } from "lucide-react";
+import { useState } from "react";
+
 const NavBarMenu = () => {
   const [open, setOpen] = useState(false);
 

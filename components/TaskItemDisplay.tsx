@@ -1,15 +1,11 @@
+import AddTaskButton from "@/components/AddTaskButton";
+import TaskItemLayout from "@/components/TaskItemLayout";
 import { useUserInfo } from "@/hooks/useUserInfo";
+import { Task } from "@/types/Task";
 import { useQuery, useQueryClient } from "react-query";
 import FilterSearchResults from "./FilterSearchResults";
-import { Task } from "@/types/Task";
 import TaskItemActions from "./TaskItemActions";
-import { useState } from "react";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Separator } from "./ui/separator";
-import AddTaskButton from "@/components/AddTaskButton";
-import TaskItemRowLayout from "@/components/TaskItemRowLayout";
-import AssignForm from "@/app/assign/components/AssignForm";
-import TaskFormLayout from "./TaskFormLayout";
 
 const TaskItemDisplay = ({
   debouncedValue,
@@ -19,17 +15,21 @@ const TaskItemDisplay = ({
   ShowTaskActions: boolean;
 }) => {
   const { user } = useUserInfo();
-  const [assignOpen, setAssignOpen] = useState<boolean>(false);
   const queryClient = useQueryClient();
 
   const query = useQuery<Task[], Error>({
     queryKey: ["Tasks", debouncedValue, user?.id],
     queryFn: async () => {
       if (user) {
-        if (queryClient.getQueryData([debouncedValue, user.id])) {
-          return queryClient.getQueryData([debouncedValue, user.id]) as Task[];
+        if (queryClient.getQueryData(["Tasks", debouncedValue, user.id])) {
+          return queryClient.getQueryData([
+            "Tasks",
+            debouncedValue,
+            user.id,
+          ]) as Task[];
+        } else {
+          return await FilterSearchResults(debouncedValue, user.id);
         }
-        return await FilterSearchResults(debouncedValue, user.id);
       }
       return [] as Task[];
     },
@@ -39,49 +39,37 @@ const TaskItemDisplay = ({
   if (query.error) return "Error has occured : " + query.error.message;
 
   return (
-    <div>
-      <div className="flex flex-row justify-between items-baseline text-md font-light">
-        {query.data ? query.data.length : 0} results
+    <div className="bg-gray-100 lg:w-[1000px] lg:mx-auto">
+      <div className="flex flex-row justify-between items-baseline text-md font-light px-8">
+        {query.data ? query.data.length : 0} tasks
         <AddTaskButton />
       </div>
       <Separator className="pt-0.25 bg-green-500 mb-4 mt-2" />
-      <div>
+      <div className="px-8">
         {query.data?.map((item) => (
           <div key={item.id}>
-            {ShowTaskActions ? (
-              <div
-                className="
-                bg-gray-100
+            <div
+              className="
+                bg-white
                 rounded-lg
                 mb-8
                 drop-shadow-lg"
-              >
-                <div>
-                  <TaskItemRowLayout task={item} />
-                  <TaskItemActions id={item.id} task={item} />
+            >
+              {ShowTaskActions ? (
+                <div className="w-full">
+                  <TaskItemLayout task={item} />
+                  <TaskItemActions id={item.id} task={item} showTaskActions />
                 </div>
-              </div>
-            ) : (
-              <Dialog open={assignOpen} onOpenChange={setAssignOpen}>
-                <DialogTrigger asChild>
-                  <div className="mb-8 bg-gray-100 rounded-lg drop-shadow-md">
-                    <button type="button" className="w-full">
-                      <TaskItemRowLayout task={item} />
-                    </button>
-                  </div>
-                </DialogTrigger>
-                <DialogContent className="left-[50%] lg:w-[1300px]">
-                  <div className="h-fit ">
-                    <TaskFormLayout
-                      task={item}
-                      isEdit={false}
-                      onBack={setAssignOpen}
-                    />
-                    <AssignForm id={item.id} />
-                  </div>
-                </DialogContent>
-              </Dialog>
-            )}
+              ) : (
+                <div className="w-full">
+                  <TaskItemActions
+                    id={item.id}
+                    task={item}
+                    showTaskActions={false}
+                  />
+                </div>
+              )}
+            </div>
           </div>
         ))}
       </div>

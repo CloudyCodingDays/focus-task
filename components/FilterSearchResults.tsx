@@ -1,7 +1,7 @@
+import GetAllTasksforUser from "@/components/GetAllTasksforUser";
 import GetTaskDetailsByDesc from "@/components/GetTaskDetailsByDesc";
 import GetTaskDetailsByName from "@/components/GetTaskDetailsByName";
 import { Task } from "@/types/Task";
-import GetAllTasksforUser from "@/components/GetAllTasksforUser";
 
 const FilterSearchResults = async (debouncedValue: string, userId: string) => {
   if (debouncedValue === "") {

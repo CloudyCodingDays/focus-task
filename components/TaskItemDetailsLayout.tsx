@@ -1,14 +1,11 @@
-import { OldTaskType, Task } from "@/types/Task";
-import { Dispatch, SetStateAction } from "react";
+import { Task } from "@/types/Task";
 
-interface TaskFormLayoutProps {
+interface TaskItemDetailsLayoutProps {
   isEdit: boolean;
-  onBack: Dispatch<SetStateAction<boolean>>;
   task?: Task;
 }
-const TaskFormLayout: React.FC<TaskFormLayoutProps> = ({
+const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
   isEdit,
-  onBack,
   task,
 }) => {
   return (
@@ -64,6 +61,7 @@ const TaskFormLayout: React.FC<TaskFormLayoutProps> = ({
             name="name"
             className="border-2 w-full"
             placeholder={isEdit && task !== undefined ? task.name : "Name"}
+            defaultValue={!isEdit && task !== undefined ? task.name : ""}
             required
             disabled={!isEdit}
           ></input>
@@ -77,6 +75,7 @@ const TaskFormLayout: React.FC<TaskFormLayoutProps> = ({
             placeholder={
               isEdit && task !== undefined ? task.description : "Description"
             }
+            defaultValue={!isEdit && task !== undefined ? task.description : ""}
             disabled={!isEdit}
           ></input>
         </div>
@@ -88,8 +87,8 @@ const TaskFormLayout: React.FC<TaskFormLayoutProps> = ({
             type="checkbox"
             className="ml-4 scale-125"
             defaultChecked={
-              isEdit && task !== undefined
-                ? task.is_recurring === "true"
+              task !== undefined
+                ? JSON.stringify(task.is_recurring) === "true"
                 : false
             }
             disabled={!isEdit}
@@ -98,87 +97,61 @@ const TaskFormLayout: React.FC<TaskFormLayoutProps> = ({
 
         <div className="mb-4">
           <div>Recurring Type</div>
-          <input
+          <select
             name="recurring_type"
-            className="border-2 w-full"
-            placeholder={
-              isEdit && task !== undefined
-                ? task.recurring_type
-                : "Recurring Type"
-            }
             disabled={!isEdit}
-          ></input>
+            defaultValue={task !== undefined ? task.recurring_type : ""}
+          >
+            <option value="Daily">Daily</option>
+            <option value="Weekly">Weekly</option>
+            <option value="Bi-Weekly">Bi-Weekly</option>
+            <option value="Monthly">Monthly</option>
+          </select>
         </div>
 
         <div className="mb-4">
           <div>Task Priority</div>
-          <input
+          <select
             name="priority"
-            className="border-2 w-full"
-            placeholder={
-              isEdit && task !== undefined ? task.priority : "Priority"
-            }
             disabled={!isEdit}
-          ></input>
-        </div>
-
-        <div className="mb-4">
-          <div>Task Due Date</div>
-          <input
-            name="due_date"
-            type="date"
-            className="border-2 w-full"
-            placeholder={
-              isEdit && task !== undefined
-                ? task.due_date
-                : new Date().toDateString()
-            }
-            disabled={!isEdit}
-          ></input>
+            defaultValue={task !== undefined ? task.priority : ""}
+          >
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
         </div>
 
         {isEdit ? (
-          <div>
-            <div className="mb-4">
-              <div className="font-light mb-2">Upload image (Optional)</div>
-              <input type="file" id="TaskImage" name="TaskImage"></input>
-            </div>
-            <div className="mb-4 text-center">
-              <button
-                className="
-              hover:bg-green-200
-              hover:text-gray-500
-              bg-white
-              border-green-300 
-              border-2 
-              rounded-lg 
-              ml-4 
-              py-4 
-              px-4
-              mx-4"
-                onClick={() => {
-                  onBack(false);
-                }}
-                type="button"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                className="              
-              hover:bg-green-300
-              hover:text-gray-100
-              bg-green-400
-              text-green-600
-              rounded-lg               
-              ml-4 
-              py-4 
-              px-4
-              mx-4"
-              >
-                Save
-              </button>
-            </div>
+          <div className="mb-4">
+            <div>Task Due Date</div>
+            <input
+              name="due_date"
+              type="date"
+              className="border-2 w-full"
+              placeholder={
+                isEdit && task !== undefined
+                  ? task.due_date
+                  : new Date().toDateString()
+              }
+            ></input>
+          </div>
+        ) : (
+          <div className="mb-4">
+            <div>Task Due Date</div>
+            <input
+              name="due_date"
+              type="text"
+              className="border-2 w-full"
+              defaultValue={!isEdit && task !== undefined ? task.due_date : ""}
+            ></input>
+          </div>
+        )}
+
+        {false ? (
+          <div className="mb-4">
+            <div className="font-light mb-2">Upload image (Optional)</div>
+            <input type="file" id="TaskImage" name="TaskImage"></input>
           </div>
         ) : (
           <></>
@@ -188,4 +161,4 @@ const TaskFormLayout: React.FC<TaskFormLayoutProps> = ({
   );
 };
 
-export default TaskFormLayout;
+export default TaskItemDetailsLayout;
