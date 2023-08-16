@@ -3,7 +3,7 @@ import TaskItemLayout from "@/components/TaskItemLayout";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { Task } from "@/types/Task";
 import { useQuery, useQueryClient } from "react-query";
-import FilterSearchResults from "./FilterTaskListItems";
+import FilterTaskListItems from "./FilterTaskListItems";
 import TaskItemActions from "./TaskItemActions";
 import { Separator } from "./ui/separator";
 import { ReactQueryCache } from "./ReactQueryCache";
@@ -37,7 +37,7 @@ const TaskItemDisplay = ({
         TaskList = await GetInitialTaskListItems(ShowTaskActions, user.id);
 
         SortInitialTaskListItems(TaskList, ShowTaskActions);
-        FilterSearchResults(TaskList, debouncedValue);
+        FilterTaskListItems(TaskList, debouncedValue);
       }
       return TaskList;
     }
