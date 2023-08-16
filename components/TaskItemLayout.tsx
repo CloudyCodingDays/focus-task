@@ -34,17 +34,20 @@ const TaskItemLayout: React.FC<TaskItemProps> = ({ task }) => {
   }
   return (
     <div key={id} className="rounded-lg">
-      <div className={MarkRed ? "top-to-bottom py-4" : "py-4"}>
-        <div className="text-md px-4 text-start font-semibold">{name}</div>
+      <div className={MarkRed ? "top-to-bottom" : ""}>
+        <div className="flex flex-row justify-between px-4">
+          <div className="text-md text-start font-semibold">{name}</div>
+          <div className={priorityStyle}>{priority} Priority</div>
+        </div>
+
         <div className="text-sm mt-2 mb-4 px-4 font-light text-gray-700 text-start">
           <p className="break-words">{description}</p>
         </div>
         <div className="flex flex-row justify-between px-4">
           <div className={dueDateStyle}>
-            Due: {due_date.toString()} {" ("}
-            {diffDays < 0 ? "Over Due" : "in " + diffDays + " Days"})
+            {due_date.toString()}
+            {diffDays < 0 ? " (Over Due)" : "  (Due in " + diffDays + " Days)"}
           </div>
-          <div className={priorityStyle}> Priority: {priority}</div>
         </div>
       </div>
     </div>

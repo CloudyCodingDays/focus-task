@@ -144,6 +144,7 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
               type="text"
               className="border-2 w-full"
               defaultValue={!isEdit && task !== undefined ? task.due_date : ""}
+              disabled
             ></input>
           </div>
         )}
