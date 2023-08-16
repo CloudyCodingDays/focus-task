@@ -71,9 +71,7 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
           <textarea
             name="description"
             className="border-2 w-full h-[10em]"
-            defaultValue={
-              isEdit && task !== undefined ? task.description : "Description"
-            }
+            defaultValue={task !== undefined ? task.description : "Description"}
           ></textarea>
         </div>
 
@@ -128,10 +126,8 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
               name="due_date"
               type="date"
               className="border-2 w-[15em]"
-              placeholder={
-                isEdit && task !== undefined
-                  ? task.due_date
-                  : new Date().toDateString()
+              defaultValue={
+                task !== undefined ? task.due_date : new Date().toDateString()
               }
             ></input>
           </div>
@@ -142,7 +138,7 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
               name="due_date"
               type="text"
               className="border-2 w-[15em]"
-              defaultValue={!isEdit && task !== undefined ? task.due_date : ""}
+              defaultValue={task !== undefined ? task.due_date : ""}
               disabled
             ></input>
           </div>
