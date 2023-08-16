@@ -1,4 +1,5 @@
 import AssignTaskQuery from "@/components/CRUD_queries/AssignTaskQuery";
+import CompleteTaskQuery from "@/components/CRUD_queries/CompleteTaskQuery";
 import UnassignTaskQuery from "@/components/CRUD_queries/UnassignTaskQuery";
 
 export const AssignFormSubmit = async (
@@ -10,13 +11,14 @@ export const AssignFormSubmit = async (
 
   const form = e.currentTarget;
   const formData = new FormData(form);
-  const id = formData.get("id") as string;
+  const taskJSON = formData.get("task") as string;
+  const taskData = JSON.parse(taskJSON);
 
-  if (submitType.trim() == "assign" && userId) {
-    await AssignTaskQuery(id, userId);
-  } else if (submitType.trim() == "unassign" && userId) {
+  if (submitType.trim() === "assign" && userId) {
+    await AssignTaskQuery(taskData.id, userId);
+  } else if (submitType.trim() === "unassign" && userId) {
     await UnassignTaskQuery(userId);
-  } else if (submitType.trim() == "complete" && userId) {
-    //CompleteTaskQuery([] as Task, userId);
+  } else if (submitType.trim() === "complete" && userId) {
+    await CompleteTaskQuery(taskData, userId);
   }
 };

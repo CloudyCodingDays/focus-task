@@ -28,18 +28,18 @@ const TaskItemDisplay = ({
   ];
 
   const getTasks = async () => {
-    let TaskList: Task[] = [] as Task[];
+    let taskList: Task[] = [] as Task[];
 
     if (user) {
-      TaskList = ReactQueryCache(queryClient, queryKeys) as Task[];
+      taskList = ReactQueryCache(queryClient, queryKeys) as Task[];
 
-      if (TaskList === undefined) {
-        TaskList = await GetInitialTaskListItems(ShowTaskActions, user.id);
+      if (taskList === undefined) {
+        taskList = await GetInitialTaskListItems(ShowTaskActions, user.id);
 
-        SortInitialTaskListItems(TaskList, ShowTaskActions);
-        FilterTaskListItems(TaskList, debouncedValue);
+        SortInitialTaskListItems(taskList, ShowTaskActions);
+        FilterTaskListItems(taskList, debouncedValue);
       }
-      return TaskList;
+      return taskList;
     }
     return [] as Task[];
   };

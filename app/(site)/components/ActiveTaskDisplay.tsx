@@ -24,10 +24,14 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
     router.refresh();
   };
 
-  const HandleComplete: React.FormEventHandler<HTMLFormElement> = (
+  const HandleComplete: React.FormEventHandler<HTMLFormElement> = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    AssignFormSubmit(e, "complete", user?.id);
+    await AssignFormSubmit(e, "complete", user?.id);
+
+    queryClient.resetQueries("ActiveTask");
+
+    router.refresh();
   };
 
   return (
@@ -36,8 +40,11 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
         <TaskItem task={task} />
         <div className="flex justify-around">
           <form method="post" onSubmit={HandleUnassign}>
-            <input name="id" type="hidden" value={task.id}></input>
-            <input name="name" type="hidden" value={task.name}></input>
+            <input
+              name="task"
+              type="hidden"
+              value={JSON.stringify(task)}
+            ></input>
             <input
               name="description"
               type="hidden"
@@ -49,41 +56,37 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
               hover:bg-green-500 
               hover:text-green-700 
               my-4
-              mt-12
               mr-8
               rounded-lg
-              py-4
-              px-4
+              w-[7em]
+              h-[3em]
             bg-white 
             font-semibold
             text-green-500"
             >
-              Unassign Task
+              Unassign
             </button>
           </form>
           <form method="post" onSubmit={HandleComplete}>
-            <input name="id" type="hidden" value={task.id}></input>
-            <input name="name" type="hidden" value={task.name}></input>
             <input
-              name="description"
+              name="task"
               type="hidden"
-              value={task.description}
+              value={JSON.stringify(task)}
             ></input>
             <button
               type="submit"
               className="          
               hover:bg-green-400 
               my-4
-              mt-12
               mr-8
               rounded-lg
-              py-4
-              px-4
+              w-[7em]
+              h-[3em]
             bg-green-500 
             font-semibold
             text-green-300"
             >
-              Complete Task
+              Complete
             </button>
           </form>
         </div>
