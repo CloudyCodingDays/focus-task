@@ -58,7 +58,7 @@ const TaskItemDisplay = ({
         {query.data ? query.data.length : 0} tasks
         <AddTaskButton />
       </div>
-      <Separator className="pt-0.25 bg-green-500 mb-4" />
+      <Separator className="pt-0.25 bg-green-400 mb-4" />
       <div className="px-8">
         {query.data?.map((item) => (
           <div key={item.id}>
