@@ -53,7 +53,7 @@ const TaskItemDisplay = ({
   if (query.error) return "Error has occured : " + query.error.message;
 
   return (
-    <div className="bg-gray-100 lg:w-[1000px] lg:mx-auto">
+    <div>
       <div className="flex flex-row justify-between items-center text-md font-light px-8">
         {query.data ? query.data.length : 0} tasks
         <AddTaskButton />
