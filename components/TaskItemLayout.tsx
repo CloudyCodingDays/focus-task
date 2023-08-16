@@ -13,37 +13,42 @@ const TaskItemLayout: React.FC<TaskItemProps> = ({ task }) => {
 
   //Styling Due Date
   let dueDateStyle = "";
-  if (diffDays > 3) {
-    dueDateStyle = "text-gray-700 text-sm font-light";
-  } else if (diffDays < 3 && diffDays > 0) {
-    dueDateStyle = "text-yellow-400 text-sm";
+  if (diffDays > 7) {
+    dueDateStyle = "text-gray-400 text-xs font-light";
+  } else if (diffDays < 7 && diffDays > 0) {
+    dueDateStyle = "text-yellow-300 text-xs";
   } else if (diffDays <= 0) {
-    dueDateStyle = "text-red-400 text-sm font-semibold";
+    dueDateStyle = "text-red-300 text-xs font-semibold";
   }
 
   //Styling Priority
   let MarkRed = false;
-  let priorityStyle = "text-sm font-light";
+  let priorityStyle = "text-xs font-light";
   if (priority.toLocaleLowerCase() === "high" && diffDays <= 1) {
     MarkRed = true;
-    priorityStyle = "text-red-400 text-sm font-semibold";
+    priorityStyle = "text-red-300 text-xs font-semibold";
   } else if (priority.toLocaleLowerCase() === "medium" && diffDays <= 1) {
-    priorityStyle = "text-yellow-400 text-sm";
+    priorityStyle = "text-yellow-300 text-xs";
   } else if (priority.toLocaleLowerCase() === "low" && diffDays <= 1) {
-    priorityStyle = "text-green-400 text-sm font-light";
+    priorityStyle = "text-xs font-light";
   }
   return (
     <div key={id} className="rounded-lg">
       <div className={MarkRed ? "top-to-bottom" : ""}>
         <div className="flex flex-row justify-between px-4">
-          <div className="text-md text-start font-semibold">{name}</div>
+          <div className="text-sm text-start font-semibold underline">
+            {name}
+          </div>
           <div className={priorityStyle}>{priority} Priority</div>
         </div>
 
-        <div className="text-sm mt-2 mb-4 px-4 font-light text-gray-700 text-start">
+        <div className="text-xs mt-2 mb-4 px-4 font-light text-gray-400 text-start">
           <p className="break-words">{description}</p>
         </div>
-        <div className="flex flex-row justify-between px-4">
+        <div className="flex flex-row justify-between px-4 py-2">
+          <div className="text-xs font-extralight">
+            {task.is_recurring ? "Recurring task" : ""}
+          </div>
           <div className={dueDateStyle}>
             {due_date.toString()}
             {diffDays < 0 ? " (Over Due)" : "  (Due in " + diffDays + " Days)"}

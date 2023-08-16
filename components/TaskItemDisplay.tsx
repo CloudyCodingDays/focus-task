@@ -54,11 +54,11 @@ const TaskItemDisplay = ({
 
   return (
     <div className="bg-gray-100 lg:w-[1000px] lg:mx-auto">
-      <div className="flex flex-row justify-between items-baseline text-md font-light px-8">
+      <div className="flex flex-row justify-between items-center text-md font-light px-8">
         {query.data ? query.data.length : 0} tasks
         <AddTaskButton />
       </div>
-      <Separator className="pt-0.25 bg-green-500 mb-4 mt-2" />
+      <Separator className="pt-0.25 bg-green-500 mb-4" />
       <div className="px-8">
         {query.data?.map((item) => (
           <div key={item.id}>
