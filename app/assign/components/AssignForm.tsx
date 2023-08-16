@@ -2,16 +2,17 @@
 import { AssignFormSubmit } from "@/app/(site)/components/HandleSubmitAssign";
 import FormSubmitButtons from "@/components/FormSubmitButtons";
 import { useUserInfo } from "@/hooks/useUserInfo";
+import { Task } from "@/types/Task";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import { useQueryClient } from "react-query";
 
 interface AssignFormProps {
-  id: string;
+  task: Task;
   onBack: Dispatch<SetStateAction<boolean>>;
 }
 
-const AssignForm: React.FC<AssignFormProps> = ({ id, onBack }) => {
+const AssignForm: React.FC<AssignFormProps> = ({ task, onBack }) => {
   const router = useRouter();
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
@@ -27,8 +28,7 @@ const AssignForm: React.FC<AssignFormProps> = ({ id, onBack }) => {
     <div className="w-fit mx-auto">
       <form method="post" onSubmit={HandleSubmit}>
         <div>
-          <input name="id" type="hidden" value={id}></input>
-          <input name="userId" type="hidden" value={user?.id}></input>
+          <input name="task" type="hidden" value={JSON.stringify(task)}></input>
         </div>
         <FormSubmitButtons submitText="Assign Task" onBack={onBack} />
       </form>

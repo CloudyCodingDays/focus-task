@@ -60,7 +60,8 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
           <input
             name="name"
             className="border-2 w-full"
-            defaultValue={task !== undefined ? task.name : "Name"}
+            placeholder={isEdit ? "Name" : ""}
+            defaultValue={task !== undefined ? task.name : ""}
             required
             disabled={!isEdit}
           ></input>
@@ -71,7 +72,9 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
           <textarea
             name="description"
             className="border-2 w-full h-[10em]"
-            defaultValue={task !== undefined ? task.description : "Description"}
+            placeholder={isEdit ? "Description" : ""}
+            defaultValue={task !== undefined ? task.description : ""}
+            disabled={!isEdit}
           ></textarea>
         </div>
 
@@ -98,6 +101,7 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
             disabled={!isEdit}
             defaultValue={task !== undefined ? task.recurring_type : ""}
           >
+            <option value=""></option>
             <option value="Daily">Daily</option>
             <option value="Weekly">Weekly</option>
             <option value="Bi-Weekly">Bi-Weekly</option>

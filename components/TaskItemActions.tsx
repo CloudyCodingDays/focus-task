@@ -71,7 +71,7 @@ const TaskItemActions: React.FC<TaskItemActionsProps> = ({
           <DialogContent className="left-[50%] lg:w-[1300px]">
             <div className="">
               <TaskItemDetailsLayout task={task} isEdit={false} />
-              <AssignForm id={task.id} onBack={setAssignOpen} />
+              <AssignForm task={task} onBack={setAssignOpen} />
             </div>
           </DialogContent>
         </Dialog>
