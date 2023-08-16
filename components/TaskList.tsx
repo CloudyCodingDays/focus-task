@@ -14,7 +14,7 @@ const TaskList = ({ ShowTaskActions }: { ShowTaskActions: boolean }) => {
   return (
     <div>
       <SearchForm setDebouncedValue={setDebouncedValue} />
-      <div className="w-11/12 mx-auto pb-4 bg-gray-100 lg:w-[1000px]">
+      <div className="w-11/12 mx-auto pb-4 mt-2 bg-gray-100 lg:w-[1000px]">
         <TaskItemDisplay
           debouncedValue={debouncedValue}
           ShowTaskActions={ShowTaskActions}

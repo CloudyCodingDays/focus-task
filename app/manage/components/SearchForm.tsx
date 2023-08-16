@@ -46,9 +46,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ setDebouncedValue }) => {
                     ></input>
                     <Separator className="bg-green-200 pt-0.5" />
                   </div>
-                  <div className="text-sm font-light border-2">
-                    Hide Filters
-                  </div>
+                  <div className="text-sm font-light pl-4">Show Filters</div>
                 </div>
               </form>
             </div>
