@@ -1,5 +1,5 @@
 "use client";
-import GetTaskDetailsByUserId from "@/components/GetActiveTaskByUserId";
+import GetTaskDetailsByUserId from "@/components/task_queries/GetActiveTaskByUserId";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { Task } from "@/types/Task";
 import { useQuery, useQueryClient } from "react-query";

@@ -30,7 +30,7 @@ const TaskItemActions: React.FC<TaskItemActionsProps> = ({
           <Dialog open={deleteOpen} onOpenChange={setDeleteOpen}>
             <DialogTrigger asChild>
               <button className="hover:bg-red-100 py-2 border-r-2">
-                <Trash2 size={24} className="w-full mx-auto" />
+                <Trash2 size={16} className="w-full mx-auto" />
               </button>
             </DialogTrigger>
             <DialogContent className="left-[50%] lg:w-[760px] h-fit">
@@ -42,7 +42,7 @@ const TaskItemActions: React.FC<TaskItemActionsProps> = ({
           <Dialog open={viewOpen} onOpenChange={setViewOpen}>
             <DialogTrigger asChild>
               <button className="hover:bg-green-100 py-2 border-r-2">
-                <Eye size={24} className="w-full mx-auto" />
+                <Eye size={16} className="w-full mx-auto" />
               </button>
             </DialogTrigger>
             <DialogContent className="left-[50%] lg:w-[760px] h-fit">
@@ -53,7 +53,7 @@ const TaskItemActions: React.FC<TaskItemActionsProps> = ({
           <Dialog open={editOpen} onOpenChange={setEditOpen}>
             <DialogTrigger asChild>
               <button className="hover:bg-green-100 py-2">
-                <FileEdit size={24} className="w-full mx-auto" />
+                <FileEdit size={16} className="w-full mx-auto" />
               </button>
             </DialogTrigger>
             <DialogContent className="left-[50%] lg:w-[760px] h-fit">

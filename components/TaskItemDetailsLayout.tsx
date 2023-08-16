@@ -54,38 +54,33 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
         <></>
       )}
 
-      <div className="text-left mx-auto w-11/12 bg-gray-100 rounded-lg py-4 px-4">
-        <div className="mb-4">
-          <div>Task Name</div>
+      <div className="text-left mx-auto w-11/12 bg-gray-100 rounded-lg py-4 px-4 text-sm">
+        <div className="mb-4 flex flex-row">
+          <div className="lg:w-1/5 w-1/3">Task Name</div>
           <input
             name="name"
             className="border-2 w-full"
-            placeholder={isEdit && task !== undefined ? task.name : "Name"}
-            defaultValue={!isEdit && task !== undefined ? task.name : ""}
+            defaultValue={task !== undefined ? task.name : "Name"}
             required
             disabled={!isEdit}
           ></input>
         </div>
 
-        <div className="mb-4">
-          <div>Task Description</div>
-          <input
+        <div className="mb-4 flex flex-row">
+          <div className="lg:w-1/5 w-1/3">Task Description</div>
+          <textarea
             name="description"
-            className="border-2 w-full"
-            placeholder={
-              isEdit && task !== undefined ? task.description : "Description"
-            }
-            defaultValue={!isEdit && task !== undefined ? task.description : ""}
-            disabled={!isEdit}
-          ></input>
+            className="border-2 w-full h-[10em]"
+            defaultValue={task !== undefined ? task.description : "Description"}
+          ></textarea>
         </div>
 
-        <div className="mb-4">
-          Is this a Recurring Task?
+        <div className="mb-4 flex flex-row">
+          <div className="lg:w-1/6 w-1/4">Is a Recurring Task?</div>
           <input
             name="is_recurring"
             type="checkbox"
-            className="ml-4 scale-125"
+            className="scale-125"
             defaultChecked={
               task !== undefined
                 ? JSON.stringify(task.is_recurring) === "true"
@@ -95,10 +90,11 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
           ></input>
         </div>
 
-        <div className="mb-4">
-          <div>Recurring Type</div>
+        <div className="mb-4 flex flex-row">
+          <div className="lg:w-1/6 w-1/4">Recurring Type</div>
           <select
             name="recurring_type"
+            className="w-[15em]"
             disabled={!isEdit}
             defaultValue={task !== undefined ? task.recurring_type : ""}
           >
@@ -109,10 +105,11 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
           </select>
         </div>
 
-        <div className="mb-4">
-          <div>Task Priority</div>
+        <div className="mb-4 flex flex-row">
+          <div className="lg:w-1/6 w-1/4">Task Priority</div>
           <select
             name="priority"
+            className="w-[15em]"
             disabled={!isEdit}
             defaultValue={task !== undefined ? task.priority : ""}
           >
@@ -123,33 +120,32 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
         </div>
 
         {isEdit ? (
-          <div className="mb-4">
-            <div>Task Due Date</div>
+          <div className="mb-4 flex flex-row">
+            <div className="lg:w-1/6 w-1/4">Task Due Date</div>
             <input
               name="due_date"
               type="date"
-              className="border-2 w-full"
-              placeholder={
-                isEdit && task !== undefined
-                  ? task.due_date
-                  : new Date().toDateString()
+              className="border-2 w-[15em]"
+              defaultValue={
+                task !== undefined ? task.due_date : new Date().toDateString()
               }
             ></input>
           </div>
         ) : (
-          <div className="mb-4">
-            <div>Task Due Date</div>
+          <div className="mb-4 flex flex-row">
+            <div className="lg:w-1/6 w-1/4">Task Due Date</div>
             <input
               name="due_date"
               type="text"
-              className="border-2 w-full"
-              defaultValue={!isEdit && task !== undefined ? task.due_date : ""}
+              className="border-2 w-[15em]"
+              defaultValue={task !== undefined ? task.due_date : ""}
+              disabled
             ></input>
           </div>
         )}
 
         {false ? (
-          <div className="mb-4">
+          <div className="mb-4 flex flex-row">
             <div className="font-light mb-2">Upload image (Optional)</div>
             <input type="file" id="TaskImage" name="TaskImage"></input>
           </div>

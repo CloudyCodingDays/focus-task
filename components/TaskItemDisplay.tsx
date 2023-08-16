@@ -3,9 +3,12 @@ import TaskItemLayout from "@/components/TaskItemLayout";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { Task } from "@/types/Task";
 import { useQuery, useQueryClient } from "react-query";
-import FilterSearchResults from "./FilterSearchResults";
+import FilterTaskListItems from "./FilterTaskListItems";
 import TaskItemActions from "./TaskItemActions";
 import { Separator } from "./ui/separator";
+import { ReactQueryCache } from "./ReactQueryCache";
+import { GetInitialTaskListItems } from "./GetInitialTaskListItems";
+import { SortInitialTaskListItems } from "./SortInitialTaskListItems";
 
 const TaskItemDisplay = ({
   debouncedValue,
@@ -17,22 +20,33 @@ const TaskItemDisplay = ({
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
 
-  const query = useQuery<Task[], Error>({
-    queryKey: ["Tasks", debouncedValue, user?.id],
-    queryFn: async () => {
-      if (user) {
-        if (queryClient.getQueryData(["Tasks", debouncedValue, user.id])) {
-          return queryClient.getQueryData([
-            "Tasks",
-            debouncedValue,
-            user.id,
-          ]) as Task[];
-        } else {
-          return await FilterSearchResults(debouncedValue, user.id);
-        }
+  const queryKeys = [
+    "Tasks",
+    debouncedValue,
+    user ? user.id : "",
+    JSON.stringify(ShowTaskActions),
+  ];
+
+  const getTasks = async () => {
+    let TaskList: Task[] = [] as Task[];
+
+    if (user) {
+      TaskList = ReactQueryCache(queryClient, queryKeys) as Task[];
+
+      if (TaskList === undefined) {
+        TaskList = await GetInitialTaskListItems(ShowTaskActions, user.id);
+
+        SortInitialTaskListItems(TaskList, ShowTaskActions);
+        FilterTaskListItems(TaskList, debouncedValue);
       }
-      return [] as Task[];
-    },
+      return TaskList;
+    }
+    return [] as Task[];
+  };
+
+  const query = useQuery<Task[], Error>({
+    queryKey: queryKeys,
+    queryFn: getTasks,
   });
 
   if (query.isLoading) return "Loading...";
@@ -40,11 +54,11 @@ const TaskItemDisplay = ({
 
   return (
     <div className="bg-gray-100 lg:w-[1000px] lg:mx-auto">
-      <div className="flex flex-row justify-between items-baseline text-md font-light px-8">
+      <div className="flex flex-row justify-between items-center text-md font-light px-8">
         {query.data ? query.data.length : 0} tasks
         <AddTaskButton />
       </div>
-      <Separator className="pt-0.25 bg-green-500 mb-4 mt-2" />
+      <Separator className="pt-0.25 bg-green-400 mb-4" />
       <div className="px-8">
         {query.data?.map((item) => (
           <div key={item.id}>

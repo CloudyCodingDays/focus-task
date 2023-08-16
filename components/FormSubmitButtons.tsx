@@ -21,9 +21,9 @@ const FormSubmitButtons = ({
             border-green-300 
             border-2 
             rounded-lg 
+            w-[7em]
+            h-[3em]
             ml-4 
-            py-4 
-            px-4
             mx-4"
         onClick={() => {
           onBack(false);
@@ -42,8 +42,8 @@ const FormSubmitButtons = ({
             text-green-600
             rounded-lg               
             ml-4 
-            py-4 
-            px-4
+            w-[7em]
+            h-[3em]
             mx-4"
         >
           {submitText}
@@ -58,8 +58,8 @@ const FormSubmitButtons = ({
             text-white
             rounded-lg               
             ml-4 
-            py-4 
-            px-4
+            w-[7em]
+            h-[3em]
             mx-4"
         >
           {submitText}
