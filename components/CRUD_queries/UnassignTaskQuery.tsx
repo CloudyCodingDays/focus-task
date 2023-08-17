@@ -9,7 +9,6 @@ const UnassignTaskQuery = async (userId: string) => {
     .eq("is_assigned", true);
 
   if (OldActiveError) throw new Error(OldActiveError.message);
-  console.log(userId);
 };
 
 export default UnassignTaskQuery;
