@@ -6,9 +6,13 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 interface SearchFormProps {
   setDebouncedValue: Dispatch<SetStateAction<string>>;
+  showTaskActions: boolean;
 }
 
-const SearchForm: React.FC<SearchFormProps> = ({ setDebouncedValue }) => {
+const SearchForm: React.FC<SearchFormProps> = ({
+  setDebouncedValue,
+  showTaskActions,
+}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedValue = useDebounceSearch(searchTerm, 500);
 
@@ -38,7 +42,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ setDebouncedValue }) => {
               ></input>
               <Separator className="bg-green-200 pt-0.5" />
             </form>
-            <AddTaskButton />
+            {showTaskActions ? <AddTaskButton /> : <></>}
           </div>
         </div>
       </div>
