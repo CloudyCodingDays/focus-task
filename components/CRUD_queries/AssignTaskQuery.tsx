@@ -14,7 +14,6 @@ const AssignTaskQuery = async (taskId: string, userId: string) => {
   if (supabaseError) {
     throw new Error(supabaseError.message);
   }
-  console.log(taskId);
 };
 
 export default AssignTaskQuery;

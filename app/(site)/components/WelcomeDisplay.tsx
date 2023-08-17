@@ -3,6 +3,7 @@ import { Separator } from "@/components/ui/separator";
 import format from "date-fns/format";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Calendar } from "@/components/ui/calendar";
 
 const WelcomeDisplay = () => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
@@ -33,15 +34,7 @@ const WelcomeDisplay = () => {
           <div className="mt-4 mb-2 mx-24">
             <Separator className="bg-green-300  pt-0.25" />
           </div>
-          <div className="text-md pb-4 font-extralight text-gray-500">
-            <div>
-              Today is{" "}
-              <span className="font-bold text-lg">
-                {format(currentDate, "EEEE")}
-              </span>
-            </div>
-            <div className="">{format(currentDate, "PPP")}</div>
-          </div>
+          <Calendar mode="single" className="rounded-md border w-fit mx-auto" />
         </div>
       </div>
     </div>

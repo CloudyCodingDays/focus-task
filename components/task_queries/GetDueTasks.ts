@@ -1,10 +1,7 @@
 import supabase from "@/lib/supabaseClient";
 import { Task } from "@/types/Task";
 
-const GetDueTasks = async (userId: string) => {
-  const tomorrowDate = new Date(Date.now());
-  tomorrowDate.setDate(tomorrowDate.getDate() + 1);
-
+const GetDueTasks = async (userId: string, dueDate: Date) => {
   const { data: TaskData, error: TaskError } = await supabase
     .from("tasks")
     .select(
@@ -21,7 +18,7 @@ const GetDueTasks = async (userId: string) => {
     updated_at`
     )
     .eq("created_by", userId)
-    .lte("due_date", tomorrowDate.toDateString());
+    .eq("due_date", dueDate.toDateString());
 
   if (TaskError) throw new Error(TaskError.message);
 

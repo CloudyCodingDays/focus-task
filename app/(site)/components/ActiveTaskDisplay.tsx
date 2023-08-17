@@ -1,4 +1,4 @@
-import TaskItem from "@/components/TaskItemLayout";
+import TaskItemLayout from "@/components/TaskItemLayout";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { Task } from "@/types/Task";
 import { useRouter } from "next/navigation";
@@ -37,7 +37,7 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
   return (
     <div key={task.id} className="w-full flex flex-col items-center">
       <div className="w-[30em]  bg-gray-200 rounded-lg my-4 mx-4 drop-shadow-lg">
-        <TaskItem task={task} />
+        <TaskItemLayout task={task} />
         <div className="flex justify-around">
           <form method="post" onSubmit={HandleUnassign}>
             <input
