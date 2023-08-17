@@ -7,10 +7,31 @@ interface TaskItemProps {
 const TaskItemLayout: React.FC<TaskItemProps> = ({ task }) => {
   const { id, description, name, priority, due_date } = task;
   //date formatting
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
   const currentDate = new Date().getTime();
-  const dueDateAsDate = new Date(due_date).getTime() + 1000 * 3600 * 24;
+  const dueDateAsTime = new Date(due_date).getTime() + 1000 * 3600 * 24;
+  const dueDate = new Date(due_date);
+  const dueDateDisplay =
+    dueDate.getDate() +
+    "-" +
+    monthNames[dueDate.getMonth()] +
+    "-" +
+    dueDate.getFullYear;
   const diffDays = Math.ceil(
-    (dueDateAsDate - currentDate) / (1000 * 3600 * 24) - 1
+    (dueDateAsTime - currentDate) / (1000 * 3600 * 24) - 1
   );
 
   //Styling Due Date
@@ -52,7 +73,7 @@ const TaskItemLayout: React.FC<TaskItemProps> = ({ task }) => {
             {task.is_recurring ? "Recurring task" : ""}
           </div>
           <div className={dueDateStyle}>
-            {due_date.toString()}
+            {dueDateDisplay}
             {diffDays < 0 ? " (Over Due)" : "  (Due in " + diffDays + " Days)"}
           </div>
         </div>
