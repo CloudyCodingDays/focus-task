@@ -64,7 +64,7 @@ const TaskItemLayout: React.FC<TaskItemProps> = ({ task }) => {
 
   return (
     <div key={id} className="rounded-lg flex flex-row">
-      <div className="flex flex-col px-2 py-2 w-full">
+      <div className="flex flex-col py-2 w-full">
         <div className="flex flex-row justify-between">
           <div>
             <div className="flex flex-row text-sm text-start font-semibold">
@@ -81,10 +81,6 @@ const TaskItemLayout: React.FC<TaskItemProps> = ({ task }) => {
             </div>
           </div>
           <div>
-            <div className="flex flex-row items-center text-xs">
-              <AlertCircle size={20} color={priorityIconStyle} />
-              <div className="pl-2">{priority} Priority</div>
-            </div>
             {task.is_recurring ? (
               <div className="flex flex-row items-center text-xs font-light pt-4">
                 <Repeat />
@@ -93,6 +89,10 @@ const TaskItemLayout: React.FC<TaskItemProps> = ({ task }) => {
             ) : (
               <div></div>
             )}
+            <div className="flex flex-row items-center text-xs">
+              <AlertCircle size={20} color={priorityIconStyle} />
+              <div className="pl-2">{priority} Priority</div>
+            </div>
           </div>
         </div>
       </div>
