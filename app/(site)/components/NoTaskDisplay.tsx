@@ -1,7 +1,13 @@
+import { useUserInfo } from "@/hooks/useUserInfo";
 import Image from "next/image";
 import Link from "next/link";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import Login from "@/app/login/components/login";
+import { useState } from "react";
 
 const NoTaskDisplay = () => {
+  const [addOpen, setAddOpen] = useState<boolean>(false);
+  const { user } = useUserInfo();
   //TODO: grab whether task was completed today and detemine what to show
   return (
     <div>
@@ -11,24 +17,49 @@ const NoTaskDisplay = () => {
             <div className="my-8 text-2xl">
               What would you like to do today?
             </div>
-            <Link
-              href="/assign"
-              className="
-          hover:bg-green-500
-          hover:text-green-200 
-          my-4
-          mt-12
-          mr-8
-          rounded-lg
-          py-4
-          px-4
-        bg-green-100 
-        font-semibold
-        text-green-500
-        self-center"
-            >
-              Assign New task
-            </Link>
+            {!user ? (
+              <Dialog open={addOpen} onOpenChange={setAddOpen}>
+                <DialogTrigger asChild>
+                  <button
+                    className="
+        hover:bg-green-500
+        hover:text-green-200 
+        mr-8
+        rounded-lg
+        py-4
+        px-4
+      bg-green-100 
+      font-semibold
+      text-green-500
+      self-center"
+                  >
+                    Assign New task
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="h-full">
+                  <Login />
+                </DialogContent>
+              </Dialog>
+            ) : (
+              <Link
+                href="/assign"
+                className="
+        hover:bg-green-500
+        hover:text-green-200 
+        my-4
+        mt-12
+        mr-8
+        rounded-lg
+        py-4
+        px-4
+      bg-green-100 
+      font-semibold
+      text-green-500
+      self-center"
+              >
+                Assign New task
+              </Link>
+            )}
           </div>
           <div className="drop-shadow-lg  mt-4">
             <Image

@@ -3,9 +3,12 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import AddForm from "./AddForm";
+import Login from "@/app/login/components/login";
+import { useUserInfo } from "@/hooks/useUserInfo";
 
 const AddTaskButton = () => {
   const [addOpen, setAddOpen] = useState<boolean>(false);
+  const { user } = useUserInfo();
 
   return (
     <div>
@@ -18,9 +21,13 @@ const AddTaskButton = () => {
           </button>
         </DialogTrigger>
         <DialogContent className="h-full">
-          <div className="mt-12">
-            <AddForm onBack={setAddOpen} />
-          </div>
+          {!user ? (
+            <Login />
+          ) : (
+            <div className="mt-12">
+              <AddForm onBack={setAddOpen} />
+            </div>
+          )}
         </DialogContent>
       </Dialog>
     </div>
