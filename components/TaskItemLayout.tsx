@@ -29,7 +29,7 @@ const TaskItemLayout: React.FC<TaskItemProps> = ({ task }) => {
     "-" +
     monthNames[dueDate.getMonth()] +
     "-" +
-    dueDate.getFullYear;
+    dueDate.getFullYear();
   const diffDays = Math.ceil(
     (dueDateAsTime - currentDate) / (1000 * 3600 * 24) - 1
   );
