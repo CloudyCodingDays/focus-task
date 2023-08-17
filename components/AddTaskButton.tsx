@@ -12,7 +12,7 @@ const AddTaskButton = () => {
       <Dialog open={addOpen} onOpenChange={setAddOpen}>
         <DialogTrigger asChild>
           <button className="hover:bg-green-300 rounded-lg border-2 border-green-400">
-            <div className="flex flex-row items-center text-green-500 font-semibold px-2">
+            <div className="flex flex-row items-center text-green-500 font-semibold px-2 py-2 text-sm">
               <Plus color="green" size={16} /> New Task
             </div>
           </button>

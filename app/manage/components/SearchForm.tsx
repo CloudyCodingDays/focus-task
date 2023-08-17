@@ -26,10 +26,10 @@ const SearchForm: React.FC<SearchFormProps> = ({ setDebouncedValue }) => {
       >
         <div className="my-4">
           <div className="flex flex-row justify-between items-baseline">
-            <form className="w-10/12">
+            <form className="flex-grow mr-4">
               <input
-                style={{ width: "100%" }}
                 name="SearchTerm"
+                className="w-full"
                 value={searchTerm}
                 placeholder="Search..."
                 onChange={(e) => {
