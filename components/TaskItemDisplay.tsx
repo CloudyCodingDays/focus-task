@@ -82,7 +82,7 @@ const TaskItemDisplay = ({
 
   return (
     <div>
-      <div className="text-sm px-8 py-2">
+      <div className="text-sm px-2 py-2">
         {!ShowTaskActions ? (
           <div className="flex flex-row justify-between items-center text-green-400 font-semibold text-lg">
             <div>
@@ -95,7 +95,7 @@ const TaskItemDisplay = ({
         )}
       </div>
       <Separator className="pt-0.25 bg-green-400 mb-4" />
-      <div className="px-8">
+      <div className="px-2">
         {query.data?.map((item) => (
           <div key={item.id}>
             <div

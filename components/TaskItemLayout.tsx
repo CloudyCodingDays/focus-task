@@ -66,12 +66,12 @@ const TaskItemLayout: React.FC<TaskItemProps> = ({ task }) => {
     <div key={id} className="rounded-lg flex flex-row">
       <div className="flex flex-col py-2 w-full">
         <div className="flex flex-row justify-between">
-          <div>
+          <div className="pl-2">
             <div className="flex flex-row text-sm text-start font-semibold">
               {name}
             </div>
             <div className="flex flex-row items-center text-xs pt-2">
-              <CalendarClock />
+              <CalendarClock size={20} />
               <div className={dueDateStyle}>
                 {dueDateDisplay}
                 {diffDays < 0
