@@ -34,7 +34,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ setDebouncedValue }) => {
             <div>
               <form>
                 <div className="flex flex-row w-full">
-                  <div className="px-4 w-10/12 drop-shadow-lg">
+                  <div className="px-4 w-11/12 drop-shadow-lg">
                     <input
                       style={{ width: "100%" }}
                       name="SearchTerm"
@@ -46,7 +46,6 @@ const SearchForm: React.FC<SearchFormProps> = ({ setDebouncedValue }) => {
                     ></input>
                     <Separator className="bg-green-200 pt-0.5" />
                   </div>
-                  <div className="text-sm font-light pl-4">Show Filters</div>
                 </div>
               </form>
             </div>
