@@ -7,9 +7,11 @@ interface TaskItemProps {
 const TaskItemLayout: React.FC<TaskItemProps> = ({ task }) => {
   const { id, description, name, priority, due_date } = task;
   //date formatting
-  const date1 = new Date().getTime();
+  const currentDate = new Date().getTime();
   const dueDateAsDate = new Date(due_date).getTime() + 1000 * 3600 * 24;
-  const diffDays = Math.ceil((dueDateAsDate - date1) / (1000 * 3600 * 24) - 1);
+  const diffDays = Math.ceil(
+    (dueDateAsDate - currentDate) / (1000 * 3600 * 24) - 1
+  );
 
   //Styling Due Date
   let dueDateStyle = "";

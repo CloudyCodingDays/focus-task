@@ -1,3 +1,5 @@
+import { DateFormatterForQueries } from "./DateFormatterForQueries";
+
 export const CalculateNextDueDate = (recurringType: string, dueDate?: Date) => {
   let newDueDate = dueDate !== undefined ? dueDate : new Date(Date.now());
 
@@ -21,5 +23,5 @@ export const CalculateNextDueDate = (recurringType: string, dueDate?: Date) => {
     newDueDate.setDate(newDueDate.getDate() + 1);
   }
 
-  return newDueDate;
+  return DateFormatterForQueries(newDueDate);
 };

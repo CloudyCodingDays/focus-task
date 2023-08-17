@@ -17,8 +17,6 @@ const CompleteTaskQuery = async (taskData: Task, userId: string) => {
   if (taskData.is_recurring) {
     const newDueDate = CalculateNextDueDate(taskData.recurring_type);
 
-    console.log(JSON.stringify(newDueDate));
-
     const { error: recurringTaskError } = await supabaseClient
       .from("tasks")
       .update({ due_date: newDueDate, updated_at: new Date() })

@@ -1,4 +1,5 @@
 import { Task } from "@/types/Task";
+import { DateFormatterForQueries } from "./DateFormatterForQueries";
 
 interface TaskItemDetailsLayoutProps {
   isEdit: boolean;
@@ -131,7 +132,9 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
               type="date"
               className="border-2 w-[15em]"
               defaultValue={
-                task !== undefined ? task.due_date : new Date().toDateString()
+                task !== undefined
+                  ? task.due_date
+                  : DateFormatterForQueries(new Date())
               }
             ></input>
           </div>
