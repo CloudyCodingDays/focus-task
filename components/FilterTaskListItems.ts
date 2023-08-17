@@ -6,10 +6,11 @@ const FilterSearchResults = (taskList: Task[], debouncedValue: string) => {
   let finalFilteredResults: Task[] = [];
 
   const filteredByName = taskList.filter((task) => {
-    task.name.toLocaleLowerCase().includes(debouncedValue);
+    return task.name.toLocaleLowerCase().includes(debouncedValue);
   });
+
   const filteredbyDesc = taskList.filter((task) => {
-    task.description.toLocaleLowerCase().includes(debouncedValue);
+    return task.description.toLocaleLowerCase().includes(debouncedValue);
   });
 
   if (filteredByName.length !== 0) {
@@ -24,7 +25,7 @@ const FilterSearchResults = (taskList: Task[], debouncedValue: string) => {
     new Map(finalFilteredResults.map((v) => [v.id, v])).values()
   );
 
-  taskList = finalFilteredResults;
+  return finalFilteredResults;
 };
 
 export default FilterSearchResults;

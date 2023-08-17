@@ -6,9 +6,10 @@ export const SortInitialTaskListItems = (
 ) => {
   let priorities = ["high", "medium", "low"];
   if (!isManageMode)
-    taskList = taskList.sort(
+    return taskList.sort(
       (a, b) =>
         priorities.indexOf(a.priority.toLocaleLowerCase()) -
         priorities.indexOf(b.priority.toLocaleLowerCase())
     );
+  return taskList;
 };

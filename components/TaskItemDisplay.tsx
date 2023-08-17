@@ -36,9 +36,11 @@ const TaskItemDisplay = ({
       if (taskList === undefined) {
         taskList = await GetInitialTaskListItems(ShowTaskActions, user.id);
 
-        SortInitialTaskListItems(taskList, ShowTaskActions);
-        FilterTaskListItems(taskList, debouncedValue);
+        taskList = SortInitialTaskListItems(taskList, ShowTaskActions);
+
+        taskList = FilterTaskListItems(taskList, debouncedValue);
       }
+      console.log(taskList);
       return taskList;
     }
     return [] as Task[];
