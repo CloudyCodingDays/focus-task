@@ -21,7 +21,7 @@ const GetDueTasks = async (userId: string) => {
     updated_at`
     )
     .eq("created_by", userId)
-    .lte("due_date", tomorrowDate.toLocaleDateString());
+    .lte("due_date", tomorrowDate);
 
   if (TaskError) throw new Error(TaskError.message);
 
