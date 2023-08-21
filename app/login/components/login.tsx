@@ -11,7 +11,7 @@ type FormData = {
 };
 
 interface LoginProps {
-  setOpen: Dispatch<SetStateAction<boolean>>;
+  setOpen?: Dispatch<SetStateAction<boolean>>;
 }
 
 const Login: React.FC<LoginProps> = ({ setOpen }) => {
@@ -26,16 +26,16 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     await UserSignIn(data.email, data.password);
-    setOpen(false);
+    if (setOpen !== undefined) setOpen(false);
     router.refresh();
   };
   const HandleSignUp = () => {
-    setOpen(false);
+    if (setOpen !== undefined) setOpen(false);
     router.push("/register");
   };
   const HandleLogOut = async () => {
     await UserSignOut();
-    setOpen(false);
+    if (setOpen !== undefined) setOpen(false);
     router.refresh();
   };
 
