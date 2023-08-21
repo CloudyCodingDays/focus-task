@@ -17,7 +17,6 @@ const NoTaskDisplay = () => {
             <div className="my-8 text-2xl">
               What would you like to do today?
             </div>
-<<<<<<< HEAD
             <Link
               href="/assign"
               className="
@@ -36,51 +35,6 @@ const NoTaskDisplay = () => {
             >
               Find Task
             </Link>
-=======
-            {!user ? (
-              <Dialog open={addOpen} onOpenChange={setAddOpen}>
-                <DialogTrigger asChild>
-                  <button
-                    className="
-        hover:bg-green-500
-        hover:text-green-200 
-        mr-8
-        rounded-lg
-        py-4
-        px-4
-      bg-green-100 
-      font-semibold
-      text-green-500
-      self-center"
-                  >
-                    Assign New task
-                  </button>
-                </DialogTrigger>
-                <DialogContent className="h-full">
-                  <Login />
-                </DialogContent>
-              </Dialog>
-            ) : (
-              <Link
-                href="/assign"
-                className="
-        hover:bg-green-500
-        hover:text-green-200 
-        my-4
-        mt-12
-        mr-8
-        rounded-lg
-        py-4
-        px-4
-      bg-green-100 
-      font-semibold
-      text-green-500
-      self-center"
-              >
-                Assign New task
-              </Link>
-            )}
->>>>>>> main
           </div>
           <div className="drop-shadow-lg  mt-4">
             <Image
