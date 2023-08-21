@@ -8,6 +8,7 @@ import { Calendar } from "@/components/ui/calendar";
 
 const TaskList = ({ ShowTaskActions }: { ShowTaskActions: boolean }) => {
   const [debouncedValue, setDebouncedValue] = useState("");
+  const [date, setDate] = useState<Date | undefined>(new Date());
 
   const TaskItemDisplay = dynamic(() => import("./TaskItemDisplay"), {
     loading: () => <p>Loading..</p>,
@@ -16,10 +17,14 @@ const TaskList = ({ ShowTaskActions }: { ShowTaskActions: boolean }) => {
   return (
     <div>
       {!ShowTaskActions ? (
-        <Calendar
-          mode="single"
-          className="rounded-md border w-fit mx-auto mt-4"
-        />
+        <div className="bg-gray-100 py-2">
+          <Calendar
+            mode="single"
+            selected={date}
+            onSelect={setDate}
+            className="rounded-md w-fit mx-auto border-2"
+          />
+        </div>
       ) : (
         <></>
       )}

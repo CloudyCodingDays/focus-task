@@ -27,7 +27,7 @@ const NoTaskDisplay = () => {
         text-green-500
         self-center"
             >
-              Assign New task
+              Find Task
             </Link>
           </div>
           <div className="drop-shadow-lg  mt-4">

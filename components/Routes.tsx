@@ -24,9 +24,9 @@ const Routes: React.FC<RoutesProp> = ({ onRoute }) => {
       },
       {
         //Icon: BiSearch,
-        label: "Settings",
-        active: pathname === "/setting",
-        href: "/setting",
+        label: "Login",
+        active: pathname === "/login",
+        href: "/login",
       },
     ],
     [pathname]

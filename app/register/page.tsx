@@ -1,7 +1,7 @@
 "use client";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { useRouter } from "next/navigation";
-import Login from "./components/login";
+import Register from "./components/Register";
 
 export default function Home() {
   const { user } = useUserInfo();
@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <div>
-      <Login />
+      <Register />
     </div>
   );
 }
