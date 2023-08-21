@@ -12,7 +12,7 @@ const monthNames = [
   "November",
   "December",
 ];
-export const FormattedDateStringForDisplay = (currentDate: Date) => {
+export const DateFormatDisplay = (currentDate: Date) => {
   const formattedDate =
     currentDate.getDate() +
     "-" +

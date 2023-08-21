@@ -2,8 +2,10 @@
 import { Dispatch, SetStateAction, createContext, useState } from "react";
 
 interface TaskListContextType {
-  updateTaskList?: boolean;
-  setUpdateTaskList?: Dispatch<SetStateAction<boolean>>;
+  taskCount?: number;
+  setTaskCount?: Dispatch<SetStateAction<number>>;
+  updateTaskCount?: boolean;
+  setUpdateTaskCount?: Dispatch<SetStateAction<boolean>>;
 }
 
 export const TaskListContext = createContext<TaskListContextType>(
@@ -16,10 +18,13 @@ interface TaskListContextProviderProps {
 const TaskListContextProvider: React.FC<TaskListContextProviderProps> = ({
   children,
 }) => {
-  const [updateTaskList, setUpdateTaskList] = useState<boolean>(false);
+  const [taskCount, setTaskCount] = useState<number>(0);
+  const [updateTaskCount, setUpdateTaskCount] = useState<boolean>(true);
 
   return (
-    <TaskListContext.Provider value={{ updateTaskList, setUpdateTaskList }}>
+    <TaskListContext.Provider
+      value={{ taskCount, setTaskCount, updateTaskCount, setUpdateTaskCount }}
+    >
       {children}
     </TaskListContext.Provider>
   );

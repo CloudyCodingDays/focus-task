@@ -1,16 +1,20 @@
 import { Task } from "@/types/Task";
 
-const FilterSearchResults = (taskList: Task[], debouncedValue: string) => {
+const FilterTaskListItems = (taskList: Task[], debouncedValue: string) => {
   if (debouncedValue === "") return taskList;
 
   let finalFilteredResults: Task[] = [];
 
   const filteredByName = taskList.filter((task) => {
-    return task.name.toLocaleLowerCase().includes(debouncedValue);
+    return task.name
+      .toLocaleLowerCase()
+      .includes(debouncedValue.toLocaleLowerCase());
   });
 
   const filteredbyDesc = taskList.filter((task) => {
-    return task.description.toLocaleLowerCase().includes(debouncedValue);
+    return task.description
+      .toLocaleLowerCase()
+      .includes(debouncedValue.toLocaleLowerCase());
   });
 
   if (filteredByName.length !== 0) {
@@ -28,4 +32,4 @@ const FilterSearchResults = (taskList: Task[], debouncedValue: string) => {
   return finalFilteredResults;
 };
 
-export default FilterSearchResults;
+export default FilterTaskListItems;

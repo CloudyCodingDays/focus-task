@@ -1,24 +1,19 @@
 import AddTaskButton from "@/components/AddTaskButton";
+import { DateFormatDisplay } from "@/components/DateFormatDisplay";
+import TaskItemActions from "@/components/TaskItemActions";
 import TaskItemLayout from "@/components/TaskItemLayout";
+import FilterTaskListItems from "@/components/task_functions/FilterTaskListItems";
+import { GetInitialTaskListItems } from "@/components/task_functions/GetInitialTaskListItems";
+import { ReactQueryCache } from "@/components/task_functions/ReactQueryCache";
+import { SortInitialTaskListItems } from "@/components/task_functions/SortInitialTaskListItems";
+import { Separator } from "@/components/ui/separator";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { Task } from "@/types/Task";
 import { useQuery, useQueryClient } from "react-query";
-import FilterTaskListItems from "./FilterTaskListItems";
-import TaskItemActions from "./TaskItemActions";
-import { Separator } from "./ui/separator";
-import { ReactQueryCache } from "./ReactQueryCache";
-import { GetInitialTaskListItems } from "./GetInitialTaskListItems";
-import { SortInitialTaskListItems } from "./SortInitialTaskListItems";
-import { useState } from "react";
-import { FormattedDateStringForDisplay } from "./DateFormatDisplay";
 
 const TaskItemDisplay = ({
-  debouncedValue,
-  showTaskActions,
   currentDate,
 }: {
-  debouncedValue: string;
-  showTaskActions: boolean;
   currentDate: Date | undefined;
 }) => {
   const { user } = useUserInfo();
@@ -26,13 +21,12 @@ const TaskItemDisplay = ({
 
   const validatedDate = currentDate ? currentDate : new Date();
 
-  const taskDueDateFormatted = FormattedDateStringForDisplay(validatedDate);
+  const taskDueDateFormatted = DateFormatDisplay(validatedDate);
 
   const queryKeys = [
     "Tasks",
-    debouncedValue,
     user ? user.id : "",
-    JSON.stringify(showTaskActions),
+    JSON.stringify(validatedDate),
   ];
 
   const getTasks = async () => {
@@ -42,15 +36,11 @@ const TaskItemDisplay = ({
       taskList = ReactQueryCache(queryClient, queryKeys) as Task[];
 
       if (taskList === undefined) {
-        taskList = await GetInitialTaskListItems(
-          showTaskActions,
-          user.id,
-          validatedDate
-        );
+        taskList = await GetInitialTaskListItems(user.id, validatedDate);
 
-        taskList = SortInitialTaskListItems(taskList, showTaskActions);
+        taskList = SortInitialTaskListItems(taskList, true);
 
-        taskList = FilterTaskListItems(taskList, debouncedValue);
+        taskList = FilterTaskListItems(taskList, "");
       }
       return taskList;
     }
@@ -67,15 +57,16 @@ const TaskItemDisplay = ({
 
   return (
     <div>
-      <div className="text-sm pl-2 py-2">
-        {!showTaskActions ? (
+      <div className="text-sm px-2 py-2">
+        <div className="flex flex-row justify-between items-end">
           <div className="text-gray-600 font-semibold text-md">
             {query.data ? query.data.length : 0} Tasks due for{" "}
             {taskDueDateFormatted}
           </div>
-        ) : (
-          <div>All Tasks ({query.data ? query.data.length : 0} tasks)</div>
-        )}
+          <div>
+            <AddTaskButton />
+          </div>
+        </div>
       </div>
       <Separator className="pt-0.25 bg-green-400 mb-4" />
       <div className="px-2">
@@ -88,20 +79,13 @@ const TaskItemDisplay = ({
                 mb-4
                 drop-shadow-lg"
             >
-              {showTaskActions ? (
-                <div className="w-full">
-                  <TaskItemLayout task={item} />
-                  <TaskItemActions id={item.id} task={item} showTaskActions />
-                </div>
-              ) : (
-                <div className="w-full">
-                  <TaskItemActions
-                    id={item.id}
-                    task={item}
-                    showTaskActions={false}
-                  />
-                </div>
-              )}
+              <div className="w-full">
+                <TaskItemActions
+                  id={item.id}
+                  task={item}
+                  showTaskActions={false}
+                />
+              </div>
             </div>
           </div>
         ))}

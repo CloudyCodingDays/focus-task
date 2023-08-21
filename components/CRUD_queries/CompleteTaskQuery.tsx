@@ -1,6 +1,6 @@
 import supabaseClient from "@/lib/supabaseClient";
 import { Task } from "@/types/Task";
-import { CalculateNextDueDate } from "../CalculateNextDueDate";
+import { CalculateNextDueDate } from "../task_functions/CalculateNextDueDate";
 
 const CompleteTaskQuery = async (taskData: Task, userId: string) => {
   //Unassign task from user

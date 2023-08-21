@@ -11,18 +11,19 @@ export default function Home() {
       </div>
     ),
   });
-  const CurrentTaskDisplay = dynamic(
-    () => import("./components/CurrentTaskDisplay"),
+  const InitialTaskDisplay = dynamic(
+    () => import("./components/InitialTaskDisplay"),
     {
       loading: () => <p>Loading...</p>,
     }
   );
+
   return (
     <div>
       <div className="md:flex md:flex-row md:justify-center">
         <div>
           <WelcomeDisplay />
-          <CurrentTaskDisplay />
+          <InitialTaskDisplay />
         </div>
         <div>{/*<CatPanel /> turn off api call while testing */}</div>
       </div>

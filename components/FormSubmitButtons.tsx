@@ -12,26 +12,7 @@ const FormSubmitButtons = ({
   isDelete?: boolean;
 }) => {
   return (
-    <div className="mb-4 text-center mt-4">
-      <button
-        className="
-            hover:bg-green-200
-            hover:text-gray-500
-            bg-white
-            border-green-300 
-            border-2 
-            rounded-lg 
-            w-[7em]
-            h-[3em]
-            ml-4 
-            mx-4"
-        onClick={() => {
-          onBack(false);
-        }}
-        type="button"
-      >
-        {cancelText}
-      </button>
+    <div className="text-center mt-4">
       {!isDelete ? (
         <button
           type="submit"
@@ -41,9 +22,9 @@ const FormSubmitButtons = ({
             bg-green-400
             text-green-600
             rounded-lg               
-            ml-4 
             w-[7em]
             h-[3em]
+            drop-shadow-md
             mx-4"
         >
           {submitText}
@@ -57,9 +38,9 @@ const FormSubmitButtons = ({
             bg-red-500
             text-white
             rounded-lg               
-            ml-4 
             w-[7em]
             h-[3em]
+            drop-shadow-md
             mx-4"
         >
           {submitText}

@@ -56,7 +56,7 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
 
       <div className="text-left mx-auto bg-gray-100 rounded-lg py-4 px-2 text-sm drop-shadow-lg">
         <div className="mb-4 flex flex-row">
-          <div className="lg:w-1/5 w-1/3">Task Name</div>
+          <div className="w-1/3">Name</div>
           <input
             name="name"
             className="border-2 w-full"
@@ -68,7 +68,7 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
         </div>
 
         <div className="mb-4 flex flex-row">
-          <div className="lg:w-1/5 w-1/3">Task Description</div>
+          <div className="w-1/3">Description</div>
           <textarea
             name="description"
             className="border-2 w-full h-[10em]"
@@ -79,7 +79,7 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
         </div>
 
         <div className="mb-4 flex flex-row">
-          <div className="lg:w-1/6 w-1/4">Is a Recurring Task?</div>
+          <div className="w-1/4">Recurring Task?</div>
           <input
             name="is_recurring"
             type="checkbox"
@@ -94,7 +94,7 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
         </div>
 
         <div className="mb-4 flex flex-row">
-          <div className="lg:w-1/6 w-1/4">Recurring Type</div>
+          <div className="w-1/4">Recurring Type</div>
           <select
             name="recurring_type"
             className="w-[15em]"
@@ -110,7 +110,7 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
         </div>
 
         <div className="mb-4 flex flex-row">
-          <div className="lg:w-1/6 w-1/4">Task Priority</div>
+          <div className="w-1/4">Priority</div>
           <select
             name="priority"
             className="w-[15em]"
@@ -124,8 +124,8 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
         </div>
 
         {isEdit ? (
-          <div className="mb-4 flex flex-row">
-            <div className="lg:w-1/6 w-1/4">Task Due Date</div>
+          <div className="flex flex-row">
+            <div className="w-1/4">Due Date</div>
             <input
               name="due_date"
               type="date"
@@ -136,8 +136,8 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
             ></input>
           </div>
         ) : (
-          <div className="mb-4 flex flex-row">
-            <div className="lg:w-1/6 w-1/4">Task Due Date</div>
+          <div className="flex flex-row">
+            <div className="w-1/4">Due Date</div>
             <input
               name="due_date"
               type="text"
@@ -149,7 +149,7 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
         )}
 
         {false ? (
-          <div className="mb-4 flex flex-row">
+          <div className="flex flex-row">
             <div className="font-light mb-2">Upload image (Optional)</div>
             <input type="file" id="TaskImage" name="TaskImage"></input>
           </div>

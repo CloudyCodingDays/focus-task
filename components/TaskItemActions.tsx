@@ -34,8 +34,10 @@ const TaskItemActions: React.FC<TaskItemActionsProps> = ({
               </button>
             </DialogTrigger>
             <DialogContent className="left-[50%] lg:w-[760px] h-fit">
-              <TaskItemDetailsLayout task={task} isEdit={false} />
-              <DeleteForm id={id} onBack={setDeleteOpen} />
+              <div className="py-12 px-2">
+                <TaskItemDetailsLayout task={task} isEdit={false} />
+                <DeleteForm id={id} onBack={setDeleteOpen} />
+              </div>
             </DialogContent>
           </Dialog>
 
@@ -46,7 +48,9 @@ const TaskItemActions: React.FC<TaskItemActionsProps> = ({
               </button>
             </DialogTrigger>
             <DialogContent className="left-[50%] lg:w-[760px] h-fit">
-              <TaskItemDetailsLayout task={task} isEdit={false} />
+              <div className="py-12 px-2">
+                <TaskItemDetailsLayout task={task} isEdit={false} />
+              </div>
             </DialogContent>
           </Dialog>
 
@@ -57,7 +61,9 @@ const TaskItemActions: React.FC<TaskItemActionsProps> = ({
               </button>
             </DialogTrigger>
             <DialogContent className="left-[50%] lg:w-[760px] h-fit">
-              <EditForm task={task} onBack={setEditOpen} />
+              <div className="py-12 px-2">
+                <EditForm task={task} onBack={setEditOpen} />
+              </div>
             </DialogContent>
           </Dialog>
         </div>
@@ -69,7 +75,7 @@ const TaskItemActions: React.FC<TaskItemActionsProps> = ({
             </button>
           </DialogTrigger>
           <DialogContent className="left-[50%] lg:w-[1300px]">
-            <div className="">
+            <div className="py-12 px-2">
               <TaskItemDetailsLayout task={task} isEdit={false} />
               <AssignForm task={task} onBack={setAssignOpen} />
             </div>

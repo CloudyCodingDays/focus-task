@@ -2,10 +2,10 @@ import { Task } from "@/types/Task";
 
 export const SortInitialTaskListItems = (
   taskList: Task[],
-  isManageMode: boolean
+  sortTasks: boolean
 ) => {
   let priorities = ["high", "medium", "low"];
-  if (!isManageMode)
+  if (sortTasks)
     return taskList.sort(
       (a, b) =>
         priorities.indexOf(a.priority.toLocaleLowerCase()) -

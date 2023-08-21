@@ -18,8 +18,10 @@ const NavBarLogin = () => {
             </button>
           </div>
         </DialogTrigger>
-        <DialogContent className="w-1/2">
-          <Login />
+        <DialogContent>
+          <div>
+            <Login setOpen={setOpen} />
+          </div>
         </DialogContent>
       </Dialog>
     </div>

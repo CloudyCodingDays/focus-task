@@ -8,10 +8,10 @@ interface NavBarProps {
 
 const NavBar: React.FC<NavBarProps> = ({ children }) => {
   return (
-    <div className="bg-white h-full">
-      <div className="flex flex-row justify-between items-baseline px-4 mt-4 w-11/12 mx-auto">
-        <NavBarMenu />
+    <div className="bg-white">
+      <div className="flex flex-row justify-between items-baseline px-2 pt-2 mx-auto w-11/12">
         <NavBarLogo />
+        <NavBarMenu />
         <NavBarLogin />
       </div>
       <div>{children}</div>

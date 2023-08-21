@@ -20,14 +20,10 @@ const AddTaskButton = () => {
             </div>
           </button>
         </DialogTrigger>
-        <DialogContent className="h-full">
-          {!user ? (
-            <Login />
-          ) : (
-            <div className="mt-12">
-              <AddForm onBack={setAddOpen} />
-            </div>
-          )}
+        <DialogContent>
+          <div className="py-12 px-2">
+            {!user ? <Login /> : <AddForm onBack={setAddOpen} />}
+          </div>
         </DialogContent>
       </Dialog>
     </div>

@@ -8,6 +8,7 @@ interface RoutesProp {
 }
 const Routes: React.FC<RoutesProp> = ({ onRoute }) => {
   const pathname = usePathname();
+  const activePathStyle = "border-2 border-green-200 px-2 rounded-lg";
   const routes = useMemo(
     () => [
       {
@@ -22,12 +23,18 @@ const Routes: React.FC<RoutesProp> = ({ onRoute }) => {
         active: pathname === "/manage",
         href: "/manage",
       },
+      {
+        //Icon: BiSearch,
+        label: "Settings",
+        active: pathname === "/settings",
+        href: "/settings",
+      },
     ],
     [pathname]
   );
 
   return (
-    <div>
+    <div className="flex flex-row justify-around items-center">
       {routes.map((item, index) => (
         <Link
           key={item.label}
@@ -35,19 +42,7 @@ const Routes: React.FC<RoutesProp> = ({ onRoute }) => {
           onClick={() => {
             onRoute(false);
           }}
-          className="
-          hover:bg-green-600
-          hover:text-white
-          first:border-b-2 
-          first:border-t-2
-          last:border-t-2
-          last:border-b-2 
-          flex 
-          flex-col 
-          text-green-500
-          text-center 
-          py-8 
-          w-full"
+          className={item.active ? activePathStyle : ""}
         >
           {item.label}
         </Link>

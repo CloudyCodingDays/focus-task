@@ -5,9 +5,15 @@ import { Task } from "@/types/Task";
 import { useQuery, useQueryClient } from "react-query";
 import ActiveTaskDisplay from "./ActiveTaskDisplay";
 import NoTaskDisplay from "./NoTaskDisplay";
+import useTaskListContext from "@/hooks/useTaskListContext";
+import GetTaskCountForUser from "@/components/task_queries/GetTaskCountForUser";
+import { User } from "@supabase/supabase-js";
 
-const CurrentTaskDisplay = () => {
-  const { user } = useUserInfo();
+interface CurrentTaskDisplayProps {
+  user: User | null;
+}
+
+const CurrentTaskDisplay: React.FC<CurrentTaskDisplayProps> = ({ user }) => {
   const queryClient = useQueryClient();
 
   const getTasks = async () => {
