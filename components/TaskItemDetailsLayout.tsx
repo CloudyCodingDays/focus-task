@@ -54,7 +54,7 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
         <></>
       )}
 
-      <div className="text-left mx-auto w-11/12 bg-gray-100 rounded-lg py-4 px-4 text-sm">
+      <div className="text-left mx-auto bg-gray-100 rounded-lg py-4 px-2 text-sm drop-shadow-lg">
         <div className="mb-4 flex flex-row">
           <div className="lg:w-1/5 w-1/3">Task Name</div>
           <input

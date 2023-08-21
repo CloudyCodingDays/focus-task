@@ -52,7 +52,7 @@ const TaskItemLayout: React.FC<TaskItemProps> = ({ task }) => {
 
   //Styling Priority
   let priorityStyle = "text-xs font-light";
-  let priorityIconStyle = "";
+  let priorityIconStyle = "black";
   if (priority.toLocaleLowerCase() === "high" && diffDays <= 1) {
     priorityStyle = "text-red-400 text-xs font-semibold";
     priorityIconStyle = "red";
@@ -64,14 +64,14 @@ const TaskItemLayout: React.FC<TaskItemProps> = ({ task }) => {
 
   return (
     <div key={id} className="rounded-lg flex flex-row">
-      <div className="flex flex-col px-4 py-2 w-full">
+      <div className="flex flex-col py-2 w-full">
         <div className="flex flex-row justify-between">
-          <div>
+          <div className="pl-2">
             <div className="flex flex-row text-sm text-start font-semibold">
               {name}
             </div>
-            <div className="flex flex-row items-center text-xs pt-4">
-              <CalendarClock />
+            <div className="flex flex-row items-center text-xs pt-2">
+              <CalendarClock size={20} />
               <div className={dueDateStyle}>
                 {dueDateDisplay}
                 {diffDays < 0
@@ -79,16 +79,16 @@ const TaskItemLayout: React.FC<TaskItemProps> = ({ task }) => {
                   : "  (Due in " + diffDays + " Days)"}
               </div>
             </div>
-          </div>
-          <div>
-            <div className="flex flex-row items-center text-xs px-4">
+            <div className="flex flex-row items-center text-xs pt-2">
               <AlertCircle size={20} color={priorityIconStyle} />
               <div className="pl-2">{priority} Priority</div>
             </div>
+          </div>
+          <div>
             {task.is_recurring ? (
-              <div className="flex flex-row items-center text-xs font-light px-4 pt-4">
+              <div className="flex flex-row items-center text-xs font-light">
                 <Repeat />
-                <div className="pl-2">Repeats {task.recurring_type}</div>
+                <div className="px-2">{task.recurring_type}</div>
               </div>
             ) : (
               <div></div>
