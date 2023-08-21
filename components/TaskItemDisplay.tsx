@@ -10,44 +10,29 @@ import { ReactQueryCache } from "./ReactQueryCache";
 import { GetInitialTaskListItems } from "./GetInitialTaskListItems";
 import { SortInitialTaskListItems } from "./SortInitialTaskListItems";
 import { useState } from "react";
+import { FormattedDateStringForDisplay } from "./DateFormatDisplay";
 
 const TaskItemDisplay = ({
   debouncedValue,
-  ShowTaskActions,
+  showTaskActions,
+  currentDate,
 }: {
   debouncedValue: string;
-  ShowTaskActions: boolean;
+  showTaskActions: boolean;
+  currentDate: Date | undefined;
 }) => {
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
 
-  const taskDueDate = new Date();
-  const dueDateDisplay =
-    taskDueDate.getDate() +
-    "-" +
-    monthNames[taskDueDate.getMonth()] +
-    "-" +
-    taskDueDate.getFullYear();
+  const validatedDate = currentDate ? currentDate : new Date();
+
+  const taskDueDateFormatted = FormattedDateStringForDisplay(validatedDate);
 
   const queryKeys = [
     "Tasks",
     debouncedValue,
     user ? user.id : "",
-    JSON.stringify(ShowTaskActions),
+    JSON.stringify(showTaskActions),
   ];
 
   const getTasks = async () => {
@@ -58,12 +43,12 @@ const TaskItemDisplay = ({
 
       if (taskList === undefined) {
         taskList = await GetInitialTaskListItems(
-          ShowTaskActions,
+          showTaskActions,
           user.id,
-          taskDueDate
+          validatedDate
         );
 
-        taskList = SortInitialTaskListItems(taskList, ShowTaskActions);
+        taskList = SortInitialTaskListItems(taskList, showTaskActions);
 
         taskList = FilterTaskListItems(taskList, debouncedValue);
       }
@@ -82,13 +67,11 @@ const TaskItemDisplay = ({
 
   return (
     <div>
-      <div className="text-sm px-8 py-2">
-        {!ShowTaskActions ? (
-          <div className="flex flex-row justify-between items-center text-green-400 font-semibold text-lg">
-            <div>
-              Today&apos;s tasks ({query.data ? query.data.length : 0} tasks)
-            </div>
-            {dueDateDisplay}
+      <div className="text-sm pl-2 py-2">
+        {!showTaskActions ? (
+          <div className="text-gray-600 font-semibold text-md">
+            {query.data ? query.data.length : 0} Tasks due for{" "}
+            {taskDueDateFormatted}
           </div>
         ) : (
           <div>All Tasks ({query.data ? query.data.length : 0} tasks)</div>
@@ -105,7 +88,7 @@ const TaskItemDisplay = ({
                 mb-4
                 drop-shadow-lg"
             >
-              {ShowTaskActions ? (
+              {showTaskActions ? (
                 <div className="w-full">
                   <TaskItemLayout task={item} />
                   <TaskItemActions id={item.id} task={item} showTaskActions />
