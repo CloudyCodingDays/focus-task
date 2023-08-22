@@ -34,19 +34,37 @@ const Routes: React.FC<RoutesProp> = ({ onRoute }) => {
   );
 
   return (
-    <div className="flex flex-row justify-around items-center">
-      {routes.map((item, index) => (
-        <Link
-          key={item.label}
-          href={item.href}
-          onClick={() => {
-            onRoute(false);
-          }}
-          className={item.active ? activePathStyle : ""}
-        >
-          {item.label}
-        </Link>
-      ))}
+    <div className="flex flex-col justify-start items-center">
+      <div className="text-2xl text-green-500">Focus Task</div>
+      <div className="mt-12 flex flex-col w-full">
+        {routes.map((item, index) => (
+          <div
+            key={item.label}
+            className="
+          hover:bg-green-600
+          hover:text-white
+          first:border-b-2 
+          first:border-t-2
+          last:border-t-2
+          last:border-b-2 
+          flex 
+          flex-col 
+          text-green-500
+          text-center 
+          py-8 
+          w-full"
+          >
+            <Link
+              href={item.href}
+              onClick={() => {
+                onRoute(false);
+              }}
+            >
+              {item.label}
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

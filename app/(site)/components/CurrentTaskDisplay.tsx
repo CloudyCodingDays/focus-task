@@ -4,7 +4,7 @@ import { useUserInfo } from "@/hooks/useUserInfo";
 import { Task } from "@/types/Task";
 import { useQuery, useQueryClient } from "react-query";
 import ActiveTaskDisplay from "./ActiveTaskDisplay";
-import NoTaskDisplay from "./NoTaskDisplay";
+import NoActiveTaskDisplay from "./NoActiveTaskDisplay";
 import useTaskListContext from "@/hooks/useTaskListContext";
 import GetTaskCountForUser from "@/components/task_queries/GetTaskCountForUser";
 import { User } from "@supabase/supabase-js";
@@ -32,7 +32,7 @@ const CurrentTaskDisplay: React.FC<CurrentTaskDisplayProps> = ({ user }) => {
     queryFn: getTasks,
   });
 
-  if (isLoading) return <NoTaskDisplay />;
+  if (isLoading) return <NoActiveTaskDisplay />;
   if (isError) return "Error has occured : " + error.message;
 
   return (
@@ -44,7 +44,7 @@ const CurrentTaskDisplay: React.FC<CurrentTaskDisplayProps> = ({ user }) => {
           </div>
         ))
       ) : (
-        <NoTaskDisplay />
+        <NoActiveTaskDisplay />
       )}
     </div>
   );

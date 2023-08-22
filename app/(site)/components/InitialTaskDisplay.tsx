@@ -4,6 +4,7 @@ import GetTaskCountForUser from "@/components/task_queries/GetTaskCountForUser";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { useQuery, useQueryClient } from "react-query";
 import CurrentTaskDisplay from "./CurrentTaskDisplay";
+import NoTaskDisplay from "./NoTaskDisplay";
 
 const InitialTaskDisplay = () => {
   const { user } = useUserInfo();
@@ -31,7 +32,7 @@ const InitialTaskDisplay = () => {
       {data && data > 0 ? (
         <CurrentTaskDisplay user={user} />
       ) : (
-        <div>nothign</div>
+        <NoTaskDisplay user={user} />
       )}
     </div>
   );
