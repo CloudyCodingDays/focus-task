@@ -29,12 +29,10 @@ const EditForm: React.FC<EditFormProps> = ({ task, onBack }) => {
 
   return (
     <div>
-      <div>
-        <form method="post" onSubmit={HandleSubmit}>
-          <TaskItemDetailsLayout task={task} isEdit />
-          <FormSubmitButtons submitText="Edit Task" onBack={onBack} />
-        </form>
-      </div>
+      <form method="post" onSubmit={HandleSubmit}>
+        <TaskItemDetailsLayout task={task} isEdit />
+        <FormSubmitButtons submitText="Edit Task" onBack={onBack} />
+      </form>
     </div>
   );
 };

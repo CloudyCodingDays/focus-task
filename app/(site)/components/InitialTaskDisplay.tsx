@@ -27,6 +27,7 @@ const InitialTaskDisplay = () => {
   });
 
   if (isError) return "Error has occured : " + error.message;
+  
   return (
     <div>
       {data && data > 0 ? (

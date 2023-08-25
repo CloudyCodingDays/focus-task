@@ -20,17 +20,17 @@ const NoActiveTaskDisplay = () => {
             <Link
               href="/assign"
               className="
-          hover:bg-green-500
-          hover:text-green-200 
+          hover:bg-green-200
+          hover:text-green-500 
+          bg-green-500 
+          text-green-100
           my-4
           mt-12
           mr-8
           rounded-lg
           py-4
           px-4
-        bg-green-100 
         font-semibold
-        text-green-500
         self-center"
             >
               Find Task

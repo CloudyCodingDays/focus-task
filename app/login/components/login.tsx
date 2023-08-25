@@ -36,7 +36,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
   const HandleLogOut = async () => {
     await UserSignOut();
     if (setOpen !== undefined) setOpen(false);
-    router.refresh();
+    router.push("/");
   };
 
   return (
@@ -63,7 +63,13 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
           </div>
 
           <button type="submit" className="w-full">
-            <div className="text-center mt-8 bg-green-300 text-green-600">
+            <div
+              className="text-center mt-8           
+              hover:bg-green-200
+          hover:text-green-500 
+          bg-green-500 
+          text-green-100"
+            >
               Login
             </div>
           </button>
@@ -79,7 +85,14 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
         <div>
           Logged in as {session?.user?.email}
           <button type="submit" className="w-full" onClick={HandleLogOut}>
-            <div className="text-center mt-8 bg-green-300 text-green-600">
+            <div
+              className="text-center 
+              mt-8           
+              hover:bg-green-200
+          hover:text-green-500 
+          bg-green-500 
+          text-green-100"
+            >
               Logout
             </div>
           </button>

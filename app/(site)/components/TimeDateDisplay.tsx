@@ -32,14 +32,12 @@ const TimeDateDisplay = () => {
             </div>
           </div>
           <div className="mt-4 mb-2 mx-24">
-            <Separator className="bg-green-300  pt-0.25" />
+            <Separator className="bg-green-300  pt-0.5" />
           </div>
           <div className="text-md pb-4 font-extralight">
             <div>
               Today is{" "}
-              <span className="font-bold text-lg">
-                {format(currentDate, "EEEE")}
-              </span>
+              <span className="text-lg">{format(currentDate, "EEEE")}</span>
             </div>
             <div className="">{format(currentDate, "PPP")}</div>
           </div>

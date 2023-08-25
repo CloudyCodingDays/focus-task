@@ -38,9 +38,15 @@ const Routes: React.FC<RoutesProp> = ({ onRoute }) => {
       <div className="text-2xl text-green-500">Focus Task</div>
       <div className="mt-12 flex flex-col w-full">
         {routes.map((item, index) => (
-          <div
+          <Link
             key={item.label}
-            className="
+            href={item.href}
+            onClick={() => {
+              onRoute(false);
+            }}
+          >
+            <div
+              className="
           hover:bg-green-600
           hover:text-white
           first:border-b-2 
@@ -53,16 +59,10 @@ const Routes: React.FC<RoutesProp> = ({ onRoute }) => {
           text-center 
           py-8 
           w-full"
-          >
-            <Link
-              href={item.href}
-              onClick={() => {
-                onRoute(false);
-              }}
             >
               {item.label}
-            </Link>
-          </div>
+            </div>
+          </Link>
         ))}
       </div>
     </div>

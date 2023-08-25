@@ -19,6 +19,7 @@ const NavBarLogin = () => {
           </div>
         </DialogTrigger>
         <DialogContent>
+          {/*TODO:  add custom cancel or close button here*/}
           <div>
             <Login setOpen={setOpen} />
           </div>
