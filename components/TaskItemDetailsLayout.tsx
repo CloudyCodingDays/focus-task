@@ -9,7 +9,7 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
   task,
 }) => {
   return (
-    <div className="text-gray-600 lg:translate-x-1/3">
+    <div className="text-gray-600 lg:flex lg:justify-center">
       {isEdit && task !== undefined ? (
         <div>
           <input name="id" type="hidden" value={task.id}></input>

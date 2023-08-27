@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { UserSignIn, UserSignOut, isUserLoggedIn } from "./UserActions";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 import { Dispatch, SetStateAction } from "react";
+import { X } from "lucide-react";
 
 type FormData = {
   email: string;
@@ -26,7 +27,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     await UserSignIn(data.email, data.password);
-    if (setOpen !== undefined) setOpen(false);
+    HandleLoginClose();
     router.refresh();
   };
   const HandleSignUp = () => {
@@ -35,12 +36,21 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
   };
   const HandleLogOut = async () => {
     await UserSignOut();
-    if (setOpen !== undefined) setOpen(false);
+    HandleLoginClose();
     router.push("/");
   };
 
+  const HandleLoginClose = () => {
+    if (setOpen !== undefined) setOpen(false);
+  };
+
   return (
-    <div className="bg-gray-100 py-8 px-2">
+    <div className="bg-gray-100 py-8 px-2 md:mx-auto md:w-[30em]">
+      <div className="flex flex-row justify-end mr-4">
+        <button onClick={HandleLoginClose}>
+          <X />
+        </button>
+      </div>
       {!session ? (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col pt-4">
@@ -62,21 +72,30 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
             ></input>
           </div>
 
-          <button type="submit" className="w-full">
-            <div
-              className="text-center mt-8           
+          <div className="text-center">
+            <button type="submit" className="w-1/3">
+              <div
+                className="
+                rounded-lg
+                text-center 
+                mt-8           
               hover:bg-green-200
           hover:text-green-500 
           bg-green-500 
           text-green-100"
-            >
-              Login
-            </div>
-          </button>
+              >
+                Login
+              </div>
+            </button>
+          </div>
 
           <div className="text-xs pt-4">
             Don&apos;t have have an account?{" "}
-            <button type="button" onClick={HandleSignUp}>
+            <button
+              type="button"
+              onClick={HandleSignUp}
+              className="font-semibold"
+            >
               Sign up!
             </button>
           </div>
