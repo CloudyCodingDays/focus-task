@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import UserProvider from "@/providers/UserProvider";
 import SupaBaseProvider from "@/providers/SupabaseProvider";
 import TaskListContextProvider from "@/providers/TaskListContextProvider";
+import { Toaster } from "react-hot-toast";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -31,6 +32,7 @@ export default function RootLayout({
             </TaskListContextProvider>
           </UserProvider>
         </SupaBaseProvider>
+        <Toaster />
       </body>
     </html>
   );

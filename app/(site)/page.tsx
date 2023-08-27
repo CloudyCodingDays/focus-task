@@ -23,13 +23,9 @@ export default function Home() {
 
   return (
     <div>
-      <div className="md:flex md:flex-row md:justify-center">
-        <div>
-          <TimeDateDisplay />
-          <InitialTaskDisplay />
-        </div>
-        <div>{/*<CatPanel /> turn off api call while testing */}</div>
-      </div>
+      <TimeDateDisplay />
+      <InitialTaskDisplay />
+      <div>{/*<CatPanel /> turn off api call while testing */}</div>
     </div>
   );
 }

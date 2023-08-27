@@ -7,7 +7,9 @@ import ActiveTaskDisplay from "./ActiveTaskDisplay";
 import NoActiveTaskDisplay from "./NoActiveTaskDisplay";
 import useTaskListContext from "@/hooks/useTaskListContext";
 import GetTaskCountForUser from "@/components/task_queries/GetTaskCountForUser";
+import toast from "react-hot-toast";
 import { User } from "@supabase/supabase-js";
+import { useEffect } from "react";
 
 interface CurrentTaskDisplayProps {
   user: User | null;
@@ -15,6 +17,22 @@ interface CurrentTaskDisplayProps {
 
 const CurrentTaskDisplay: React.FC<CurrentTaskDisplayProps> = ({ user }) => {
   const queryClient = useQueryClient();
+  const { showToast, setShowToast, taskCompleted, setTaskCompleted } =
+    useTaskListContext();
+
+  useEffect(() => {
+    if (showToast && setTaskCompleted !== undefined) {
+      if (!taskCompleted) {
+        toast("Task has been unassigned!");
+        setTaskCompleted(false);
+      } else {
+        toast.success("Task Complete! Congrats!");
+        setTaskCompleted(false);
+      }
+
+      if (setShowToast) setShowToast(false);
+    }
+  }, [showToast, setShowToast, taskCompleted, setTaskCompleted]);
 
   const getTasks = async () => {
     if (user !== null) {

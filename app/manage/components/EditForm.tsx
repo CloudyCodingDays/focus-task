@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import { useQueryClient } from "react-query";
 import { FormSubmit } from "./HandleSubmitCRUD";
+import useTaskListContext from "@/hooks/useTaskListContext";
+import { useUserInfo } from "@/hooks/useUserInfo";
 
 interface EditFormProps {
   task: Task;
@@ -14,12 +16,15 @@ interface EditFormProps {
 
 const EditForm: React.FC<EditFormProps> = ({ task, onBack }) => {
   const router = useRouter();
+  const { user } = useUserInfo();
   const queryClient = useQueryClient();
+  const { showToast, setShowToast } = useTaskListContext();
 
   const HandleSubmit: React.FormEventHandler<HTMLFormElement> = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    await FormSubmit(e, "edit");
+    const isSuccess = await FormSubmit(e, "edit", user?.id);
+    if (isSuccess && setShowToast !== undefined) setShowToast(true);
 
     queryClient.resetQueries("Tasks");
 

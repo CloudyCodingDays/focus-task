@@ -4,10 +4,10 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import { Calendar } from "@/components/ui/calendar";
 
-const TaskList = () => {
+const ManageTaskList = () => {
   const [debouncedValue, setDebouncedValue] = useState("");
 
-  const TaskItemDisplay = dynamic(() => import("./TaskItemDisplay"), {
+  const TaskItemDisplay = dynamic(() => import("./ManageTaskItemDisplay"), {
     loading: () => <p>Loading..</p>,
   });
 
@@ -15,11 +15,11 @@ const TaskList = () => {
     <div>
       <SearchForm setDebouncedValue={setDebouncedValue} />
 
-      <div className="mx-auto pb-4 mt-2 bg-gray-100 lg:w-[1000px]">
+      <div className="mx-auto pb-4 mt-2 lg:w-[1000px]">
         <TaskItemDisplay debouncedValue={debouncedValue} />
       </div>
     </div>
   );
 };
 
-export default TaskList;
+export default ManageTaskList;

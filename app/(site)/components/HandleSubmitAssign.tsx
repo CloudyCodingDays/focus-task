@@ -1,4 +1,5 @@
 import AssignTaskQuery from "@/components/CRUD_queries/AssignTaskQuery";
+import CompleteRecurringTaskQuery from "@/components/CRUD_queries/CompleteRecurringTaskQuery";
 import CompleteTaskQuery from "@/components/CRUD_queries/CompleteTaskQuery";
 import UnassignTaskQuery from "@/components/CRUD_queries/UnassignTaskQuery";
 
@@ -15,10 +16,14 @@ export const AssignFormSubmit = async (
   const taskData = JSON.parse(taskJSON);
 
   if (submitType.trim() === "assign" && userId) {
-    await AssignTaskQuery(taskData.id, userId);
+    return await AssignTaskQuery(taskData.id, userId);
   } else if (submitType.trim() === "unassign" && userId) {
-    await UnassignTaskQuery(userId);
+    return await UnassignTaskQuery(taskData.id, userId);
   } else if (submitType.trim() === "complete" && userId) {
-    await CompleteTaskQuery(taskData, userId);
+    if (taskData.is_recurring) {
+      return await CompleteRecurringTaskQuery(taskData, userId);
+    } else {
+      return await CompleteTaskQuery(taskData, userId);
+    }
   }
 };

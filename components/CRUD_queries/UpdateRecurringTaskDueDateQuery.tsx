@@ -1,0 +1,26 @@
+import supabaseClient from "@/lib/supabaseClient";
+import { Task } from "@/types/Task";
+import { CalculateNextDueDate } from "../task_functions/CalculateNextDueDate";
+import UnassignTaskQuery from "./UnassignTaskQuery";
+import InsertCompletedRecurringTaskQuery from "./InsertCompletedRecurringTaskQuery";
+
+const UpdateRecurringTaskDueDateQuery = async (
+  taskData: Task,
+  userId: string,
+  newDueDate: string
+) => {
+  //Update Due date to new due date based on recurring type
+  const { status, error } = await supabaseClient
+    .from("tasks")
+    .update({ due_date: newDueDate, updated_at: new Date() })
+    .eq("created_by", userId)
+    .eq("id", taskData.id);
+
+  if (error) throw new Error(error.message);
+
+  if (status === 204) return true;
+
+  return false;
+};
+
+export default UpdateRecurringTaskDueDateQuery;

@@ -2,7 +2,7 @@ import supabaseClient from "@/lib/supabaseClient";
 import { Task } from "@/types/Task";
 
 const AddTaskQuery = async (taskData: Task, userId: string) => {
-  const { error: supabaseError } = await supabaseClient.from("tasks").insert({
+  const { status, error } = await supabaseClient.from("tasks").insert({
     name: taskData.name,
     description: taskData.description,
     is_recurring: taskData.is_recurring,
@@ -15,9 +15,11 @@ const AddTaskQuery = async (taskData: Task, userId: string) => {
     image_path: taskData.image_path,
   });
 
-  if (supabaseError) {
-    throw new Error(supabaseError.message);
-  }
+  if (error) throw new Error(error.message);
+
+  if (status === 201) return true;
+
+  return false;
 };
 
 export default AddTaskQuery;

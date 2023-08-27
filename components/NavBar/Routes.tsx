@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { Dispatch, SetStateAction, useMemo } from "react";
 
 interface RoutesProp {
-  onRoute: Dispatch<SetStateAction<boolean>>;
+  onRoute?: Dispatch<SetStateAction<boolean>>;
 }
 const Routes: React.FC<RoutesProp> = ({ onRoute }) => {
   const pathname = usePathname();
@@ -33,32 +33,29 @@ const Routes: React.FC<RoutesProp> = ({ onRoute }) => {
     [pathname]
   );
 
+  const NavMenuStyle =
+    "hover:bg-green-100 hover:text-text-gray-900 flex flex-col text-gray-700 py-4 px-4 w-[10em]";
+
   return (
     <div className="flex flex-col justify-start items-center">
-      <div className="text-2xl text-green-500">Focus Task</div>
-      <div className="mt-12 flex flex-col w-full">
+      {onRoute !== undefined ? (
+        <div className="text-2xl text-green-500">Focus Task</div>
+      ) : (
+        <div></div>
+      )}
+      <div className="flex flex-col w-full">
         {routes.map((item, index) => (
           <Link
             key={item.label}
             href={item.href}
             onClick={() => {
-              onRoute(false);
+              if (onRoute !== undefined) onRoute(false);
             }}
           >
             <div
-              className="
-          hover:bg-green-600
-          hover:text-white
-          first:border-b-2 
-          first:border-t-2
-          last:border-t-2
-          last:border-b-2 
-          flex 
-          flex-col 
-          text-green-500
-          text-center 
-          py-8 
-          w-full"
+              className={
+                item.active ? NavMenuStyle + " bg-green-100" : NavMenuStyle
+              }
             >
               {item.label}
             </div>

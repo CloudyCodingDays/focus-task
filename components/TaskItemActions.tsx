@@ -6,82 +6,45 @@ import { Task } from "@/types/Task";
 import { Eye, FileEdit, Trash2 } from "lucide-react";
 import { useState } from "react";
 import TaskItemDetailsLayout from "./TaskItemDetailsLayout";
-import TaskItemLayout from "./TaskItemLayout";
+import ManageTaskItemLayout from "../app/manage/components/ManageTaskItemLayout";
 
 interface TaskItemActionsProps {
-  id: string;
   task: Task;
-  showTaskActions: boolean;
 }
-const TaskItemActions: React.FC<TaskItemActionsProps> = ({
-  id,
-  task,
-  showTaskActions,
-}) => {
+const TaskItemActions: React.FC<TaskItemActionsProps> = ({ task }) => {
   const [deleteOpen, setDeleteOpen] = useState<boolean>(false);
   const [editOpen, setEditOpen] = useState<boolean>(false);
   const [viewOpen, setViewOpen] = useState<boolean>(false);
-  const [assignOpen, setAssignOpen] = useState<boolean>(false);
+  const [TaskOpen, setTaskOpen] = useState<boolean>(false);
 
   return (
     <div>
-      {showTaskActions ? (
-        <div className="grid grid-cols-3 border-t-2">
-          <Dialog open={deleteOpen} onOpenChange={setDeleteOpen}>
-            <DialogTrigger asChild>
-              <button className="hover:bg-red-100 py-2 border-r-2">
-                <Trash2 size={16} className="w-full mx-auto" />
-              </button>
-            </DialogTrigger>
-            <DialogContent className="left-[50%] lg:w-[760px] h-fit">
-              <div className="py-12 px-2">
-                <TaskItemDetailsLayout task={task} isEdit={false} />
-                <DeleteForm id={id} onBack={setDeleteOpen} />
-              </div>
-            </DialogContent>
-          </Dialog>
-
-          <Dialog open={viewOpen} onOpenChange={setViewOpen}>
-            <DialogTrigger asChild>
-              <button className="hover:bg-green-100 py-2 border-r-2">
-                <Eye size={16} className="w-full mx-auto" />
-              </button>
-            </DialogTrigger>
-            <DialogContent className="left-[50%] lg:w-[760px] h-fit">
-              <div className="py-12 px-2">
-                <TaskItemDetailsLayout task={task} isEdit={false} />
-              </div>
-            </DialogContent>
-          </Dialog>
-
-          <Dialog open={editOpen} onOpenChange={setEditOpen}>
-            <DialogTrigger asChild>
-              <button className="hover:bg-green-100 py-2">
-                <FileEdit size={16} className="w-full mx-auto" />
-              </button>
-            </DialogTrigger>
-            <DialogContent className="left-[50%] lg:w-[760px] h-fit">
-              <div className="py-12 px-2">
-                <EditForm task={task} onBack={setEditOpen} />
-              </div>
-            </DialogContent>
-          </Dialog>
-        </div>
-      ) : (
-        <Dialog open={assignOpen} onOpenChange={setAssignOpen}>
+      <div>
+        <Dialog open={TaskOpen} onOpenChange={setTaskOpen}>
           <DialogTrigger asChild>
             <button type="button" className="w-full">
-              <TaskItemLayout task={task} />
+              <ManageTaskItemLayout task={task} />
             </button>
           </DialogTrigger>
           <DialogContent className="left-[50%] lg:w-[1300px]">
             <div className="py-12 px-2">
               <TaskItemDetailsLayout task={task} isEdit={false} />
-              <AssignForm task={task} onBack={setAssignOpen} />
+              <div className="flex flex-row justify-center">
+                <button className="hover:bg-red-100">
+                  <div className="flex flex-row w-fit mx-4 px-2 items-baseline">
+                    <Trash2 size={16} /> Delete
+                  </div>
+                </button>
+                <button className="hover:bg-green-100">
+                  <div className="flex flex-row w-fit mx-4 px-2">
+                    <FileEdit size={16} /> Edit
+                  </div>
+                </button>
+              </div>
             </div>
           </DialogContent>
         </Dialog>
-      )}
+      </div>
     </div>
   );
 };

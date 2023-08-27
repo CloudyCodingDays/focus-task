@@ -1,7 +1,7 @@
 import supabaseClient from "@/lib/supabaseClient";
 
 const AssignTaskQuery = async (taskId: string, userId: string) => {
-  const { error: supabaseError } = await supabaseClient
+  const { status, error } = await supabaseClient
     .from("user_current_task")
     .insert({
       user_id: userId,
@@ -11,9 +11,11 @@ const AssignTaskQuery = async (taskId: string, userId: string) => {
       action_at: new Date(),
     });
 
-  if (supabaseError) {
-    throw new Error(supabaseError.message);
-  }
+  if (error) throw new Error(error.message);
+
+  if (status === 201) return true;
+
+  return false;
 };
 
 export default AssignTaskQuery;

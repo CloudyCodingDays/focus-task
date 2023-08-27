@@ -3,13 +3,16 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import { Calendar } from "@/components/ui/calendar";
 
-const TaskList = () => {
+const AssignTaskList = () => {
   const [debouncedValue, setDebouncedValue] = useState("");
   const [date, setDate] = useState<Date | undefined>(new Date());
 
-  const TaskItemDisplay = dynamic(() => import("./TaskItemDisplay"), {
-    loading: () => <p>Loading..</p>,
-  });
+  const AssignTaskItemDisplay = dynamic(
+    () => import("./AssignTaskItemDisplay"),
+    {
+      loading: () => <p>Loading..</p>,
+    }
+  );
 
   return (
     <div>
@@ -22,11 +25,11 @@ const TaskList = () => {
         />
       </div>
 
-      <div className="mx-auto pb-4 mt-2 bg-gray-100 lg:w-[1000px]">
-        <TaskItemDisplay currentDate={date} />
+      <div className="mx-auto pb-4 mt-2 rounded-lg lg:w-[1000px]">
+        <AssignTaskItemDisplay currentDate={date} />
       </div>
     </div>
   );
 };
 
-export default TaskList;
+export default AssignTaskList;

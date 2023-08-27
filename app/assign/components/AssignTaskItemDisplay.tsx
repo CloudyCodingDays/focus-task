@@ -1,7 +1,7 @@
 import AddTaskButton from "@/components/AddTaskButton";
 import { DateFormatDisplay } from "@/components/DateFormatDisplay";
 import TaskItemActions from "@/components/TaskItemActions";
-import TaskItemLayout from "@/components/TaskItemLayout";
+import TaskItemLayout from "@/app/manage/components/ManageTaskItemLayout";
 import FilterTaskListItems from "@/components/task_functions/FilterTaskListItems";
 import { GetInitialTaskListItems } from "@/components/task_functions/GetInitialTaskListItems";
 import { ReactQueryCache } from "@/components/task_functions/ReactQueryCache";
@@ -10,18 +10,23 @@ import { Separator } from "@/components/ui/separator";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { Task } from "@/types/Task";
 import { useQuery, useQueryClient } from "react-query";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { useState } from "react";
+import TaskItemDetailsLayout from "@/components/TaskItemDetailsLayout";
+import AssignForm from "./AssignForm";
+import AssignItemTaskDetails from "./AssignTaskItemLayout";
+import AssignTaskItemLayout from "./AssignTaskItemLayout";
 
-const TaskItemDisplay = ({
+const AssignTaskItemDisplay = ({
   currentDate,
 }: {
   currentDate: Date | undefined;
 }) => {
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
-
   const validatedDate = currentDate ? currentDate : new Date();
-
   const taskDueDateFormatted = DateFormatDisplay(validatedDate);
+  const [assignOpen, setAssignOpen] = useState<boolean>(false);
 
   const queryKeys = [
     "Tasks",
@@ -74,17 +79,25 @@ const TaskItemDisplay = ({
           <div key={item.id}>
             <div
               className="
-                bg-white
+                bg-gray-100
                 rounded-lg
-                mb-4
+                mb-8
                 drop-shadow-lg"
             >
               <div className="w-full">
-                <TaskItemActions
-                  id={item.id}
-                  task={item}
-                  showTaskActions={false}
-                />
+                <Dialog open={assignOpen} onOpenChange={setAssignOpen}>
+                  <DialogTrigger asChild>
+                    <button type="button" className="w-full">
+                      <AssignTaskItemLayout task={item} />
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="left-[50%] lg:w-[1300px]">
+                    <div className="py-12 px-2">
+                      <TaskItemDetailsLayout task={item} isEdit={false} />
+                      <AssignForm task={item} onBack={setAssignOpen} />
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           </div>
@@ -93,4 +106,4 @@ const TaskItemDisplay = ({
     </div>
   );
 };
-export default TaskItemDisplay;
+export default AssignTaskItemDisplay;

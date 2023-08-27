@@ -8,16 +8,18 @@ const NavBarMenu = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <button>
-          <Menu />
-        </button>
-      </DialogTrigger>
-      <DialogContent className="h-full grid md:w-1/4 md:left-[13%] pt-4">
-        <Routes onRoute={setOpen} />
-      </DialogContent>
-    </Dialog>
+    <div className="md:hidden">
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger asChild>
+          <button>
+            <Menu />
+          </button>
+        </DialogTrigger>
+        <DialogContent className="h-full grid md:w-1/4 md:left-[12%] pt-4">
+          <Routes onRoute={setOpen} />
+        </DialogContent>
+      </Dialog>
+    </div>
   );
 };
 

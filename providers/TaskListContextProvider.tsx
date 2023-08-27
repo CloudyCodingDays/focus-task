@@ -1,11 +1,12 @@
 "use client";
 import { Dispatch, SetStateAction, createContext, useState } from "react";
+import { BooleanLiteral } from "typescript";
 
 interface TaskListContextType {
-  taskCount?: number;
-  setTaskCount?: Dispatch<SetStateAction<number>>;
-  updateTaskCount?: boolean;
-  setUpdateTaskCount?: Dispatch<SetStateAction<boolean>>;
+  showToast?: boolean;
+  setShowToast?: Dispatch<SetStateAction<boolean>>;
+  taskCompleted?: boolean;
+  setTaskCompleted?: Dispatch<SetStateAction<boolean>>;
 }
 
 export const TaskListContext = createContext<TaskListContextType>(
@@ -18,12 +19,12 @@ interface TaskListContextProviderProps {
 const TaskListContextProvider: React.FC<TaskListContextProviderProps> = ({
   children,
 }) => {
-  const [taskCount, setTaskCount] = useState<number>(0);
-  const [updateTaskCount, setUpdateTaskCount] = useState<boolean>(true);
+  const [showToast, setShowToast] = useState<boolean>(false);
+  const [taskCompleted, setTaskCompleted] = useState<boolean>(false);
 
   return (
     <TaskListContext.Provider
-      value={{ taskCount, setTaskCount, updateTaskCount, setUpdateTaskCount }}
+      value={{ showToast, setShowToast, taskCompleted, setTaskCompleted }}
     >
       {children}
     </TaskListContext.Provider>

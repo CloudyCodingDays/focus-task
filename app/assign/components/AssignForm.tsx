@@ -1,6 +1,7 @@
 "use client";
 import { AssignFormSubmit } from "@/app/(site)/components/HandleSubmitAssign";
 import FormSubmitButtons from "@/components/FormSubmitButtons";
+import useTaskListContext from "@/hooks/useTaskListContext";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { Task } from "@/types/Task";
 import { useRouter } from "next/navigation";
@@ -15,12 +16,15 @@ interface AssignFormProps {
 const AssignForm: React.FC<AssignFormProps> = ({ task, onBack }) => {
   const router = useRouter();
   const { user } = useUserInfo();
+  const { showToast, setShowToast } = useTaskListContext();
   const queryClient = useQueryClient();
 
   const HandleSubmit: React.FormEventHandler<HTMLFormElement> = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    await AssignFormSubmit(e, "assign", user?.id);
+    const isSuccess = await AssignFormSubmit(e, "assign", user?.id);
+    if (isSuccess && setShowToast !== undefined) setShowToast(true);
+
     queryClient.resetQueries("ActiveTask");
     router.push("/");
   };

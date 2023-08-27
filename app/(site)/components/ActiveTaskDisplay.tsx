@@ -1,9 +1,10 @@
-import TaskItemLayout from "@/components/TaskItemLayout";
+import TaskItemLayout from "@/app/manage/components/ManageTaskItemLayout";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { Task } from "@/types/Task";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "react-query";
 import { AssignFormSubmit } from "./HandleSubmitAssign";
+import useTaskListContext from "@/hooks/useTaskListContext";
 
 interface ActiveTaskDisplayProps {
   task: Task;
@@ -12,13 +13,22 @@ interface ActiveTaskDisplayProps {
 const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
   const router = useRouter();
   const { user } = useUserInfo();
+  const { showToast, setShowToast, taskCompleted, setTaskCompleted } =
+    useTaskListContext();
   const queryClient = useQueryClient();
 
   const HandleUnassign: React.FormEventHandler<HTMLFormElement> = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    await AssignFormSubmit(e, "unassign", user?.id);
-
+    const isSuccess = await AssignFormSubmit(e, "unassign", user?.id);
+    if (
+      isSuccess &&
+      setShowToast !== undefined &&
+      setTaskCompleted !== undefined
+    ) {
+      setShowToast(true);
+      setTaskCompleted(false);
+    }
     queryClient.resetQueries("ActiveTask");
 
     router.refresh();
@@ -27,7 +37,15 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
   const HandleComplete: React.FormEventHandler<HTMLFormElement> = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    await AssignFormSubmit(e, "complete", user?.id);
+    const isSuccess = await AssignFormSubmit(e, "complete", user?.id);
+    if (
+      isSuccess &&
+      setShowToast !== undefined &&
+      setTaskCompleted !== undefined
+    ) {
+      setShowToast(true);
+      setTaskCompleted(true);
+    }
 
     queryClient.resetQueries("ActiveTask");
 

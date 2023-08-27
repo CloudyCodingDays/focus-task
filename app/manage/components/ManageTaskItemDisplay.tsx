@@ -1,5 +1,5 @@
 import TaskItemActions from "@/components/TaskItemActions";
-import TaskItemLayout from "@/components/TaskItemLayout";
+import TaskItemLayout from "@/app/manage/components/ManageTaskItemLayout";
 import FilterTaskListItems from "@/components/task_functions/FilterTaskListItems";
 import { GetInitialTaskListItems } from "@/components/task_functions/GetInitialTaskListItems";
 import { ReactQueryCache } from "@/components/task_functions/ReactQueryCache";
@@ -9,7 +9,11 @@ import { Task } from "@/types/Task";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useQuery, useQueryClient } from "react-query";
 
-const TaskItemDisplay = ({ debouncedValue }: { debouncedValue: string }) => {
+const ManageTaskItemDisplay = ({
+  debouncedValue,
+}: {
+  debouncedValue: string;
+}) => {
   const { session } = useSessionContext();
   const queryClient = useQueryClient();
 
@@ -52,14 +56,13 @@ const TaskItemDisplay = ({ debouncedValue }: { debouncedValue: string }) => {
           <div key={item.id}>
             <div
               className="
-                bg-white
+                bg-gray-100
                 rounded-lg
-                mb-4
+                mb-8
                 drop-shadow-lg"
             >
               <div className="w-full">
-                <TaskItemLayout task={item} />
-                <TaskItemActions id={item.id} task={item} showTaskActions />
+                <TaskItemActions task={item} />
               </div>
             </div>
           </div>
@@ -68,4 +71,4 @@ const TaskItemDisplay = ({ debouncedValue }: { debouncedValue: string }) => {
     </div>
   );
 };
-export default TaskItemDisplay;
+export default ManageTaskItemDisplay;
