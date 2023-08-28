@@ -14,8 +14,8 @@ export default function Home() {
       ),
     }
   );
-  const InitialTaskDisplay = dynamic(
-    () => import("./components/InitialTaskDisplay"),
+  const InitialPageDisplay = dynamic(
+    () => import("./components/InitialPageDisplay"),
     {
       loading: () => <p>Loading...</p>,
     }
@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <div>
       <TimeDateDisplay />
-      <InitialTaskDisplay />
+      <InitialPageDisplay />
       <div>{/*<CatPanel /> turn off api call while testing */}</div>
     </div>
   );

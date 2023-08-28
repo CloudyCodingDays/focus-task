@@ -6,8 +6,9 @@ import { useQuery, useQueryClient } from "react-query";
 import CurrentTaskDisplay from "./CurrentTaskDisplay";
 import NoTaskDisplay from "./NoTaskDisplay";
 import { useState } from "react";
+import DetermineTaskPage from "./DetermineTaskPage";
 
-const InitialTaskDisplay = () => {
+const InitialPageDisplay = () => {
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
   const [delayLoad, setDelayLoad] = useState<boolean>(true);
@@ -34,22 +35,14 @@ const InitialTaskDisplay = () => {
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return "Error has occured : " + error.message;
-  if (isSuccess) {
-    activeTaskExists = data && data > 0 ? true : false;
-  }
+
   if (!data) return <div>Loading screen...</div>;
 
   return (
     <div>
-      {!data ? (
-        <div>Loading screen...</div>
-      ) : data > 0 ? (
-        <CurrentTaskDisplay user={user} />
-      ) : (
-        <NoTaskDisplay user={user} />
-      )}
+      <DetermineTaskPage user={user} />
     </div>
   );
 };
 
-export default InitialTaskDisplay;
+export default InitialPageDisplay;
