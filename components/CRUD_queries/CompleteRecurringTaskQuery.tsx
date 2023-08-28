@@ -6,8 +6,11 @@ import InsertCompletedRecurringTaskQuery from "./InsertCompletedRecurringTaskQue
 import UpdateRecurringTaskDueDateQuery from "./UpdateRecurringTaskDueDateQuery";
 
 const CompleteRecurringTaskQuery = async (taskData: Task, userId: string) => {
-  const newDueDate = CalculateNextDueDate(taskData.recurring_type);
-
+  const newDueDate = CalculateNextDueDate(
+    taskData.recurring_type,
+    taskData.due_date
+  );
+  console.log(newDueDate);
   await UpdateRecurringTaskDueDateQuery(taskData, userId, newDueDate);
 
   await InsertCompletedRecurringTaskQuery(taskData, userId);

@@ -28,7 +28,7 @@ const DeleteForm: React.FC<DeleteFormProps> = ({ task, onBack }) => {
       error: "Unable to Delete Task. Please try again.",
     });
 
-    queryClient.resetQueries("Tasks");
+    queryClient.resetQueries("ManageTasks");
 
     onBack(false);
     router.refresh();

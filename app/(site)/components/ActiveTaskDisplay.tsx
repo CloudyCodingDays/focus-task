@@ -1,10 +1,10 @@
-import TaskItemLayout from "@/app/manage/components/ManageTaskItemLayout";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { Task } from "@/types/Task";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "react-query";
 import { AssignFormSubmit } from "./HandleSubmitAssign";
 import toast from "react-hot-toast";
+import ActiveTaskDetails from "./ActiveTaskDetails";
 interface ActiveTaskDisplayProps {
   task: Task;
 }
@@ -45,7 +45,7 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
   return (
     <div key={task.id} className="w-full flex flex-col items-center">
       <div className="w-[30em]  bg-gray-200 rounded-lg my-4 mx-4 drop-shadow-lg">
-        <TaskItemLayout task={task} />
+        <ActiveTaskDetails task={task} />
         <div className="flex justify-around">
           <form method="post" onSubmit={HandleUnassign}>
             <input

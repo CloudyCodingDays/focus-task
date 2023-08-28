@@ -16,7 +16,7 @@ const ManageTaskItemDisplay = ({
   const { session } = useSessionContext();
   const queryClient = useQueryClient();
 
-  const queryKeys = ["Tasks", debouncedValue, session ? session?.user?.id : ""];
+  const queryKeys = ["ManageTasks", debouncedValue, session ? session?.user?.id : ""];
 
   const getTasks = async () => {
     let taskList: Task[] = [] as Task[];

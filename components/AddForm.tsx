@@ -27,7 +27,7 @@ const AddForm: React.FC<AddFormProps> = ({ onBack }) => {
       error: "Unable to create Task. Please try again.",
     });
 
-    queryClient.resetQueries("Tasks");
+    queryClient.resetQueries("ManageTasks");
 
     onBack(false);
     router.refresh();

@@ -14,6 +14,7 @@ import TaskItemDetailsLayout from "@/components/TaskItemDetailsLayout";
 import AssignForm from "./AssignForm";
 import AssignItemTaskDetails from "./AssignTaskItemLayout";
 import AssignTaskItemLayout from "./AssignTaskItemLayout";
+import AssignTaskAction from "./AssignTaskAction";
 
 const AssignTaskItemDisplay = ({
   currentDate,
@@ -24,10 +25,9 @@ const AssignTaskItemDisplay = ({
   const queryClient = useQueryClient();
   const validatedDate = currentDate ? currentDate : new Date();
   const taskDueDateFormatted = DateFormatDisplay(validatedDate);
-  const [assignOpen, setAssignOpen] = useState<boolean>(false);
 
   const queryKeys = [
-    "Tasks",
+    "ActiveTask",
     user ? user.id : "",
     JSON.stringify(validatedDate),
   ];
@@ -75,29 +75,7 @@ const AssignTaskItemDisplay = ({
       <div className="px-2">
         {query.data?.map((item) => (
           <div key={item.id}>
-            <div
-              className="
-                bg-gray-100
-                rounded-lg
-                mb-8
-                drop-shadow-lg"
-            >
-              <div className="w-full">
-                <Dialog open={assignOpen} onOpenChange={setAssignOpen}>
-                  <DialogTrigger asChild>
-                    <button type="button" className="w-full">
-                      <AssignTaskItemLayout task={item} />
-                    </button>
-                  </DialogTrigger>
-                  <DialogContent className="left-[50%] lg:w-[1300px]">
-                    <div className="py-12 px-2">
-                      <TaskItemDetailsLayout task={item} isEdit={false} />
-                      <AssignForm task={item} onBack={setAssignOpen} />
-                    </div>
-                  </DialogContent>
-                </Dialog>
-              </div>
-            </div>
+            <AssignTaskAction task={item} />
           </div>
         ))}
       </div>
