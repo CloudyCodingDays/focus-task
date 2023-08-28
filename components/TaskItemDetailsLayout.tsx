@@ -63,7 +63,7 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
         <div>Description</div>
         <textarea
           name="description"
-          className="border-2 mb-4 h-[10em] w-full lg:w-[30em] "
+          className="border-2 mb-4 h-[10em] w-full lg:w-[30em] resize-none"
           placeholder={isEdit ? "Description" : ""}
           defaultValue={task !== undefined ? task.description : ""}
           disabled={!isEdit}

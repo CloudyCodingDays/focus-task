@@ -78,11 +78,22 @@ const Register = () => {
             ></input>
           </div>
 
-          <button type="submit" className="w-full">
-            <div className="hover:bg-green-400 text-center mt-8 bg-green-200 text-green-600 drop-shadow-lg">
-              Register
-            </div>
-          </button>
+          <div className="text-center">
+            <button type="submit" className="w-1/3 ">
+              <div
+                className="              
+            hover:bg-green-200
+          hover:text-green-500 
+          bg-green-500 
+          rounded-lg
+          text-green-100
+           mt-8  
+           drop-shadow-lg"
+              >
+                Register
+              </div>
+            </button>
+          </div>
         </div>
       </form>
     </div>
