@@ -23,8 +23,8 @@ const TimeDateDisplay = () => {
 
   return (
     <div>
-      <div className="w-full flex flex-col items-center">
-        <div className="w-[30em] bg-gray-200 rounded-lg mt-4 mx-4 text-center drop-shadow-lg">
+      <div className="flex flex-col items-center">
+        <div className="lg:w-[50em] w-full bg-gray-200 rounded-lg mt-4 mx-4 text-center drop-shadow-lg">
           <div>
             <div className="text-3xl text-gray-500 pt-4">
               {format(currentDate, "h")}:{format(currentDate, "mm")}{" "}

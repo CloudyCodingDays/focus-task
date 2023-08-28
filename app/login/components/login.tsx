@@ -45,12 +45,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
   };
 
   return (
-    <div className="bg-gray-100 py-8 px-2 md:mx-auto md:w-[30em]">
-      <div className="flex flex-row justify-end mr-4">
-        <button onClick={HandleLoginClose}>
-          <X />
-        </button>
-      </div>
+    <div className="bg-gray-100 py-2 px-2">
       {!session ? (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col pt-4">
@@ -102,19 +97,21 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
         </form>
       ) : (
         <div>
-          Logged in as {session?.user?.email}
-          <button type="submit" className="w-full" onClick={HandleLogOut}>
-            <div
-              className="text-center 
+          <div className="text-sm">Logged in as {session?.user?.email}</div>
+          <div className="text-center ">
+            <button type="submit" className="w-1/3" onClick={HandleLogOut}>
+              <div
+                className="text-center 
               mt-8           
               hover:bg-green-200
           hover:text-green-500 
           bg-green-500 
           text-green-100"
-            >
-              Logout
-            </div>
-          </button>
+              >
+                Logout
+              </div>
+            </button>
+          </div>
         </div>
       )}
     </div>

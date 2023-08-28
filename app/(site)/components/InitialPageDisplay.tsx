@@ -36,11 +36,12 @@ const InitialPageDisplay = () => {
   if (isLoading) return <div>Loading...</div>;
   if (isError) return "Error has occured : " + error.message;
 
-  if (!data) return <div>Loading screen...</div>;
-
   return (
     <div>
-      <DetermineTaskPage user={user} />
+      <DetermineTaskPage
+        activeTaskExists={data && data > 0 ? true : false}
+        user={user}
+      />
     </div>
   );
 };
