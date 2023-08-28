@@ -21,7 +21,7 @@ const AssignTaskAction = ({ task }: { task: Task }) => {
               <AssignTaskItemLayout task={task} />
             </button>
           </DialogTrigger>
-          <DialogContent className="left-[50%] lg:w-[1300px]">
+          <DialogContent className="left-[50%]">
             <div className="py-12 px-2">
               <TaskItemDetailsLayout task={task} isEdit={false} />
               <AssignForm task={task} onBack={setAssignOpen} />

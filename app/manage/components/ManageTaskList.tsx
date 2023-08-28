@@ -15,10 +15,10 @@ const ManageTaskList = () => {
   );
 
   return (
-    <div>
+    <div className="lg:w-1/2 lg:mx-auto">
       <SearchForm setDebouncedValue={setDebouncedValue} />
 
-      <div className="mx-auto pb-4 mt-2 lg:w-[1000px]">
+      <div className="mx-auto pb-4 mt-2">
         <ManageTaskItemDisplay debouncedValue={debouncedValue} />
       </div>
     </div>

@@ -16,17 +16,11 @@ const AssignTaskList = () => {
 
   return (
     <div>
-      <div className="py-4 mt-2 w-fit mx-auto px-8">
-        <Calendar
-          mode="single"
-          selected={date}
-          required
-          onSelect={setDate}
-          className="rounded-md border-2"
-        />
+      <div className="py-2 flex flex-row justify-center">
+        <Calendar mode="single" selected={date} required onSelect={setDate} />
       </div>
 
-      <div className="mx-auto pb-4 mt-2 rounded-lg lg:w-[1000px]">
+      <div className="pb-4 rounded-lg md:w-1/2 mx-auto">
         <AssignTaskItemDisplay currentDate={date} />
       </div>
     </div>

@@ -20,8 +20,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ setDebouncedValue }) => {
       <div
         className="
           mt-4
-          mx-auto
-          lg:w-[1000px] 
+          mx-auto 
           drop-shadow-lg"
       >
         <div className="my-4">

@@ -23,19 +23,19 @@ const AssignTaskItemLayout: React.FC<TaskItemProps> = ({ task }) => {
     <div key={id} className="rounded-lg flex flex-row">
       <div className="flex flex-col py-2 w-full">
         <div className="flex flex-row justify-between">
-          <div className="pl-2">
+          <div>
             <div className="flex text-sm text-gray-700 font-semibold min-w-fit">
-              <div className="">
-                {name.length > 30 ? name.substring(0, 30) + "..." : name}
-              </div>
-
               {priority === "High" ? (
-                <div className="ml-2">
+                <div>
                   <AlertCircle size={20} color="red" />
                 </div>
               ) : (
                 <div></div>
               )}
+              <div className="pl-2">
+                {name.length > 30 ? name.substring(0, 30) + "..." : name}
+              </div>
+
               {task.is_recurring ? (
                 <div className="ml-2">
                   <Repeat size={20} />

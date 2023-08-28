@@ -19,7 +19,7 @@ const NavBar: React.FC<NavBarProps> = ({ children }) => {
         <div className="md:block hidden bg-gray-100">
           <Routes />
         </div>
-        <div className="mx-auto">{children}</div>
+        <div className="w-full">{children}</div>
       </div>
     </div>
   );
