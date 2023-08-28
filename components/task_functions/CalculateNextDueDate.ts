@@ -1,5 +1,12 @@
-export const CalculateNextDueDate = (recurringType: string, dueDate?: Date) => {
-  let newDueDate = dueDate !== undefined ? dueDate : new Date(Date.now());
+export const CalculateNextDueDate = (
+  recurringType: string,
+  dueDate?: string
+) => {
+  let newDueDate =
+    dueDate !== undefined ? new Date(dueDate) : new Date(Date.now());
+  console.log(newDueDate);
+  newDueDate.setDate(newDueDate.getDate() + 1); //Add one day to bring it back to current day after date conversion
+  console.log(newDueDate);
 
   if (recurringType.toLocaleLowerCase() === "monthly") {
     let expectedMonth = newDueDate.getMonth();

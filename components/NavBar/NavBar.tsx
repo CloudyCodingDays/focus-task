@@ -1,6 +1,7 @@
 import NavBarLogin from "./NavBarLogin";
 import NavBarLogo from "./NavBarLogo";
 import NavBarMenu from "./NavBarMenu";
+import Routes from "./Routes";
 
 interface NavBarProps {
   children: React.ReactNode;
@@ -8,13 +9,18 @@ interface NavBarProps {
 
 const NavBar: React.FC<NavBarProps> = ({ children }) => {
   return (
-    <div className="bg-white">
-      <div className="flex flex-row justify-between items-baseline px-2 pt-2 mx-auto w-11/12">
-        <NavBarLogo />
+    <div className="flex flex-col md:min-h-screen">
+      <div className="flex flex-row w-full justify-between items-center px-2 pt-2 mx-auto bg-green-500">
         <NavBarMenu />
+        <NavBarLogo />
         <NavBarLogin />
       </div>
-      <div>{children}</div>
+      <div className="flex flex-row md:flex-auto">
+        <div className="md:block hidden bg-gray-100">
+          <Routes />
+        </div>
+        <div className="w-full">{children}</div>
+      </div>
     </div>
   );
 };

@@ -1,49 +1,18 @@
 "use client";
-import { Separator } from "@/components/ui/separator";
-import format from "date-fns/format";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { Calendar } from "@/components/ui/calendar";
+
+import AddTaskButton from "@/components/AddTaskButton";
 
 const WelcomeDisplay = () => {
-  const [currentDate, setCurrentDate] = useState<Date>(new Date());
-  const router = useRouter();
-
-  const HandleLogin = () => {
-    router.push("/login");
-  };
-
-  useEffect(() => {
-    const timeTicker = setInterval(() => {
-      setCurrentDate(new Date());
-    }, 60000);
-
-    return () => clearInterval(timeTicker);
-  }, []);
-
   return (
-    <div>
-      <div className="w-full flex flex-col items-center">
-        <div className="w-[30em] bg-gray-200 rounded-lg mt-4 mx-4 text-center drop-shadow-lg">
-          <div>
-            <div className="text-3xl text-gray-500 pt-4">
-              {format(currentDate, "h")}:{format(currentDate, "mm")}{" "}
-              {format(currentDate, "aaa")}
-            </div>
-          </div>
-          <div className="mt-4 mb-2 mx-24">
-            <Separator className="bg-green-300  pt-0.25" />
-          </div>
-          <div className="text-md pb-4 font-extralight">
-            <div>
-              Today is{" "}
-              <span className="font-bold text-lg">
-                {format(currentDate, "EEEE")}
-              </span>
-            </div>
-            <div className="">{format(currentDate, "PPP")}</div>
-          </div>
-        </div>
+    <div className="w-[30em] bg-gray-200 rounded-lg mx-4 text-md mt-8 drop-shadow-lg py-8 text-center text-gray-500">
+      <div className="text-sm">
+        Welcome! You do not have any tasks added yet.
+      </div>
+      <div className="mt-4 text-sm">
+        Add tasks from the Manage Tasks page or use the button below:
+      </div>
+      <div className="w-fit mx-auto mt-4">
+        <AddTaskButton />
       </div>
     </div>
   );

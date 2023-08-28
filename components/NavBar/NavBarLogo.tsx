@@ -1,7 +1,7 @@
 const NavBarLogo = () => {
   return (
-    <div>
-      <div className="text-3xl text-green-500">Focus Task</div>
+    <div className="md:mr-auto">
+      <div className="text-1xl text-gray-800">Focus Task</div>
     </div>
   );
 };

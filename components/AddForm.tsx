@@ -6,6 +6,7 @@ import { Dispatch, SetStateAction } from "react";
 import { useQueryClient } from "react-query";
 import { FormSubmit } from "../app/manage/components/HandleSubmitCRUD";
 import FormSubmitButtons from "./FormSubmitButtons";
+import toast from "react-hot-toast";
 
 interface AddFormProps {
   onBack: Dispatch<SetStateAction<boolean>>;
@@ -20,9 +21,13 @@ const AddForm: React.FC<AddFormProps> = ({ onBack }) => {
   const HandleSubmit: React.FormEventHandler<HTMLFormElement> = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    await FormSubmit(e, "add", user?.id);
+    await toast.promise(FormSubmit(e, "add", user?.id), {
+      loading: "Creating Task...",
+      success: "Task Created!",
+      error: "Unable to create Task. Please try again.",
+    });
 
-    queryClient.resetQueries("Tasks");
+    queryClient.resetQueries("ManageTasks");
 
     onBack(false);
     router.refresh();

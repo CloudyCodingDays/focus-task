@@ -1,17 +1,11 @@
-"use client";
-import GetTaskDetailsByUserId from "@/components/task_queries/GetActiveTaskByUserId";
-import { useUserInfo } from "@/hooks/useUserInfo";
-import { Task } from "@/types/Task";
 import { useQuery, useQueryClient } from "react-query";
 import ActiveTaskDisplay from "./ActiveTaskDisplay";
-import NoActiveTaskDisplay from "./NoActiveTaskDisplay";
 import { User } from "@supabase/supabase-js";
+import GetActiveTaskByUserId from "@/components/task_queries/GetActiveTaskByUserId";
+import { Task } from "@/types/Task";
+import NoActiveTaskDisplay from "./NoActiveTaskDisplay";
 
-interface CurrentTaskDisplayProps {
-  user: User | null;
-}
-
-const CurrentTaskDisplay: React.FC<CurrentTaskDisplayProps> = ({ user }) => {
+const DetermineTaskPage = ({ user }: { user: User | null }) => {
   const queryClient = useQueryClient();
 
   const getTasks = async () => {
@@ -19,7 +13,7 @@ const CurrentTaskDisplay: React.FC<CurrentTaskDisplayProps> = ({ user }) => {
       if (queryClient.getQueryData(["ActiveTask", user.id])) {
         return queryClient.getQueryData(["ActiveTask", user.id]) as Task[];
       } else {
-        return await GetTaskDetailsByUserId(user.id);
+        return await GetActiveTaskByUserId(user.id);
       }
     }
     return [];
@@ -30,7 +24,7 @@ const CurrentTaskDisplay: React.FC<CurrentTaskDisplayProps> = ({ user }) => {
     queryFn: getTasks,
   });
 
-  if (isLoading) return <NoActiveTaskDisplay />;
+  if (isLoading) return <div>Loading...</div>;
   if (isError) return "Error has occured : " + error.message;
 
   return (
@@ -47,5 +41,4 @@ const CurrentTaskDisplay: React.FC<CurrentTaskDisplayProps> = ({ user }) => {
     </div>
   );
 };
-
-export default CurrentTaskDisplay;
+export default DetermineTaskPage;

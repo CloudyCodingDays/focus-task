@@ -9,7 +9,7 @@ const NavBarLogin = () => {
   const [open, setOpen] = useState(false);
   const { user } = useUserInfo();
   return (
-    <div className="py-2">
+    <div className="py-2 md:ml-auto">
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <div className="flex flex-row items-baseline">

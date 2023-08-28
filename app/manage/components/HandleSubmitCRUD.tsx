@@ -3,6 +3,7 @@ import DeleteTaskQuery from "@/components/CRUD_queries/DeleteTaskQuery";
 import EditTaskQuery from "@/components/CRUD_queries/EditTaskQuery";
 import { Task } from "@/types/Task";
 import ExtractFormData from "./ExtractFormData";
+import GetTaskDetailsByTaskId from "@/components/task_queries/GetTaskDetailsByTaskId";
 
 export const FormSubmit = async (
   e: React.FormEvent<HTMLFormElement>,
@@ -18,9 +19,9 @@ export const FormSubmit = async (
 
   if (submitType.trim() == "add" && userId) {
     await AddTaskQuery(taskData, userId);
-  } else if (submitType.trim() == "edit") {
-    await EditTaskQuery(taskData);
-  } else if (submitType.trim() == "delete") {
-    await DeleteTaskQuery(taskData.id);
+  } else if (submitType.trim() == "edit" && userId) {
+    await EditTaskQuery(taskData, userId);
+  } else if (submitType.trim() == "delete" && userId) {
+    await DeleteTaskQuery(taskData.id, userId);
   }
 };

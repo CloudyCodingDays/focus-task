@@ -1,8 +1,8 @@
 import supabaseClient from "@/lib/supabaseClient";
 import { Task } from "@/types/Task";
 
-const EditTaskQuery = async (taskData: Task) => {
-  const { error: supabaseError } = await supabaseClient
+const EditTaskQuery = async (taskData: Task, userId: string) => {
+  const { status, error } = await supabaseClient
     .from("tasks")
     .update({
       name: taskData.name,
@@ -16,11 +16,14 @@ const EditTaskQuery = async (taskData: Task) => {
       created_at: taskData.created_at,
       image_path: taskData.image_path,
     })
-    .eq("id", taskData.id);
+    .eq("id", taskData.id)
+    .eq("created_by", userId);
 
-  if (supabaseError) {
-    throw new Error(supabaseError.message);
-  }
+  if (error) throw new Error(error.message);
+
+  if (status === 204) return true;
+
+  return false;
 };
 
 export default EditTaskQuery;

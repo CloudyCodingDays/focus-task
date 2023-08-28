@@ -6,6 +6,7 @@ import { Task } from "@/types/Task";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import { useQueryClient } from "react-query";
+import toast from "react-hot-toast";
 
 interface AssignFormProps {
   task: Task;
@@ -20,8 +21,14 @@ const AssignForm: React.FC<AssignFormProps> = ({ task, onBack }) => {
   const HandleSubmit: React.FormEventHandler<HTMLFormElement> = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    await AssignFormSubmit(e, "assign", user?.id);
+    await toast.promise(AssignFormSubmit(e, "assign", user?.id), {
+      loading: "Assigning Task...",
+      success: "Task Assigned!",
+      error: "Unable to Assign Task. Please try again.",
+    });
+
     queryClient.resetQueries("ActiveTask");
+
     router.push("/");
   };
   return (
