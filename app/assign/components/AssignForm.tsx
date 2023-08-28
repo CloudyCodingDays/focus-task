@@ -1,12 +1,12 @@
 "use client";
 import { AssignFormSubmit } from "@/app/(site)/components/HandleSubmitAssign";
 import FormSubmitButtons from "@/components/FormSubmitButtons";
-import useTaskListContext from "@/hooks/useTaskListContext";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { Task } from "@/types/Task";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import { useQueryClient } from "react-query";
+import toast from "react-hot-toast";
 
 interface AssignFormProps {
   task: Task;
@@ -16,16 +16,19 @@ interface AssignFormProps {
 const AssignForm: React.FC<AssignFormProps> = ({ task, onBack }) => {
   const router = useRouter();
   const { user } = useUserInfo();
-  const { showToast, setShowToast } = useTaskListContext();
   const queryClient = useQueryClient();
 
   const HandleSubmit: React.FormEventHandler<HTMLFormElement> = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    const isSuccess = await AssignFormSubmit(e, "assign", user?.id);
-    if (isSuccess && setShowToast !== undefined) setShowToast(true);
+    await toast.promise(AssignFormSubmit(e, "assign", user?.id), {
+      loading: "Assigning Task...",
+      success: "Task Assigned!",
+      error: "Unable to Assign Task. Please try again.",
+    });
 
     queryClient.resetQueries("ActiveTask");
+
     router.push("/");
   };
   return (

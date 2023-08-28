@@ -5,16 +5,9 @@ import InsertCompletedTaskQuery from "./InsertCompletedTaskQuery";
 import DeleteTaskQuery from "./DeleteTaskQuery";
 
 const CompleteTaskQuery = async (taskData: Task, userId: string) => {
-  const InsertCompletedStatus = await InsertCompletedTaskQuery(
-    taskData,
-    userId
-  );
-  if (!InsertCompletedStatus) return false;
+  await InsertCompletedTaskQuery(taskData, userId);
 
-  const DeleteStatus = await DeleteTaskQuery(taskData.id, userId);
-  if (!DeleteStatus) return false;
-
-  return true;
+  await DeleteTaskQuery(taskData.id, userId);
 };
 
 export default CompleteTaskQuery;

@@ -30,11 +30,6 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
             value={task.due_date}
           ></input>
           <input
-            name="old_image_path"
-            type="hidden"
-            value={task.image_path}
-          ></input>
-          <input
             name="old_is_recurring"
             type="hidden"
             value={task.is_recurring ? "true" : "false"}
@@ -54,7 +49,7 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
         <></>
       )}
 
-      <div className="text-left rounded-lg py-4 text-sm drop-shadow-lg">
+      <div className="text-left rounded-lg text-sm drop-shadow-lg">
         <div>Name</div>
         <input
           name="name"
@@ -140,15 +135,6 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
               disabled
             ></input>
           </div>
-        )}
-
-        {false ? (
-          <div className="flex flex-row">
-            <div className="font-light mb-2">Upload image (Optional)</div>
-            <input type="file" id="TaskImage" name="TaskImage"></input>
-          </div>
-        ) : (
-          <></>
         )}
       </div>
     </div>

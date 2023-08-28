@@ -18,10 +18,10 @@ export const FormSubmit = async (
   const taskData: Task = ExtractFormData(formData);
 
   if (submitType.trim() == "add" && userId) {
-    return await AddTaskQuery(taskData, userId);
+    await AddTaskQuery(taskData, userId);
   } else if (submitType.trim() == "edit" && userId) {
-    return await EditTaskQuery(taskData, userId);
+    await EditTaskQuery(taskData, userId);
   } else if (submitType.trim() == "delete" && userId) {
-    return await DeleteTaskQuery(taskData.id, userId);
+    await DeleteTaskQuery(taskData.id, userId);
   }
 };

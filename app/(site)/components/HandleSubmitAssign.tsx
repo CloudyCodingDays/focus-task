@@ -16,14 +16,14 @@ export const AssignFormSubmit = async (
   const taskData = JSON.parse(taskJSON);
 
   if (submitType.trim() === "assign" && userId) {
-    return await AssignTaskQuery(taskData.id, userId);
+    await AssignTaskQuery(taskData.id, userId);
   } else if (submitType.trim() === "unassign" && userId) {
-    return await UnassignTaskQuery(taskData.id, userId);
+    await UnassignTaskQuery(taskData.id, userId);
   } else if (submitType.trim() === "complete" && userId) {
     if (taskData.is_recurring) {
-      return await CompleteRecurringTaskQuery(taskData, userId);
+      await CompleteRecurringTaskQuery(taskData, userId);
     } else {
-      return await CompleteTaskQuery(taskData, userId);
+      await CompleteTaskQuery(taskData, userId);
     }
   }
 };

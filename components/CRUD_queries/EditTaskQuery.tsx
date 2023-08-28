@@ -17,7 +17,7 @@ const EditTaskQuery = async (taskData: Task, userId: string) => {
       image_path: taskData.image_path,
     })
     .eq("id", taskData.id)
-    .eq("user_id", userId);
+    .eq("created_by", userId);
 
   if (error) throw new Error(error.message);
 

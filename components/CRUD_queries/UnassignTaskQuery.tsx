@@ -1,7 +1,7 @@
 import supabaseClient from "@/lib/supabaseClient";
 
 const UnassignTaskQuery = async (taskId: string, userId: string) => {
-  const { status, error } = await supabaseClient
+  const { error } = await supabaseClient
     .from("user_current_task")
     .update({ is_assigned: false, is_current: false, action_at: new Date() })
     .eq("task_id", taskId)
@@ -10,10 +10,6 @@ const UnassignTaskQuery = async (taskId: string, userId: string) => {
     .eq("is_assigned", true);
 
   if (error) throw new Error(error.message);
-
-  if (status === 204) return true;
-
-  return false;
 };
 
 export default UnassignTaskQuery;

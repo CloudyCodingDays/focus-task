@@ -6,7 +6,7 @@ const InsertCompletedRecurringTaskQuery = async (
   userId: string
 ) => {
   //Insert recurring task id and completed into recurring completed table
-  const { status, error } = await supabaseClient
+  const { error } = await supabaseClient
     .from("completed_recurring_tasks")
     .insert({
       task_id: taskData.id,
@@ -16,10 +16,6 @@ const InsertCompletedRecurringTaskQuery = async (
     });
 
   if (error) throw new Error(error.message);
-
-  if (status === 201) return true;
-
-  return false;
 };
 
 export default InsertCompletedRecurringTaskQuery;

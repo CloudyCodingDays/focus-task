@@ -4,8 +4,7 @@ import { Task } from "@/types/Task";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "react-query";
 import { AssignFormSubmit } from "./HandleSubmitAssign";
-import useTaskListContext from "@/hooks/useTaskListContext";
-
+import toast from "react-hot-toast";
 interface ActiveTaskDisplayProps {
   task: Task;
 }
@@ -13,22 +12,17 @@ interface ActiveTaskDisplayProps {
 const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
   const router = useRouter();
   const { user } = useUserInfo();
-  const { showToast, setShowToast, taskCompleted, setTaskCompleted } =
-    useTaskListContext();
   const queryClient = useQueryClient();
 
   const HandleUnassign: React.FormEventHandler<HTMLFormElement> = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    const isSuccess = await AssignFormSubmit(e, "unassign", user?.id);
-    if (
-      isSuccess &&
-      setShowToast !== undefined &&
-      setTaskCompleted !== undefined
-    ) {
-      setShowToast(true);
-      setTaskCompleted(false);
-    }
+    await toast.promise(AssignFormSubmit(e, "unassign", user?.id), {
+      loading: "Unassigning Task...",
+      success: "Task Unassigned!",
+      error: "Unable to Unassign Task. Please try again.",
+    });
+
     queryClient.resetQueries("ActiveTask");
 
     router.refresh();
@@ -37,15 +31,11 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
   const HandleComplete: React.FormEventHandler<HTMLFormElement> = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
-    const isSuccess = await AssignFormSubmit(e, "complete", user?.id);
-    if (
-      isSuccess &&
-      setShowToast !== undefined &&
-      setTaskCompleted !== undefined
-    ) {
-      setShowToast(true);
-      setTaskCompleted(true);
-    }
+    await toast.promise(AssignFormSubmit(e, "complete", user?.id), {
+      loading: "Completing Task...",
+      success: "Task Completed!",
+      error: "Unable to Complete Task. Please try again.",
+    });
 
     queryClient.resetQueries("ActiveTask");
 

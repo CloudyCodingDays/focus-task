@@ -5,7 +5,7 @@ const DeleteTaskQuery = async (taskId: string, userId: string) => {
     .from("tasks")
     .delete()
     .eq("id", taskId)
-    .eq("user_id", userId);
+    .eq("created_by", userId);
 
   if (error) throw new Error(error.message);
 

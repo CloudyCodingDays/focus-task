@@ -10,17 +10,13 @@ const UpdateRecurringTaskDueDateQuery = async (
   newDueDate: string
 ) => {
   //Update Due date to new due date based on recurring type
-  const { status, error } = await supabaseClient
+  const { error } = await supabaseClient
     .from("tasks")
     .update({ due_date: newDueDate, updated_at: new Date() })
     .eq("created_by", userId)
     .eq("id", taskData.id);
 
   if (error) throw new Error(error.message);
-
-  if (status === 204) return true;
-
-  return false;
 };
 
 export default UpdateRecurringTaskDueDateQuery;

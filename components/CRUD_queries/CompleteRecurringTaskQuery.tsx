@@ -8,23 +8,11 @@ import UpdateRecurringTaskDueDateQuery from "./UpdateRecurringTaskDueDateQuery";
 const CompleteRecurringTaskQuery = async (taskData: Task, userId: string) => {
   const newDueDate = CalculateNextDueDate(taskData.recurring_type);
 
-  const UpdateDueDateStatus = await UpdateRecurringTaskDueDateQuery(
-    taskData,
-    userId,
-    newDueDate
-  );
-  if (!UpdateDueDateStatus) return false;
+  await UpdateRecurringTaskDueDateQuery(taskData, userId, newDueDate);
 
-  const InsertCompletedStatus = await InsertCompletedRecurringTaskQuery(
-    taskData,
-    userId
-  );
-  if (!InsertCompletedStatus) return false;
+  await InsertCompletedRecurringTaskQuery(taskData, userId);
 
-  const UnassignStatus = await UnassignTaskQuery(taskData.id, userId);
-  if (!UnassignStatus) return false;
-
-  return true;
+  await UnassignTaskQuery(taskData.id, userId);
 };
 
 export default CompleteRecurringTaskQuery;

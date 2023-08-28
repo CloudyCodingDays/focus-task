@@ -20,6 +20,7 @@ const AssignTaskList = () => {
         <Calendar
           mode="single"
           selected={date}
+          required
           onSelect={setDate}
           className="rounded-md border-2"
         />

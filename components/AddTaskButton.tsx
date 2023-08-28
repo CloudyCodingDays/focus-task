@@ -5,20 +5,10 @@ import { useEffect, useState } from "react";
 import AddForm from "./AddForm";
 import Login from "@/app/login/components/login";
 import { useUserInfo } from "@/hooks/useUserInfo";
-import toast from "react-hot-toast";
-import useTaskListContext from "@/hooks/useTaskListContext";
 
 const AddTaskButton = () => {
   const [addOpen, setAddOpen] = useState<boolean>(false);
   const { user } = useUserInfo();
-  const { showToast, setShowToast } = useTaskListContext();
-
-  useEffect(() => {
-    if (showToast) {
-      toast.success("Task successfully created!");
-      if (setShowToast) setShowToast(false);
-    }
-  }, [showToast, setShowToast]);
 
   return (
     <div>

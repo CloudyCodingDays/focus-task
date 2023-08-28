@@ -1,7 +1,5 @@
 import AddTaskButton from "@/components/AddTaskButton";
 import { DateFormatDisplay } from "@/components/DateFormatDisplay";
-import TaskItemActions from "@/components/TaskItemActions";
-import TaskItemLayout from "@/app/manage/components/ManageTaskItemLayout";
 import FilterTaskListItems from "@/components/task_functions/FilterTaskListItems";
 import { GetInitialTaskListItems } from "@/components/task_functions/GetInitialTaskListItems";
 import { ReactQueryCache } from "@/components/task_functions/ReactQueryCache";

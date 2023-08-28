@@ -1,5 +1,3 @@
-import TaskItemActions from "@/components/TaskItemActions";
-import TaskItemLayout from "@/app/manage/components/ManageTaskItemLayout";
 import FilterTaskListItems from "@/components/task_functions/FilterTaskListItems";
 import { GetInitialTaskListItems } from "@/components/task_functions/GetInitialTaskListItems";
 import { ReactQueryCache } from "@/components/task_functions/ReactQueryCache";
@@ -8,6 +6,7 @@ import { Separator } from "@/components/ui/separator";
 import { Task } from "@/types/Task";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useQuery, useQueryClient } from "react-query";
+import ManageTaskItemLayout from "./ManageTaskItemLayout";
 
 const ManageTaskItemDisplay = ({
   debouncedValue,
@@ -62,7 +61,7 @@ const ManageTaskItemDisplay = ({
                 drop-shadow-lg"
             >
               <div className="w-full">
-                <TaskItemActions task={item} />
+                <ManageTaskItemLayout task={item} />
               </div>
             </div>
           </div>
