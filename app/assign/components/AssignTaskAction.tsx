@@ -1,9 +1,10 @@
-import { Task } from "@/types/Task";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import AssignTaskItemLayout from "./AssignTaskItemLayout";
 import TaskItemDetailsLayout from "@/components/TaskItemDetailsLayout";
-import AssignForm from "./AssignForm";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Task } from "@/types/Task";
 import { useState } from "react";
+import AssignForm from "./AssignForm";
+import AssignTaskItemLayout from "./AssignTaskItemLayout";
+
 const AssignTaskAction = ({ task }: { task: Task }) => {
   const [assignOpen, setAssignOpen] = useState<boolean>(false);
   return (

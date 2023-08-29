@@ -1,22 +1,9 @@
 import { Task } from "@/types/Task";
-import {
-  AlertCircle,
-  CalendarClock,
-  ClipboardList,
-  FileEdit,
-  Repeat,
-  Trash2,
-} from "lucide-react";
-import addDays from "date-fns/addDays";
-import { DateFormatDisplay } from "../../../components/DateFormatDisplay";
+import { AlertCircle, CalendarClock, Repeat } from "lucide-react";
+
 import { CalculateDayDifference } from "../../../components/task_functions/CalculateDayDifference";
 import { CalculateDueDateStyle } from "../../../components/task_functions/CalculateDueDateStyle";
 import { CalculatePriorityIconStyle } from "../../../components/task_functions/CalculatePriorityIconStyle";
-
-import { useState } from "react";
-import DeleteForm from "./DeleteForm";
-import EditForm from "./EditForm";
-import TaskItemDetailsLayout from "@/components/TaskItemDetailsLayout";
 
 interface ManageTaskItemLayoutProps {
   task: Task;
@@ -27,9 +14,7 @@ const ManageTaskItemLayout: React.FC<ManageTaskItemLayoutProps> = ({
 }) => {
   const { id, description, name, priority, due_date } = task;
 
-  const validatedDate = addDays(new Date(due_date), 1);
-  const taskDueDateFormatted = DateFormatDisplay(validatedDate);
-  const dayDifference = CalculateDayDifference(validatedDate.getTime());
+  const dayDifference = CalculateDayDifference(due_date);
   const dueDateStyle = CalculateDueDateStyle(dayDifference);
   const priorityIconStyle = CalculatePriorityIconStyle(priority, dayDifference);
 
@@ -53,7 +38,7 @@ const ManageTaskItemLayout: React.FC<ManageTaskItemLayoutProps> = ({
             </div>
             <div className="flex flex-row items-center text-xs pt-4">
               <CalendarClock size={20} />
-              <div className={dueDateStyle}>{taskDueDateFormatted}</div>
+              <div className={dueDateStyle}>{due_date.substring(0, 10)}</div>
             </div>
             <div className="flex flex-row items-center text-xs pt-2">
               <AlertCircle size={20} />

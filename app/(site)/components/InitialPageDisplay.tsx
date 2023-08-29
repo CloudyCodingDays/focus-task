@@ -5,8 +5,6 @@ import { useUserInfo } from "@/hooks/useUserInfo";
 import { useQuery, useQueryClient } from "react-query";
 import CurrentTaskDisplay from "./CurrentTaskDisplay";
 import NoTaskDisplay from "./NoTaskDisplay";
-import { Task } from "@/types/Task";
-import GetActiveTaskByUserId from "@/components/task_queries/GetActiveTaskByUserId";
 
 const InitialPageDisplay = () => {
   const { user } = useUserInfo();

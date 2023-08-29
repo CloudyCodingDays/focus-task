@@ -3,7 +3,6 @@ import DeleteTaskQuery from "@/components/CRUD_queries/DeleteTaskQuery";
 import EditTaskQuery from "@/components/CRUD_queries/EditTaskQuery";
 import { Task } from "@/types/Task";
 import ExtractFormData from "./ExtractFormData";
-import GetTaskDetailsByTaskId from "@/components/task_queries/GetTaskDetailsByTaskId";
 
 export const FormSubmit = async (
   e: React.FormEvent<HTMLFormElement>,

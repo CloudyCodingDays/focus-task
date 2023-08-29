@@ -1,6 +1,6 @@
 "use client";
 import { User } from "@supabase/supabase-js";
-import { ChevronLast, Home, ListTodo, Settings, X } from "lucide-react";
+import { Home, ListTodo, Settings, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Dispatch, SetStateAction, useMemo } from "react";

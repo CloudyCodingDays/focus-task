@@ -6,13 +6,6 @@ import { Separator } from "@/components/ui/separator";
 import { Task } from "@/types/Task";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useQuery, useQueryClient } from "react-query";
-import ManageTaskItemLayout from "./ManageTaskItemLayout";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { useState } from "react";
-import { FileEdit } from "lucide-react";
-import EditForm from "./EditForm";
-import ManageTaskActions from "./ManageTaskActions";
-import TaskItemDetailsLayout from "@/components/TaskItemDetailsLayout";
 import ManageTaskDetails from "./ManageTaskDetails";
 
 const ManageTaskItemDisplay = ({

@@ -1,9 +1,9 @@
 "use client";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { useState } from "react";
-import ManageTaskItemLayout from "./ManageTaskItemLayout";
-import ManageTaskActions from "./ManageTaskActions";
 import { Task } from "@/types/Task";
+import { useState } from "react";
+import ManageTaskActions from "./ManageTaskActions";
+import ManageTaskItemLayout from "./ManageTaskItemLayout";
 
 const ManageTaskDetails = ({ task }: { task: Task }) => {
   const [Open, setOpen] = useState<boolean>(false);

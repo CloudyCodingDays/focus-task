@@ -1,5 +1,4 @@
 "use client";
-
 import Login from "@/app/login/components/login";
 
 const NotLoggedIn = () => {

@@ -1,11 +1,10 @@
 "use client";
 import GetActiveTaskByUserId from "@/components/task_queries/GetActiveTaskByUserId";
-import { useUserInfo } from "@/hooks/useUserInfo";
 import { Task } from "@/types/Task";
+import { User } from "@supabase/supabase-js";
 import { useQuery, useQueryClient } from "react-query";
 import ActiveTaskDisplay from "./ActiveTaskDisplay";
 import NoActiveTaskDisplay from "./NoActiveTaskDisplay";
-import { User } from "@supabase/supabase-js";
 
 interface CurrentTaskDisplayProps {
   user: User | null;
