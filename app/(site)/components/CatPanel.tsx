@@ -22,7 +22,7 @@ const CatPanel = () => {
     staleTime: 1000 * 60 * 60 * 12,
   });
 
-  if (query.isLoading) return "Loading...";
+  if (query.isFetching) return "Loading...";
 
   if (query.error) return "Error has occured : " + query.error.message;
 

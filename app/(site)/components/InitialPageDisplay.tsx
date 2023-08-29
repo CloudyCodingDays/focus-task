@@ -5,16 +5,14 @@ import { useUserInfo } from "@/hooks/useUserInfo";
 import { useQuery, useQueryClient } from "react-query";
 import CurrentTaskDisplay from "./CurrentTaskDisplay";
 import NoTaskDisplay from "./NoTaskDisplay";
-import { useState } from "react";
-import DetermineTaskPage from "./DetermineTaskPage";
+import { Task } from "@/types/Task";
+import GetActiveTaskByUserId from "@/components/task_queries/GetActiveTaskByUserId";
 
 const InitialPageDisplay = () => {
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
-  const [delayLoad, setDelayLoad] = useState<boolean>(true);
-  let activeTaskExists = false;
 
-  const getTasks = async () => {
+  const getTaskCount = async () => {
     if (user !== null) {
       if (queryClient.getQueryData(["TaskCount", user.id])) {
         return queryClient.getQueryData(["TaskCount", user.id]) as number;
@@ -25,23 +23,27 @@ const InitialPageDisplay = () => {
     return 0;
   };
 
-  const { data, error, isLoading, isError, isSuccess } = useQuery<
-    number,
-    Error
-  >({
+  const {
+    data: taskCount,
+    error: countError,
+    isFetching: isCountFetching,
+    isError: isCountError,
+    isSuccess: isCountSuccess,
+  } = useQuery<number, Error>({
     queryKey: ["TaskCount", user?.id],
-    queryFn: getTasks,
+    queryFn: getTaskCount,
   });
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return "Error has occured : " + error.message;
+  if (isCountFetching) return <div>Loading Task Count...</div>;
+  if (isCountError) return "Error has occured : " + countError.message;
 
   return (
     <div>
-      <DetermineTaskPage
-        activeTaskExists={data && data > 0 ? true : false}
-        user={user}
-      />
+      {user !== null && taskCount && taskCount > 0 ? (
+        <CurrentTaskDisplay user={user} />
+      ) : (
+        <NoTaskDisplay user={user} />
+      )}
     </div>
   );
 };

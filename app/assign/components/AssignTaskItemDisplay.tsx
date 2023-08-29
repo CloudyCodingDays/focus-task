@@ -55,7 +55,7 @@ const AssignTaskItemDisplay = ({
     queryFn: getTasks,
   });
 
-  if (query.isLoading) return "Loading...";
+  if (query.isFetching) return "Loading...";
   if (query.error) return "Error has occured : " + query.error.message;
 
   return (
