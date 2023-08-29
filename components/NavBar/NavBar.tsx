@@ -14,7 +14,7 @@ const NavBar: React.FC<NavBarProps> = ({ children }) => {
   return (
     <div className="flex flex-col md:min-h-screen">
       <div className="flex flex-row w-full justify-between items-center px-2 pt-2 mx-auto bg-green-400 md:px-12">
-        <NavBarMenu />
+        <NavBarMenu user={user} />
         <NavBarLogo />
         <NavBarLogin />
       </div>

@@ -3,8 +3,9 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import Routes from "./Routes";
 import { Menu } from "lucide-react";
+import { User } from "@supabase/supabase-js";
 
-const NavBarMenu = () => {
+const NavBarMenu = ({ user }: { user: User | null }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -16,7 +17,7 @@ const NavBarMenu = () => {
           </button>
         </DialogTrigger>
         <DialogContent className="h-full grid md:w-1/4 md:left-[12%] pt-4">
-          <Routes onRoute={setOpen} />
+          <Routes onRoute={setOpen} user={user} />
         </DialogContent>
       </Dialog>
     </div>

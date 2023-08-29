@@ -66,6 +66,7 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
           className="border-2 mb-4 h-[10em] w-full lg:w-[30em] resize-none"
           placeholder={isEdit ? "Description" : ""}
           defaultValue={task !== undefined ? task.description : ""}
+          required
           disabled={!isEdit}
         ></textarea>
 
@@ -119,8 +120,11 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
               name="due_date"
               type="date"
               className="border-2 mb-4 w-full lg:w-[30em]"
+              required
               defaultValue={
-                task !== undefined ? task.due_date : new Date().toDateString()
+                task !== undefined
+                  ? task.due_date.substring(0, 10)
+                  : new Date().toLocaleDateString()
               }
             ></input>
           </div>
@@ -131,7 +135,11 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
               name="due_date"
               type="text"
               className="border-2 mb-4 w-full lg:w-[30em]"
-              defaultValue={task !== undefined ? task.due_date : ""}
+              defaultValue={
+                task !== undefined
+                  ? task.due_date.substring(0, 10)
+                  : "12/31/9999"
+              }
               disabled
             ></input>
           </div>
