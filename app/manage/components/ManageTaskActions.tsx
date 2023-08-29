@@ -1,10 +1,10 @@
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import DeleteForm from "./DeleteForm";
-import { Task } from "@/types/Task";
-import { Dispatch, SetStateAction, useState } from "react";
-import { FileEdit, Trash2 } from "lucide-react";
-import EditForm from "./EditForm";
 import TaskItemDetailsLayout from "@/components/TaskItemDetailsLayout";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Task } from "@/types/Task";
+import { FileEdit, Trash2 } from "lucide-react";
+import { Dispatch, SetStateAction, useState } from "react";
+import DeleteForm from "./DeleteForm";
+import EditForm from "./EditForm";
 
 interface ManageTaskActionsProps {
   task: Task;

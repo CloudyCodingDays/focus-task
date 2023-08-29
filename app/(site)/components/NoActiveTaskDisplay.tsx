@@ -1,8 +1,6 @@
 import { useUserInfo } from "@/hooks/useUserInfo";
 import Image from "next/image";
 import Link from "next/link";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import Login from "@/app/login/components/login";
 import { useState } from "react";
 
 const NoActiveTaskDisplay = () => {

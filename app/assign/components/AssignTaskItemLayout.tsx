@@ -1,23 +1,12 @@
-import { DateFormatDisplay } from "@/components/DateFormatDisplay";
-import { CalculateDayDifference } from "@/components/task_functions/CalculateDayDifference";
-import { CalculateDueDateStyle } from "@/components/task_functions/CalculateDueDateStyle";
-import { CalculatePriorityIconStyle } from "@/components/task_functions/CalculatePriorityIconStyle";
 import { Task } from "@/types/Task";
-import { addDays } from "date-fns";
-import { AlertCircle, CalendarClock, Repeat } from "lucide-react";
+import { AlertCircle, Repeat } from "lucide-react";
 
 interface TaskItemProps {
   task: Task;
 }
 
 const AssignTaskItemLayout: React.FC<TaskItemProps> = ({ task }) => {
-  const { id, description, name, priority, due_date } = task;
-
-  const validatedDate = addDays(new Date(due_date), 1);
-  const taskDueDateFormatted = DateFormatDisplay(validatedDate);
-  const dayDifference = CalculateDayDifference(validatedDate.getTime());
-  const dueDateStyle = CalculateDueDateStyle(dayDifference);
-  const priorityIconStyle = CalculatePriorityIconStyle(priority, dayDifference);
+  const { id, name, priority } = task;
 
   return (
     <div key={id} className="rounded-lg flex flex-row">

@@ -1,5 +1,4 @@
 import AddTaskButton from "@/components/AddTaskButton";
-import { DateFormatDisplay } from "@/components/DateFormatDisplay";
 import FilterTaskListItems from "@/components/task_functions/FilterTaskListItems";
 import { GetInitialTaskListItems } from "@/components/task_functions/GetInitialTaskListItems";
 import { ReactQueryCache } from "@/components/task_functions/ReactQueryCache";
@@ -8,12 +7,6 @@ import { Separator } from "@/components/ui/separator";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { Task } from "@/types/Task";
 import { useQuery, useQueryClient } from "react-query";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { useState } from "react";
-import TaskItemDetailsLayout from "@/components/TaskItemDetailsLayout";
-import AssignForm from "./AssignForm";
-import AssignItemTaskDetails from "./AssignTaskItemLayout";
-import AssignTaskItemLayout from "./AssignTaskItemLayout";
 import AssignTaskAction from "./AssignTaskAction";
 
 const AssignTaskItemDisplay = ({
@@ -24,12 +17,11 @@ const AssignTaskItemDisplay = ({
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
   const validatedDate = currentDate ? currentDate : new Date();
-  const taskDueDateFormatted = DateFormatDisplay(validatedDate);
 
   const queryKeys = [
     "ActiveTask",
     user ? user.id : "",
-    JSON.stringify(validatedDate),
+    validatedDate.toLocaleDateString(),
   ];
 
   const getTasks = async () => {
@@ -64,7 +56,7 @@ const AssignTaskItemDisplay = ({
         <div className="flex flex-row justify-between items-end">
           <div className="text-gray-600 font-semibold text-md">
             {query.data ? query.data.length : 0} Tasks due for{" "}
-            {taskDueDateFormatted}
+            {validatedDate.toLocaleDateString()}
           </div>
           <div>
             <AddTaskButton />

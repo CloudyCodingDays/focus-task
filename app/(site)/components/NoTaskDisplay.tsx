@@ -1,10 +1,8 @@
-import { useUserInfo } from "@/hooks/useUserInfo";
+"use client";
 import { User } from "@supabase/supabase-js";
-import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
-import WelcomeDisplay from "./WelcomeDisplay";
 import NotLoggedIn from "./NotLoggedIn";
+import WelcomeDisplay from "./WelcomeDisplay";
 
 interface NoTaskDisplayProps {
   user: User | null;

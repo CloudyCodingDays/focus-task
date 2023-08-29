@@ -1,10 +1,9 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { UserSignIn, UserSignOut, isUserLoggedIn } from "./UserActions";
 import { useSessionContext } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
-import { X } from "lucide-react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { UserSignIn, UserSignOut } from "./UserActions";
 
 type FormData = {
   email: string;
