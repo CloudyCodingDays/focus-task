@@ -49,7 +49,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
       {!session ? (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col pt-4">
-            <label htmlFor="email" className="text-xs text-green-500">
+            <label htmlFor="email" className="text-md text-green-500">
               Email
             </label>
             <input
@@ -59,7 +59,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
           </div>
 
           <div className="flex flex-col pt-4">
-            <label htmlFor="password" className="text-xs text-green-500">
+            <label htmlFor="password" className="text-md text-green-500">
               Password
             </label>
             <input
@@ -85,7 +85,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
             </button>
           </div>
 
-          <div className="text-xs pt-4">
+          <div className="text-sm pt-4">
             Don&apos;t have have an account?{" "}
             <button
               type="button"

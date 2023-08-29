@@ -8,7 +8,7 @@ export default function Home() {
       loading: () => (
         <div>
           <div className="w-full flex flex-col items-center">
-            <div className="xl:w-[50em] w-full h-[9.3em] bg-gray-200 rounded-lg mt-4 mx-4 text-center drop-shadow-lg"></div>
+            <div className="lg:w-[50em] w-full h-[9.3em] bg-gray-200 rounded-lg mt-4 mx-4 text-center drop-shadow-lg"></div>
           </div>
         </div>
       ),

@@ -13,7 +13,7 @@ const NoActiveTaskDisplay = () => {
     <div>
       <div className="w-full flex flex-col items-center">
         <div className="flex flex-col items-center py-4">
-          <div className="xl:w-[50em] w-full bg-gray-200 rounded-lg pb-8 text-center drop-shadow-lg text-gray-500">
+          <div className="lg:w-[50em] w-full bg-gray-200 rounded-lg pb-8 text-center drop-shadow-lg text-gray-500">
             <div className="my-8 text-2xl">
               What would you like to do today?
             </div>

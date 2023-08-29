@@ -27,7 +27,8 @@ const AssignForm: React.FC<AssignFormProps> = ({ task, onBack }) => {
       error: "Unable to Assign Task. Please try again.",
     });
 
-    queryClient.resetQueries("ActiveTask");
+    await queryClient.resetQueries("ActiveTask");
+    await queryClient.resetQueries("TaskCount");
 
     router.push("/");
   };

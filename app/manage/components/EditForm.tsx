@@ -29,7 +29,9 @@ const EditForm: React.FC<EditFormProps> = ({ task, onBack, onClose }) => {
       error: "Unable to Update Task. Please try again.",
     });
 
-    queryClient.resetQueries("ManageTasks");
+    await queryClient.resetQueries("ManageTasks");
+    await queryClient.resetQueries("ActiveTask");
+    await queryClient.resetQueries("TaskCount");
 
     onBack(false);
     onClose(false);
