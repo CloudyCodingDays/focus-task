@@ -1,6 +1,6 @@
 "use client";
 import { User } from "@supabase/supabase-js";
-import { Home, ListTodo, Settings, X } from "lucide-react";
+import { ChevronLast, Home, ListTodo, Settings, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Dispatch, SetStateAction, useMemo } from "react";
@@ -11,33 +11,29 @@ interface RoutesProp {
 }
 const Routes: React.FC<RoutesProp> = ({ user, onRoute }) => {
   const pathname = usePathname();
-  const activePathStyle = "border-2 border-green-200 px-2 rounded-lg";
-  const routes = useMemo(
-    () => [
-      {
-        Icon: <Home size={18} />,
-        label: "Home",
-        active: pathname === "/",
-        href: "/",
-        visible: true,
-      },
-      {
-        Icon: <ListTodo size={18} />,
-        label: "Manage Tasks",
-        active: pathname === "/manage",
-        href: "/manage",
-        visible: user ? true : false,
-      },
-      {
-        Icon: <Settings size={18} />,
-        label: "Settings",
-        active: pathname === "/settings",
-        href: "/settings",
-        visible: user ? true : false,
-      },
-    ],
-    [pathname, user]
-  );
+  const routes = [
+    {
+      Icon: <Home size={18} />,
+      label: "Home",
+      active: pathname === "/",
+      href: "/",
+      visible: true,
+    },
+    {
+      Icon: <ListTodo size={18} />,
+      label: "Manage Tasks",
+      active: pathname === "/manage",
+      href: "/manage",
+      visible: user ? true : false,
+    },
+    {
+      Icon: <Settings size={18} />,
+      label: "Settings",
+      active: pathname === "/settings",
+      href: "/settings",
+      visible: user ? true : false,
+    },
+  ];
 
   const NavMenuStyle =
     "hover:bg-green-100 flex flex-row items-center text-gray-700 py-2 px-4 md:w-[15em] rounded-lg";
