@@ -1,13 +1,43 @@
-import addDays from "date-fns/addDays";
+
+import { eachDayOfInterval, intervalToDuration, isEqual } from "date-fns";
+import { addDays, subDays } from "date-fns";
+import isAfter from "date-fns/isAfter";
+
+//Does not include start date - It DOES include end date in calculate so tomorrow would be 1 day. Today would be 0 days
 export const CalculateDayDifference = (date: string) => {
-  const validatedDate = addDays(new Date(date), 1);
-  const validatedDateTime = new Date(validatedDate).getTime();
-  const currentDate = new Date().getTime();
+  const currentDate = new Date(Date.now());
+  const dateTime = new Date(date);
+  const dateArray = date.split("-");
 
-  const diffDays = Math.ceil(
-    (validatedDateTime - currentDate) / (1000 * 3600 * 24)
-  );
+  //set dates to midnight and trim milliseconds as well for consistent comparison
+  currentDate.setHours(0, 0, 0);
+  currentDate.setMilliseconds(0);
+  dateTime.setHours(0, 0, 0);
+  dateTime.setMilliseconds(0);
 
-  console.log(diffDays);
-  return diffDays;
+  if (isEqual(currentDate, dateTime)) return 0;
+
+  if (isAfter(currentDate, dateTime)) {
+    const intervalDuration = eachDayOfInterval({
+      start: new Date(
+        parseInt(dateArray[0]),
+        parseInt(dateArray[1]) - 1,
+        parseInt(dateArray[2])
+      ),
+      end: currentDate,
+    });
+
+    return (intervalDuration.length - 1) * -1;
+  } else {
+    const intervalDuration = eachDayOfInterval({
+      start: currentDate,
+      end: new Date(
+        parseInt(dateArray[0]),
+        parseInt(dateArray[1]) - 1,
+        parseInt(dateArray[2])
+      ),
+    });
+
+    return intervalDuration.length - 1;
+  }
 };
