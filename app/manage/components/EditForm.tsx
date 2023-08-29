@@ -12,9 +12,10 @@ import toast from "react-hot-toast";
 interface EditFormProps {
   task: Task;
   onBack: Dispatch<SetStateAction<boolean>>;
+  onClose: Dispatch<SetStateAction<boolean>>;
 }
 
-const EditForm: React.FC<EditFormProps> = ({ task, onBack }) => {
+const EditForm: React.FC<EditFormProps> = ({ task, onBack, onClose }) => {
   const router = useRouter();
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
@@ -31,6 +32,7 @@ const EditForm: React.FC<EditFormProps> = ({ task, onBack }) => {
     queryClient.resetQueries("ManageTasks");
 
     onBack(false);
+    onClose(false);
     router.refresh();
   };
 
@@ -38,7 +40,11 @@ const EditForm: React.FC<EditFormProps> = ({ task, onBack }) => {
     <div>
       <form method="post" onSubmit={HandleSubmit}>
         <TaskItemDetailsLayout task={task} isEdit />
-        <FormSubmitButtons submitText="Edit Task" onBack={onBack} />
+        <FormSubmitButtons
+          submitText="Edit Task"
+          onBack={onBack}
+          onClose={onClose}
+        />
       </form>
     </div>
   );

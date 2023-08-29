@@ -46,7 +46,7 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
     <div key={task.id} className="w-full flex flex-col items-center">
       <div className="xl:w-[50em] w-full bg-gray-200 rounded-lg my-4 mx-4 drop-shadow-lg">
         <ActiveTaskDetails task={task} />
-        <div className="flex justify-around">
+        <div className="flex flex-row justify-center">
           <form method="post" onSubmit={HandleUnassign}>
             <input
               name="task"

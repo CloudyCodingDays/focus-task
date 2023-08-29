@@ -4,11 +4,13 @@ const FormSubmitButtons = ({
   cancelText = "Back",
   submitText = "Save",
   onBack,
+  onClose,
   isDelete,
 }: {
   cancelText?: string;
   submitText?: string;
   onBack: Dispatch<SetStateAction<boolean>>;
+  onClose?: Dispatch<SetStateAction<boolean>>;
   isDelete?: boolean;
 }) => {
   return (
@@ -27,6 +29,7 @@ const FormSubmitButtons = ({
             mx-4"
         onClick={() => {
           onBack(false);
+          if (onClose !== undefined) onClose(false);
         }}
         type="button"
       >

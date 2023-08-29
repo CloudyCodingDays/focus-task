@@ -12,9 +12,10 @@ import toast from "react-hot-toast";
 interface DeleteFormProps {
   task: Task;
   onBack: Dispatch<SetStateAction<boolean>>;
+  onClose: Dispatch<SetStateAction<boolean>>;
 }
 
-const DeleteForm: React.FC<DeleteFormProps> = ({ task, onBack }) => {
+const DeleteForm: React.FC<DeleteFormProps> = ({ task, onBack, onClose }) => {
   const router = useRouter();
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
@@ -31,6 +32,7 @@ const DeleteForm: React.FC<DeleteFormProps> = ({ task, onBack }) => {
     queryClient.resetQueries("ManageTasks");
 
     onBack(false);
+    onClose(false);
     router.refresh();
   };
 
@@ -42,6 +44,7 @@ const DeleteForm: React.FC<DeleteFormProps> = ({ task, onBack }) => {
           <FormSubmitButtons
             submitText="Delete Task"
             onBack={onBack}
+            onClose={onClose}
             isDelete
           />
           <div>

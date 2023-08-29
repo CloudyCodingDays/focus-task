@@ -45,7 +45,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
   };
 
   return (
-    <div className="bg-gray-100 py-2 px-2">
+    <div className="py-2 px-2">
       {!session ? (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col pt-4">
@@ -53,7 +53,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
               Email
             </label>
             <input
-              className="drop-shadow-md"
+              className="drop-shadow-lg"
               {...register("email", { required: true, minLength: 2 })}
             ></input>
           </div>
@@ -63,6 +63,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
               Password
             </label>
             <input
+              className="drop-shadow-lg"
               {...register("password", { required: true, minLength: 2 })}
             ></input>
           </div>

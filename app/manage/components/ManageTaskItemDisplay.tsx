@@ -7,6 +7,13 @@ import { Task } from "@/types/Task";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useQuery, useQueryClient } from "react-query";
 import ManageTaskItemLayout from "./ManageTaskItemLayout";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { useState } from "react";
+import { FileEdit } from "lucide-react";
+import EditForm from "./EditForm";
+import ManageTaskActions from "./ManageTaskActions";
+import TaskItemDetailsLayout from "@/components/TaskItemDetailsLayout";
+import ManageTaskDetails from "./ManageTaskDetails";
 
 const ManageTaskItemDisplay = ({
   debouncedValue,
@@ -16,7 +23,11 @@ const ManageTaskItemDisplay = ({
   const { session } = useSessionContext();
   const queryClient = useQueryClient();
 
-  const queryKeys = ["ManageTasks", debouncedValue, session ? session?.user?.id : ""];
+  const queryKeys = [
+    "ManageTasks",
+    debouncedValue,
+    session ? session?.user?.id : "",
+  ];
 
   const getTasks = async () => {
     let taskList: Task[] = [] as Task[];
@@ -57,11 +68,12 @@ const ManageTaskItemDisplay = ({
               className="
                 bg-gray-100
                 rounded-lg
+                lg:mb-4
                 mb-8
                 drop-shadow-lg"
             >
               <div className="w-full">
-                <ManageTaskItemLayout task={item} />
+                <ManageTaskDetails task={item} />
               </div>
             </div>
           </div>

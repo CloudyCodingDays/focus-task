@@ -71,7 +71,7 @@ const AssignTaskItemDisplay = ({
           </div>
         </div>
       </div>
-      <Separator className="pt-0.25 bg-green-400 mb-4" />
+      <Separator className="pt-0.25 bg-green-400 lg:mb-4 mb-8" />
       <div className="px-2">
         {query.data?.map((item) => (
           <div key={item.id}>
