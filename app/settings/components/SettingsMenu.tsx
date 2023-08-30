@@ -29,8 +29,8 @@ const SettingsMenu = ({
 */
   return (
     <div>
-      <div className="flex flex-row justify-around bg-gray-100 mx-4 my-4 rounded-md">
-        <button className="hover:bg-green-400 w-full py-4">
+      <div className="bg-mainbg text-onMainBg flex flex-row justify-around mx-4 my-4 rounded-md">
+        <button className="w-full py-4">
           <div>General</div>
         </button>
         <button className="w-full py-4">

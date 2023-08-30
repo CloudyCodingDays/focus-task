@@ -13,6 +13,37 @@
     --color-neutral-700: theme("colors.gray.700");
     --color-neutral-800: theme("colors.gray.800");
     --color-neutral-900: theme("colors.gray.900");
+
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 215 20.2% 65.1%;
+
+    --radius: 0.5rem;
   }
 
   * {
@@ -34,6 +65,15 @@
   --color-main-700: theme("colors.green.700");
   --color-main-800: theme("colors.green.800");
   --color-main-900: theme("colors.green.900");
+
+  --neutralBg: var(--color-neutral-100);
+  --onNeutralBg: var(--color-neutral-900);
+  --mainBg: var(--color-main-100);
+  --onMainBg: var(--color-main-900);
+  --main: var(--color-main-400);
+  --invertedBg: var(--color-main-900);
+  --onInvertedBg: var(--color-main-100);
+  --inverted: var(--color-main-600);
 }
 .theme-light {
   --neutralBg: var(--color-neutral-100);
@@ -44,37 +84,6 @@
   --invertedBg: var(--color-main-900);
   --onInvertedBg: var(--color-main-100);
   --inverted: var(--color-main-600);
-
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
-
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
-
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
-
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-
-  --primary: 222.2 47.4% 11.2%;
-  --primary-foreground: 210 40% 98%;
-
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
-
-  --accent: 210 40% 96.1%;
-  --accent-foreground: 222.2 47.4% 11.2%;
-
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-
-  --ring: 215 20.2% 65.1%;
-
-  --radius: 0.5rem;
 }
 
 .theme-dark {

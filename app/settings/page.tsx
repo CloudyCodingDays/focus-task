@@ -38,7 +38,7 @@ export default function Home() {
   if (query.error) return "Error has occured : " + query.error.message;
 
   return (
-    <div className="flex flex-col lg:w-1/2 mx-auto">
+    <div className="bg-mainBg text-onMainBg flex flex-col lg:w-1/2 mx-auto mt-4">
       <SettingsMenu setCategory={setCategory} />
       <SettingContent category={category} settings={query?.data} />
     </div>
