@@ -16,10 +16,10 @@ const AddTaskButton = () => {
         <DialogTrigger asChild>
           <button
             className="          
-            hover:bg-green-200
-          hover:text-green-500 
-          bg-green-400
-          text-green-100
+            hover:bg-inverted
+          hover:text-onInvertedBg 
+          bg-main
+          text-onMainBg 
           rounded-lg"
           >
             <div className="flex flex-row items-center font-semibold px-2 py-2 text-sm">
@@ -27,7 +27,7 @@ const AddTaskButton = () => {
             </div>
           </button>
         </DialogTrigger>
-        <DialogContent className="bg-gray-200 rounded-lg">
+        <DialogContent className="bg-mainBg rounded-lg">
           {!user ? <Login /> : <AddForm onBack={setAddOpen} />}
         </DialogContent>
       </Dialog>

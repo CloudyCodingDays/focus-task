@@ -33,7 +33,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
           mt-4
           mx-auto 
           drop-shadow-lg
-          bg-gray-100
+          bg-mainBg
           py-4"
       >
         <div className="my-4">

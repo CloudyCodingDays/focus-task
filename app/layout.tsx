@@ -4,14 +4,14 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import UserProvider from "@/providers/UserProvider";
 import SupaBaseProvider from "@/providers/SupabaseProvider";
-import TaskListContextProvider from "@/providers/TaskListContextProvider";
 import { Toaster } from "react-hot-toast";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
+import ThemeContextProvider from "@/providers/ThemeContextProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Taking It Easy",
+  title: "Focus Task",
   description: "simple app to track current task in a relaxed way",
 };
 
@@ -25,11 +25,11 @@ export default function RootLayout({
       <body className={inter.className}>
         <SupaBaseProvider>
           <UserProvider>
-            <TaskListContextProvider>
+            <ThemeContextProvider>
               <ReactQueryProvider>
                 <NavBar>{children}</NavBar>
               </ReactQueryProvider>
-            </TaskListContextProvider>
+            </ThemeContextProvider>
           </UserProvider>
         </SupaBaseProvider>
         <Toaster />

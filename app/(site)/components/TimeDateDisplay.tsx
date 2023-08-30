@@ -23,15 +23,15 @@ const TimeDateDisplay = () => {
   return (
     <div>
       <div className="flex flex-col items-center">
-        <div className="lg:w-[50em] w-full bg-gray-200 rounded-lg mt-4 mx-4 text-center drop-shadow-lg">
+        <div className="bg-mainBg text-onMainBg lg:w-[50em] w-full rounded-lg mt-4 mx-4 text-center drop-shadow-lg">
           <div>
-            <div className="text-3xl text-gray-500 pt-4">
+            <div className="text-3xl pt-4">
               {format(currentDate, "h")}:{format(currentDate, "mm")}{" "}
               {format(currentDate, "aaa")}
             </div>
           </div>
           <div className="mt-4 mb-2 mx-24">
-            <Separator className="bg-green-400" />
+            <Separator className="bg-main" />
           </div>
           <div className="text-md pb-4 font-extralight">
             <div>

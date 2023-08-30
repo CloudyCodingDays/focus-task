@@ -19,7 +19,7 @@ const ManageTaskItemLayout: React.FC<ManageTaskItemLayoutProps> = ({
 
   return (
     <div key={id}>
-      <div className="flex flex-row text-sm justify-between text-gray-600 font-semibold">
+      <div className="flex flex-row text-sm justify-between font-semibold">
         <div className="flex flex-col w-2/3 text-start pl-2">
           {name.length > 100 ? name.substring(0, 100) + "..." : name}
           <div className="pt-2">
@@ -36,7 +36,7 @@ const ManageTaskItemLayout: React.FC<ManageTaskItemLayoutProps> = ({
 
         <div className="flex flex-row w-1/3 justify-between">
           <div className="flex flex-col items-center text-xs py-2 w-1/2">
-            <CalendarClock size={20} color={dueDateStyle} />
+            <CalendarClock size={20} />
             <div>{due_date.substring(0, 10)}</div>
           </div>
           <div className="flex flex-col items-center text-xs py-2 w-1/2">

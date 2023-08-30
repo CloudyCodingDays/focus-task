@@ -55,7 +55,7 @@ const AssignTaskItemDisplay = ({
     <div>
       <div className="text-sm px-2 py-2">
         <div className="flex flex-row justify-between items-end">
-          <div className="text-gray-600 font-semibold text-md">
+          <div className="text-neutral font-semibold text-md">
             {query.data?.length} Task
             {query.data && query.data.length < 2 ? "" : "s"} due for{" "}
             {format(validatedDate, "PPP")}
@@ -65,7 +65,7 @@ const AssignTaskItemDisplay = ({
           </div>
         </div>
       </div>
-      <Separator className="pt-0.25 bg-green-400 lg:mb-4 mb-8" />
+      <Separator className="pt-0.25 bg-main lg:mb-4 mb-8" />
       <div className="px-2">
         {query.data?.map((item) => (
           <div key={item.id}>

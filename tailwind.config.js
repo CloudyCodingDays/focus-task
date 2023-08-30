@@ -1,12 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   theme: {
     container: {
       center: true,
@@ -17,6 +16,15 @@ module.exports = {
     },
     extend: {
       colors: {
+        onNeutralBg: "var(--onNeutralBg)",
+        neutralBg: "var(--neutralBg)",
+        onMainBg: "var(--onMainBg)",
+        mainBg: "var(--mainBg)",
+        main: "var(--main)",
+        invertedBg: "var(--invertedBg)",
+        onInvertedBg: "var(--onInvertedBg)",
+        inverted: "var(--inverted)",
+
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -73,4 +81,4 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};

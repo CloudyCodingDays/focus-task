@@ -18,7 +18,7 @@ const NavBarLogin = () => {
         <PopoverTrigger>
           <User />
         </PopoverTrigger>
-        <PopoverContent className="w-full bg-gray-200">
+        <PopoverContent className="w-full">
           <Login setOpen={setOpen} />
         </PopoverContent>
       </Popover>

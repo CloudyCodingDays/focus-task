@@ -11,17 +11,17 @@ const NoActiveTaskDisplay = () => {
     <div>
       <div className="w-full flex flex-col items-center">
         <div className="flex flex-col items-center py-4">
-          <div className="lg:w-[50em] w-full bg-gray-200 rounded-lg pb-8 text-center drop-shadow-lg text-gray-500">
+          <div className="bg-mainBg text-onMainBg lg:w-[50em] w-full rounded-lg pb-8 text-center drop-shadow-lg">
             <div className="my-8 text-2xl">
               What would you like to do today?
             </div>
             <Link
               href="/assign"
               className="
-          hover:bg-green-200
-          hover:text-green-500 
-          bg-green-400
-          text-green-100
+              hover:bg-inverted
+              hover:text-onInvertedBg 
+              bg-main
+              text-onMainBg 
           my-4
           mt-12
           mr-8

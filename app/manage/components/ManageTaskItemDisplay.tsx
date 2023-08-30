@@ -68,13 +68,14 @@ const ManageTaskItemDisplay = ({
         <div>All Tasks ({query.data ? query.data.length : 0} tasks)</div>
         <AddTaskButton />
       </div>
-      <Separator className="pt-0.25 bg-green-400 mb-4" />
+      <Separator className="pt-0.25 bg-main mb-4" />
       <div className="px-2">
         {query.data?.map((item) => (
           <div key={item.id}>
             <div
               className="
-                bg-gray-100
+                bg-mainBg
+                text-onMainBg
                 rounded-lg
                 lg:mb-4
                 mb-8
