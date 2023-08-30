@@ -84,7 +84,7 @@ const Register = () => {
                 className="              
             hover:bg-green-200
           hover:text-green-500 
-          bg-green-500 
+          bg-green-400 
           rounded-lg
           text-green-100
            mt-8  

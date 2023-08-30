@@ -76,7 +76,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
                 mt-8           
               hover:bg-green-200
           hover:text-green-500 
-          bg-green-500 
+          bg-green-400
           text-green-100"
               >
                 Login
@@ -105,7 +105,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
               mt-8           
               hover:bg-green-200
           hover:text-green-500 
-          bg-green-500 
+          bg-green-400
           text-green-100"
               >
                 Logout

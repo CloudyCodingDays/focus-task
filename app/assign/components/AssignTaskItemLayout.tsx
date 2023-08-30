@@ -24,20 +24,16 @@ const AssignTaskItemLayout: React.FC<TaskItemProps> = ({ task }) => {
               <div className="pl-2">
                 {name.length > 30 ? name.substring(0, 30) + "..." : name}
               </div>
-
-              {task.is_recurring ? (
-                <div className="ml-2">
-                  <Repeat size={20} />
-                </div>
-              ) : (
-                <div></div>
-              )}
             </div>
           </div>
-          <div className="flex flex-row justify-end">
-            <div className="ml-auto mr-2 text-xs">
-              <div className="pl-2">{priority} Priority</div>
-            </div>
+          <div className="flex flex-row justify-end pr-2">
+            {task.is_recurring ? (
+              <div className="ml-2">
+                <Repeat size={20} />
+              </div>
+            ) : (
+              <div></div>
+            )}
           </div>
         </div>
       </div>

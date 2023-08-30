@@ -65,7 +65,7 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
             <button
               type="submit"
               className="          
-              hover:bg-green-500 
+              hover:bg-green-400
               hover:text-green-200 
               border-2
               border-green-500
@@ -91,7 +91,7 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
               className="          
               hover:bg-green-200
               hover:text-green-500 
-              bg-green-500 
+              bg-green-400
               text-green-100
               my-4
               mr-8

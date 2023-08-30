@@ -31,7 +31,7 @@ const TimeDateDisplay = () => {
             </div>
           </div>
           <div className="mt-4 mb-2 mx-24">
-            <Separator className="bg-green-500" />
+            <Separator className="bg-green-400" />
           </div>
           <div className="text-md pb-4 font-extralight">
             <div>
