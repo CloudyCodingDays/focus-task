@@ -8,6 +8,7 @@ import { useUserInfo } from "@/hooks/useUserInfo";
 import { Task } from "@/types/Task";
 import { useQuery, useQueryClient } from "react-query";
 import AssignTaskAction from "./AssignTaskAction";
+import { format } from "date-fns";
 
 const AssignTaskItemDisplay = ({
   currentDate,
@@ -55,8 +56,9 @@ const AssignTaskItemDisplay = ({
       <div className="text-sm px-2 py-2">
         <div className="flex flex-row justify-between items-end">
           <div className="text-gray-600 font-semibold text-md">
-            {query.data ? query.data.length : 0} Tasks due for{" "}
-            {validatedDate.toLocaleDateString()}
+            {query.data?.length} Task
+            {query.data && query.data.length < 2 ? "" : "s"} due for{" "}
+            {format(validatedDate, "PPP")}
           </div>
           <div>
             <AddTaskButton />
