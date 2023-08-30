@@ -2,7 +2,7 @@
 import useThemeContext from "@/hooks/useThemeContext";
 
 const ThemeSelector = () => {
-  const { theme, setTheme } = useThemeContext();
+  /*const { theme, setTheme } = useThemeContext();
   const themeList = [
     {
       name: "Forest Theme",
@@ -30,6 +30,8 @@ const ThemeSelector = () => {
         </div>
       ))}
     </div>
-  );
+  );*/
+
+  return <div></div>;
 };
 export default ThemeSelector;
