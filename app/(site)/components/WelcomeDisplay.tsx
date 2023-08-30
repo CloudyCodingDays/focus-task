@@ -4,7 +4,7 @@ import AddTaskButton from "@/components/AddTaskButton";
 
 const WelcomeDisplay = () => {
   return (
-    <div className="lg:w-[50em] w-full lg:mx-auto bg-gray-200 rounded-lg text-md mt-8 drop-shadow-lg py-8 text-start text-gray-500">
+    <div className="bg-mainBg text-onMainBg lg:w-[50em] w-full lg:mx-auto rounded-lg text-md mt-8 drop-shadow-lg py-8 text-start">
       <div className="text-sm pl-4">
         Welcome! You do not have any tasks added yet.
       </div>

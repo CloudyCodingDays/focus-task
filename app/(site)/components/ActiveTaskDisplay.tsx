@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useQueryClient } from "react-query";
 import ActiveTaskDetails from "./ActiveTaskDetails";
-import { AssignFormSubmit } from "./HandleSubmitAssign";
+import { AssignFormSubmit } from "./AssignFormSubmit";
 
 interface ActiveTaskDisplayProps {
   task: Task;
@@ -48,7 +48,7 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
 
   return (
     <div key={task.id} className="w-full flex flex-col items-center">
-      <div className="lg:w-[50em] w-full bg-gray-200 rounded-lg my-4 mx-4 drop-shadow-lg">
+      <div className="bg-mainBg text-onMainBg lg:w-[50em] w-full rounded-lg my-4 mx-4 drop-shadow-lg">
         <ActiveTaskDetails task={task} />
         <div className="flex flex-row justify-center">
           <form method="post" onSubmit={HandleUnassign}>
@@ -65,17 +65,17 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
             <button
               type="submit"
               className="          
-              hover:bg-green-500 
-              hover:text-green-200 
+              hover:bg-inverted
+              hover:text-onInvertedBg 
+              text-onMainBg 
               border-2
-              border-green-500
+              border-main
               my-4
               mr-8
               rounded-lg
               w-[7em]
               h-[3em]
-            font-semibold
-            text-green-500"
+            font-semibold"
             >
               Unassign
             </button>
@@ -89,10 +89,10 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
             <button
               type="submit"
               className="          
-              hover:bg-green-200
-              hover:text-green-500 
-              bg-green-500 
-              text-green-100
+              hover:bg-inverted
+              hover:text-onInvertedBg 
+              bg-main
+              text-onMainBg 
               my-4
               mr-8
               rounded-lg

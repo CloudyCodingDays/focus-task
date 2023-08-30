@@ -32,48 +32,46 @@ const Register = () => {
   };
 
   return (
-    <div className="bg-gray-100 md:w-2/5 w-3/5 mx-auto mt-8 px-8 py-8">
-      <div className="font-semibold text-gray-500">
-        Sign up for a new account
-      </div>
+    <div className="bg-mainBg text-onMainBg md:w-2/5 w-3/5 mx-auto mt-8 px-8 py-8">
+      <div className="font-semibold">Sign up for a new account</div>
       <form onSubmit={handleSubmit(HandleRegister)}>
         <div className="">
           <div className="flex flex-col pt-4">
-            <label htmlFor="email" className="text-sm text-green-600">
+            <label htmlFor="email" className="text-sm">
               Email
             </label>
             <input
-              className="drop-shadow-md border-2 border-green-200"
+              className="drop-shadow-md border-2 border-main"
               {...register("email", { required: true, minLength: 2 })}
             ></input>
           </div>
 
           <div className="flex flex-col pt-4">
-            <label htmlFor="password" className="text-sm text-green-600">
+            <label htmlFor="password" className="text-sm">
               Password
             </label>
             <input
-              className="drop-shadow-md border-2 border-green-200"
+              className="drop-shadow-md border-2 border-main"
               {...register("password", { required: true, minLength: 2 })}
             ></input>
           </div>
 
           <div className="flex flex-col pt-4">
-            <label htmlFor="firstName" className="text-sm text-green-600">
+            <label htmlFor="firstName" className="text-sm">
               First Name
             </label>
             <input
-              className="drop-shadow-md border-2 border-green-200"
+              className="drop-shadow-md border-2 border-main"
               {...register("firstName", { required: true, minLength: 2 })}
             ></input>
           </div>
 
           <div className="flex flex-col pt-4">
-            <label htmlFor="lastName" className="text-sm text-green-600">
+            <label htmlFor="lastName" className="text-sm">
               Last Name
             </label>
             <input
-              className="drop-shadow-md border-2 border-green-200"
+              className="drop-shadow-md border-2 border-main"
               {...register("lastName", { required: true, minLength: 2 })}
             ></input>
           </div>
@@ -82,13 +80,13 @@ const Register = () => {
             <button type="submit" className="w-1/3 ">
               <div
                 className="              
-            hover:bg-green-200
-          hover:text-green-500 
-          bg-green-500 
-          rounded-lg
-          text-green-100
-           mt-8  
-           drop-shadow-lg"
+                hover:bg-inverted
+                hover:text-onInvertedBg 
+                bg-main
+                text-onMainBg 
+                rounded-lg
+                mt-8  
+                drop-shadow-lg"
               >
                 Register
               </div>

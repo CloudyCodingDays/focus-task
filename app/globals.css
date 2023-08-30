@@ -4,6 +4,16 @@
 
 @layer base {
   :root {
+    --color-neutral-100: theme("colors.gray.100");
+    --color-neutral-200: theme("colors.gray.200");
+    --color-neutral-300: theme("colors.gray.300");
+    --color-neutral-400: theme("colors.gray.400");
+    --color-neutral-500: theme("colors.gray.500");
+    --color-neutral-600: theme("colors.gray.600");
+    --color-neutral-700: theme("colors.gray.700");
+    --color-neutral-800: theme("colors.gray.800");
+    --color-neutral-900: theme("colors.gray.900");
+
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -36,39 +46,6 @@
     --radius: 0.5rem;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 85.7% 97.3%;
-
-    --ring: 217.2 32.6% 17.5%;
-  }
-}
-
-@layer base {
   * {
     @apply border-border;
   }
@@ -77,25 +54,79 @@
   }
 }
 
+.theme-green {
+  --color-main-50: theme("colors.green.50");
+  --color-main-100: theme("colors.green.100");
+  --color-main-200: theme("colors.green.200");
+  --color-main-300: theme("colors.green.300");
+  --color-main-400: theme("colors.green.400");
+  --color-main-500: theme("colors.green.500");
+  --color-main-600: theme("colors.green.600");
+  --color-main-700: theme("colors.green.700");
+  --color-main-800: theme("colors.green.800");
+  --color-main-900: theme("colors.green.900");
+
+  --neutralBg: var(--color-neutral-100);
+  --onNeutralBg: var(--color-neutral-900);
+  --mainBg: var(--color-main-100);
+  --onMainBg: var(--color-main-900);
+  --main: var(--color-main-400);
+  --invertedBg: var(--color-main-900);
+  --onInvertedBg: var(--color-main-100);
+  --inverted: var(--color-main-600);
+}
+.theme-light {
+  --neutralBg: var(--color-neutral-100);
+  --onNeutralBg: var(--color-neutral-900);
+  --mainBg: var(--color-main-100);
+  --onMainBg: var(--color-main-900);
+  --main: var(--color-main-400);
+  --invertedBg: var(--color-main-900);
+  --onInvertedBg: var(--color-main-100);
+  --inverted: var(--color-main-600);
+}
+
+.theme-dark {
+  --neutralBg: var(--color-neutral-900);
+  --onNeutralBg: theme("colors.white");
+  --mainBg: var(--color-main-900);
+  --onMainBg: var(--color-main-50);
+  --main: var(--color-main-400);
+  --invertedBg: var(--color-neutral-200);
+  --onInvertedBg: var(--color-main-700);
+  --inverted: var(--color-main-300);
+
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 85.7% 97.3%;
+
+  --ring: 217.2 32.6% 17.5%;
+}
+
 html,
 body {
   height: 100%;
-}
-
-.top-to-bottom {
-  border-width: 3px;
-  border-style: solid;
-  -webkit-border-image: -webkit-gradient(
-      linear,
-      0 0,
-      0 100%,
-      from(black),
-      to(rgba(0, 0, 0, 0))
-    )
-    1 100%;
-  -webkit-border-image: -webkit-linear-gradient(darkred, rgba(0, 0, 0, 0)) 1
-    100%;
-  -moz-border-image: -moz-linear-gradient(darkredred, rgba(0, 0, 0, 0)) 1 100%;
-  -o-border-image: -o-linear-gradient(darkred, rgba(0, 0, 0, 0)) 1 100%;
-  border-image: linear-gradient(to bottom, darkred, rgba(0, 0, 0, 0)) 1 100%;
 }

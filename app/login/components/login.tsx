@@ -48,7 +48,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
       {!session ? (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col pt-4">
-            <label htmlFor="email" className="text-md text-green-500">
+            <label htmlFor="email" className="text-md text-onMainBg">
               Email
             </label>
             <input
@@ -58,7 +58,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
           </div>
 
           <div className="flex flex-col pt-4">
-            <label htmlFor="password" className="text-md text-green-500">
+            <label htmlFor="password" className="text-md text-onMainBg">
               Password
             </label>
             <input
@@ -71,20 +71,20 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
             <button type="submit" className="w-1/3">
               <div
                 className="
+                hover:bg-inverted
+                hover:text-onInvertedBg 
+                bg-main
+                text-onMainBg 
                 rounded-lg
                 text-center 
-                mt-8           
-              hover:bg-green-200
-          hover:text-green-500 
-          bg-green-500 
-          text-green-100"
+                mt-8"
               >
                 Login
               </div>
             </button>
           </div>
 
-          <div className="text-sm pt-4">
+          <div className="text-sm pt-4 text-onMainBg">
             Don&apos;t have have an account?{" "}
             <button
               type="button"
@@ -105,7 +105,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
               mt-8           
               hover:bg-green-200
           hover:text-green-500 
-          bg-green-500 
+          bg-green-400
           text-green-100"
               >
                 Logout

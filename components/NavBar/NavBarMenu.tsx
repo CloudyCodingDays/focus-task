@@ -17,7 +17,9 @@ const NavBarMenu = ({ user }: { user: User | null }) => {
           </button>
         </DialogTrigger>
         <DialogContent className="h-full grid md:w-1/4 md:left-[12%] pt-4">
-          <Routes onRoute={setOpen} user={user} />
+          <div className="bg-mainBg">
+            <Routes onRoute={setOpen} user={user} />
+          </div>
         </DialogContent>
       </Dialog>
     </div>

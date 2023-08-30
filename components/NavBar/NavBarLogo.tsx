@@ -5,7 +5,7 @@ const sansita = Sansita_Swashed({ subsets: ["latin"] });
 const NavBarLogo = () => {
   return (
     <div className={"md:mr-auto " + sansita.className}>
-      <div className="text-1xl text-gray-600 text-2xl pb-2">Focus Task</div>
+      <div className="text-onMainBg text-2xl pb-2">Focus Task</div>
     </div>
   );
 };

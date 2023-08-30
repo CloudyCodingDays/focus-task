@@ -5,6 +5,9 @@ import { useState } from "react";
 
 const ManageTaskList = () => {
   const [debouncedValue, setDebouncedValue] = useState("");
+  const [groupBy, setGroupBy] = useState("");
+  const [sortBy, setSortBy] = useState("");
+  const [sortOrder, setSortOrder] = useState("");
 
   const ManageTaskItemDisplay = dynamic(
     () => import("./ManageTaskItemDisplay"),
@@ -15,10 +18,20 @@ const ManageTaskList = () => {
 
   return (
     <div className="lg:w-1/2 lg:mx-auto">
-      <SearchForm setDebouncedValue={setDebouncedValue} />
+      <SearchForm
+        setDebouncedValue={setDebouncedValue}
+        setGroupBy={setGroupBy}
+        setSortBy={setSortBy}
+        setSortOrder={setSortOrder}
+      />
 
       <div className="mx-auto pb-4 mt-2">
-        <ManageTaskItemDisplay debouncedValue={debouncedValue} />
+        <ManageTaskItemDisplay
+          debouncedValue={debouncedValue}
+          groupBy={groupBy}
+          sortBy={sortBy}
+          sortOrder={sortOrder}
+        />
       </div>
     </div>
   );

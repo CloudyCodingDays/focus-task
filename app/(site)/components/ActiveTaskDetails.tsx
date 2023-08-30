@@ -9,11 +9,9 @@ const ActiveTaskDetails: React.FC<ActiveTaskDetailsProps> = ({ task }) => {
 
   return (
     <div>
-      <div className="pt-4 px-4 text-md font-semibold text-gray-600">
-        {name}
-      </div>
-      <Separator className="bg-green-500" />
-      <div className="py-4 px-4 text-gray-700 text-md">
+      <div className="pt-4 px-4 text-md font-semibold">{name}</div>
+      <Separator className="bg-main" />
+      <div className="py-4 px-4 text-md">
         <p className="break-words">{description}</p>
       </div>
     </div>

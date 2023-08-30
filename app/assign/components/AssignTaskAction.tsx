@@ -10,7 +10,7 @@ const AssignTaskAction = ({ task }: { task: Task }) => {
   return (
     <div
       className="
-      bg-gray-100
+      bg-mainBg
       rounded-lg
       mb-8
       drop-shadow-lg"

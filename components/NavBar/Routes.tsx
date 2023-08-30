@@ -36,13 +36,13 @@ const Routes: React.FC<RoutesProp> = ({ user, onRoute }) => {
   ];
 
   const NavMenuStyle =
-    "hover:bg-green-100 flex flex-row items-center text-gray-700 py-2 px-4 md:w-[15em] rounded-lg";
+    "hover:bg-main text-onMainBg flex flex-row items-center text-gray-700 py-2 px-4 md:w-[15em] rounded-lg";
 
   return (
     <div className="flex flex-col justify-start items-center w-full">
       {onRoute !== undefined ? (
         <div className="flex flex-row justify-around items-baseline w-full">
-          <div className="text-2xl text-green-500">Focus Task</div>
+          <div className="text-2xl text-main">Focus Task</div>
           <button
             onClick={() => {
               onRoute(false);
@@ -67,7 +67,7 @@ const Routes: React.FC<RoutesProp> = ({ user, onRoute }) => {
               <div
                 className={
                   item.active
-                    ? NavMenuStyle + " font-semibold bg-green-100"
+                    ? NavMenuStyle + " font-semibold bg-main"
                     : NavMenuStyle
                 }
               >
