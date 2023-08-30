@@ -13,6 +13,7 @@ import { useState } from "react";
 const NavBarLogin = () => {
   const [open, setOpen] = useState(false);
   const { user } = useUserInfo();
+  const { color, setColor, mode, setMode } = useThemeContext();
 
   return (
     <div className="py-2 md:ml-auto">
@@ -20,7 +21,15 @@ const NavBarLogin = () => {
         <PopoverTrigger>
           <User />
         </PopoverTrigger>
-        <PopoverContent>
+        <PopoverContent
+          className={[
+            "bg-mainBg",
+            color && `theme-${color}`,
+            mode && `theme-${mode}`,
+          ]
+            .filter(Boolean)
+            .join(" ")}
+        >
           <Login setOpen={setOpen} />
         </PopoverContent>
       </Popover>

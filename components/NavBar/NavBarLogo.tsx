@@ -1,4 +1,5 @@
 import { Sansita_Swashed } from "next/font/google";
+import { Label } from "@/components/ui/label";
 
 const sansita = Sansita_Swashed({ subsets: ["latin"] });
 

@@ -17,7 +17,11 @@ const NavBar: React.FC<NavBarProps> = ({ children }) => {
   const { color, setColor, mode, setMode } = useThemeContext();
   return (
     <div
-      className={[color && `theme-${color}`, mode && `theme-${mode}`]
+      className={[
+        "bg-neutralBg",
+        color && `theme-${color}`,
+        mode && `theme-${mode}`,
+      ]
         .filter(Boolean)
         .join(" ")}
     >
