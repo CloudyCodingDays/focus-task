@@ -3,12 +3,23 @@ import AddTaskButton from "@/components/AddTaskButton";
 import { Separator } from "@/components/ui/separator";
 import useDebounceSearch from "@/hooks/useDebounceSearch";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import SearchFilterGrouping from "./SearchFilterGrouping";
+import SearchFilterSorting from "./SearchFilterSorting";
+import SearchFilterSortOrder from "./SearchFilterSortOrder";
 
 interface SearchFormProps {
   setDebouncedValue: Dispatch<SetStateAction<string>>;
+  setGroupBy: Dispatch<SetStateAction<string>>;
+  setSortBy: Dispatch<SetStateAction<string>>;
+  setSortOrder: Dispatch<SetStateAction<string>>;
 }
 
-const SearchForm: React.FC<SearchFormProps> = ({ setDebouncedValue }) => {
+const SearchForm: React.FC<SearchFormProps> = ({
+  setDebouncedValue,
+  setGroupBy,
+  setSortBy,
+  setSortOrder,
+}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedValue = useDebounceSearch(searchTerm, 500);
 
@@ -21,11 +32,13 @@ const SearchForm: React.FC<SearchFormProps> = ({ setDebouncedValue }) => {
         className="
           mt-4
           mx-auto 
-          drop-shadow-lg"
+          drop-shadow-lg
+          bg-gray-100
+          py-4"
       >
         <div className="my-4">
-          <div className="flex flex-row justify-between items-baseline">
-            <form className="flex-grow mr-4">
+          <div className="flex flex-row justify-between items-baseline px-4">
+            <form className="flex-grow">
               <input
                 name="SearchTerm"
                 className="w-full"
@@ -37,7 +50,11 @@ const SearchForm: React.FC<SearchFormProps> = ({ setDebouncedValue }) => {
               ></input>
               <Separator className="bg-green-200 pt-0.5" />
             </form>
-            <AddTaskButton />
+          </div>
+          <div className="flex flex-row justify-end mt-4">
+            <SearchFilterGrouping setGroupBy={setGroupBy} />
+            <SearchFilterSorting setSortBy={setSortBy} />
+            <SearchFilterSortOrder setSortOrder={setSortOrder} />
           </div>
         </div>
       </div>

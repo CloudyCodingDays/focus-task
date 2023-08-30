@@ -7,14 +7,28 @@ import { Task } from "@/types/Task";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useQuery, useQueryClient } from "react-query";
 import ManageTaskDetails from "./ManageTaskDetails";
+import AddTaskButton from "@/components/AddTaskButton";
+import { useEffect } from "react";
 
 const ManageTaskItemDisplay = ({
   debouncedValue,
+  groupBy,
+  sortBy,
+  sortOrder,
 }: {
   debouncedValue: string;
+  groupBy: string;
+  sortBy: string;
+  sortOrder: string;
 }) => {
   const { session } = useSessionContext();
   const queryClient = useQueryClient();
+
+  useEffect(() => {
+    //TODO: process Group By filter
+    //TODO: process Sort By filter
+    //TODO: process Sort Order
+  }, []);
 
   const queryKeys = [
     "ManageTasks",
@@ -50,8 +64,9 @@ const ManageTaskItemDisplay = ({
 
   return (
     <div>
-      <div className="text-sm px-2 py-2">
+      <div className="flex flex-row justify-between items-end text-sm px-2 py-2">
         <div>All Tasks ({query.data ? query.data.length : 0} tasks)</div>
+        <AddTaskButton />
       </div>
       <Separator className="pt-0.25 bg-green-400 mb-4" />
       <div className="px-2">
