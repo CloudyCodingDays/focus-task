@@ -1,5 +1,8 @@
 import supabaseClient from "@/lib/supabaseClient";
 import { Task } from "@/types/Task";
+import { CalculateNextDueDate } from "../task_functions/CalculateNextDueDate";
+import UnassignTaskQuery from "./UnassignTaskQuery";
+import InsertCompletedRecurringTaskQuery from "./InsertCompletedRecurringTaskQuery";
 
 const UpdateRecurringTaskDueDateQuery = async (
   taskData: Task,

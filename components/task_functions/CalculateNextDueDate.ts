@@ -7,7 +7,7 @@ export const CalculateNextDueDate = (
   Due.setHours(0, 0, 0);
   Due.setMilliseconds(0);
 
-  Due.setDate(Due.getDate()); //Add one day to bring it back to current day after date conversion
+  Due.setDate(Due.getDate() + 1); //Add one day to bring it back to current day after date conversion
 
   if (recurringType.toLocaleLowerCase() === "monthly") {
     let expectedMonth = Due.getMonth();

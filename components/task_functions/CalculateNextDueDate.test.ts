@@ -4,16 +4,10 @@ import { addDays, subDays } from "date-fns";
 import { CalculateNextDueDate } from "./CalculateNextDueDate";
 
 const TodayDate = new Date(Date.now());
-const YesterdayDate = subDays(new Date(Date.now()), 1);
-const MonthAgoDate = subDays(new Date(Date.now()), 30);
-const YearAgoDate = subDays(new Date(Date.now()), 365);
 const TomorrowDate = addDays(new Date(Date.now()), 1);
-
 const WeekDate = addDays(new Date(Date.now()), 7);
 const BiweekDate = addDays(new Date(Date.now()), 14);
 const MonthDate = addDays(new Date(Date.now()), 30);
-
-const YearDate = addDays(new Date(Date.now()), 365);
 
 let strictMonthDate = new Date(Date.now());
 let expectedMonth = strictMonthDate.getMonth();
@@ -31,7 +25,7 @@ const FormatDate = (date: Date) => {
   date.setMilliseconds(0);
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
-  const day = date.getDate();
+  const day = date.getDate() - 1;
 
   return year.toString() + "-" + month.toString() + "-" + day.toString();
 };
@@ -41,7 +35,6 @@ test("Calculate Next due date for Daily task due today", () => {
     TomorrowDate.toLocaleDateString()
   );
 });
-
 test("Calculate Next due date for weekly task due today", () => {
   expect(CalculateNextDueDate("weekly", FormatDate(TodayDate))).toBe(
     WeekDate.toLocaleDateString()

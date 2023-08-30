@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useQueryClient } from "react-query";
 import ActiveTaskDetails from "./ActiveTaskDetails";
-import { AssignFormSubmit } from "./HandleSubmitAssign";
+import { AssignFormSubmit } from "./AssignFormSubmit";
 
 interface ActiveTaskDisplayProps {
   task: Task;
