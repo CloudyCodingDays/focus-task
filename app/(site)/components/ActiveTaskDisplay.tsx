@@ -65,17 +65,18 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
             <button
               type="submit"
               className="          
-              hover:bg-inverted
-              hover:text-onInvertedBg 
+              hover:bg-main
+              hover:text-onMainBg 
+              bg-neutralBg
               text-onMainBg 
               border-2
               border-main
+              rounded-lg
               my-4
               mr-8
-              rounded-lg
               w-[7em]
               h-[3em]
-            font-semibold"
+              font-semibold"
             >
               Unassign
             </button>

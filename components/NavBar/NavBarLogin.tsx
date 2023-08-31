@@ -6,14 +6,14 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import useThemeContext from "@/hooks/useThemeContext";
-import { useUserInfo } from "@/hooks/useUserInfo";
-import { Palette, User } from "lucide-react";
+import { User } from "lucide-react";
 import { useState } from "react";
+import { GetThemeStyle } from "../GetThemeStyle";
 
 const NavBarLogin = () => {
   const [open, setOpen] = useState(false);
-  const { user } = useUserInfo();
   const { color, setColor, mode, setMode } = useThemeContext();
+  const themeStyle = GetThemeStyle(color, mode);
 
   return (
     <div className="py-2 md:ml-auto">
@@ -21,15 +21,7 @@ const NavBarLogin = () => {
         <PopoverTrigger>
           <User />
         </PopoverTrigger>
-        <PopoverContent
-          className={[
-            "bg-mainBg",
-            color && `theme-${color}`,
-            mode && `theme-${mode}`,
-          ]
-            .filter(Boolean)
-            .join(" ")}
-        >
+        <PopoverContent className={"bg-mainBg " + themeStyle}>
           <Login setOpen={setOpen} />
         </PopoverContent>
       </Popover>

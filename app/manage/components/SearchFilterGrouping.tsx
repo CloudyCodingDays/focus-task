@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,6 +15,8 @@ import {
 } from "@/components/ui/popover";
 import { Check, ChevronDown, ChevronsUpDown } from "lucide-react";
 import { Dispatch, SetStateAction, useState } from "react";
+import useThemeContext from "@/hooks/useThemeContext";
+import { GetThemeStyle } from "@/components/GetThemeStyle";
 
 const TaskProperties = [
   {
@@ -49,6 +52,9 @@ const SearchFilterGrouping = ({
 }) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
+  const { color, setColor, mode, setMode } = useThemeContext();
+  const themeStyle = GetThemeStyle(color, mode);
+
   return (
     <div className="md:px-4">
       <Popover open={open} onOpenChange={setOpen}>
@@ -67,7 +73,7 @@ const SearchFilterGrouping = ({
             <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[200px] p-0">
+        <PopoverContent className={"bg-mainBg w-[200px] p-0 " + themeStyle}>
           <Command>
             <CommandGroup>
               {TaskProperties.map((TaskProperty) => (
