@@ -10,7 +10,7 @@ import { GetUserSettings } from "@/components/task_queries/GetUserSettings";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Home() {
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("General");
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
 
@@ -45,8 +45,13 @@ export default function Home() {
 
   return (
     <div className="bg-mainBg text-onMainBg flex flex-col lg:w-1/2 mx-auto mt-4">
+      {JSON.stringify(query.data)}
       <SettingsMenu setCategory={setCategory} />
-      <SettingContent category={category} settings={query?.data} />
+      {query?.data?.map((setting) => (
+        <div key={setting.id}>
+          <SettingContent category={category} settings={setting} />
+        </div>
+      ))}
     </div>
   );
 }

@@ -20,7 +20,7 @@ const ManageTaskDetails = ({ task }: { task: Task }) => {
         </button>
       </DialogTrigger>
       <DialogContent className={"bg-mainBg " + themeStyle}>
-        <ManageTaskActions task={task} setOpen={setOpen} />
+        <ManageTaskActions task={task} />
       </DialogContent>
     </Dialog>
   );

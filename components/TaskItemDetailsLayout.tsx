@@ -1,16 +1,18 @@
 import { Task } from "@/types/Task";
 
 interface TaskItemDetailsLayoutProps {
-  isEdit: boolean;
   task?: Task;
+  isEdit: boolean;
+  isSetting?: boolean;
 }
 const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
-  isEdit,
   task,
+  isEdit,
+  isSetting = false,
 }) => {
   return (
     <div className="text-gray-600 lg:flex lg:justify-center h-fit">
-      {isEdit && task !== undefined ? (
+      {isEdit && task !== undefined && !isSetting ? (
         <div>
           <input name="id" type="hidden" value={task.id}></input>
           <input
@@ -50,15 +52,21 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
       )}
 
       <div className="text-left rounded-lg text-sm drop-shadow-lg">
-        <div>Name</div>
-        <input
-          name="name"
-          className="border-2 mb-4 w-full lg:w-[30em]"
-          placeholder={isEdit ? "Name" : ""}
-          defaultValue={task !== undefined ? task.name : ""}
-          required
-          disabled={!isEdit}
-        ></input>
+        {!isSetting ? (
+          <div>
+            <div>Name</div>
+            <input
+              name="name"
+              className="border-2 mb-4 w-full lg:w-[30em]"
+              placeholder={isEdit ? "Name" : ""}
+              defaultValue={task !== undefined ? task.name : ""}
+              required
+              disabled={!isEdit}
+            ></input>
+          </div>
+        ) : (
+          <div></div>
+        )}
 
         <div>Description</div>
         <textarea
@@ -113,7 +121,7 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
           <option value="High">High</option>
         </select>
 
-        {isEdit ? (
+        {isEdit && !isSetting ? (
           <div>
             <div>Due Date</div>
             <input
@@ -143,6 +151,24 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
               disabled
             ></input>
           </div>
+        )}
+
+        {isSetting ? (
+          <div>
+            <div>Due Date</div>
+            <select
+              name="recurring_type"
+              className="border-2 mb-4 w-full lg:w-[30em]"
+              disabled={!isEdit}
+              defaultValue={task !== undefined ? task.recurring_type : ""}
+            >
+              <option value="today">Today</option>
+              <option value="tomorrow">Tomorrow</option>
+              <option value="week">One week from today</option>
+            </select>
+          </div>
+        ) : (
+          <div></div>
         )}
       </div>
     </div>
