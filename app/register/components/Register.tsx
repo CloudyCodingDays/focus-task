@@ -83,7 +83,7 @@ const Register = () => {
                 hover:bg-inverted
                 hover:text-onInvertedBg 
                 bg-main
-                text-onMainBg 
+                text-onMainBg  
                 rounded-lg
                 mt-8  
                 drop-shadow-lg"

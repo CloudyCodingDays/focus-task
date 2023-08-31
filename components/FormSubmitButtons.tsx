@@ -17,12 +17,13 @@ const FormSubmitButtons = ({
     <div className="text-center mt-4">
       <button
         className="
-            hover:bg-green-200
-            bg-white
-            border-green-300
-            text-gray-500 
-            border-2 
-            rounded-lg 
+            hover:bg-main
+            hover:text-onMainBg 
+            bg-neutralBg
+            text-onMainBg 
+            border-2
+            border-main
+            rounded-lg
             w-[7em]
             h-[3em]
             ml-4 
@@ -39,10 +40,10 @@ const FormSubmitButtons = ({
         <button
           type="submit"
           className="              
-          hover:bg-green-200
-          hover:text-green-500 
-          bg-green-400
-          text-green-100
+          hover:bg-inverted
+              hover:text-onInvertedBg 
+              bg-main
+              text-onMainBg 
             rounded-lg               
             w-[7em]
             h-[3em]

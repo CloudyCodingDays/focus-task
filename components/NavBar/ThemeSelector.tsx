@@ -1,37 +1,54 @@
 "use client";
 import useThemeContext from "@/hooks/useThemeContext";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const ThemeSelector = () => {
-  /*const { theme, setTheme } = useThemeContext();
+  const { color, setColor, mode, setMode } = useThemeContext();
   const themeList = [
     {
       name: "Forest Theme",
-      active: theme === "green",
+      active: color === "green",
+      value: "green",
+      type: "color",
     },
     {
-      name: "Light Theme",
-      active: theme === "light",
+      name: "Blue Theme",
+      active: color === "blue",
+      value: "blue",
+      type: "color",
     },
     {
-      name: "Dark Theme",
-      active: theme === "dark",
+      name: "Red Theme",
+      active: color === "red",
+      value: "red",
+      type: "color",
     },
   ];
 
   return (
     <div className="flex flex-col">
-      {themeList.map((themeItem) => (
-        <div key={themeItem.name}>
-          <button
-            className={`px-2 py-2 ` + themeItem.active ? "bg-mainBg" : ""}
-          >
-            {themeItem.name}
-          </button>
-        </div>
-      ))}
+      <RadioGroup defaultValue={color}>
+        {themeList.map((themeItem) => (
+          <div key={themeItem.name}>
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => {
+                  if (setColor !== undefined) setColor(themeItem.value);
+                }}
+              >
+                <RadioGroupItem
+                  value={themeItem.value}
+                  id={themeItem.value}
+                  className="mr-2"
+                />
+                <Label htmlFor={themeItem.value}>{themeItem.name}</Label>{" "}
+              </button>
+            </div>
+          </div>
+        ))}
+      </RadioGroup>
     </div>
-  );*/
-
-  return <div></div>;
+  );
 };
 export default ThemeSelector;

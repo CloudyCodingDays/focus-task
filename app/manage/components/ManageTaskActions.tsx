@@ -5,6 +5,8 @@ import { FileEdit, Trash2 } from "lucide-react";
 import { Dispatch, SetStateAction, useState } from "react";
 import DeleteForm from "./DeleteForm";
 import EditForm from "./EditForm";
+import useThemeContext from "@/hooks/useThemeContext";
+import { GetThemeStyle } from "@/components/GetThemeStyle";
 
 interface ManageTaskActionsProps {
   task: Task;
@@ -17,6 +19,9 @@ const ManageTaskActions: React.FC<ManageTaskActionsProps> = ({
 }) => {
   const [deleteOpen, setDeleteOpen] = useState<boolean>(false);
   const [editOpen, setEditOpen] = useState<boolean>(false);
+  const { color, setColor, mode, setMode } = useThemeContext();
+  const themeStyle = GetThemeStyle(color, mode);
+
   return (
     <div>
       <TaskItemDetailsLayout task={task} isEdit={false} />
@@ -40,7 +45,7 @@ const ManageTaskActions: React.FC<ManageTaskActionsProps> = ({
               </div>
             </button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className={"bg-mainBg " + themeStyle}>
             <DeleteForm task={task} onBack={setDeleteOpen} onClose={setOpen} />
           </DialogContent>
         </Dialog>
@@ -63,7 +68,7 @@ const ManageTaskActions: React.FC<ManageTaskActionsProps> = ({
               </div>
             </button>
           </DialogTrigger>
-          <DialogContent className="bg-gray-200">
+          <DialogContent className={"bg-mainBg " + themeStyle}>
             <EditForm task={task} onBack={setEditOpen} onClose={setOpen} />
           </DialogContent>
         </Dialog>
