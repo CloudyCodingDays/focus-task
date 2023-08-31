@@ -2,18 +2,25 @@ import { useUserInfo } from "@/hooks/useUserInfo";
 import { Task } from "@/types/Task";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { useQueryClient } from "react-query";
+import { UseQueryResult, useQueryClient } from "react-query";
 import ActiveTaskDetails from "./ActiveTaskDetails";
 import { AssignFormSubmit } from "./AssignFormSubmit";
+import useTaskContext from "@/hooks/useTaskContext";
+import { CatPictureData } from "@/types/CatPictureData";
 
 interface ActiveTaskDisplayProps {
   task: Task;
+  catQuery: UseQueryResult<CatPictureData[], Error>;
 }
 
-const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
+const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({
+  task,
+  catQuery,
+}) => {
   const router = useRouter();
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
+  const { taskCompleted, setTaskCompleted } = useTaskContext();
 
   const HandleUnassign: React.FormEventHandler<HTMLFormElement> = async (
     e: React.FormEvent<HTMLFormElement>
@@ -42,6 +49,11 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({ task }) => {
     await queryClient.resetQueries("ManageTasks");
     await queryClient.resetQueries("ActiveTask");
     await queryClient.resetQueries("TaskCount");
+
+    if (setTaskCompleted !== undefined) {
+      setTaskCompleted(true);
+      catQuery.refetch();
+    }
 
     router.refresh();
   };

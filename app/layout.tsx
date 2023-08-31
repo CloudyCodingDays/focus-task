@@ -7,6 +7,7 @@ import SupaBaseProvider from "@/providers/SupabaseProvider";
 import { Toaster } from "react-hot-toast";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import ThemeContextProvider from "@/providers/ThemeContextProvider";
+import TaskContextProvider from "@/providers/TaskContextProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,11 +26,13 @@ export default function RootLayout({
       <body className={inter.className}>
         <SupaBaseProvider>
           <UserProvider>
-            <ThemeContextProvider>
-              <ReactQueryProvider>
-                <NavBar>{children}</NavBar>
-              </ReactQueryProvider>
-            </ThemeContextProvider>
+            <TaskContextProvider>
+              <ThemeContextProvider>
+                <ReactQueryProvider>
+                  <NavBar>{children}</NavBar>
+                </ReactQueryProvider>
+              </ThemeContextProvider>
+            </TaskContextProvider>
           </UserProvider>
         </SupaBaseProvider>
         <Toaster />
