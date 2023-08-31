@@ -1,5 +1,6 @@
 "use client";
 import SearchForm from "@/app/manage/components/SearchForm";
+import { Skeleton } from "@/components/ui/skeleton";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 
@@ -12,7 +13,7 @@ const ManageTaskList = () => {
   const ManageTaskItemDisplay = dynamic(
     () => import("./ManageTaskItemDisplay"),
     {
-      loading: () => <p>Loading..</p>,
+      loading: () => <Skeleton className="mx-auto w-[400px] h-[30px] mt-4" />,
     }
   );
 

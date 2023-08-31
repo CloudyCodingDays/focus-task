@@ -9,6 +9,7 @@ import { Task } from "@/types/Task";
 import { useQuery, useQueryClient } from "react-query";
 import AssignTaskAction from "./AssignTaskAction";
 import { format } from "date-fns";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const AssignTaskItemDisplay = ({
   currentDate,
@@ -48,7 +49,12 @@ const AssignTaskItemDisplay = ({
     queryFn: getTasks,
   });
 
-  if (query.isFetching) return "Loading...";
+  if (query.isFetching)
+    return (
+      <div>
+        <Skeleton />
+      </div>
+    );
   if (query.error) return "Error has occured : " + query.error.message;
 
   return (

@@ -1,5 +1,7 @@
 "use client";
 import { Calendar } from "@/components/ui/calendar";
+import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 
@@ -10,7 +12,19 @@ const AssignTaskList = () => {
   const AssignTaskItemDisplay = dynamic(
     () => import("./AssignTaskItemDisplay"),
     {
-      loading: () => <p>Loading..</p>,
+      loading: () => (
+        <div>
+          <div className="flex flex-row justify-between items-end">
+            <div className="text-neutral font-semibold text-md">
+              <Skeleton className="mx-auto w-[300px] h-[40px]" />
+            </div>
+            <div>
+              <Skeleton className="mx-auto w-[100px] h-[40px]" />
+            </div>
+          </div>
+          <Separator className="pt-0.25 bg-main lg:mb-4 mb-8" />
+        </div>
+      ),
     }
   );
 

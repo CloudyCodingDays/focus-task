@@ -5,6 +5,7 @@ import { User } from "@supabase/supabase-js";
 import { useQuery, useQueryClient } from "react-query";
 import ActiveTaskDisplay from "./ActiveTaskDisplay";
 import NoActiveTaskDisplay from "./NoActiveTaskDisplay";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface CurrentTaskDisplayProps {
   user: User | null;
@@ -32,7 +33,12 @@ const CurrentTaskDisplay: React.FC<CurrentTaskDisplayProps> = ({ user }) => {
     queryFn: getTasks,
   });
 
-  if (isFetching) return <div>Loading Tasks...</div>;
+  if (isFetching)
+    return (
+      <div>
+        <Skeleton />
+      </div>
+    );
   if (isError) return "Error has occured : " + error.message;
   return (
     <div>

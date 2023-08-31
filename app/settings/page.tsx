@@ -7,6 +7,7 @@ import { useQuery, useQueryClient } from "react-query";
 import { Settings } from "@/types/Setting";
 import { ReactQueryCache } from "@/components/task_functions/ReactQueryCache";
 import { GetUserSettings } from "@/components/task_queries/GetUserSettings";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Home() {
   const [category, setCategory] = useState("");
@@ -34,7 +35,12 @@ export default function Home() {
     queryFn: getSettings,
   });
 
-  if (query.isFetching) return "Loading...";
+  if (query.isFetching)
+    return (
+      <div>
+        <Skeleton />
+      </div>
+    );
   if (query.error) return "Error has occured : " + query.error.message;
 
   return (

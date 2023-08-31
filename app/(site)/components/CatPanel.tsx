@@ -1,4 +1,5 @@
 "use client";
+import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";
 import { useQuery, useQueryClient } from "react-query";
 
@@ -22,7 +23,8 @@ const CatPanel = () => {
     staleTime: 1000 * 60 * 60 * 12,
   });
 
-  if (query.isFetching) return "Loading...";
+  if (query.isFetching)
+    return <Skeleton className="mx-auto w-[400px] h-[30px] mt-4" />;
 
   if (query.error) return "Error has occured : " + query.error.message;
 
