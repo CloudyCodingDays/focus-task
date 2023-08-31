@@ -157,7 +157,7 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
           <div>
             <div>Due Date</div>
             <select
-              name="recurring_type"
+              name="default_task_recurring"
               className="border-2 mb-4 w-full lg:w-[30em]"
               disabled={!isEdit}
               defaultValue={task !== undefined ? task.recurring_type : ""}

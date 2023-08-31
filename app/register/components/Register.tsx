@@ -1,4 +1,7 @@
 import { UserRegister } from "@/app/login/components/UserActions";
+import { AddNameForUser } from "@/components/user_queries/AddNameForUser";
+import { AddUserSettings } from "@/components/user_queries/AddUserSettings";
+import { Task } from "@/types/Task";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -9,6 +12,20 @@ type FormData = {
   firstName: string;
   lastName: string;
 };
+
+const defaultTask = {
+  id: "",
+  name: "",
+  description: "",
+  is_recurring: "",
+  recurring_type: "",
+  priority: "",
+  due_date: new Date().toLocaleDateString(),
+  created_at: new Date().toLocaleDateString(),
+  created_by: "",
+  updated_at: new Date().toLocaleDateString(),
+  user_id: "",
+} as Task;
 
 const Register = () => {
   const router = useRouter();
@@ -21,12 +38,13 @@ const Register = () => {
   } = useForm<FormData>();
 
   const HandleRegister: SubmitHandler<FormData> = async (data) => {
-    await UserRegister(
-      data.email,
-      data.password,
-      data.firstName,
-      data.lastName
-    );
+    const res = await UserRegister(data.email, data.password);
+
+    if (res.user) {
+      AddUserSettings(defaultTask, res.user?.id);
+
+      AddNameForUser(data.firstName, data.lastName);
+    }
 
     router.push("/");
   };

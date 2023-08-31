@@ -22,15 +22,11 @@ export const UserSignOut = async () => {
   const { error } = await supabase.auth.signOut();
 };
 
-export const UserRegister = async (
-  formEmail: string,
-  formPassword: string,
-  formFirstName: string,
-  formLastName: string
-) => {
-  const { error } = await supabase.auth.signUp({
+export const UserRegister = async (formEmail: string, formPassword: string) => {
+  const { data, error } = await supabase.auth.signUp({
     email: formEmail,
     password: formPassword,
-    options: { data: { firstName: formFirstName, lastName: formLastName } },
   });
+
+  return data;
 };

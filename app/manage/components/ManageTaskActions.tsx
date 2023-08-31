@@ -42,10 +42,10 @@ const ManageTaskActions: React.FC<ManageTaskActionsProps> = ({ task }) => {
                 setEditOpen(true);
               }}
               className="              
-              hover:bg-green-200
-              hover:text-green-500 
-              bg-green-400
-              text-green-100
+              hover:bg-inverted
+              hover:text-onInvertedBg 
+              bg-main
+              text-onMainBg 
                 rounded-lg               
                 w-[7em]
                 h-[3em]
