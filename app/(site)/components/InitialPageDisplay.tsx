@@ -5,6 +5,7 @@ import { useUserInfo } from "@/hooks/useUserInfo";
 import { useQuery, useQueryClient } from "react-query";
 import CurrentTaskDisplay from "./CurrentTaskDisplay";
 import NoTaskDisplay from "./NoTaskDisplay";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const InitialPageDisplay = () => {
   const { user } = useUserInfo();
@@ -32,7 +33,12 @@ const InitialPageDisplay = () => {
     queryFn: getTaskCount,
   });
 
-  if (isCountFetching) return <div>Loading Task Count...</div>;
+  if (isCountFetching)
+    return (
+      <div>
+        <Skeleton />
+      </div>
+    );
   if (isCountError) return "Error has occured : " + countError.message;
 
   return (

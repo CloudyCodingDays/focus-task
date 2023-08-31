@@ -8,7 +8,7 @@ const SettingContent = ({
   settings,
 }: {
   category: string;
-  settings: Settings[] | undefined;
+  settings: Settings | undefined;
 }) => {
   return (
     <div>

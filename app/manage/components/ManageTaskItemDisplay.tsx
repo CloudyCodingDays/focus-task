@@ -9,6 +9,7 @@ import { useQuery, useQueryClient } from "react-query";
 import ManageTaskDetails from "./ManageTaskDetails";
 import AddTaskButton from "@/components/AddTaskButton";
 import { useEffect } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const ManageTaskItemDisplay = ({
   debouncedValue,
@@ -59,7 +60,12 @@ const ManageTaskItemDisplay = ({
     queryFn: getTasks,
   });
 
-  if (query.isFetching) return "Loading...";
+  if (query.isFetching)
+    return (
+      <div>
+        <Skeleton />
+      </div>
+    );
   if (query.error) return "Error has occured : " + query.error.message;
 
   return (

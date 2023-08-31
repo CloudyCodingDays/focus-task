@@ -7,16 +7,23 @@ import DeleteForm from "./DeleteForm";
 import EditForm from "./EditForm";
 import useThemeContext from "@/hooks/useThemeContext";
 import { GetThemeStyle } from "@/components/GetThemeStyle";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 interface ManageTaskActionsProps {
   task: Task;
-  setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-const ManageTaskActions: React.FC<ManageTaskActionsProps> = ({
-  task,
-  setOpen,
-}) => {
+const ManageTaskActions: React.FC<ManageTaskActionsProps> = ({ task }) => {
   const [deleteOpen, setDeleteOpen] = useState<boolean>(false);
   const [editOpen, setEditOpen] = useState<boolean>(false);
   const { color, setColor, mode, setMode } = useThemeContext();
@@ -24,34 +31,16 @@ const ManageTaskActions: React.FC<ManageTaskActionsProps> = ({
 
   return (
     <div>
-      <TaskItemDetailsLayout task={task} isEdit={false} />
-      <div className="text-center mt-4">
-        <Dialog open={deleteOpen} onOpenChange={setDeleteOpen}>
-          <DialogTrigger asChild>
+      {editOpen ? <EditForm task={task} onBack={setEditOpen} /> : <div></div>}
+      {!deleteOpen && !editOpen ? (
+        <div>
+          <TaskItemDetailsLayout task={task} isEdit={false} />
+          <div className="text-center mt-4">
+            <DeleteForm task={task} onBack={setDeleteOpen} />
             <button
-              className="              
-              hover:bg-red-200
-              hover:text-red-500
-              bg-red-500
-              text-red-100
-              rounded-lg               
-              w-[7em]
-              h-[3em]
-              drop-shadow-md
-              mx-4"
-            >
-              <div className="flex flex-row w-fit mx-4 px-2 py-2 items-baseline">
-                <Trash2 size={16} /> Delete
-              </div>
-            </button>
-          </DialogTrigger>
-          <DialogContent className={"bg-mainBg " + themeStyle}>
-            <DeleteForm task={task} onBack={setDeleteOpen} onClose={setOpen} />
-          </DialogContent>
-        </Dialog>
-        <Dialog open={editOpen} onOpenChange={setEditOpen}>
-          <DialogTrigger asChild>
-            <button
+              onClick={() => {
+                setEditOpen(true);
+              }}
               className="              
               hover:bg-green-200
               hover:text-green-500 
@@ -67,12 +56,11 @@ const ManageTaskActions: React.FC<ManageTaskActionsProps> = ({
                 <FileEdit size={16} /> Edit
               </div>
             </button>
-          </DialogTrigger>
-          <DialogContent className={"bg-mainBg " + themeStyle}>
-            <EditForm task={task} onBack={setEditOpen} onClose={setOpen} />
-          </DialogContent>
-        </Dialog>
-      </div>
+          </div>
+        </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 };

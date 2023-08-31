@@ -12,10 +12,9 @@ import { FormSubmit } from "./HandleSubmitCRUD";
 interface EditFormProps {
   task: Task;
   onBack: Dispatch<SetStateAction<boolean>>;
-  onClose: Dispatch<SetStateAction<boolean>>;
 }
 
-const EditForm: React.FC<EditFormProps> = ({ task, onBack, onClose }) => {
+const EditForm: React.FC<EditFormProps> = ({ task, onBack }) => {
   const router = useRouter();
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
@@ -34,7 +33,6 @@ const EditForm: React.FC<EditFormProps> = ({ task, onBack, onClose }) => {
     await queryClient.resetQueries("TaskCount");
 
     onBack(false);
-    onClose(false);
     router.refresh();
   };
 
@@ -42,11 +40,7 @@ const EditForm: React.FC<EditFormProps> = ({ task, onBack, onClose }) => {
     <div>
       <form method="post" onSubmit={HandleSubmit}>
         <TaskItemDetailsLayout task={task} isEdit />
-        <FormSubmitButtons
-          submitText="Edit Task"
-          onBack={onBack}
-          onClose={onClose}
-        />
+        <FormSubmitButtons submitText="Edit Task" onBack={onBack} />
       </form>
     </div>
   );
