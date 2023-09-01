@@ -1,5 +1,5 @@
-import { Monitor, SlidersHorizontal, UserCog } from "lucide-react";
-import { Dispatch, SetStateAction } from "react";
+import {Monitor, SlidersHorizontal, UserCog} from "lucide-react";
+import {Dispatch, SetStateAction} from "react";
 
 const SettingsMenu = ({
   category,
@@ -26,11 +26,18 @@ const SettingsMenu = ({
     },
   ];
 
+  function HandleSettingViewChange(category: string) {
+    setCategory(category)
+  }
+
   return (
     <div className="flex flex-row justify-between rounded-md mb-4 border-2 border-main">
       {settingCategories.map((setting) => (
         <button
           key={setting.label}
+          onClick={() => {
+            HandleSettingViewChange(setting.label)
+          }}
           className={
             setting.active
               ? "bg-mainBg text-onMainBg py-4 w-full"

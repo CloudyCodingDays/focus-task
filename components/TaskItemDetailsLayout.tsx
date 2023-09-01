@@ -1,4 +1,4 @@
-import { Task } from "@/types/Task";
+import {Task} from "@/types/Task";
 
 interface TaskItemDetailsLayoutProps {
   task?: Task;
@@ -137,7 +137,7 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
             ></input>
           </div>
         ) : (
-          <div>
+            <div className={isSetting ? "hidden" : ""}>
             <div>Due Date</div>
             <input
               name="due_date"
@@ -157,7 +157,7 @@ const TaskItemDetailsLayout: React.FC<TaskItemDetailsLayoutProps> = ({
           <div>
             <div>Due Date</div>
             <select
-              name="default_task_recurring"
+                name="default_task_due"
               className="border-2 mb-4 w-full lg:w-[30em]"
               disabled={!isEdit}
               defaultValue={task !== undefined ? task.recurring_type : ""}
