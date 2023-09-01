@@ -2,7 +2,7 @@ import { useUserInfo } from "@/hooks/useUserInfo";
 import { Task } from "@/types/Task";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { UseQueryResult, useQueryClient } from "react-query";
+import { useQueryClient, UseQueryResult } from "react-query";
 import ActiveTaskDetails from "./ActiveTaskDetails";
 import { AssignFormSubmit } from "./AssignFormSubmit";
 import useTaskContext from "@/hooks/useTaskContext";
@@ -23,8 +23,9 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({
   const { taskCompleted, setTaskCompleted } = useTaskContext();
 
   const HandleUnassign: React.FormEventHandler<HTMLFormElement> = async (
-    e: React.FormEvent<HTMLFormElement>
+    e: React.FormEvent<HTMLFormElement>,
   ) => {
+    e.preventDefault();
     await toast.promise(AssignFormSubmit(e, "unassign", user?.id), {
       loading: "Unassigning Task...",
       success: "Task Unassigned!",
@@ -38,7 +39,7 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({
   };
 
   const HandleComplete: React.FormEventHandler<HTMLFormElement> = async (
-    e: React.FormEvent<HTMLFormElement>
+    e: React.FormEvent<HTMLFormElement>,
   ) => {
     await toast.promise(AssignFormSubmit(e, "complete", user?.id), {
       loading: "Completing Task...",

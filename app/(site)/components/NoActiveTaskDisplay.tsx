@@ -3,8 +3,8 @@ import { useUserInfo } from "@/hooks/useUserInfo";
 import { CatPictureData } from "@/types/CatPictureData";
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
-import { UseQueryResult, useQuery, useQueryClient } from "react-query";
+import { useState } from "react";
+import { UseQueryResult } from "react-query";
 
 interface NoActiveTaskDisplayProps {
   catQuery: UseQueryResult<CatPictureData[], Error>;
@@ -59,7 +59,7 @@ const NoActiveTaskDisplay: React.FC<NoActiveTaskDisplayProps> = ({
                   <div className="text-center font-bold">
                     Congrats on completing the Task! Here is a random cat!
                   </div>
-                  <div className="">
+                  <div>
                     <Image
                       src={cat.url}
                       width={cat.width}

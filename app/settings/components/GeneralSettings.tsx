@@ -1,35 +1,43 @@
 import TaskItemDetailsLayout from "@/components/TaskItemDetailsLayout";
-import {Checkbox} from "@/components/ui/checkbox";
-import {Label} from "@/components/ui/label";
-import {useUserInfo} from "@/hooks/useUserInfo";
-import {Settings} from "@/types/Setting";
-import {Task} from "@/types/Task";
-import {FormEvent, FormEventHandler} from "react";
-import {UpdateGeneralSettings} from "@/app/settings/components/UpdateGeneralSettings";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { useUserInfo } from "@/hooks/useUserInfo";
+import { Settings } from "@/types/Setting";
+import { Task } from "@/types/Task";
+import { FormEvent, FormEventHandler } from "react";
+import { UpdateGeneralSettings } from "@/components/user_queries/UpdateGeneralSettings";
+import toast from "react-hot-toast";
+import { useQueryClient } from "react-query";
 
 const GeneralSettings = ({ settings }: { settings: Settings | undefined }) => {
   const { user } = useUserInfo();
+  const queryClient = useQueryClient();
 
-    const defaultTask = {
-        created_at: new Date().toLocaleDateString(),
-        created_by: user?.id,
+  const defaultTask = {
+    created_at: new Date().toLocaleDateString(),
+    created_by: user?.id,
     description: settings?.default_desc,
-        due_date: new Date().toLocaleDateString(),
-        id: "",
+    due_date: new Date().toLocaleDateString(),
+    id: "",
     is_recurring: settings?.default_recurring
-        ? settings?.default_recurring.toString()
-        : "",
-        name: "",
+      ? settings?.default_recurring.toString()
+      : "",
+    name: "",
     priority: settings?.default_priority,
-        recurring_type: settings?.default_recurring_type,
+    recurring_type: settings?.default_recurring_type,
     updated_at: new Date().toLocaleDateString(),
     user_id: user?.id,
   } as Task;
 
-    const HandleGeneralSettings: FormEventHandler<HTMLFormElement> = async (
-        e: FormEvent<HTMLFormElement>
+  const HandleGeneralSettings: FormEventHandler<HTMLFormElement> = async (
+    e: FormEvent<HTMLFormElement>,
   ) => {
-    await UpdateGeneralSettings(e, user?.id);
+    await toast.promise(UpdateGeneralSettings(e, user?.id), {
+      loading: "Completing Task...",
+      success: "Task Completed!",
+      error: "Unable to Complete Task. Please try again.",
+    });
+    await queryClient.resetQueries("Settings");
   };
 
   return (
@@ -56,7 +64,7 @@ const GeneralSettings = ({ settings }: { settings: Settings | undefined }) => {
 
         <div className="text-center">
           <button
-              type={"submit"}
+            type={"submit"}
             className="              
         hover:bg-inverted
         hover:text-onInvertedBg 

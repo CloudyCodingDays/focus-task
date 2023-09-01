@@ -1,74 +1,90 @@
-import {Settings} from "@/types/Setting";
-import {Label} from "@/components/ui/label";
-import {FormEvent, FormEventHandler} from "react";
-import {useUserInfo} from "@/hooks/useUserInfo";
-import {UpdateDisplaySettings} from "@/app/settings/components/UpdateDisplaySettings";
+import { Settings } from "@/types/Setting";
+import { Label } from "@/components/ui/label";
+import { ChangeEvent, FormEvent, FormEventHandler, useState } from "react";
+import { useUserInfo } from "@/hooks/useUserInfo";
+import Image from "next/image";
+import { useQueryClient } from "react-query";
+import { UpdateDisplaySettings } from "@/components/user_queries/UpdateDisplaySettings";
+import toast from "react-hot-toast";
 
 const DisplaySettings = ({ settings }: { settings: Settings | undefined }) => {
-  const {user} = useUserInfo();
+  const { user } = useUserInfo();
+  const queryClient = useQueryClient();
+  const [image, setImage] = useState(
+    "/sarah-dorweiler-unsplash-compressed.png",
+  );
 
   const HandleDisplaySettings: FormEventHandler<HTMLFormElement> = async (
-      e: FormEvent<HTMLFormElement>
+    e: FormEvent<HTMLFormElement>,
   ) => {
-    await UpdateDisplaySettings(e, user?.id)
-  }
+    e.preventDefault();
+    await toast.promise(UpdateDisplaySettings(e, user?.id), {
+      loading: "Saving Changes...",
+      success: "Changes Saved!",
+      error: "Unable to save Changes. Please try again.",
+    });
 
-  return <div>
-    <form onSubmit={HandleDisplaySettings}>
-      <div className="bg-mainBg text-onMainBg pt-2 rounded-lg ">
-        <Label className="text-1xl font-semibold ml-4">
-          User Profile Settings
-        </Label>
+    await queryClient.resetQueries("Settings");
+  };
 
-        <div className="flex flex-col ml-4 mt-4">
-          <Label className={"mb-2"}>First Name</Label>
-          <input
-              name="fName"
-              className="w-fit mb-4"
-          ></input>
+  const HandleFile = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return;
+    setImage(URL.createObjectURL(e.target.files[0]));
+  };
 
-          <Label className={"mb-2"}>Last Name</Label>
-          <input
-              name="lName"
-              className="w-fit mb-4"
-          ></input>
+  return (
+    <div>
+      <form onSubmit={HandleDisplaySettings}>
+        <div className="bg-mainBg text-onMainBg pt-2 rounded-lg ">
+          <Label className="text-1xl font-semibold ml-4">
+            User Profile Settings
+          </Label>
 
-          <Label className={"mb-2"}>Email</Label>
-          <input
-              name="email"
-              className="w-fit mb-4"
-          ></input>
-
-          <Label className={"mb-2"}>Password</Label>
-          <input
-              name="password"
-              className="w-fit mb-4"
-          ></input>
-        </div>
-      </div>
-
-      <div className="text-center">
-        <button
-            type={"submit"}
-            className="
-        hover:bg-inverted
-        hover:text-onInvertedBg
-        bg-main
-        text-onMainBg
-              rounded-lg
-              w-[10em]
-              h-[3em]
-              drop-shadow-md
-              mx-4
-              mt-8"
-        >
-          <div className="flex flex-row w-fit mx-4 px-2 py-2 items-baseline">
-            Save Changes
+          <div className="flex flex-col ml-4 py-4">
+            <div className="font-light mb-2">
+              Upload new Home image (Optional)
+            </div>
+            <input
+              type="file"
+              id="HomeImage"
+              name="HomeImage"
+              accept="image/*"
+              multiple={false}
+              onChange={HandleFile}
+            ></input>
           </div>
-        </button>
+        </div>
+
+        <div className="text-center">
+          <button
+            type={"submit"}
+            className="hover:bg-inverted hover:text-onInvertedBg bg-main text-onMainBg rounded-lg w-[10em] h-[3em] drop-shadow-md mx-4 mt-8"
+          >
+            <div className="flex flex-row w-fit mx-4 px-2 py-2 items-baseline">
+              Save Changes
+            </div>
+          </button>
+        </div>
+      </form>
+
+      <div
+        className={
+          "bg-mainBg text-onMainBg mt-8 pt-4 pb-8 rounded-lg text-center flex flex-col items-center"
+        }
+      >
+        <Label className="text-1xl font-semibold mb-4">
+          Home Page Image Preview
+        </Label>
+        <Image
+          src={image}
+          width={800}
+          height={351}
+          priority
+          alt="What would you like to do today?"
+        />
       </div>
-    </form>
-  </div>
+    </div>
+  );
 };
 
 export default DisplaySettings;
