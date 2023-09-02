@@ -5,15 +5,10 @@ import { Task } from "@/types/Task";
 import ExtractFormData from "./ExtractFormData";
 
 export const FormSubmit = async (
-  e: React.FormEvent<HTMLFormElement>,
+  formData: FormData,
   submitType: string,
-  userId?: string
+  userId?: string,
 ) => {
-  e.preventDefault();
-
-  const form = e.currentTarget;
-  const formData = new FormData(form);
-
   const taskData: Task = ExtractFormData(formData);
 
   if (submitType.trim() == "add" && userId) {

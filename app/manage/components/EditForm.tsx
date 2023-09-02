@@ -8,6 +8,7 @@ import { Dispatch, SetStateAction } from "react";
 import toast from "react-hot-toast";
 import { useQueryClient } from "react-query";
 import { FormSubmit } from "./HandleSubmitCRUD";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 interface EditFormProps {
   task: Task;
@@ -18,11 +19,15 @@ const EditForm: React.FC<EditFormProps> = ({ task, onBack }) => {
   const router = useRouter();
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
+  const {
+    handleSubmit,
+    register,
+    watch,
+    formState: { errors },
+  } = useForm<FormData>();
 
-  const HandleSubmit: React.FormEventHandler<HTMLFormElement> = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
-    await toast.promise(FormSubmit(e, "edit", user?.id), {
+  const HandleSubmit: SubmitHandler<FormData> = async (data) => {
+    await toast.promise(FormSubmit(data, "edit", user?.id), {
       loading: "Updating Task...",
       success: "Task Updated!",
       error: "Unable to Update Task. Please try again.",
@@ -38,7 +43,7 @@ const EditForm: React.FC<EditFormProps> = ({ task, onBack }) => {
 
   return (
     <div>
-      <form method="post" onSubmit={HandleSubmit}>
+      <form onSubmit={handleSubmit(HandleSubmit)}>
         <TaskItemDetailsLayout task={task} isEdit />
         <FormSubmitButtons submitText="Edit Task" onBack={onBack} />
       </form>

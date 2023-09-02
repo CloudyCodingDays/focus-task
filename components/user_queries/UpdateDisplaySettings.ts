@@ -1,14 +1,12 @@
 import toast from "react-hot-toast";
-import { FormEvent } from "react";
 import supabase from "@/lib/supabaseClient";
+import { DisplaySettingsFormData } from "@/app/settings/components/DisplaySettings";
 
 export const UpdateDisplaySettings = async (
-  e: FormEvent<HTMLFormElement>,
+  displaySettingsFormData: DisplaySettingsFormData,
   userId?: string,
 ) => {
-  const form = e.currentTarget;
-  const formData = new FormData(form);
-  const homeImage = formData.get("HomeImage") as File;
+  const homeImage = displaySettingsFormData.HomeImage;
 
   if (userId === undefined) {
     toast("User ID not found");
@@ -20,7 +18,9 @@ export const UpdateDisplaySettings = async (
     .upload("HomeImage-" + new Date(Date.now()).getTime(), homeImage, {
       cacheControl: "3600",
       upsert: false,
+      contentType: homeImage,
     });
+
   if (ImageError) throw new Error(ImageError.message);
 
   const { error: UserError } = await supabase

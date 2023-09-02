@@ -1,25 +1,32 @@
 import { Settings } from "@/types/Setting";
 import { useUserInfo } from "@/hooks/useUserInfo";
-import { FormEvent, FormEventHandler } from "react";
 import { UpdateUserSettings } from "@/components/user_queries/UpdateUserSettings";
 import { Label } from "@/components/ui/label";
 import { useQueryClient } from "react-query";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+export type UserSettingsFormData = {
+  fName: string;
+  lName: string;
+  email: string;
+  password: string;
+};
 
 const UserSettings = ({ settings }: { settings: Settings | undefined }) => {
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
+  const { handleSubmit, register, watch } = useForm<UserSettingsFormData>();
 
-  const HandleUserSettings: FormEventHandler<HTMLFormElement> = async (
-    e: FormEvent<HTMLFormElement>,
+  const HandleUserSettings: SubmitHandler<UserSettingsFormData> = async (
+    data,
   ) => {
-    e.preventDefault();
-    await UpdateUserSettings(e, user?.id);
+    await UpdateUserSettings(data, user?.id);
     await queryClient.resetQueries("Settings");
   };
 
   return (
     <div>
-      <form onSubmit={HandleUserSettings}>
+      <form onSubmit={handleSubmit(HandleUserSettings)}>
         <div className="bg-mainBg text-onMainBg pt-2 rounded-lg ">
           <Label className="text-1xl font-semibold ml-4">
             User Profile Settings

@@ -41,9 +41,9 @@ const Register = () => {
     const res = await UserRegister(data.email, data.password);
 
     if (res.user) {
-      AddUserSettings(defaultTask, res.user?.id);
+      await AddUserSettings(defaultTask, res.user?.id);
 
-      AddNameForUser(data.firstName, data.lastName);
+      await AddNameForUser(data.firstName, data.lastName);
     }
 
     router.push("/");

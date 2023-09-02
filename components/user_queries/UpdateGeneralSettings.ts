@@ -1,25 +1,17 @@
 import toast from "react-hot-toast";
-import { useQueryClient } from "react-query";
-import { FormEvent } from "react";
 import supabase from "@/lib/supabaseClient";
+import { GeneralSettingsFormData } from "@/app/settings/components/GeneralSettings";
 
 export const UpdateGeneralSettings = async (
-  e: FormEvent<HTMLFormElement>,
+  generalSettingsFormData: GeneralSettingsFormData,
   userId?: string,
 ) => {
-  const queryClient = useQueryClient();
-  e.preventDefault();
-
-  const form = e.currentTarget;
-  const formData = new FormData(form);
-  const description = formData.get("description") as string;
-  const priority = formData.get("priority") as string;
-  const isRecurring = formData.get("is_recurring") as string;
-  const recurringType = formData.get("recurring_type") as string;
-  const taskDue = formData.get("default_task_due") as string;
-  const catPicture = formData.get("catPicture") as string;
-
-  console.log(catPicture);
+  const description = generalSettingsFormData.description;
+  const priority = generalSettingsFormData.priority;
+  const isRecurring = generalSettingsFormData.is_recurring;
+  const recurringType = generalSettingsFormData.recurring_type;
+  const taskDue = generalSettingsFormData.default_due_date;
+  const catPicture = generalSettingsFormData.catPicture;
 
   if (userId === undefined) {
     toast("User ID not found");
@@ -46,6 +38,4 @@ export const UpdateGeneralSettings = async (
     })
     .eq("user_id", userId);
   if (CatError) throw new Error(CatError.message);
-
-  await queryClient.resetQueries("Settings");
 };

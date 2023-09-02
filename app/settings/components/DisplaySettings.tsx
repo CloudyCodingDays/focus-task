@@ -1,11 +1,16 @@
 import { Settings } from "@/types/Setting";
 import { Label } from "@/components/ui/label";
-import { ChangeEvent, FormEvent, FormEventHandler, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import Image from "next/image";
 import { useQueryClient } from "react-query";
 import { UpdateDisplaySettings } from "@/components/user_queries/UpdateDisplaySettings";
 import toast from "react-hot-toast";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+export type DisplaySettingsFormData = {
+  HomeImage: string;
+};
 
 const DisplaySettings = ({ settings }: { settings: Settings | undefined }) => {
   const { user } = useUserInfo();
@@ -13,12 +18,12 @@ const DisplaySettings = ({ settings }: { settings: Settings | undefined }) => {
   const [image, setImage] = useState(
     "/sarah-dorweiler-unsplash-compressed.png",
   );
+  const { handleSubmit, register, watch } = useForm<DisplaySettingsFormData>();
 
-  const HandleDisplaySettings: FormEventHandler<HTMLFormElement> = async (
-    e: FormEvent<HTMLFormElement>,
+  const HandleDisplaySettings: SubmitHandler<DisplaySettingsFormData> = async (
+    data,
   ) => {
-    e.preventDefault();
-    await toast.promise(UpdateDisplaySettings(e, user?.id), {
+    await toast.promise(UpdateDisplaySettings(data, user?.id), {
       loading: "Saving Changes...",
       success: "Changes Saved!",
       error: "Unable to save Changes. Please try again.",
@@ -34,7 +39,7 @@ const DisplaySettings = ({ settings }: { settings: Settings | undefined }) => {
 
   return (
     <div>
-      <form onSubmit={HandleDisplaySettings}>
+      <form onSubmit={handleSubmit(HandleDisplaySettings)}>
         <div className="bg-mainBg text-onMainBg pt-2 rounded-lg ">
           <Label className="text-1xl font-semibold ml-4">
             User Profile Settings
@@ -47,7 +52,7 @@ const DisplaySettings = ({ settings }: { settings: Settings | undefined }) => {
             <input
               type="file"
               id="HomeImage"
-              name="HomeImage"
+              {...register("HomeImage")}
               accept="image/*"
               multiple={false}
               onChange={HandleFile}

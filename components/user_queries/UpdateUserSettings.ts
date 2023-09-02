@@ -1,19 +1,15 @@
 import toast from "react-hot-toast";
-import { FormEvent } from "react";
 import supabase from "@/lib/supabaseClient";
+import { UserSettingsFormData } from "@/app/settings/components/UserSettings";
 
 export const UpdateUserSettings = async (
-  e: FormEvent<HTMLFormElement>,
+  userSettingFormData: UserSettingsFormData,
   userId?: string,
 ) => {
-  e.preventDefault();
-
-  const form = e.currentTarget;
-  const formData = new FormData(form);
-  const fName = formData.get("fName") as string;
-  const lName = formData.get("lName") as string;
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
+  const fName = userSettingFormData.fName;
+  const lName = userSettingFormData.lName;
+  const email = userSettingFormData.email;
+  const password = userSettingFormData.password;
 
   if (userId === undefined) {
     toast("User ID not found");
@@ -24,15 +20,15 @@ export const UpdateUserSettings = async (
       email: email,
       password: password,
     });
+    if (error) throw new Error(error.message);
   }
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  /*await toast.promise(UpdateGeneralSettingsQuery(description, priority, isRecurring, recurringType, taskDue, catPicture, userId), {
-                        loading: "Completing Task...",
-                        success: "Task Completed!",
-                        error: "Unable to Complete Task. Please try again.",
-                      });
-                    */
+  const { error: UserError } = await supabase
+    .from("users")
+    .update({
+      first_name: fName,
+      last_name: lName,
+    })
+    .eq("user_id", userId);
+  if (UserError) throw new Error(UserError.message);
 };
