@@ -4,9 +4,12 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useQueryClient, UseQueryResult } from "react-query";
 import ActiveTaskDetails from "./ActiveTaskDetails";
-import { AssignFormSubmit } from "./AssignFormSubmit";
 import useTaskContext from "@/hooks/useTaskContext";
 import { CatPictureData } from "@/types/CatPictureData";
+import { MouseEventHandler } from "react";
+import UnassignTaskQuery from "@/components/CRUD_queries/UnassignTaskQuery";
+import CompleteRecurringTaskQuery from "@/components/CRUD_queries/CompleteRecurringTaskQuery";
+import CompleteTaskQuery from "@/components/CRUD_queries/CompleteTaskQuery";
 
 interface ActiveTaskDisplayProps {
   task: Task;
@@ -22,41 +25,46 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({
   const queryClient = useQueryClient();
   const { taskCompleted, setTaskCompleted } = useTaskContext();
 
-  const HandleUnassign: React.FormEventHandler<HTMLFormElement> = async (
-    e: React.FormEvent<HTMLFormElement>,
-  ) => {
-    e.preventDefault();
-    await toast.promise(AssignFormSubmit(e, "unassign", user?.id), {
-      loading: "Unassigning Task...",
-      success: "Task Unassigned!",
-      error: "Unable to Unassign Task. Please try again.",
-    });
-
+  const resetQueriesAndPage = async () => {
+    await queryClient.resetQueries("ManageTasks");
     await queryClient.resetQueries("ActiveTask");
     await queryClient.resetQueries("TaskCount");
 
     router.refresh();
   };
 
-  const HandleComplete: React.FormEventHandler<HTMLFormElement> = async (
-    e: React.FormEvent<HTMLFormElement>,
-  ) => {
-    await toast.promise(AssignFormSubmit(e, "complete", user?.id), {
-      loading: "Completing Task...",
-      success: "Task Completed!",
-      error: "Unable to Complete Task. Please try again.",
-    });
+  const HandleUnassign: MouseEventHandler<HTMLButtonElement> = async () => {
+    if (user) {
+      await toast.promise(UnassignTaskQuery(task.id, user?.id), {
+        loading: "Unassigning Task...",
+        success: "Task Unassigned!",
+        error: "Unable to Unassign Task. Please try again.",
+      });
+      await resetQueriesAndPage();
+    } else toast.error("User data not found. Please try again.");
+  };
 
-    await queryClient.resetQueries("ManageTasks");
-    await queryClient.resetQueries("ActiveTask");
-    await queryClient.resetQueries("TaskCount");
-
-    if (setTaskCompleted !== undefined) {
-      setTaskCompleted(true);
-      catQuery.refetch();
-    }
-
-    router.refresh();
+  const HandleComplete: MouseEventHandler<HTMLButtonElement> = async () => {
+    if (user) {
+      if (task.is_recurring) {
+        await toast.promise(CompleteRecurringTaskQuery(task, user?.id), {
+          loading: "Completing Recurring Task...",
+          success: "Task Completed!",
+          error: "Unable to Complete Task. Please try again.",
+        });
+      } else {
+        await toast.promise(CompleteTaskQuery(task, user?.id), {
+          loading: "Completing Task...",
+          success: "Task Completed!",
+          error: "Unable to Complete Task. Please try again.",
+        });
+      }
+      if (setTaskCompleted !== undefined) {
+        setTaskCompleted(true);
+        await catQuery.refetch();
+      }
+      await resetQueriesAndPage();
+    } else toast.error("User data not found. Please try again.");
   };
 
   return (
@@ -64,24 +72,14 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({
       <div className="bg-mainBg text-onMainBg lg:w-[50em] w-full rounded-lg my-4 mx-4 drop-shadow-lg">
         <ActiveTaskDetails task={task} />
         <div className="flex flex-row justify-center">
-          <form method="post" onSubmit={HandleUnassign}>
-            <input
-              name="task"
-              type="hidden"
-              value={JSON.stringify(task)}
-            ></input>
-            <input
-              name="description"
-              type="hidden"
-              value={task.description}
-            ></input>
-            <button
-              type="submit"
-              className="          
+          <input name="task" type="hidden" value={JSON.stringify(task)}></input>
+          <button
+            onClick={HandleUnassign}
+            className="          
               hover:bg-main
               hover:text-onMainBg 
               bg-neutralBg
-              text-onMainBg 
+              text-onNeutralBg
               border-2
               border-main
               rounded-lg
@@ -90,19 +88,13 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({
               w-[7em]
               h-[3em]
               font-semibold"
-            >
-              Unassign
-            </button>
-          </form>
-          <form method="post" onSubmit={HandleComplete}>
-            <input
-              name="task"
-              type="hidden"
-              value={JSON.stringify(task)}
-            ></input>
-            <button
-              type="submit"
-              className="          
+          >
+            Unassign
+          </button>
+          <input name="task" type="hidden" value={JSON.stringify(task)}></input>
+          <button
+            onClick={HandleComplete}
+            className="          
               hover:bg-inverted
               hover:text-onInvertedBg 
               bg-main
@@ -113,10 +105,9 @@ const ActiveTaskDisplay: React.FC<ActiveTaskDisplayProps> = ({
               w-[7em]
               h-[3em]
             font-semibold"
-            >
-              Complete
-            </button>
-          </form>
+          >
+            Complete
+          </button>
         </div>
       </div>
     </div>

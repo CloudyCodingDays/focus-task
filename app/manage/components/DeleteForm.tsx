@@ -71,7 +71,7 @@ const DeleteForm: React.FC<DeleteFormProps> = ({ task, onBack }) => {
           </div>
         </button>
       </AlertDialogTrigger>
-      <AlertDialogContent className={"bg-mainBg " + themeStyle}>
+      <AlertDialogContent className={"bg-mainBg text-onMainBg " + themeStyle}>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
@@ -93,7 +93,7 @@ const DeleteForm: React.FC<DeleteFormProps> = ({ task, onBack }) => {
             ml-4 
             mx-4"
           >
-            Cancel
+            Close
           </AlertDialogCancel>
           <AlertDialogAction
             onClick={HandleDelete}

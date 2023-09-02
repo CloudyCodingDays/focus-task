@@ -29,6 +29,6 @@ export const UpdateUserSettings = async (
       first_name: fName,
       last_name: lName,
     })
-    .eq("user_id", userId);
+    .eq("id", userId);
   if (UserError) throw new Error(UserError.message);
 };

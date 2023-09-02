@@ -31,7 +31,7 @@ const AddTaskButton = () => {
             </div>
           </button>
         </DialogTrigger>
-        <DialogContent className={"bg-mainBg " + themeStyle}>
+        <DialogContent className={"bg-mainBg text-onMainBg " + themeStyle}>
           {!user ? <Login /> : <AddForm onBack={setAddOpen} />}
         </DialogContent>
       </Dialog>

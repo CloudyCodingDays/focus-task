@@ -1,7 +1,7 @@
 import supabaseClient from "@/lib/supabaseClient";
-import { Task } from "@/types/Task";
+import { AddTaskFormData } from "@/components/AddForm";
 
-const AddTaskQuery = async (taskData: Task, userId: string) => {
+const AddTaskQuery = async (taskData: AddTaskFormData, userId: string) => {
   const { error } = await supabaseClient.from("tasks").insert({
     name: taskData.name,
     description: taskData.description,
@@ -12,7 +12,6 @@ const AddTaskQuery = async (taskData: Task, userId: string) => {
     updated_at: new Date(),
     created_by: userId,
     created_at: new Date(),
-    image_path: taskData.image_path,
   });
 
   if (error) throw new Error(error.message);

@@ -21,7 +21,7 @@ const AssignTaskItemLayout: React.FC<TaskItemProps> = ({ task }) => {
               <div></div>
             )}
             <div className="pl-2">
-              {name.length > 30 ? name.substring(0, 30) + "..." : name}
+              {name.length > 100 ? name.substring(0, 100) + "..." : name}
             </div>
           </div>
           <div className="flex flex-row justify-end pr-2">

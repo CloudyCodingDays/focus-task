@@ -34,16 +34,16 @@ const UserSettings = ({ settings }: { settings: Settings | undefined }) => {
 
           <div className="flex flex-col ml-4 mt-4">
             <Label className={"mb-2"}>First Name</Label>
-            <input name="fName" className="w-fit mb-4"></input>
+            <input {...register("fName")} className="w-fit mb-4"></input>
 
             <Label className={"mb-2"}>Last Name</Label>
-            <input name="lName" className="w-fit mb-4"></input>
+            <input {...register("lName")} className="w-fit mb-4"></input>
 
             <Label className={"mb-2"}>Email</Label>
-            <input name="email" className="w-fit mb-4"></input>
+            <input {...register("email")} className="w-fit mb-4"></input>
 
             <Label className={"mb-2"}>Password</Label>
-            <input name="password" className="w-fit mb-4"></input>
+            <input {...register("password")} className="w-fit mb-4"></input>
           </div>
         </div>
 
