@@ -30,7 +30,6 @@ const ManageTaskDetails = ({ task }: { task: Task }) => {
         </button>
       </DialogTrigger>
       <DialogContent className={"bg-mainBg text-onMainBg " + themeStyle}>
-<<<<<<< HEAD
         <div>
           {editOpen ? (
             <EditForm task={task} onBack={setEditOpen} />
@@ -98,9 +97,6 @@ const ManageTaskDetails = ({ task }: { task: Task }) => {
             <div></div>
           )}
         </div>
-=======
-        <ManageTaskActions task={task} />
->>>>>>> main
       </DialogContent>
     </Dialog>
   );
