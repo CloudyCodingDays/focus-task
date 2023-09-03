@@ -35,7 +35,7 @@ const AssignTaskItemDisplay = ({
       if (taskList === undefined) {
         taskList = await GetInitialTaskListItems(user.id, validatedDate);
 
-        taskList = SortInitialTaskListItems(taskList, true);
+        taskList = SortInitialTaskListItems(taskList);
 
         taskList = FilterTaskListItems(taskList, "");
       }

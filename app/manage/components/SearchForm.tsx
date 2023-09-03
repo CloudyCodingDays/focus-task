@@ -28,10 +28,13 @@ const SearchForm: React.FC<SearchFormProps> = ({
   }, [debouncedValue, setDebouncedValue]);
   return (
     <div>
+      <div className={"absolute bottom-4 right-4"}>
+        <AddTaskButton />
+      </div>
       <div
         className="
           mt-4
-          mx-auto 
+          mx-auto
           drop-shadow-lg
           bg-mainBg
           py-4"
@@ -51,7 +54,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
               <Separator className="bg-green-200 pt-0.5" />
             </form>
           </div>
-          <div className="flex flex-row justify-end mt-4">
+          <div className="flex flex-row justify-between lg:justify-end mt-4 mx-4">
             <SearchFilterGrouping setGroupBy={setGroupBy} />
             <SearchFilterSorting setSortBy={setSortBy} />
             <SearchFilterSortOrder setSortOrder={setSortOrder} />

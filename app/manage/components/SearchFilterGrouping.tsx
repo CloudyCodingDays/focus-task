@@ -14,19 +14,15 @@ import { GetThemeStyle } from "@/components/GetThemeStyle";
 
 const TaskProperties = [
   {
-    value: "name",
-    label: "Name",
-  },
-  {
-    value: "description",
-    label: "Description",
+    value: "group by",
+    label: "Group By",
   },
   {
     value: "recurring",
     label: "Recurring",
   },
   {
-    value: "recurring_type",
+    value: "recurring type",
     label: "Recurring Type",
   },
   {
@@ -34,7 +30,7 @@ const TaskProperties = [
     label: "Priority",
   },
   {
-    value: "due_date",
+    value: "due date",
     label: "Due Date",
   },
 ];
@@ -46,7 +42,7 @@ const SearchFilterGrouping = ({
 }) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
-  const { color, setColor, mode, setMode } = useThemeContext();
+  const { color, mode } = useThemeContext();
   const themeStyle = GetThemeStyle(color, mode);
 
   return (
@@ -76,6 +72,7 @@ const SearchFilterGrouping = ({
                 <CommandItem
                   key={TaskProperty.value}
                   onSelect={(currentValue) => {
+                    console.log(currentValue);
                     setValue(currentValue);
                     setGroupBy(currentValue);
                     setOpen(false);

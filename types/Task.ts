@@ -11,7 +11,4 @@ export interface Task {
   updated_at: string;
   //active current task
   user_id?: string;
-  //Image for task
-  image_path?: string;
 }
-
