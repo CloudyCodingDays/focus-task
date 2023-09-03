@@ -4,7 +4,6 @@ import NavBarLogin from "./NavBarLogin";
 import NavBarLogo from "./NavBarLogo";
 import NavBarMenu from "./NavBarMenu";
 import Routes from "./Routes";
-import { useState } from "react";
 import useThemeContext from "@/hooks/useThemeContext";
 import NavTheme from "./NavTheme";
 import { GetThemeStyle } from "../GetThemeStyle";
@@ -19,7 +18,7 @@ const NavBar: React.FC<NavBarProps> = ({ children }) => {
   const { color, setColor, mode, setMode } = useThemeContext();
   const themeStyle = GetThemeStyle(color, mode);
   return (
-    <div className={"bg-neutralBg " + themeStyle}>
+    <div className={"bg-neutralBg text-onNeutralBg " + themeStyle}>
       <div className="flex flex-col md:min-h-screen">
         <div className="bg-main flex flex-row w-full justify-between items-center px-2 pt-2 mx-auto md:px-12">
           <NavBarMenu user={user} />

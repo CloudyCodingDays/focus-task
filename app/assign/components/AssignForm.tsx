@@ -1,12 +1,12 @@
 "use client";
-import { AssignFormSubmit } from "@/app/(site)/components/AssignFormSubmit";
-import FormSubmitButtons from "@/components/FormSubmitButtons";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { Task } from "@/types/Task";
 import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction } from "react";
-import toast from "react-hot-toast";
+import React, { Dispatch, MouseEventHandler, SetStateAction } from "react";
 import { useQueryClient } from "react-query";
+import { AlertCircle, CalendarClock, Dot, Repeat } from "lucide-react";
+import toast from "react-hot-toast";
+import AssignTaskQuery from "@/components/CRUD_queries/AssignTaskQuery";
 
 interface AssignFormProps {
   task: Task;
@@ -18,28 +18,83 @@ const AssignForm: React.FC<AssignFormProps> = ({ task, onBack }) => {
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
 
-  const HandleSubmit: React.FormEventHandler<HTMLFormElement> = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
-    await toast.promise(AssignFormSubmit(e, "assign", user?.id), {
-      loading: "Assigning Task...",
-      success: "Task Assigned!",
-      error: "Unable to Assign Task. Please try again.",
-    });
+  const HandleAssign: MouseEventHandler<HTMLButtonElement> = async () => {
+    if (user) {
+      await toast.promise(AssignTaskQuery(task.id, user?.id), {
+        loading: "Assigning Task...",
+        success: "Task Assigned!",
+        error: "Unable to Assign Task. Please try again.",
+      });
 
-    await queryClient.resetQueries("ActiveTask");
-    await queryClient.resetQueries("TaskCount");
+      await queryClient.resetQueries("ActiveTask");
+      await queryClient.resetQueries("TaskCount");
 
-    router.push("/");
+      router.push("/");
+    }
   };
   return (
-    <div className="w-fit mx-auto">
-      <form method="post" onSubmit={HandleSubmit}>
-        <div>
-          <input name="task" type="hidden" value={JSON.stringify(task)}></input>
+    <div className="w-full mx-auto">
+      <div className={"text-1xl font-semibold"}>{task?.name}</div>
+
+      <div className={"text-sm font-light pl-4 pt-2 flex items-center"}>
+        <Dot />
+        <div className={"pl-2 break-words"}>{task?.description}</div>
+      </div>
+
+      <div className={"pl-4 flex items-center pt-2 font-light"}>
+        <AlertCircle size={20} />
+        <div className={"pl-2 text-sm"}>{task?.priority} Priority</div>
+      </div>
+
+      {task?.is_recurring ? (
+        <div className="pl-4 flex items-center pt-2 font-light">
+          <Repeat size={20} />
+          <div className={"pl-2 text-sm"}>{task?.recurring_type}</div>
         </div>
-        <FormSubmitButtons submitText="Assign Task" onBack={onBack} />
-      </form>
+      ) : (
+        <></>
+      )}
+      <div className="pl-4 flex items-center pt-2 font-light">
+        <CalendarClock size={20} />
+        <div className={"pl-2 text-sm"}>{task?.due_date.substring(0, 10)}</div>
+      </div>
+      <div className={"text-center"}>
+        <button
+          onClick={() => {
+            onBack(false);
+          }}
+          className="
+              hover:bg-main
+              hover:text-onMainBg
+              bg-neutralBg
+              text-onNeutralBg
+              border-2
+              border-main
+              rounded-lg
+              my-4
+              mr-8
+              w-[7em]
+              h-[3em]
+              font-semibold"
+        >
+          Close
+        </button>
+        <button
+          onClick={HandleAssign}
+          className="
+              hover:bg-inverted
+              hover:text-onInvertedBg
+              bg-main
+              text-onMainBg
+
+              rounded-lg
+              w-[7em]
+              h-[3em]
+            font-semibold"
+        >
+          Assign Task
+        </button>
+      </div>
     </div>
   );
 };

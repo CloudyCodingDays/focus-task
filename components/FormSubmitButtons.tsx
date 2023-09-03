@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
 const FormSubmitButtons = ({
-  cancelText = "Back",
+  cancelText = "Close",
   submitText = "Save",
   onBack,
   onClose,

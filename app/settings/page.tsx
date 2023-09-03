@@ -6,7 +6,7 @@ import { useUserInfo } from "@/hooks/useUserInfo";
 import { useQuery, useQueryClient } from "react-query";
 import { Settings } from "@/types/Setting";
 import { ReactQueryCache } from "@/components/task_functions/ReactQueryCache";
-import { GetUserSettings } from "@/components/task_queries/GetUserSettings";
+import { GetUserSettings } from "@/components/user_queries/GetUserSettings";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Home() {
@@ -44,9 +44,8 @@ export default function Home() {
   if (query.error) return "Error has occured : " + query.error.message;
 
   return (
-    <div className="bg-mainBg text-onMainBg flex flex-col lg:w-1/2 mx-auto mt-4">
-      {JSON.stringify(query.data)}
-      <SettingsMenu setCategory={setCategory} />
+    <div className="flex flex-col lg:w-1/2 mx-auto mt-4">
+      <SettingsMenu category={category} setCategory={setCategory} />
       {query?.data?.map((setting) => (
         <div key={setting.id}>
           <SettingContent category={category} settings={setting} />

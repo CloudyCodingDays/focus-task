@@ -21,7 +21,9 @@ const NavTheme = () => {
         <PopoverTrigger>
           <Palette />
         </PopoverTrigger>
-        <PopoverContent className={"bg-mainBg w-full " + themeStyle}>
+        <PopoverContent
+          className={"bg-mainBg w-full text-onMainBg " + themeStyle}
+        >
           <ThemeSelector />
         </PopoverContent>
       </Popover>

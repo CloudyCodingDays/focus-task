@@ -22,7 +22,8 @@ const NavBarMenu = ({ user }: { user: User | null }) => {
         </DialogTrigger>
         <DialogContent
           className={
-            "bg-mainBg h-full grid md:w-1/4 md:left-[12%] pt-4 " + themeStyle
+            "bg-mainBg h-full grid md:w-1/4 md:left-[12%] pt-4 text-onMainBg " +
+            themeStyle
           }
         >
           <Routes onRoute={setOpen} user={user} />

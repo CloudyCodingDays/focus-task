@@ -1,18 +1,12 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "@/components/ui/command";
+import { Command, CommandGroup, CommandItem } from "@/components/ui/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Check, ChevronDown, ChevronsUpDown } from "lucide-react";
+import { Check, ChevronDown } from "lucide-react";
 import { Dispatch, SetStateAction, useState } from "react";
 import useThemeContext from "@/hooks/useThemeContext";
 import { GetThemeStyle } from "@/components/GetThemeStyle";
@@ -66,13 +60,15 @@ const SearchFilterSorting = ({
           >
             {value
               ? TaskProperties.find(
-                  (TaskProperty) => TaskProperty.value === value
+                  (TaskProperty) => TaskProperty.value === value,
                 )?.label
               : "Sort By..."}
             <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className={"bg-mainBg w-[200px] p-0 " + themeStyle}>
+        <PopoverContent
+          className={"bg-mainBg w-[200px] p-0 text-onMainBg " + themeStyle}
+        >
           <Command>
             <CommandGroup>
               {TaskProperties.map((TaskProperty) => (
@@ -87,7 +83,9 @@ const SearchFilterSorting = ({
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value === TaskProperty.value ? "opacity-100" : "opacity-0"
+                      value === TaskProperty.value
+                        ? "opacity-100"
+                        : "opacity-0",
                     )}
                   />
                   {TaskProperty.label}

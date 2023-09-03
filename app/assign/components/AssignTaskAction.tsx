@@ -1,4 +1,3 @@
-import TaskItemDetailsLayout from "@/components/TaskItemDetailsLayout";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Task } from "@/types/Task";
 import { useState } from "react";
@@ -16,6 +15,7 @@ const AssignTaskAction = ({ task }: { task: Task }) => {
     <div
       className="
       bg-mainBg
+      text-onMainBg
       rounded-lg
       mb-8
       drop-shadow-lg"
@@ -27,9 +27,8 @@ const AssignTaskAction = ({ task }: { task: Task }) => {
               <AssignTaskItemLayout task={task} />
             </button>
           </DialogTrigger>
-          <DialogContent className={"bg-mainBg " + themeStyle}>
+          <DialogContent className={"bg-mainBg text-onMainBg " + themeStyle}>
             <div className="py-12 px-2">
-              <TaskItemDetailsLayout task={task} isEdit={false} />
               <AssignForm task={task} onBack={setAssignOpen} />
             </div>
           </DialogContent>

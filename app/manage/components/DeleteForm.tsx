@@ -1,13 +1,11 @@
 "use client";
-import FormSubmitButtons from "@/components/FormSubmitButtons";
-import TaskItemDetailsLayout from "@/components/TaskItemDetailsLayout";
+
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { Task } from "@/types/Task";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import toast from "react-hot-toast";
 import { useQueryClient } from "react-query";
-import { FormSubmit } from "./HandleSubmitCRUD";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -73,7 +71,7 @@ const DeleteForm: React.FC<DeleteFormProps> = ({ task, onBack }) => {
           </div>
         </button>
       </AlertDialogTrigger>
-      <AlertDialogContent className={"bg-mainBg " + themeStyle}>
+      <AlertDialogContent className={"bg-mainBg text-onMainBg " + themeStyle}>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
@@ -95,7 +93,7 @@ const DeleteForm: React.FC<DeleteFormProps> = ({ task, onBack }) => {
             ml-4 
             mx-4"
           >
-            Cancel
+            Close
           </AlertDialogCancel>
           <AlertDialogAction
             onClick={HandleDelete}

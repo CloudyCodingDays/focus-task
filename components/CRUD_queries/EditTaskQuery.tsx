@@ -1,7 +1,7 @@
 import supabaseClient from "@/lib/supabaseClient";
-import { Task } from "@/types/Task";
+import { EditTaskFormData } from "@/app/manage/components/EditForm";
 
-const EditTaskQuery = async (taskData: Task, userId: string) => {
+const EditTaskQuery = async (taskData: EditTaskFormData, userId: string) => {
   const { status, error } = await supabaseClient
     .from("tasks")
     .update({
@@ -12,9 +12,8 @@ const EditTaskQuery = async (taskData: Task, userId: string) => {
       priority: taskData.priority,
       due_date: taskData.due_date,
       updated_at: new Date(),
-      created_by: taskData.created_by,
+      created_by: userId,
       created_at: taskData.created_at,
-      image_path: taskData.image_path,
     })
     .eq("id", taskData.id)
     .eq("created_by", userId);

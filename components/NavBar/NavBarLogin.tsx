@@ -21,7 +21,7 @@ const NavBarLogin = () => {
         <PopoverTrigger>
           <User />
         </PopoverTrigger>
-        <PopoverContent className={"bg-mainBg " + themeStyle}>
+        <PopoverContent className={"bg-mainBg text-onMainBg " + themeStyle}>
           <Login setOpen={setOpen} />
         </PopoverContent>
       </Popover>
