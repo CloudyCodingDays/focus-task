@@ -5,6 +5,7 @@ import {
   TaskGroupType,
 } from "@/app/manage/components/DetermineGroupByType";
 import ManageTaskDetails from "@/app/manage/components/ManageTaskDetails";
+import { SortGroupedTasks } from "@/app/manage/components/SortGroupedTasks";
 
 const ManageTaskListGrouped = ({
   taskList,
@@ -17,12 +18,17 @@ const ManageTaskListGrouped = ({
   sortBy: string;
   sortOrder: string;
 }) => {
-  let GroupByType = [] as TaskGroupType[];
-  if (taskList) GroupByType = DetermineGroupByType(groupBy, taskList);
+  let SortedGroupByType = [] as TaskGroupType[];
+
+  if (taskList) {
+    const GroupByType = DetermineGroupByType(groupBy, taskList);
+
+    SortedGroupByType = SortGroupedTasks(GroupByType, sortBy, sortOrder);
+  }
 
   return (
     <div>
-      {GroupByType.map((GroupType) => (
+      {SortedGroupByType.map((GroupType) => (
         <div key={GroupType.Header}>
           {GroupType.TaskList.length > 0 ? (
             <div>

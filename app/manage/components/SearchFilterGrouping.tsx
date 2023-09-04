@@ -37,11 +37,12 @@ const TaskProperties = [
 
 const SearchFilterGrouping = ({
   setGroupBy,
+  groupBy,
 }: {
   setGroupBy: Dispatch<SetStateAction<string>>;
+  groupBy: string;
 }) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
   const { color, mode } = useThemeContext();
   const themeStyle = GetThemeStyle(color, mode);
 
@@ -55,11 +56,11 @@ const SearchFilterGrouping = ({
             aria-expanded={open}
             className=" justify-between"
           >
-            {value
+            {groupBy
               ? TaskProperties.find(
-                  (TaskProperty) => TaskProperty.value === value,
+                  (TaskProperty) => TaskProperty.value === groupBy,
                 )?.label
-              : "Group By..."}
+              : "Group By"}
             <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
@@ -72,8 +73,6 @@ const SearchFilterGrouping = ({
                 <CommandItem
                   key={TaskProperty.value}
                   onSelect={(currentValue) => {
-                    console.log(currentValue);
-                    setValue(currentValue);
                     setGroupBy(currentValue);
                     setOpen(false);
                   }}
@@ -81,7 +80,7 @@ const SearchFilterGrouping = ({
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value === TaskProperty.value
+                      groupBy === TaskProperty.value
                         ? "opacity-100"
                         : "opacity-0",
                     )}

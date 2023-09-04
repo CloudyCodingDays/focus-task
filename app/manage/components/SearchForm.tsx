@@ -12,6 +12,9 @@ interface SearchFormProps {
   setGroupBy: Dispatch<SetStateAction<string>>;
   setSortBy: Dispatch<SetStateAction<string>>;
   setSortOrder: Dispatch<SetStateAction<string>>;
+  groupBy: string;
+  sortBy: string;
+  sortOrder: string;
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({
@@ -19,6 +22,9 @@ const SearchForm: React.FC<SearchFormProps> = ({
   setGroupBy,
   setSortBy,
   setSortOrder,
+  groupBy,
+  sortBy,
+  sortOrder,
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedValue = useDebounceSearch(searchTerm, 500);
@@ -55,9 +61,16 @@ const SearchForm: React.FC<SearchFormProps> = ({
             </form>
           </div>
           <div className="flex flex-row justify-between lg:justify-end mt-4 mx-4">
-            <SearchFilterGrouping setGroupBy={setGroupBy} />
-            <SearchFilterSorting setSortBy={setSortBy} />
-            <SearchFilterSortOrder setSortOrder={setSortOrder} />
+            <SearchFilterGrouping setGroupBy={setGroupBy} groupBy={groupBy} />
+            <SearchFilterSorting
+              setSortBy={setSortBy}
+              setSortOrder={setSortOrder}
+              sortBy={sortBy}
+            />
+            <SearchFilterSortOrder
+              setSortOrder={setSortOrder}
+              sortOrder={sortOrder}
+            />
           </div>
         </div>
       </div>

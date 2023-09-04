@@ -14,7 +14,7 @@ const ManageTaskList = () => {
     () => import("./ManageTaskItemDisplay"),
     {
       loading: () => <Skeleton className="mx-auto w-[400px] h-[30px] mt-4" />,
-    }
+    },
   );
 
   return (
@@ -24,6 +24,9 @@ const ManageTaskList = () => {
         setGroupBy={setGroupBy}
         setSortBy={setSortBy}
         setSortOrder={setSortOrder}
+        groupBy={groupBy}
+        sortBy={sortBy}
+        sortOrder={sortOrder}
       />
 
       <div className="mx-auto pb-4 mt-2">
