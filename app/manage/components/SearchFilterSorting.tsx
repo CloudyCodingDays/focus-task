@@ -11,9 +11,9 @@ import { Dispatch, SetStateAction, useState } from "react";
 import useThemeContext from "@/hooks/useThemeContext";
 import { GetThemeStyle } from "@/components/GetThemeStyle";
 
-const TaskProperties = [
+const SortProperties = [
   {
-    value: "sort by",
+    value: "sort",
     label: "Sort By",
   },
   {
@@ -25,11 +25,11 @@ const TaskProperties = [
     label: "Description",
   },
   {
-    value: "recurring",
+    value: "is_Recurring",
     label: "Recurring",
   },
   {
-    value: "recurring type",
+    value: "recurring_type",
     label: "Recurring Type",
   },
   {
@@ -37,7 +37,7 @@ const TaskProperties = [
     label: "Priority",
   },
   {
-    value: "due date",
+    value: "due_date",
     label: "Due Date",
   },
 ];
@@ -63,10 +63,10 @@ const SearchFilterSorting = ({
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className=" justify-between"
+            className={"justify-between bg-mainBg text-onMainBg " + themeStyle}
           >
             {sortBy
-              ? TaskProperties.find(
+              ? SortProperties.find(
                   (TaskProperty) => TaskProperty.value === sortBy,
                 )?.label
               : "Sort By..."}
@@ -78,15 +78,20 @@ const SearchFilterSorting = ({
         >
           <Command>
             <CommandGroup>
-              {TaskProperties.map((TaskProperty) => (
+              {SortProperties.map((TaskProperty) => (
                 <CommandItem
                   key={TaskProperty.value}
                   onSelect={(currentValue) => {
-                    if (currentValue === "sort by") {
-                      setSortBy(currentValue);
+                    const newValue = SortProperties.find(
+                      (TaskProperty) =>
+                        TaskProperty.label.toLocaleLowerCase() === currentValue,
+                    )?.value;
+
+                    if (newValue === "sort by") {
+                      setSortBy(newValue);
                       setSortOrder("sort order");
-                    } else {
-                      setSortBy(currentValue);
+                    } else if (newValue) {
+                      setSortBy(newValue);
                       setSortOrder("descending");
                       setOpen(false);
                     }

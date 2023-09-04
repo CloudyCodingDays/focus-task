@@ -18,18 +18,29 @@ export const SortGroupedTasks = (
           sortOrder &&
           sortOrder === "ascending"
         ) {
-          if (firstValue > secondValue) return 1;
-          return -1;
+          if (firstValue > secondValue) {
+            return 1;
+          } else if (firstValue < secondValue) {
+            return -1;
+          } else {
+            return 0;
+          }
         } else if (
           firstValue &&
           secondValue &&
           sortOrder &&
           sortOrder === "descending"
         ) {
-          if (firstValue > secondValue) return 1;
-          return -1;
+          if (firstValue < secondValue) {
+            return 1;
+          } else if (firstValue > secondValue) {
+            return -1;
+          } else {
+            return 0;
+          }
         }
-        return -1;
+
+        return 1;
       });
     } else {
     }

@@ -54,7 +54,7 @@ const SearchFilterGrouping = ({
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className=" justify-between"
+            className={"justify-between bg-mainBg text-onMainBg " + themeStyle}
           >
             {groupBy
               ? TaskProperties.find(
