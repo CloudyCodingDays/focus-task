@@ -2,7 +2,7 @@
 import GetActiveTaskByUserId from "@/components/task_queries/GetActiveTaskByUserId";
 import { Task } from "@/types/Task";
 import { User } from "@supabase/supabase-js";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery, useQueryClient, UseQueryResult } from "react-query";
 import ActiveTaskDisplay from "./ActiveTaskDisplay";
 import NoActiveTaskDisplay from "./NoActiveTaskDisplay";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -10,21 +10,14 @@ import { CatPictureData } from "@/types/CatPictureData";
 
 interface CurrentTaskDisplayProps {
   user: User | null;
+  catQuery: UseQueryResult<CatPictureData[], Error>;
 }
 
-const CurrentTaskDisplay: React.FC<CurrentTaskDisplayProps> = ({ user }) => {
+const CurrentTaskDisplay: React.FC<CurrentTaskDisplayProps> = ({
+  user,
+  catQuery,
+}) => {
   const queryClient = useQueryClient();
-
-  const getCatData = async () => {
-    const res = await fetch("https://api.thecatapi.com/v1/images/search");
-    return res.json();
-  };
-
-  const catQuery = useQuery<CatPictureData[], Error>("CatPicture", getCatData, {
-    refetchOnWindowFocus: false,
-    enabled: false,
-    staleTime: 1000 * 60 * 60 * 12,
-  });
 
   const getTasks = async () => {
     if (user !== null) {
@@ -37,10 +30,7 @@ const CurrentTaskDisplay: React.FC<CurrentTaskDisplayProps> = ({ user }) => {
     return [];
   };
 
-  const { data, error, isFetching, isError, isSuccess } = useQuery<
-    Task[],
-    Error
-  >({
+  const { data, error, isFetching, isError } = useQuery<Task[], Error>({
     queryKey: ["ActiveTask", user?.id],
     queryFn: getTasks,
   });
@@ -62,7 +52,7 @@ const CurrentTaskDisplay: React.FC<CurrentTaskDisplayProps> = ({ user }) => {
           </div>
         ))
       ) : (
-        <NoActiveTaskDisplay catQuery={catQuery} />
+        <NoActiveTaskDisplay />
       )}
     </div>
   );

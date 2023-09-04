@@ -15,7 +15,7 @@ interface NavBarProps {
 
 const NavBar: React.FC<NavBarProps> = ({ children }) => {
   const { user } = useUserInfo();
-  const { color, setColor, mode, setMode } = useThemeContext();
+  const { color, mode } = useThemeContext();
   const themeStyle = GetThemeStyle(color, mode);
   return (
     <div className={"bg-neutralBg text-onNeutralBg " + themeStyle}>
@@ -30,7 +30,7 @@ const NavBar: React.FC<NavBarProps> = ({ children }) => {
           </div>
         </div>
         <div className="flex flex-row md:flex-auto">
-          <div className="md:block hidden bg-mainBg pt-4">
+          <div className="lg:block hidden bg-mainBg pt-4">
             <Routes user={user} />
           </div>
           <div className="w-full">{children}</div>
