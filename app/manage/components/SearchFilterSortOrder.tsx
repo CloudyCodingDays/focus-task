@@ -13,10 +13,6 @@ import { GetThemeStyle } from "@/components/GetThemeStyle";
 
 const TaskProperties = [
   {
-    value: "sort order",
-    label: "Sort Order",
-  },
-  {
     value: "ascending",
     label: "Ascending",
   },

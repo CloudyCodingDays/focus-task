@@ -17,10 +17,6 @@ const SortProperties = [
     label: "Sort By",
   },
   {
-    value: "sort by",
-    label: "Sort By",
-  },
-  {
     value: "name",
     label: "Name",
   },
@@ -29,11 +25,7 @@ const SortProperties = [
     label: "Description",
   },
   {
-    value: "is_Recurring",
-    label: "Recurring",
-  },
-  {
-    value: "recurring type",
+    value: "recurring_type",
     label: "Recurring Type",
   },
   {
@@ -41,7 +33,7 @@ const SortProperties = [
     label: "Priority",
   },
   {
-    value: "due date",
+    value: "due_date",
     label: "Due Date",
   },
 ];
@@ -90,7 +82,7 @@ const SearchFilterSorting = ({
                       (TaskProperty) =>
                         TaskProperty.label.toLocaleLowerCase() === currentValue,
                     )?.value;
-
+                    console.log(newValue);
                     if (newValue === "sort by") {
                       setSortBy(newValue);
                       setSortOrder("sort order");
