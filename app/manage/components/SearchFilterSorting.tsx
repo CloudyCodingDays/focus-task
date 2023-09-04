@@ -13,6 +13,10 @@ import { GetThemeStyle } from "@/components/GetThemeStyle";
 
 const TaskProperties = [
   {
+    value: "sort by",
+    label: "Sort By",
+  },
+  {
     value: "name",
     label: "Name",
   },
@@ -25,7 +29,7 @@ const TaskProperties = [
     label: "Recurring",
   },
   {
-    value: "recurring_type",
+    value: "recurring type",
     label: "Recurring Type",
   },
   {
@@ -33,19 +37,22 @@ const TaskProperties = [
     label: "Priority",
   },
   {
-    value: "due_date",
+    value: "due date",
     label: "Due Date",
   },
 ];
 
 const SearchFilterSorting = ({
   setSortBy,
+  setSortOrder,
+  sortBy,
 }: {
   setSortBy: Dispatch<SetStateAction<string>>;
+  setSortOrder: Dispatch<SetStateAction<string>>;
+  sortBy: string;
 }) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
-  const { color, setColor, mode, setMode } = useThemeContext();
+  const { color, mode } = useThemeContext();
   const themeStyle = GetThemeStyle(color, mode);
 
   return (
@@ -58,9 +65,9 @@ const SearchFilterSorting = ({
             aria-expanded={open}
             className=" justify-between"
           >
-            {value
+            {sortBy
               ? TaskProperties.find(
-                  (TaskProperty) => TaskProperty.value === value,
+                  (TaskProperty) => TaskProperty.value === sortBy,
                 )?.label
               : "Sort By..."}
             <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -75,15 +82,20 @@ const SearchFilterSorting = ({
                 <CommandItem
                   key={TaskProperty.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue);
-                    setSortBy(currentValue);
-                    setOpen(false);
+                    if (currentValue === "sort by") {
+                      setSortBy(currentValue);
+                      setSortOrder("sort order");
+                    } else {
+                      setSortBy(currentValue);
+                      setSortOrder("descending");
+                      setOpen(false);
+                    }
                   }}
                 >
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value === TaskProperty.value
+                      sortBy === TaskProperty.value
                         ? "opacity-100"
                         : "opacity-0",
                     )}

@@ -13,6 +13,10 @@ import { GetThemeStyle } from "@/components/GetThemeStyle";
 
 const TaskProperties = [
   {
+    value: "sort order",
+    label: "Sort Order",
+  },
+  {
     value: "ascending",
     label: "Ascending",
   },
@@ -24,12 +28,13 @@ const TaskProperties = [
 
 const SearchFilterSortOrder = ({
   setSortOrder,
+  sortOrder,
 }: {
   setSortOrder: Dispatch<SetStateAction<string>>;
+  sortOrder: string;
 }) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
-  const { color, setColor, mode, setMode } = useThemeContext();
+  const { color, mode } = useThemeContext();
   const themeStyle = GetThemeStyle(color, mode);
 
   return (
@@ -42,9 +47,9 @@ const SearchFilterSortOrder = ({
             aria-expanded={open}
             className=" justify-between"
           >
-            {value
+            {sortOrder
               ? TaskProperties.find(
-                  (TaskProperty) => TaskProperty.value === value,
+                  (TaskProperty) => TaskProperty.value === sortOrder,
                 )?.label
               : "Sort Order..."}
             <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -59,7 +64,6 @@ const SearchFilterSortOrder = ({
                 <CommandItem
                   key={TaskProperty.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue);
                     setSortOrder(currentValue);
                     setOpen(false);
                   }}
@@ -67,7 +71,7 @@ const SearchFilterSortOrder = ({
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value === TaskProperty.value
+                      sortOrder === TaskProperty.value
                         ? "opacity-100"
                         : "opacity-0",
                     )}
