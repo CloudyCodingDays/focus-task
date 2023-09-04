@@ -17,6 +17,10 @@ const SortProperties = [
     label: "Sort By",
   },
   {
+    value: "sort by",
+    label: "Sort By",
+  },
+  {
     value: "name",
     label: "Name",
   },
@@ -29,7 +33,7 @@ const SortProperties = [
     label: "Recurring",
   },
   {
-    value: "recurring_type",
+    value: "recurring type",
     label: "Recurring Type",
   },
   {
@@ -37,7 +41,7 @@ const SortProperties = [
     label: "Priority",
   },
   {
-    value: "due_date",
+    value: "due date",
     label: "Due Date",
   },
 ];
