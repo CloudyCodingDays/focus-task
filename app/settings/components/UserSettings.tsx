@@ -4,6 +4,8 @@ import { UpdateUserSettings } from "@/components/user_queries/UpdateUserSettings
 import { Label } from "@/components/ui/label";
 import { useQueryClient } from "react-query";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export type UserSettingsFormData = {
   fName: string;
@@ -12,16 +14,23 @@ export type UserSettingsFormData = {
   password: string;
 };
 
-const UserSettings = ({ settings }: { settings: Settings | undefined }) => {
+const UserSettings = () => {
+  const router = useRouter();
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
-  const { handleSubmit, register, watch } = useForm<UserSettingsFormData>();
+  const { handleSubmit, register } = useForm<UserSettingsFormData>();
 
   const HandleUserSettings: SubmitHandler<UserSettingsFormData> = async (
     data,
   ) => {
-    await UpdateUserSettings(data, user?.id);
+    await toast.promise(UpdateUserSettings(data, user?.id), {
+      loading: "Saving Settings...",
+      success: "Check new email for confirmation mail!",
+      error: "Unable to save changes. Please try again.",
+    });
+
     await queryClient.resetQueries("Settings");
+    router.refresh();
   };
 
   return (
@@ -33,17 +42,21 @@ const UserSettings = ({ settings }: { settings: Settings | undefined }) => {
           </Label>
 
           <div className="flex flex-col ml-4 mt-4">
-            <Label className={"mb-2"}>First Name</Label>
-            <input {...register("fName")} className="w-fit mb-4"></input>
-
-            <Label className={"mb-2"}>Last Name</Label>
-            <input {...register("lName")} className="w-fit mb-4"></input>
-
             <Label className={"mb-2"}>Email</Label>
-            <input {...register("email")} className="w-fit mb-4"></input>
+            <input
+              {...register("email")}
+              className="w-fit mb-4"
+              required
+              defaultValue={user?.email}
+            ></input>
 
             <Label className={"mb-2"}>Password</Label>
-            <input {...register("password")} className="w-fit mb-4"></input>
+            <input
+              {...register("password")}
+              type={"password"}
+              className="w-fit mb-4"
+              required
+            ></input>
           </div>
         </div>
 

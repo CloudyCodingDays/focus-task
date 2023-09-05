@@ -7,8 +7,10 @@ import { useQueryClient } from "react-query";
 import { UpdateDisplaySettings } from "@/components/user_queries/UpdateDisplaySettings";
 import toast from "react-hot-toast";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 const DisplaySettings = ({ settings }: { settings: Settings | undefined }) => {
+  const router = useRouter();
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
   const [image, setImage] = useState(
@@ -20,12 +22,13 @@ const DisplaySettings = ({ settings }: { settings: Settings | undefined }) => {
     fieldValues,
   ) => {
     await toast.promise(UpdateDisplaySettings(fieldValues, user?.id), {
-      loading: "Saving Changes...",
-      success: "Changes Saved!",
-      error: "Unable to save Changes. Please try again.",
+      loading: "Saving Settings...",
+      success: "Settings Saved!",
+      error: "Unable to save changes. Please try again.",
     });
 
     await queryClient.resetQueries("Settings");
+    router.refresh();
   };
 
   const HandleFile = (e: ChangeEvent<HTMLInputElement>) => {

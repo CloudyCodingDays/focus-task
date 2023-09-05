@@ -15,6 +15,7 @@ export const UpdateUserSettings = async (
     toast("User ID not found");
     throw new Error("Something went wrong.");
   }
+
   if (email.length !== 0 && password.length !== 0) {
     const { data, error } = await supabase.auth.updateUser({
       email: email,

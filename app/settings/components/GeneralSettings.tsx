@@ -6,6 +6,7 @@ import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { UpdateGeneralSettings } from "@/components/user_queries/UpdateGeneralSettings";
+import { useRouter } from "next/navigation";
 
 export type GeneralSettingsFormData = {
   description: string;
@@ -17,6 +18,7 @@ export type GeneralSettingsFormData = {
 };
 
 const GeneralSettings = ({ settings }: { settings: Settings | undefined }) => {
+  const router = useRouter();
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
   const { handleSubmit, register, watch } = useForm<GeneralSettingsFormData>();
@@ -25,11 +27,12 @@ const GeneralSettings = ({ settings }: { settings: Settings | undefined }) => {
     data,
   ) => {
     await toast.promise(UpdateGeneralSettings(data, user?.id), {
-      loading: "Completing Task...",
-      success: "Task Completed!",
-      error: "Unable to Complete Task. Please try again.",
+      loading: "Saving Settings...",
+      success: "Settings Saved!",
+      error: "Unable to save changes. Please try again.",
     });
     await queryClient.resetQueries("Settings");
+    router.refresh();
   };
 
   return (

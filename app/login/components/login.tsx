@@ -17,12 +17,7 @@ interface LoginProps {
 const Login: React.FC<LoginProps> = ({ setOpen }) => {
   const router = useRouter();
   const { session } = useSessionContext();
-  const {
-    handleSubmit,
-    register,
-    watch,
-    formState: { errors },
-  } = useForm<FormData>();
+  const { handleSubmit, register } = useForm<FormData>();
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     await UserSignIn(data.email, data.password);
@@ -36,7 +31,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
   const HandleLogOut = async () => {
     await UserSignOut();
     HandleLoginClose();
-    router.push("/");
+    router.replace("/");
   };
 
   const HandleLoginClose = () => {
@@ -64,6 +59,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
             <input
               className="drop-shadow-lg"
               {...register("password", { required: true, minLength: 2 })}
+              type={"password"}
             ></input>
           </div>
 

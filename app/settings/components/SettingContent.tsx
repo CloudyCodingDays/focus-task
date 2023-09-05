@@ -14,7 +14,7 @@ const SettingContent = ({
     <div>
       {category === "General" ? <GeneralSettings settings={settings} /> : ""}
       {category === "Display" ? <DisplaySettings settings={settings} /> : ""}
-      {category === "User" ? <UserSettings settings={settings} /> : ""}
+      {category === "User" ? <UserSettings /> : ""}
     </div>
   );
 };

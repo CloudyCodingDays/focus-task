@@ -18,7 +18,7 @@ const NavBar: React.FC<NavBarProps> = ({ children }) => {
   const { color, mode } = useThemeContext();
   const themeStyle = GetThemeStyle(color, mode);
   return (
-    <div className={"bg-neutralBg text-onNeutralBg " + themeStyle}>
+    <div className={"bg-neutralBg text-onNeutralBg h-full " + themeStyle}>
       <div className="flex flex-col md:min-h-screen">
         <div className="bg-main flex flex-row w-full justify-between items-center px-2 pt-2 mx-auto md:px-12">
           <NavBarMenu user={user} />

@@ -1,8 +1,6 @@
 import { UserRegister } from "@/app/login/components/UserActions";
-import { AddNameForUser } from "@/components/user_queries/AddNameForUser";
 import { AddUserSettings } from "@/components/user_queries/AddUserSettings";
 import { Task } from "@/types/Task";
-import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -29,24 +27,16 @@ const defaultTask = {
 
 const Register = () => {
   const router = useRouter();
-  const { session } = useSessionContext();
-  const {
-    handleSubmit,
-    register,
-    watch,
-    formState: { errors },
-  } = useForm<FormData>();
+  const { handleSubmit, register } = useForm<FormData>();
 
   const HandleRegister: SubmitHandler<FormData> = async (data) => {
     const res = await UserRegister(data.email, data.password);
 
     if (res.user) {
       await AddUserSettings(defaultTask, res.user?.id);
-
-      await AddNameForUser(data.firstName, data.lastName);
     }
 
-    router.push("/");
+    router.replace("/");
   };
 
   return (
@@ -71,26 +61,7 @@ const Register = () => {
             <input
               className="drop-shadow-md border-2 border-main"
               {...register("password", { required: true, minLength: 2 })}
-            ></input>
-          </div>
-
-          <div className="flex flex-col pt-4">
-            <label htmlFor="firstName" className="text-sm">
-              First Name
-            </label>
-            <input
-              className="drop-shadow-md border-2 border-main"
-              {...register("firstName", { required: true, minLength: 2 })}
-            ></input>
-          </div>
-
-          <div className="flex flex-col pt-4">
-            <label htmlFor="lastName" className="text-sm">
-              Last Name
-            </label>
-            <input
-              className="drop-shadow-md border-2 border-main"
-              {...register("lastName", { required: true, minLength: 2 })}
+              type={"password"}
             ></input>
           </div>
 

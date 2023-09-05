@@ -64,13 +64,7 @@ const InitialPageDisplay = () => {
       )}
       <div className="drop-shadow-lg w-fit mx-auto">
         {!taskCompleted ? (
-          <Image
-            src="/sarah-dorweiler-unsplash-compressed.png"
-            width="800"
-            height="351"
-            priority
-            alt="What would you like to do today?"
-          />
+          <></>
         ) : (
           catQuery.data?.map((cat) => (
             <div key={cat.id} className="flex flex-col justify-center">
