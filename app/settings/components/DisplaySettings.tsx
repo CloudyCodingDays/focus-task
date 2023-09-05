@@ -14,12 +14,12 @@ const DisplaySettings = ({ settings }: { settings: Settings | undefined }) => {
   const [image, setImage] = useState(
     "/sarah-dorweiler-unsplash-compressed.png",
   );
-  const { handleSubmit, register, watch } = useForm<DisplaySettingsFormData>();
+  const { handleSubmit, register } = useForm<FieldValues>();
 
-  const HandleDisplaySettings: SubmitHandler<DisplaySettingsFormData> = async (
-    data,
+  const HandleDisplaySettings: SubmitHandler<FieldValues> = async (
+    fieldValues,
   ) => {
-    await toast.promise(UpdateDisplaySettings(data, user?.id), {
+    await toast.promise(UpdateDisplaySettings(fieldValues, user?.id), {
       loading: "Saving Changes...",
       success: "Changes Saved!",
       error: "Unable to save Changes. Please try again.",
