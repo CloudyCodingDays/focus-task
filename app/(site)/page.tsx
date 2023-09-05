@@ -1,4 +1,4 @@
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@/components/ui_components/skeleton";
 import dynamic from "next/dynamic";
 
 export default function Home() {
@@ -29,13 +29,13 @@ export default function Home() {
           </div>
         </div>
       ),
-    }
+    },
   );
   const InitialPageDisplay = dynamic(
-    () => import("./components/InitialPageDisplay"),
+    () => import("./components/DetermineTaskDisplay"),
     {
       loading: () => <Skeleton className="mx-auto w-[400px] h-[30px] mt-4" />,
-    }
+    },
   );
 
   return (

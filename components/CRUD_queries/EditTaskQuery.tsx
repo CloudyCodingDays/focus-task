@@ -1,5 +1,5 @@
 import supabaseClient from "@/lib/supabaseClient";
-import { EditTaskFormData } from "@/app/manage/components/EditForm";
+import { EditTaskFormData } from "@/components/EditTaskForm";
 
 const EditTaskQuery = async (taskData: EditTaskFormData, userId: string) => {
   const { status, error } = await supabaseClient

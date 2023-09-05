@@ -1,11 +1,15 @@
 "use client";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui_components/dialog";
 import { Task } from "@/types/Task";
 import React, { useState } from "react";
 import ManageTaskItemLayout from "./ManageTaskItemLayout";
 import useThemeContext from "@/hooks/useThemeContext";
 import { GetThemeStyle } from "@/components/GetThemeStyle";
-import EditForm from "@/app/manage/components/EditForm";
+import EditTaskForm from "@/components/EditTaskForm";
 import {
   AlertCircle,
   CalendarClock,
@@ -13,7 +17,7 @@ import {
   FileEdit,
   Repeat,
 } from "lucide-react";
-import DeleteForm from "@/app/manage/components/DeleteForm";
+import DeleteTaskForm from "@/components/DeleteTaskForm";
 import format from "date-fns/format";
 
 const ManageTaskDetails = ({ task }: { task: Task }) => {
@@ -22,6 +26,7 @@ const ManageTaskDetails = ({ task }: { task: Task }) => {
   const [Open, setOpen] = useState<boolean>(false);
   const { color, mode } = useThemeContext();
   const themeStyle = GetThemeStyle(color, mode);
+
   const dueDate = new Date(task.due_date);
   dueDate.setDate(dueDate.getDate() + 1);
 
@@ -35,7 +40,7 @@ const ManageTaskDetails = ({ task }: { task: Task }) => {
       <DialogContent className={"bg-mainBg text-onMainBg " + themeStyle}>
         <div>
           {editOpen ? (
-            <EditForm task={task} onBack={setEditOpen} />
+            <EditTaskForm task={task} onBack={setEditOpen} />
           ) : (
             <div></div>
           )}
@@ -72,21 +77,12 @@ const ManageTaskDetails = ({ task }: { task: Task }) => {
                 </div>
               </div>
               <div className="text-center mt-4">
-                <DeleteForm task={task} onBack={setDeleteOpen} />
+                <DeleteTaskForm task={task} onBack={setDeleteOpen} />
                 <button
                   onClick={() => {
                     setEditOpen(true);
                   }}
-                  className="
-              hover:bg-inverted
-              hover:text-onInvertedBg
-              bg-main
-              text-onMainBg
-                rounded-lg
-                w-[7em]
-                h-[3em]
-                drop-shadow-md
-                mx-4"
+                  className="hover:bg-inverted hover:text-onInvertedBg bg-main text-onMainBg rounded-lg w-[7em] h-[3em] drop-shadow-md mx-4"
                 >
                   <div className="flex flex-row w-fit mx-4 px-2 py-2 items-baseline">
                     <FileEdit size={16} /> Edit

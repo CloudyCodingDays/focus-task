@@ -1,5 +1,5 @@
-import {Monitor, SlidersHorizontal, UserCog} from "lucide-react";
-import {Dispatch, SetStateAction} from "react";
+import { SlidersHorizontal, UserCog } from "lucide-react";
+import { Dispatch, SetStateAction } from "react";
 
 const SettingsMenu = ({
   category,
@@ -15,11 +15,6 @@ const SettingsMenu = ({
       active: category === "General",
     },
     {
-      Icon: <Monitor size={18} />,
-      label: "Display",
-      active: category === "Display",
-    },
-    {
       Icon: <UserCog size={18} />,
       label: "User",
       active: category === "User",
@@ -27,7 +22,7 @@ const SettingsMenu = ({
   ];
 
   function HandleSettingViewChange(category: string) {
-    setCategory(category)
+    setCategory(category);
   }
 
   return (
@@ -36,7 +31,7 @@ const SettingsMenu = ({
         <button
           key={setting.label}
           onClick={() => {
-            HandleSettingViewChange(setting.label)
+            HandleSettingViewChange(setting.label);
           }}
           className={
             setting.active

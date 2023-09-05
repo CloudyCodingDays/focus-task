@@ -1,17 +1,21 @@
 "use client";
 import Login from "@/app/login/components/login";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui_components/dialog";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { useState } from "react";
-import AddForm from "./AddForm";
+import AddTaskForm from "./AddTaskForm";
 import useThemeContext from "@/hooks/useThemeContext";
 import { GetThemeStyle } from "./GetThemeStyle";
 import { PlusSquare } from "lucide-react";
 import { Settings } from "@/types/Setting";
 import { ReactQueryCache } from "@/components/task_functions/ReactQueryCache";
-import { GetUserSettings } from "@/components/user_queries/GetUserSettings";
+import { GetSettings } from "@/components/user_queries/GetSettings";
 import { useQuery, useQueryClient } from "react-query";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@/components/ui_components/skeleton";
 
 const AddTaskButton = () => {
   const [addOpen, setAddOpen] = useState<boolean>(false);
@@ -19,22 +23,19 @@ const AddTaskButton = () => {
   const { color, mode } = useThemeContext();
   const themeStyle = GetThemeStyle(color, mode);
   const queryClient = useQueryClient();
-
+  const queryKeys = ["Settings", user ? user.id : ""];
   const getNewTaskSettings = async () => {
     let NewTaskSettings: Settings[] = [] as Settings[];
 
     if (user) {
       NewTaskSettings = ReactQueryCache(queryClient, queryKeys) as [];
+      if (NewTaskSettings === undefined)
+        NewTaskSettings = await GetSettings(user.id);
 
-      if (NewTaskSettings === undefined) {
-        NewTaskSettings = await GetUserSettings(user.id);
-      }
       return NewTaskSettings;
     }
     return [] as Settings[];
   };
-
-  const queryKeys = ["Settings", user ? user.id : ""];
 
   const query = useQuery<Settings[], Error>({
     queryKey: queryKeys,
@@ -53,14 +54,7 @@ const AddTaskButton = () => {
     <div>
       <Dialog open={addOpen} onOpenChange={setAddOpen}>
         <DialogTrigger asChild>
-          <button
-            className="
-            rounded-lg
-            hover:bg-inverted
-            hover:text-onInvertedBg
-            bg-main
-            text-onMainBg"
-          >
+          <button className="rounded-lg hover:bg-inverted hover:text-onInvertedBg bg-main text-onMainBg">
             <div className="flex flex-row items-center font-semibold px-2 py-2 text-sm">
               <PlusSquare size={24} />
             </div>
@@ -72,7 +66,7 @@ const AddTaskButton = () => {
               {!user ? (
                 <Login />
               ) : (
-                <AddForm onBack={setAddOpen} setting={setting} />
+                <AddTaskForm onBack={setAddOpen} setting={setting} />
               )}
             </div>
           ))}

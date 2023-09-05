@@ -1,4 +1,3 @@
-import { Label } from "@/components/ui/label";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { Settings } from "@/types/Setting";
 import { useQueryClient } from "react-query";
@@ -40,9 +39,9 @@ const GeneralSettings = ({ settings }: { settings: Settings | undefined }) => {
       <form onSubmit={handleSubmit(HandleGeneralSettings)}>
         <div className="bg-mainBg text-onMainBg rounded-lg pt-2">
           <div className={"ml-4 mb-4"}>
-            <Label className="text-1xl font-semibold mb-4">
+            <div className="text-1xl font-semibold mb-4">
               Default New Task settings
-            </Label>
+            </div>
 
             <div className={"mt-4"}>Description</div>
             <textarea
@@ -98,9 +97,9 @@ const GeneralSettings = ({ settings }: { settings: Settings | undefined }) => {
             </select>
           </div>
           <div className="bg-mainBg text-onMainBg mt-4 flex flex-col pt-2 rounded-lg">
-            <Label className="text-1xl font-semibold mb-4 ml-4">
+            <div className="text-1xl font-semibold mb-4 ml-4">
               Cat Picture Settings
-            </Label>
+            </div>
             <div className="mb-4">
               <input
                 {...register("catPicture")}
@@ -108,7 +107,7 @@ const GeneralSettings = ({ settings }: { settings: Settings | undefined }) => {
                 type="checkbox"
                 defaultChecked={settings?.cat_pic_on_complete}
               ></input>
-              <Label className={"ml-2"}> Cat Picture on task completion</Label>
+              <div className={"ml-2"}> Cat Picture on task completion</div>
             </div>
           </div>
 

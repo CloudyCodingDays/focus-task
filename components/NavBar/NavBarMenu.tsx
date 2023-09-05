@@ -1,6 +1,10 @@
 "use client";
 import { useState } from "react";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui_components/dialog";
 import Routes from "./Routes";
 import { Menu } from "lucide-react";
 import { User } from "@supabase/supabase-js";
@@ -9,7 +13,7 @@ import { GetThemeStyle } from "../GetThemeStyle";
 
 const NavBarMenu = ({ user }: { user: User | null }) => {
   const [open, setOpen] = useState(false);
-  const { color, setColor, mode, setMode } = useThemeContext();
+  const { color, mode } = useThemeContext();
   const themeStyle = GetThemeStyle(color, mode);
 
   return (

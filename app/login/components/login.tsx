@@ -1,9 +1,9 @@
 "use client";
-import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { UserSignIn, UserSignOut } from "./UserActions";
+import { UserSignIn, UserSignOut } from "@/components/UserActions";
+import { useSessionContext } from "@supabase/auth-helpers-react";
 
 type FormData = {
   email: string;
@@ -65,16 +65,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
 
           <div className="text-center">
             <button type="submit" className="w-1/3">
-              <div
-                className="
-                hover:bg-inverted
-                hover:text-onInvertedBg 
-                bg-main
-                text-onMainBg 
-                rounded-lg
-                text-center 
-                mt-8"
-              >
+              <div className="hover:bg-inverted hover:text-onInvertedBg bg-main text-onMainBg rounded-lg text-center mt-8">
                 Login
               </div>
             </button>
@@ -96,14 +87,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
           <div className="text-sm">Logged in as {session?.user?.email}</div>
           <div className="text-center ">
             <button type="submit" className="w-1/3" onClick={HandleLogOut}>
-              <div
-                className="text-center 
-              mt-8           
-              hover:bg-green-200
-          hover:text-green-500 
-          bg-green-400
-          text-green-100"
-              >
+              <div className="text-center mt-8 hover:bg-inverted hover:text-onInvertedBg bg-main text-onMainBg rounded-lg">
                 Logout
               </div>
             </button>
