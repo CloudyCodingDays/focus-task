@@ -7,6 +7,7 @@ import { useQueryClient } from "react-query";
 import FormSubmitButtons from "./FormSubmitButtons";
 import { SubmitHandler, useForm } from "react-hook-form";
 import AddTaskQuery from "@/components/CRUD_queries/AddTaskQuery";
+import { Settings } from "@/types/Setting";
 
 export type AddTaskFormData = {
   name: string;
@@ -19,16 +20,21 @@ export type AddTaskFormData = {
 
 interface AddFormProps {
   onBack: Dispatch<SetStateAction<boolean>>;
+  setting: Settings;
 }
 
-const AddForm: React.FC<AddFormProps> = ({ onBack }) => {
+const AddForm: React.FC<AddFormProps> = ({ onBack, setting }) => {
   const router = useRouter();
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
   const { handleSubmit, register, watch } = useForm<AddTaskFormData>();
-  const [recurringType, setRecurringType] = useState<string>("");
-  const [recurring, setRecurring] = useState<boolean>(false);
-
+  const [recurringType, setRecurringType] = useState<string>(
+    setting.default_recurring_type,
+  );
+  const [recurring, setRecurring] = useState<boolean>(
+    setting.default_recurring,
+  );
+  const defaultDue = NewTaskDefaultDate();
   const HandleAdd: SubmitHandler<AddTaskFormData> = async (data) => {
     if (user) {
       await toast.promise(AddTaskQuery(data, user?.id), {
@@ -46,6 +52,22 @@ const AddForm: React.FC<AddFormProps> = ({ onBack }) => {
     router.refresh();
   };
 
+  function NewTaskDefaultDate() {
+    if (setting.default_due_date === "today") {
+      return new Date().toISOString().substring(0, 10);
+    } else if (setting.default_due_date === "tomorrow") {
+      const date = new Date(Date.now());
+      date.setDate(date.getDate() + 1);
+      return date.toISOString().substring(0, 10);
+    } else if (setting.default_due_date === "week") {
+      const date = new Date(Date.now());
+      date.setDate(date.getDate() + 7);
+      return date.toISOString().substring(0, 10);
+    }
+
+    return new Date().toISOString().substring(0, 10);
+  }
+
   return (
     <div>
       <form method="post" onSubmit={handleSubmit(HandleAdd)}>
@@ -59,7 +81,7 @@ const AddForm: React.FC<AddFormProps> = ({ onBack }) => {
 
           <textarea
             className="border-2 mb-4 h-[10em] w-full lg:w-[30em] resize-none"
-            placeholder={"Description..."}
+            defaultValue={setting.default_desc}
             {...register("description")}
           ></textarea>
 
@@ -99,6 +121,7 @@ const AddForm: React.FC<AddFormProps> = ({ onBack }) => {
           <select
             {...register("priority")}
             className="border-2 mb-4 w-full lg:w-[30em]"
+            defaultValue={setting.default_priority}
           >
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
@@ -112,7 +135,7 @@ const AddForm: React.FC<AddFormProps> = ({ onBack }) => {
               type="date"
               className="border-2 mb-4 w-full lg:w-[30em]"
               required
-              defaultValue={new Date().toISOString().substring(0, 10)}
+              defaultValue={defaultDue}
             ></input>
           </div>
         </div>

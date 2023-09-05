@@ -1,7 +1,7 @@
 import { Task } from "@/types/Task";
 import { AlertCircle, CalendarClock, Repeat } from "lucide-react";
 import { CalculatePriorityStyle } from "@/components/task_functions/CalculatePriorityStyle";
-import { CalculateDayDifference } from "@/components/task_functions/CalculateDayDifference";
+import format from "date-fns/format";
 
 interface ManageTaskItemLayoutProps {
   task: Task;
@@ -10,11 +10,10 @@ interface ManageTaskItemLayoutProps {
 const ManageTaskItemLayout: React.FC<ManageTaskItemLayoutProps> = ({
   task,
 }) => {
-  const { id, name, priority, due_date } = task;
-
-  const dayDifference = CalculateDayDifference(due_date);
+  const { id, name, priority } = task;
   const priorityStyle = CalculatePriorityStyle(priority);
-
+  const dueDate = new Date(task.due_date);
+  dueDate.setDate(dueDate.getDate() + 1);
   return (
     <div key={id}>
       <div className="flex flex-col text-start pl-2">
@@ -27,7 +26,7 @@ const ManageTaskItemLayout: React.FC<ManageTaskItemLayoutProps> = ({
         <div className="flex flex-row justify-between pt-2 px-2 text-xs w-full">
           <div className="flex">
             <CalendarClock size={20} />
-            {due_date.substring(0, 10)}
+            {format(dueDate, "PP")}
           </div>
           {task.is_recurring ? (
             <div className="flex flex-row items-center text-xs font-light">
