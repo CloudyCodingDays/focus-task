@@ -6,24 +6,18 @@ import Image from "next/image";
 import { useQueryClient } from "react-query";
 import { UpdateDisplaySettings } from "@/components/user_queries/UpdateDisplaySettings";
 import toast from "react-hot-toast";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
-export type DisplaySettingsFormData = {
-  HomeImage: string;
-};
-
-const DisplaySettings = ({ settings }: { settings: Settings | undefined }) => {
+const DisplaySettings = () => {
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
   const [image, setImage] = useState(
     "/sarah-dorweiler-unsplash-compressed.png",
   );
-  const { handleSubmit, register, watch } = useForm<DisplaySettingsFormData>();
+  const { handleSubmit, register } = useForm<FieldValues>();
 
-  const HandleDisplaySettings: SubmitHandler<DisplaySettingsFormData> = async (
-    data,
-  ) => {
-    await toast.promise(UpdateDisplaySettings(data, user?.id), {
+  const HandleDisplaySettings: SubmitHandler<FieldValues> = async (values) => {
+    await toast.promise(UpdateDisplaySettings(values, user?.id), {
       loading: "Saving Changes...",
       success: "Changes Saved!",
       error: "Unable to save Changes. Please try again.",

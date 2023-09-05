@@ -7,12 +7,47 @@ import AddForm from "./AddForm";
 import useThemeContext from "@/hooks/useThemeContext";
 import { GetThemeStyle } from "./GetThemeStyle";
 import { PlusSquare } from "lucide-react";
+import { Settings } from "@/types/Setting";
+import { ReactQueryCache } from "@/components/task_functions/ReactQueryCache";
+import { GetUserSettings } from "@/components/user_queries/GetUserSettings";
+import { useQuery, useQueryClient } from "react-query";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const AddTaskButton = () => {
   const [addOpen, setAddOpen] = useState<boolean>(false);
   const { user } = useUserInfo();
   const { color, mode } = useThemeContext();
   const themeStyle = GetThemeStyle(color, mode);
+  const queryClient = useQueryClient();
+
+  const getNewTaskSettings = async () => {
+    let NewTaskSettings: Settings[] = [] as Settings[];
+
+    if (user) {
+      NewTaskSettings = ReactQueryCache(queryClient, queryKeys) as [];
+
+      if (NewTaskSettings === undefined) {
+        NewTaskSettings = await GetUserSettings(user.id);
+      }
+      return NewTaskSettings;
+    }
+    return [] as Settings[];
+  };
+
+  const queryKeys = ["Settings", user ? user.id : ""];
+
+  const query = useQuery<Settings[], Error>({
+    queryKey: queryKeys,
+    queryFn: getNewTaskSettings,
+  });
+
+  if (query.isFetching)
+    return (
+      <div>
+        <Skeleton />
+      </div>
+    );
+  if (query.error) return "Error has occurred : " + query.error.message;
 
   return (
     <div>
@@ -32,7 +67,15 @@ const AddTaskButton = () => {
           </button>
         </DialogTrigger>
         <DialogContent className={"bg-mainBg text-onMainBg " + themeStyle}>
-          {!user ? <Login /> : <AddForm onBack={setAddOpen} />}
+          {query?.data?.map((setting) => (
+            <div key={setting.id}>
+              {!user ? (
+                <Login />
+              ) : (
+                <AddForm onBack={setAddOpen} setting={setting} />
+              )}
+            </div>
+          ))}
         </DialogContent>
       </Dialog>
     </div>

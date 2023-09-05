@@ -7,6 +7,7 @@ import { useQueryClient } from "react-query";
 import { AlertCircle, CalendarClock, Dot, Repeat } from "lucide-react";
 import toast from "react-hot-toast";
 import AssignTaskQuery from "@/components/CRUD_queries/AssignTaskQuery";
+import format from "date-fns/format";
 
 interface AssignFormProps {
   task: Task;
@@ -17,6 +18,8 @@ const AssignForm: React.FC<AssignFormProps> = ({ task, onBack }) => {
   const router = useRouter();
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
+  const dueDate = new Date(task.due_date);
+  dueDate.setDate(dueDate.getDate() + 1);
 
   const HandleAssign: MouseEventHandler<HTMLButtonElement> = async () => {
     if (user) {
@@ -56,7 +59,7 @@ const AssignForm: React.FC<AssignFormProps> = ({ task, onBack }) => {
       )}
       <div className="pl-4 flex items-center pt-2 font-light">
         <CalendarClock size={20} />
-        <div className={"pl-2 text-sm"}>{task?.due_date.substring(0, 10)}</div>
+        <div className={"pl-2 text-sm"}> {format(dueDate, "PP")}</div>
       </div>
       <div className={"text-center"}>
         <button
