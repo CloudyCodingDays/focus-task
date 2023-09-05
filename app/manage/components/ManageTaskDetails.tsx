@@ -14,6 +14,7 @@ import {
   Repeat,
 } from "lucide-react";
 import DeleteForm from "@/app/manage/components/DeleteForm";
+import format from "date-fns/format";
 
 const ManageTaskDetails = ({ task }: { task: Task }) => {
   const [deleteOpen, setDeleteOpen] = useState<boolean>(false);
@@ -21,6 +22,8 @@ const ManageTaskDetails = ({ task }: { task: Task }) => {
   const [Open, setOpen] = useState<boolean>(false);
   const { color, mode } = useThemeContext();
   const themeStyle = GetThemeStyle(color, mode);
+  const dueDate = new Date(task.due_date);
+  dueDate.setDate(dueDate.getDate() + 1);
 
   return (
     <Dialog open={Open} onOpenChange={setOpen}>
@@ -65,9 +68,7 @@ const ManageTaskDetails = ({ task }: { task: Task }) => {
                 )}
                 <div className="pl-4 flex items-center pt-2 font-light">
                   <CalendarClock size={20} />
-                  <div className={"pl-2 text-sm"}>
-                    {task?.due_date.substring(0, 10)}
-                  </div>
+                  <div className={"pl-2 text-sm"}>{format(dueDate, "PP")}</div>
                 </div>
               </div>
               <div className="text-center mt-4">
