@@ -67,7 +67,7 @@ const SearchFilterSorting = ({
           >
             {sortBy
               ? SortProperties.find(
-                  (TaskProperty) => TaskProperty.value === sortBy,
+                  (SortProperty) => SortProperty.value === sortBy,
                 )?.label
               : "Sort By..."}
             <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -78,13 +78,13 @@ const SearchFilterSorting = ({
         >
           <Command>
             <CommandGroup>
-              {SortProperties.map((TaskProperty) => (
+              {SortProperties.map((SortProperty) => (
                 <CommandItem
-                  key={TaskProperty.value}
+                  key={SortProperty.value}
                   onSelect={(currentValue) => {
                     const newValue = SortProperties.find(
-                      (TaskProperty) =>
-                        TaskProperty.label.toLocaleLowerCase() === currentValue,
+                      (SortProperty) =>
+                        SortProperty.label.toLocaleLowerCase() === currentValue,
                     )?.value;
                     console.log(newValue);
                     if (newValue === "sort by") {
@@ -100,12 +100,12 @@ const SearchFilterSorting = ({
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      sortBy === TaskProperty.value
+                      sortBy === SortProperty.value
                         ? "opacity-100"
                         : "opacity-0",
                     )}
                   />
-                  {TaskProperty.label}
+                  {SortProperty.label}
                 </CommandItem>
               ))}
             </CommandGroup>

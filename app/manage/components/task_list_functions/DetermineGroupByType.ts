@@ -54,14 +54,20 @@ const SetPriorityGroupByType = (taskList: Task[]) => {
   ] as TaskGroupType[];
 };
 const SetDueGroupByType = (taskList: Task[]) => {
+  function FormatTodayDate(date?: string) {
+    const newDate = date ? new Date(date) : new Date(Date.now());
+    newDate.setHours(0, 0, 0);
+    newDate.setMilliseconds(0);
+    return newDate;
+  }
+
   return [
     {
       Header: "Over Due",
       TaskList: taskList?.filter((task) => {
-        const due = CheckDueDate(task);
-        const todayDate = new Date(Date.now());
-        todayDate.setHours(0, 0, 0);
-        todayDate.setMilliseconds(0);
+        const due = FormatTodayDate(task.due_date);
+        due.setDate(due.getDate() + 1); //Add one day to bring it back to current day after date conversion
+        const todayDate = FormatTodayDate();
 
         return due.getTime() < todayDate.getTime();
       }),
@@ -69,10 +75,9 @@ const SetDueGroupByType = (taskList: Task[]) => {
     {
       Header: "Today",
       TaskList: taskList?.filter((task) => {
-        const due = CheckDueDate(task);
-        const todayDate = new Date(Date.now());
-        todayDate.setHours(0, 0, 0);
-        todayDate.setMilliseconds(0);
+        const due = FormatTodayDate(task.due_date);
+        due.setDate(due.getDate() + 1); //Add one day to bring it back to current day after date conversion
+        const todayDate = FormatTodayDate();
 
         return due.getTime() === todayDate.getTime();
       }),
@@ -80,36 +85,28 @@ const SetDueGroupByType = (taskList: Task[]) => {
     {
       Header: "Tomorrow",
       TaskList: taskList?.filter((task) => {
-        const due = CheckDueDate(task);
-        const tomorrowDate = new Date(Date.now());
+        const due = FormatTodayDate(task.due_date);
+        due.setDate(due.getDate() + 1); //Add one day to bring it back to current day after date conversion
+        const tomorrowDate = FormatTodayDate();
         tomorrowDate.setDate(tomorrowDate.getDate() + 1);
-        tomorrowDate.setHours(0, 0, 0);
-        tomorrowDate.setMilliseconds(0);
+
         return due.getTime() === tomorrowDate.getTime();
       }),
     },
     {
       Header: "Future Due",
       TaskList: taskList?.filter((task) => {
-        const due = CheckDueDate(task);
-        const tomorrowDate = new Date(Date.now());
+        const due = FormatTodayDate(task.due_date);
+        due.setDate(due.getDate() + 1); //Add one day to bring it back to current day after date conversion
+        const tomorrowDate = FormatTodayDate();
         tomorrowDate.setDate(tomorrowDate.getDate() + 1);
-        tomorrowDate.setHours(0, 0, 0);
-        tomorrowDate.setMilliseconds(0);
+
         return due.getTime() > tomorrowDate.getTime();
       }),
     },
   ] as TaskGroupType[];
 };
 
-const CheckDueDate = (task: Task) => {
-  let Due = new Date(task.due_date);
-  Due.setHours(0, 0, 0);
-  Due.setMilliseconds(0);
-
-  Due.setDate(Due.getDate() + 1); //Add one day to bring it back to current day after date conversion
-  return Due;
-};
 export const DetermineGroupByType = (GroupBy: string, taskList: Task[]) => {
   switch (GroupBy) {
     case "recurring":

@@ -18,23 +18,22 @@ const GroupAndSortTaskList = ({
   sortBy: string;
   sortOrder: string;
 }) => {
-  let SortedGroupByType = [] as TaskGroupType[];
+  let SortedGroupTypes = [] as TaskGroupType[];
 
   if (taskList) {
     const GroupByType = DetermineGroupByType(groupBy, taskList);
-
-    SortedGroupByType = SortGroupedTasks(GroupByType, sortBy, sortOrder);
+    SortedGroupTypes = SortGroupedTasks(GroupByType, sortBy, sortOrder);
   }
 
   return (
     <div>
-      {SortedGroupByType.map((GroupType) => (
-        <div key={GroupType.Header}>
-          {GroupType.TaskList.length > 0 ? (
+      {SortedGroupTypes.map((SortedGroupType) => (
+        <div key={SortedGroupType.Header}>
+          {SortedGroupType.TaskList.length > 0 ? (
             <div>
               <div className="flex flex-row justify-between items-end text-sm px-2 py-2">
-                {GroupType.Header} tasks(
-                {GroupType.TaskList.length} tasks)
+                {SortedGroupType.Header} tasks(
+                {SortedGroupType.TaskList.length} tasks)
               </div>
               <Separator className="pt-0.25 bg-main mb-4" />
             </div>
@@ -42,7 +41,7 @@ const GroupAndSortTaskList = ({
             <div></div>
           )}
 
-          {GroupType.TaskList.map((task) => (
+          {SortedGroupType.TaskList.map((task) => (
             <div
               key={task.id}
               className="bg-mainBg text-onMainBg rounded-lg lg:mb-4 mb-8 drop-shadow-lg"

@@ -4,7 +4,7 @@ import NotLoggedIn from "./NotLoggedIn";
 import WelcomeDisplay from "./WelcomeDisplay";
 
 interface NoTaskDisplayProps {
-  user: User | null;
+  user: User | undefined;
 }
 
 const NoTaskExists: React.FC<NoTaskDisplayProps> = ({ user }) => {

@@ -26,6 +26,7 @@ const ManageTaskDetails = ({ task }: { task: Task }) => {
   const [Open, setOpen] = useState<boolean>(false);
   const { color, mode } = useThemeContext();
   const themeStyle = GetThemeStyle(color, mode);
+
   const dueDate = new Date(task.due_date);
   dueDate.setDate(dueDate.getDate() + 1);
 
@@ -81,16 +82,7 @@ const ManageTaskDetails = ({ task }: { task: Task }) => {
                   onClick={() => {
                     setEditOpen(true);
                   }}
-                  className="
-              hover:bg-inverted
-              hover:text-onInvertedBg
-              bg-main
-              text-onMainBg
-                rounded-lg
-                w-[7em]
-                h-[3em]
-                drop-shadow-md
-                mx-4"
+                  className="hover:bg-inverted hover:text-onInvertedBg bg-main text-onMainBg rounded-lg w-[7em] h-[3em] drop-shadow-md mx-4"
                 >
                   <div className="flex flex-row w-fit mx-4 px-2 py-2 items-baseline">
                     <FileEdit size={16} /> Edit

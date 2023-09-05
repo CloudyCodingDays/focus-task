@@ -70,41 +70,17 @@ const ActiveTaskExists: React.FC<ActiveTaskDisplayProps> = ({
   return (
     <div key={task.id} className="w-full flex flex-col items-center">
       <div className="bg-mainBg text-onMainBg lg:w-[50em] w-full rounded-lg my-4 mx-4 drop-shadow-lg">
-        <ActiveTaskDetailLayout task={task} />
+        <ActiveTaskDetailLayout name={task.name} desc={task.description} />
         <div className="flex flex-row justify-center">
-          <input name="task" type="hidden" value={JSON.stringify(task)}></input>
           <button
             onClick={HandleUnassign}
-            className="          
-              hover:bg-main
-              hover:text-onMainBg 
-              bg-neutralBg
-              text-onNeutralBg
-              border-2
-              border-main
-              rounded-lg
-              my-4
-              mr-8
-              w-[7em]
-              h-[3em]
-              font-semibold"
+            className="hover:bg-main hover:text-onMainBg  bg-neutralBg text-onNeutralBg border-2 border-main rounded-lg my-4 mr-8 w-[7em] h-[3em] font-semibold"
           >
             Unassign
           </button>
-          <input name="task" type="hidden" value={JSON.stringify(task)}></input>
           <button
             onClick={HandleComplete}
-            className="          
-              hover:bg-inverted
-              hover:text-onInvertedBg 
-              bg-main
-              text-onMainBg 
-              my-4
-              mr-8
-              rounded-lg
-              w-[7em]
-              h-[3em]
-            font-semibold"
+            className="hover:bg-inverted hover:text-onInvertedBg bg-main text-onMainBg my-4 mr-8 rounded-lg w-[7em] h-[3em] font-semibold"
           >
             Complete
           </button>

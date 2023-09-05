@@ -2,6 +2,7 @@ import { Task } from "@/types/Task";
 import { AlertCircle, CalendarClock, Repeat } from "lucide-react";
 import { CalculatePriorityStyle } from "@/components/task_functions/CalculatePriorityStyle";
 import format from "date-fns/format";
+import React from "react";
 
 interface ManageTaskItemLayoutProps {
   task: Task;
@@ -12,8 +13,10 @@ const ManageTaskItemLayout: React.FC<ManageTaskItemLayoutProps> = ({
 }) => {
   const { id, name, priority } = task;
   const priorityStyle = CalculatePriorityStyle(priority);
+
   const dueDate = new Date(task.due_date);
   dueDate.setDate(dueDate.getDate() + 1);
+
   return (
     <div key={id}>
       <div className="flex flex-col text-start pl-2">

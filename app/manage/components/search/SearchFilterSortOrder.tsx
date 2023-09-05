@@ -15,7 +15,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import useThemeContext from "@/hooks/useThemeContext";
 import { GetThemeStyle } from "@/components/GetThemeStyle";
 
-const TaskProperties = [
+const SortOrders = [
   {
     value: "ascending",
     label: "Ascending",
@@ -48,9 +48,8 @@ const SearchFilterSortOrder = ({
             className={"justify-between bg-mainBg text-onMainBg " + themeStyle}
           >
             {sortOrder
-              ? TaskProperties.find(
-                  (TaskProperty) => TaskProperty.value === sortOrder,
-                )?.label
+              ? SortOrders.find((SortOrder) => SortOrder.value === sortOrder)
+                  ?.label
               : "Sort Order..."}
             <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
@@ -60,9 +59,9 @@ const SearchFilterSortOrder = ({
         >
           <Command>
             <CommandGroup>
-              {TaskProperties.map((TaskProperty) => (
+              {SortOrders.map((SortOrder) => (
                 <CommandItem
-                  key={TaskProperty.value}
+                  key={SortOrder.value}
                   onSelect={(currentValue) => {
                     setSortOrder(currentValue);
                     setOpen(false);
@@ -71,12 +70,12 @@ const SearchFilterSortOrder = ({
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      sortOrder === TaskProperty.value
+                      sortOrder === SortOrder.value
                         ? "opacity-100"
                         : "opacity-0",
                     )}
                   />
-                  {TaskProperty.label}
+                  {SortOrder.label}
                 </CommandItem>
               ))}
             </CommandGroup>

@@ -16,7 +16,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import useThemeContext from "@/hooks/useThemeContext";
 import { GetThemeStyle } from "@/components/GetThemeStyle";
 
-const TaskProperties = [
+const GroupProperties = [
   {
     value: "group by",
     label: "Group By",
@@ -61,10 +61,10 @@ const SearchFilterGrouping = ({
             className={"justify-between bg-mainBg text-onMainBg " + themeStyle}
           >
             {groupBy
-              ? TaskProperties.find(
-                  (TaskProperty) => TaskProperty.value === groupBy,
+              ? GroupProperties.find(
+                  (GroupProperty) => GroupProperty.value === groupBy,
                 )?.label
-              : "Group By"}
+              : "Group By..."}
             <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
@@ -73,9 +73,9 @@ const SearchFilterGrouping = ({
         >
           <Command>
             <CommandGroup>
-              {TaskProperties.map((TaskProperty) => (
+              {GroupProperties.map((GroupProperty) => (
                 <CommandItem
-                  key={TaskProperty.value}
+                  key={GroupProperty.value}
                   onSelect={(currentValue) => {
                     setGroupBy(currentValue);
                     setOpen(false);
@@ -84,12 +84,12 @@ const SearchFilterGrouping = ({
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      groupBy === TaskProperty.value
+                      groupBy === GroupProperty.value
                         ? "opacity-100"
                         : "opacity-0",
                     )}
                   />
-                  {TaskProperty.label}
+                  {GroupProperty.label}
                 </CommandItem>
               ))}
             </CommandGroup>

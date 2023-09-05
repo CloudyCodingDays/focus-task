@@ -27,7 +27,7 @@ const AddTaskForm: React.FC<AddFormProps> = ({ onBack, setting }) => {
   const router = useRouter();
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
-  const { handleSubmit, register, watch } = useForm<AddTaskFormData>();
+  const { handleSubmit, register } = useForm<AddTaskFormData>();
   const [recurringType, setRecurringType] = useState<string>(
     setting.default_recurring_type,
   );
@@ -103,7 +103,7 @@ const AddTaskForm: React.FC<AddFormProps> = ({ onBack, setting }) => {
           <select
             {...register("recurring_type")}
             className="border-2 mb-4 w-full lg:w-[30em]"
-            disabled={!watch("is_recurring")}
+            disabled={!recurring}
             onChange={(e) => {
               setRecurringType(e.target.value);
             }}

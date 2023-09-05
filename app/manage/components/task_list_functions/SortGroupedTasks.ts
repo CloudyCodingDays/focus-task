@@ -39,10 +39,8 @@ export const SortGroupedTasks = (
             }
           }
         }
-
         return 1;
       });
-    } else {
     }
   });
 

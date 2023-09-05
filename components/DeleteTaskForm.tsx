@@ -54,18 +54,7 @@ const DeleteTaskForm: React.FC<DeleteFormProps> = ({ task, onBack }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger>
-        <button
-          className="              
-              hover:bg-red-200
-              hover:text-red-500
-              bg-red-500
-              text-red-100
-              rounded-lg               
-              w-[7em]
-              h-[3em]
-              drop-shadow-md
-              mx-4"
-        >
+        <button className="hover:bg-red-200 hover:text-red-500 bg-red-500 text-red-100 rounded-lg w-[7em] h-[3em] drop-shadow-md mx-4">
           <div className="flex flex-row w-fit mx-4 px-2 py-2 items-baseline">
             <Trash2 size={16} /> Delete
           </div>
@@ -79,34 +68,12 @@ const DeleteTaskForm: React.FC<DeleteFormProps> = ({ task, onBack }) => {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel
-            className="
-            hover:bg-main
-            hover:text-onMainBg 
-            bg-neutralBg
-            text-onMainBg 
-            border-2
-            border-main
-            rounded-lg
-            w-[7em]
-            h-[3em]
-            ml-4 
-            mx-4"
-          >
+          <AlertDialogCancel className="hover:bg-main hover:text-onMainBg  bg-neutralBg text-onMainBg  border-2 border-main rounded-lg w-[7em] h-[3em] ml-4 mx-4">
             Close
           </AlertDialogCancel>
           <AlertDialogAction
             onClick={HandleDelete}
-            className="              
-            hover:bg-red-200
-            hover:text-red-500
-            bg-red-500
-            text-red-100
-            rounded-lg               
-            w-[7em]
-            h-[3em]
-            drop-shadow-md
-            mx-4"
+            className="hover:bg-red-200 hover:text-red-500 bg-red-500 text-red-100 rounded-lg w-[7em] h-[3em] drop-shadow-md mx-4"
           >
             Continue
           </AlertDialogAction>

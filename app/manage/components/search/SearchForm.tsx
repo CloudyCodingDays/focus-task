@@ -2,7 +2,7 @@
 import AddTaskButton from "@/components/AddTaskButton";
 import { Separator } from "@/components/ui_components/separator";
 import useDebounceSearch from "@/hooks/useDebounceSearch";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import SearchFilterGrouping from "./SearchFilterGrouping";
 import SearchFilterSorting from "./SearchFilterSorting";
 import SearchFilterSortOrder from "./SearchFilterSortOrder";
@@ -32,19 +32,13 @@ const SearchForm: React.FC<SearchFormProps> = ({
   useEffect(() => {
     setDebouncedValue(debouncedValue);
   }, [debouncedValue, setDebouncedValue]);
+
   return (
     <div>
       <div className={"absolute bottom-4 right-4"}>
         <AddTaskButton />
       </div>
-      <div
-        className="
-          mt-4
-          mx-auto
-          drop-shadow-lg
-          bg-mainBg
-          py-4"
-      >
+      <div className="mt-4 mx-auto drop-shadow-lg bg-mainBg py-4">
         <div className="my-4">
           <div className="flex flex-row justify-between items-baseline px-4">
             <form className="flex-grow">

@@ -1,19 +1,21 @@
 "use client";
 
 import GetTaskCountForUser from "@/components/task_queries/GetTaskCountForUser";
-import { useUserInfo } from "@/hooks/useUserInfo";
 import { useQuery, useQueryClient } from "react-query";
 import TaskExists from "./TaskExists";
 import NoTaskExists from "./NoTaskExists";
-import { Skeleton } from "@/components/ui_components/skeleton";
 import useTaskContext from "@/hooks/useTaskContext";
 import { CatPictureData } from "@/types/CatPictureData";
 import Image from "next/image";
+import { ReactQueryCache } from "@/components/task_functions/ReactQueryCache";
+import { useSessionContext } from "@supabase/auth-helpers-react";
 
 const DetermineTaskDisplay = () => {
-  const { user } = useUserInfo();
+  const { session } = useSessionContext();
   const queryClient = useQueryClient();
   const { taskCompleted } = useTaskContext();
+
+  const queryKeys = ["TaskCount", session ? session?.user?.id : ""];
 
   const getCatData = async () => {
     const res = await fetch("https://api.thecatapi.com/v1/images/search");
@@ -27,40 +29,29 @@ const DetermineTaskDisplay = () => {
   });
 
   const getTaskCount = async () => {
-    if (user !== null) {
-      if (queryClient.getQueryData(["TaskCount", user.id])) {
-        return queryClient.getQueryData(["TaskCount", user.id]) as number;
-      } else {
-        return (await GetTaskCountForUser(user.id)) as number;
-      }
+    if (session) {
+      let taskCount = ReactQueryCache(queryClient, queryKeys) as number;
+      if (taskCount === undefined)
+        return (await GetTaskCountForUser(session?.user?.id)) as number;
+
+      return taskCount;
     }
     return 0;
   };
 
-  const {
-    data: taskCount,
-    error: countError,
-    isFetching: isCountFetching,
-    isError: isCountError,
-  } = useQuery<number, Error>({
-    queryKey: ["TaskCount", user?.id],
+  const { data, error, isError } = useQuery<number, Error>({
+    queryKey: queryKeys,
     queryFn: getTaskCount,
   });
 
-  if (isCountFetching)
-    return (
-      <div>
-        <Skeleton />
-      </div>
-    );
-  if (isCountError) return "Error has occured : " + countError.message;
+  if (isError) return "Error has occurred : " + error.message;
 
   return (
     <div>
-      {user !== null && taskCount && taskCount > 0 ? (
-        <TaskExists user={user} catQuery={catQuery} />
+      {session?.user && data && data > 0 ? (
+        <TaskExists user={session?.user} catQuery={catQuery} />
       ) : (
-        <NoTaskExists user={user} />
+        <NoTaskExists user={session?.user} />
       )}
       <div className="drop-shadow-lg w-fit mx-auto">
         {!taskCompleted ? (

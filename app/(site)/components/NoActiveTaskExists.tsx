@@ -8,19 +8,7 @@ const NoActiveTaskExists = () => {
           <div className="my-8 text-2xl">What would you like to do today?</div>
           <Link
             href="/assign"
-            className="
-              hover:bg-inverted
-              hover:text-onInvertedBg
-              bg-main
-              text-onMainBg
-          my-4
-          mt-12
-          mr-8
-          rounded-lg
-          py-4
-          px-4
-        font-semibold
-        self-center"
+            className="hover:bg-inverted hover:text-onInvertedBg bg-main text-onMainBg my-4 mt-12 mr-8 rounded-lg py-4 px-4 font-semibold self-center"
           >
             Find Task
           </Link>

@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { Dispatch, SetStateAction } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { UserSignIn, UserSignOut } from "@/components/UserActions";
-import { useUserInfo } from "@/hooks/useUserInfo";
+import { useSessionContext } from "@supabase/auth-helpers-react";
 
 type FormData = {
   email: string;
@@ -16,7 +16,7 @@ interface LoginProps {
 
 const Login: React.FC<LoginProps> = ({ setOpen }) => {
   const router = useRouter();
-  const { user } = useUserInfo();
+  const { session } = useSessionContext();
   const { handleSubmit, register } = useForm<FormData>();
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
@@ -40,7 +40,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
 
   return (
     <div className="py-2 px-2">
-      {user?.id !== undefined ? (
+      {!session ? (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col pt-4">
             <label htmlFor="email" className="text-md text-onMainBg">
@@ -65,16 +65,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
 
           <div className="text-center">
             <button type="submit" className="w-1/3">
-              <div
-                className="
-                hover:bg-inverted
-                hover:text-onInvertedBg 
-                bg-main
-                text-onMainBg 
-                rounded-lg
-                text-center 
-                mt-8"
-              >
+              <div className="hover:bg-inverted hover:text-onInvertedBg bg-main text-onMainBg rounded-lg text-center mt-8">
                 Login
               </div>
             </button>
@@ -93,17 +84,10 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
         </form>
       ) : (
         <div>
-          <div className="text-sm">Logged in as {user?.email}</div>
+          <div className="text-sm">Logged in as {session?.user?.email}</div>
           <div className="text-center ">
             <button type="submit" className="w-1/3" onClick={HandleLogOut}>
-              <div
-                className="text-center 
-              mt-8           
-              hover:bg-green-200
-          hover:text-green-500 
-          bg-green-400
-          text-green-100"
-              >
+              <div className="text-center mt-8 hover:bg-inverted hover:text-onInvertedBg bg-main text-onMainBg rounded-lg">
                 Logout
               </div>
             </button>

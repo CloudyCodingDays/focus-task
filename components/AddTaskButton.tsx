@@ -23,22 +23,19 @@ const AddTaskButton = () => {
   const { color, mode } = useThemeContext();
   const themeStyle = GetThemeStyle(color, mode);
   const queryClient = useQueryClient();
-
+  const queryKeys = ["Settings", user ? user.id : ""];
   const getNewTaskSettings = async () => {
     let NewTaskSettings: Settings[] = [] as Settings[];
 
     if (user) {
       NewTaskSettings = ReactQueryCache(queryClient, queryKeys) as [];
-
-      if (NewTaskSettings === undefined) {
+      if (NewTaskSettings === undefined)
         NewTaskSettings = await GetSettings(user.id);
-      }
+
       return NewTaskSettings;
     }
     return [] as Settings[];
   };
-
-  const queryKeys = ["Settings", user ? user.id : ""];
 
   const query = useQuery<Settings[], Error>({
     queryKey: queryKeys,
@@ -57,14 +54,7 @@ const AddTaskButton = () => {
     <div>
       <Dialog open={addOpen} onOpenChange={setAddOpen}>
         <DialogTrigger asChild>
-          <button
-            className="
-            rounded-lg
-            hover:bg-inverted
-            hover:text-onInvertedBg
-            bg-main
-            text-onMainBg"
-          >
+          <button className="rounded-lg hover:bg-inverted hover:text-onInvertedBg bg-main text-onMainBg">
             <div className="flex flex-row items-center font-semibold px-2 py-2 text-sm">
               <PlusSquare size={24} />
             </div>

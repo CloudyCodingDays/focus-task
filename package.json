@@ -53,6 +53,7 @@
     "vitest": "^0.34.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.37.1",
     "postcss-import": "^15.1.0",
     "supabase": "^1.88.0"
   }
