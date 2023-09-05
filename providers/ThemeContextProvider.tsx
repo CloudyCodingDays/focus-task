@@ -1,5 +1,10 @@
 "use client";
-import { Dispatch, SetStateAction, createContext, useState } from "react";
+import React, {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useState,
+} from "react";
 
 interface ThemeContextType {
   color?: string;
@@ -9,7 +14,7 @@ interface ThemeContextType {
 }
 
 export const ThemeContext = createContext<ThemeContextType>(
-  {} as ThemeContextType
+  {} as ThemeContextType,
 );
 
 const colors = ["red", "green", "blue"];
@@ -18,6 +23,7 @@ const modes = ["light", "dark"];
 interface ThemeContextProviderProps {
   children: React.ReactNode;
 }
+
 const ThemeContextProvider: React.FC<ThemeContextProviderProps> = ({
   children,
 }) => {

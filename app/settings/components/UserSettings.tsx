@@ -1,7 +1,6 @@
 import { Settings } from "@/types/Setting";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { UpdateUserSettings } from "@/components/user_queries/UpdateUserSettings";
-import { Label } from "@/components/ui/label";
 import { useQueryClient } from "react-query";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
@@ -37,12 +36,12 @@ const UserSettings = () => {
     <div>
       <form onSubmit={handleSubmit(HandleUserSettings)}>
         <div className="bg-mainBg text-onMainBg pt-2 rounded-lg ">
-          <Label className="text-1xl font-semibold ml-4">
+          <div className="text-1xl font-semibold ml-4">
             User Profile Settings
-          </Label>
+          </div>
 
           <div className="flex flex-col ml-4 mt-4">
-            <Label className={"mb-2"}>Email</Label>
+            <div className={"mb-2"}>Email</div>
             <input
               {...register("email")}
               className="w-fit mb-4"
@@ -50,7 +49,7 @@ const UserSettings = () => {
               defaultValue={user?.email}
             ></input>
 
-            <Label className={"mb-2"}>Password</Label>
+            <div className={"mb-2"}>Password</div>
             <input
               {...register("password")}
               type={"password"}

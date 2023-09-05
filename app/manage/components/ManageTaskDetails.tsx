@@ -1,11 +1,15 @@
 "use client";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui_components/dialog";
 import { Task } from "@/types/Task";
 import React, { useState } from "react";
 import ManageTaskItemLayout from "./ManageTaskItemLayout";
 import useThemeContext from "@/hooks/useThemeContext";
 import { GetThemeStyle } from "@/components/GetThemeStyle";
-import EditForm from "@/app/manage/components/EditForm";
+import EditTaskForm from "@/components/EditTaskForm";
 import {
   AlertCircle,
   CalendarClock,
@@ -13,7 +17,7 @@ import {
   FileEdit,
   Repeat,
 } from "lucide-react";
-import DeleteForm from "@/app/manage/components/DeleteForm";
+import DeleteTaskForm from "@/components/DeleteTaskForm";
 import format from "date-fns/format";
 
 const ManageTaskDetails = ({ task }: { task: Task }) => {
@@ -35,7 +39,7 @@ const ManageTaskDetails = ({ task }: { task: Task }) => {
       <DialogContent className={"bg-mainBg text-onMainBg " + themeStyle}>
         <div>
           {editOpen ? (
-            <EditForm task={task} onBack={setEditOpen} />
+            <EditTaskForm task={task} onBack={setEditOpen} />
           ) : (
             <div></div>
           )}
@@ -72,7 +76,7 @@ const ManageTaskDetails = ({ task }: { task: Task }) => {
                 </div>
               </div>
               <div className="text-center mt-4">
-                <DeleteForm task={task} onBack={setDeleteOpen} />
+                <DeleteTaskForm task={task} onBack={setDeleteOpen} />
                 <button
                   onClick={() => {
                     setEditOpen(true);

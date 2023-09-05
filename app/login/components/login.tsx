@@ -1,9 +1,9 @@
 "use client";
-import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { UserSignIn, UserSignOut } from "./UserActions";
+import { UserSignIn, UserSignOut } from "@/components/UserActions";
+import { useUserInfo } from "@/hooks/useUserInfo";
 
 type FormData = {
   email: string;
@@ -16,7 +16,7 @@ interface LoginProps {
 
 const Login: React.FC<LoginProps> = ({ setOpen }) => {
   const router = useRouter();
-  const { session } = useSessionContext();
+  const { user } = useUserInfo();
   const { handleSubmit, register } = useForm<FormData>();
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
@@ -40,7 +40,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
 
   return (
     <div className="py-2 px-2">
-      {!session ? (
+      {user?.id !== undefined ? (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col pt-4">
             <label htmlFor="email" className="text-md text-onMainBg">
@@ -93,7 +93,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
         </form>
       ) : (
         <div>
-          <div className="text-sm">Logged in as {session?.user?.email}</div>
+          <div className="text-sm">Logged in as {user?.email}</div>
           <div className="text-center ">
             <button type="submit" className="w-1/3" onClick={HandleLogOut}>
               <div

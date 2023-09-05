@@ -1,6 +1,5 @@
 import { Settings } from "@/types/Setting";
 import GeneralSettings from "./GeneralSettings";
-import DisplaySettings from "./DisplaySettings";
 import UserSettings from "./UserSettings";
 
 const SettingContent = ({
@@ -13,7 +12,6 @@ const SettingContent = ({
   return (
     <div>
       {category === "General" ? <GeneralSettings settings={settings} /> : ""}
-      {category === "Display" ? <DisplaySettings settings={settings} /> : ""}
       {category === "User" ? <UserSettings /> : ""}
     </div>
   );

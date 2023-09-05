@@ -1,16 +1,10 @@
 "use client";
-import { Separator } from "@/components/ui/separator";
+import { Separator } from "@/components/ui_components/separator";
 import format from "date-fns/format";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const TimeDateDisplay = () => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
-  const router = useRouter();
-
-  const HandleLogin = () => {
-    router.push("/login");
-  };
 
   useEffect(() => {
     const timeTicker = setInterval(() => {

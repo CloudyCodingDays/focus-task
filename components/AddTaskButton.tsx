@@ -1,17 +1,21 @@
 "use client";
 import Login from "@/app/login/components/login";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui_components/dialog";
 import { useUserInfo } from "@/hooks/useUserInfo";
 import { useState } from "react";
-import AddForm from "./AddForm";
+import AddTaskForm from "./AddTaskForm";
 import useThemeContext from "@/hooks/useThemeContext";
 import { GetThemeStyle } from "./GetThemeStyle";
 import { PlusSquare } from "lucide-react";
 import { Settings } from "@/types/Setting";
 import { ReactQueryCache } from "@/components/task_functions/ReactQueryCache";
-import { GetUserSettings } from "@/components/user_queries/GetUserSettings";
+import { GetSettings } from "@/components/user_queries/GetSettings";
 import { useQuery, useQueryClient } from "react-query";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@/components/ui_components/skeleton";
 
 const AddTaskButton = () => {
   const [addOpen, setAddOpen] = useState<boolean>(false);
@@ -27,7 +31,7 @@ const AddTaskButton = () => {
       NewTaskSettings = ReactQueryCache(queryClient, queryKeys) as [];
 
       if (NewTaskSettings === undefined) {
-        NewTaskSettings = await GetUserSettings(user.id);
+        NewTaskSettings = await GetSettings(user.id);
       }
       return NewTaskSettings;
     }
@@ -72,7 +76,7 @@ const AddTaskButton = () => {
               {!user ? (
                 <Login />
               ) : (
-                <AddForm onBack={setAddOpen} setting={setting} />
+                <AddTaskForm onBack={setAddOpen} setting={setting} />
               )}
             </div>
           ))}

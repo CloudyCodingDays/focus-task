@@ -1,10 +1,12 @@
 "use client";
 import useThemeContext from "@/hooks/useThemeContext";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from "@/components/ui_components/radio-group";
 
 const ThemeSelector = () => {
-  const { color, setColor, mode, setMode } = useThemeContext();
+  const { color, setColor } = useThemeContext();
   const themeList = [
     {
       name: "Forest Theme",
@@ -42,7 +44,7 @@ const ThemeSelector = () => {
                   id={themeItem.value}
                   className="mr-2"
                 />
-                <Label htmlFor={themeItem.value}>{themeItem.name}</Label>{" "}
+                <div>{themeItem.name}</div>
               </button>
             </div>
           </div>

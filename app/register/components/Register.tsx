@@ -1,5 +1,5 @@
-import { UserRegister } from "@/app/login/components/UserActions";
-import { AddUserSettings } from "@/components/user_queries/AddUserSettings";
+import { UserRegister } from "@/components/UserActions";
+import { AddDefaultUserSettings } from "@/components/user_queries/AddDefaultUserSettings";
 import { Task } from "@/types/Task";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -33,7 +33,7 @@ const Register = () => {
     const res = await UserRegister(data.email, data.password);
 
     if (res.user) {
-      await AddUserSettings(defaultTask, res.user?.id);
+      await AddDefaultUserSettings(defaultTask, res.user?.id);
     }
 
     router.replace("/");

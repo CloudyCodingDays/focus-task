@@ -3,7 +3,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from "@/components/ui_components/popover";
 import { Palette } from "lucide-react";
 import ThemeSelector from "./ThemeSelector";
 import { useState } from "react";
@@ -12,7 +12,7 @@ import { GetThemeStyle } from "../GetThemeStyle";
 
 const NavTheme = () => {
   const [open, setOpen] = useState(false);
-  const { color, setColor, mode, setMode } = useThemeContext();
+  const { color, mode } = useThemeContext();
   const themeStyle = GetThemeStyle(color, mode);
 
   return (

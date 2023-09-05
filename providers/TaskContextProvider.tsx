@@ -1,5 +1,10 @@
 "use client";
-import { Dispatch, SetStateAction, createContext, useState } from "react";
+import React, {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useState,
+} from "react";
 
 interface TaskContextType {
   taskCompleted: boolean;
@@ -7,15 +12,13 @@ interface TaskContextType {
 }
 
 export const TaskContext = createContext<TaskContextType>(
-  {} as TaskContextType
+  {} as TaskContextType,
 );
-
-const colors = ["red", "green", "blue"];
-const modes = ["light", "dark"];
 
 interface TaskContextProviderProps {
   children: React.ReactNode;
 }
+
 const TaskContextProvider: React.FC<TaskContextProviderProps> = ({
   children,
 }) => {

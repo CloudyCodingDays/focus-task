@@ -1,5 +1,5 @@
 import supabaseClient from "@/lib/supabaseClient";
-import { AddTaskFormData } from "@/components/AddForm";
+import { AddTaskFormData } from "@/components/AddTaskForm";
 
 const AddTaskQuery = async (taskData: AddTaskFormData, userId: string) => {
   const { error } = await supabaseClient.from("tasks").insert({

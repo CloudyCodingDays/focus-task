@@ -6,8 +6,8 @@ import { useUserInfo } from "@/hooks/useUserInfo";
 import { useQuery, useQueryClient } from "react-query";
 import { Settings } from "@/types/Setting";
 import { ReactQueryCache } from "@/components/task_functions/ReactQueryCache";
-import { GetUserSettings } from "@/components/user_queries/GetUserSettings";
-import { Skeleton } from "@/components/ui/skeleton";
+import { GetSettings } from "@/components/user_queries/GetSettings";
+import { Skeleton } from "@/components/ui_components/skeleton";
 
 export default function Home() {
   const [category, setCategory] = useState("General");
@@ -23,7 +23,7 @@ export default function Home() {
       settingList = ReactQueryCache(queryClient, queryKeys) as [];
 
       if (settingList === undefined) {
-        settingList = await GetUserSettings(user.id);
+        settingList = await GetSettings(user.id);
       }
       return settingList;
     }

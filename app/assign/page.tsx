@@ -1,9 +1,9 @@
-import AssignTaskList from "./components/AssignTaskList";
+import AssignTaskListLayout from "./components/AssignTaskListLayout";
 
 export default function Home() {
   return (
     <div>
-      <AssignTaskList />
+      <AssignTaskListLayout />
     </div>
   );
 }
