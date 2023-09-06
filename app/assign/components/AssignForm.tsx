@@ -8,6 +8,7 @@ import { AlertCircle, CalendarClock, Dot, Repeat } from "lucide-react";
 import toast from "react-hot-toast";
 import AssignTaskQuery from "@/components/CRUD_queries/AssignTaskQuery";
 import format from "date-fns/format";
+import { addDays } from "date-fns";
 
 interface AssignFormProps {
   task: Task;
@@ -19,7 +20,7 @@ const AssignForm: React.FC<AssignFormProps> = ({ task, onBack }) => {
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
   const dueDate = new Date(task.due_date);
-  dueDate.setDate(dueDate.getDate() + 1);
+  addDays(dueDate, 1);
 
   const HandleAssign: MouseEventHandler<HTMLButtonElement> = async () => {
     if (user) {
@@ -89,7 +90,6 @@ const AssignForm: React.FC<AssignFormProps> = ({ task, onBack }) => {
               hover:text-onInvertedBg
               bg-main
               text-onMainBg
-
               rounded-lg
               w-[7em]
               h-[3em]

@@ -19,10 +19,10 @@ const defaultTask = {
   is_recurring: "",
   recurring_type: "",
   priority: "",
-  due_date: new Date().toLocaleDateString(),
-  created_at: new Date().toLocaleDateString(),
+  due_date: new Date(Date.now()).toLocaleDateString(),
+  created_at: new Date(Date.now()).toLocaleDateString(),
   created_by: "",
-  updated_at: new Date().toLocaleDateString(),
+  updated_at: new Date(Date.now()).toLocaleDateString(),
   user_id: "",
 } as Task;
 
@@ -45,7 +45,10 @@ const Register = () => {
   return (
     <div className="bg-mainBg text-onMainBg md:w-2/5 w-3/5 mx-auto mt-8 px-8 py-8">
       {showMessage ? (
-        <div>Please check your email for a confirmation mail.</div>
+        <div>
+          Please check your email for a confirmation mail to complete
+          registration.
+        </div>
       ) : (
         <div></div>
       )}
