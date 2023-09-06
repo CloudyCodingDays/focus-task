@@ -3,6 +3,7 @@ import { AddDefaultUserSettings } from "@/components/user_queries/AddDefaultUser
 import { Task } from "@/types/Task";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useState } from "react";
 
 type FormData = {
   email: string;
@@ -28,6 +29,7 @@ const defaultTask = {
 const Register = () => {
   const router = useRouter();
   const { handleSubmit, register } = useForm<FormData>();
+  const [showMessage, setShowMessage] = useState(false);
 
   const HandleRegister: SubmitHandler<FormData> = async (data) => {
     const res = await UserRegister(data.email, data.password);
@@ -36,11 +38,17 @@ const Register = () => {
       await AddDefaultUserSettings(defaultTask, res.user?.id);
     }
 
-    router.replace("/");
+    setShowMessage(true);
+    router.refresh();
   };
 
   return (
     <div className="bg-mainBg text-onMainBg md:w-2/5 w-3/5 mx-auto mt-8 px-8 py-8">
+      {showMessage ? (
+        <div>Please check your email for a confirmation mail.</div>
+      ) : (
+        <div></div>
+      )}
       <div className="font-semibold">Sign up for a new account</div>
       <form onSubmit={handleSubmit(HandleRegister)}>
         <div className="">
