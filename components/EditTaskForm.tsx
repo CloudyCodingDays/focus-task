@@ -33,14 +33,10 @@ const EditTaskForm: React.FC<EditFormProps> = ({ task, onBack }) => {
   const router = useRouter();
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
-  const { handleSubmit, register, watch } = useForm<EditTaskFormData>();
+  const { handleSubmit, register } = useForm<EditTaskFormData>();
 
   const recurringTypeValue =
-    JSON.stringify(task?.is_recurring) === "true"
-      ? task !== undefined
-        ? task?.recurring_type
-        : ""
-      : "";
+    task !== undefined && task?.is_recurring ? task?.recurring_type : "";
 
   const [recurringType, setRecurringType] =
     useState<string>(recurringTypeValue);
@@ -69,38 +65,7 @@ const EditTaskForm: React.FC<EditFormProps> = ({ task, onBack }) => {
     <div>
       <form onSubmit={handleSubmit(HandleEdit)}>
         <div className="flex flex-col text-gray-600 lg:flex lg:justify-center h-fit">
-          <div>
-            <input name="id" type="hidden" value={task?.id}></input>
-            <input
-              {...register("old_description")}
-              type="hidden"
-              value={task?.description}
-            ></input>
-            <input
-              type="hidden"
-              value={task?.due_date}
-              {...register("old_due_date")}
-            ></input>
-            <input
-              type="hidden"
-              value={task?.recurring_type}
-              {...register("old_recurring_type")}
-            ></input>
-            <input
-              type="hidden"
-              value={task?.priority}
-              {...register("old_priority")}
-            ></input>
-          </div>
-
-          <div>
-            <div>Name</div>
-            <input
-              className="border-2 mb-4 w-full lg:w-[30em]"
-              defaultValue={task?.name}
-              {...register("name", { required: true, minLength: 2 })}
-            ></input>
-          </div>
+          <input {...register("id")} type="hidden" value={task?.id}></input>
 
           <div>Description</div>
           <textarea
@@ -126,7 +91,7 @@ const EditTaskForm: React.FC<EditFormProps> = ({ task, onBack }) => {
           <select
             {...register("recurring_type")}
             className="border-2 mb-4 w-full lg:w-[30em]"
-            disabled={!watch("is_recurring")}
+            disabled={!recurring}
             onChange={(e) => {
               setRecurringType(e.target.value);
             }}
@@ -158,7 +123,7 @@ const EditTaskForm: React.FC<EditFormProps> = ({ task, onBack }) => {
               type="date"
               className="border-2 mb-4 w-full lg:w-[30em]"
               required
-              defaultValue={task?.due_date.substring(0, 10)}
+              defaultValue={task.due_date.substring(0, 10)}
             ></input>
           </div>
         </div>
