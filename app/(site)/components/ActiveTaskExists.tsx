@@ -8,8 +8,10 @@ import useTaskContext from "@/hooks/useTaskContext";
 import { CatPictureData } from "@/types/CatPictureData";
 import { MouseEventHandler } from "react";
 import UnassignTaskQuery from "@/components/CRUD_queries/UnassignTaskQuery";
-import CompleteRecurringTaskQuery from "@/components/CRUD_queries/CompleteRecurringTaskQuery";
 import CompleteTaskQuery from "@/components/CRUD_queries/CompleteTaskQuery";
+import { CalculateNextDueDate } from "@/components/task_functions/CalculateNextDueDate";
+import UpdateRecurringTaskDueDateQuery from "@/components/CRUD_queries/UpdateRecurringTaskDueDateQuery";
+import InsertCompletedRecurringTaskQuery from "@/components/CRUD_queries/InsertCompletedRecurringTaskQuery";
 
 interface ActiveTaskDisplayProps {
   task: Task;
@@ -47,10 +49,34 @@ const ActiveTaskExists: React.FC<ActiveTaskDisplayProps> = ({
   const HandleComplete: MouseEventHandler<HTMLButtonElement> = async () => {
     if (user) {
       if (task.is_recurring) {
-        await toast.promise(CompleteRecurringTaskQuery(task, user?.id), {
-          loading: "Completing Recurring Task...",
-          success: "Task Completed!",
-          error: "Unable to Complete Task. Please try again.",
+        /*await toast.promise(CompleteRecurringTaskQuery(task, user?.id), {
+                                  loading: "Completing Recurring Task...",
+                                  success: "Task Completed!",
+                                  error: "Unable to Complete Task. Please try again.",
+                                });*/
+        const newDueDate = CalculateNextDueDate(
+          task.recurring_type,
+          task.due_date,
+        );
+        await toast.promise(
+          UpdateRecurringTaskDueDateQuery(task, user.id, newDueDate),
+          {
+            loading: "Update Recurring Task",
+            success: "Update Recurring!",
+            error: "Unable to Update Recurring. Please try again.",
+          },
+        );
+
+        await toast.promise(InsertCompletedRecurringTaskQuery(task, user.id), {
+          loading: "Inserting Completed...",
+          success: "Insert completed!",
+          error: "Unable to insert completed. Please try again.",
+        });
+
+        await toast.promise(UnassignTaskQuery(task.id, user.id), {
+          loading: "Unassign task...",
+          success: "Task Unassigned!",
+          error: "Unable to unassign task. Please try again.",
         });
       } else {
         await toast.promise(CompleteTaskQuery(task, user?.id), {
