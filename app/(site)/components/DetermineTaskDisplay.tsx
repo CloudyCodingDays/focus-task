@@ -9,6 +9,7 @@ import { CatPictureData } from "@/types/CatPictureData";
 import Image from "next/image";
 import { ReactQueryCache } from "@/components/task_functions/ReactQueryCache";
 import { useSessionContext } from "@supabase/auth-helpers-react";
+import { Skeleton } from "@/components/ui_components/skeleton";
 
 const DetermineTaskDisplay = () => {
   const { session } = useSessionContext();
@@ -39,11 +40,17 @@ const DetermineTaskDisplay = () => {
     return 0;
   };
 
-  const { data, error, isError } = useQuery<number, Error>({
+  const { data, error, isError, isLoading } = useQuery<number, Error>({
     queryKey: queryKeys,
     queryFn: getTaskCount,
   });
 
+  if (isLoading)
+    return (
+      <div>
+        <Skeleton />
+      </div>
+    );
   if (isError) return "Error has occurred : " + error.message;
 
   return (

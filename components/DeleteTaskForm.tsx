@@ -19,7 +19,6 @@ import {
 } from "@/components/ui_components/alert-dialog";
 import DeleteTaskQuery from "@/components/CRUD_queries/DeleteTaskQuery";
 import { Trash2 } from "lucide-react";
-import { GetThemeStyle } from "@/components/GetThemeStyle";
 import useThemeContext from "@/hooks/useThemeContext";
 
 interface DeleteFormProps {
@@ -31,8 +30,7 @@ const DeleteTaskForm: React.FC<DeleteFormProps> = ({ task, onBack }) => {
   const router = useRouter();
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
-  const { color, mode } = useThemeContext();
-  const themeStyle = GetThemeStyle(color, mode);
+  const { color } = useThemeContext();
 
   const HandleDelete = async () => {
     if (user) {
@@ -60,7 +58,9 @@ const DeleteTaskForm: React.FC<DeleteFormProps> = ({ task, onBack }) => {
           </div>
         </button>
       </AlertDialogTrigger>
-      <AlertDialogContent className={"bg-mainBg text-onMainBg " + themeStyle}>
+      <AlertDialogContent
+        className={"bg-mainBg text-onMainBg " + `theme-${color}`}
+      >
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>

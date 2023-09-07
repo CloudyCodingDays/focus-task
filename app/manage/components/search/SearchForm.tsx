@@ -1,5 +1,4 @@
 "use client";
-import AddTaskButton from "@/components/AddTaskButton";
 import { Separator } from "@/components/ui_components/separator";
 import useDebounceSearch from "@/hooks/useDebounceSearch";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
@@ -35,9 +34,6 @@ const SearchForm: React.FC<SearchFormProps> = ({
 
   return (
     <div>
-      <div className={"absolute bottom-4 right-4"}>
-        <AddTaskButton />
-      </div>
       <div className="mt-4 mx-auto drop-shadow-lg bg-mainBg py-4">
         <div className="my-4">
           <div className="flex flex-row justify-between items-baseline px-4">

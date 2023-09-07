@@ -8,12 +8,10 @@ import { Palette } from "lucide-react";
 import ThemeSelector from "./ThemeSelector";
 import { useState } from "react";
 import useThemeContext from "@/hooks/useThemeContext";
-import { GetThemeStyle } from "../GetThemeStyle";
 
 const NavTheme = () => {
   const [open, setOpen] = useState(false);
-  const { color, mode } = useThemeContext();
-  const themeStyle = GetThemeStyle(color, mode);
+  const { color } = useThemeContext();
 
   return (
     <div className="py-2 mr-8">
@@ -22,7 +20,7 @@ const NavTheme = () => {
           <Palette />
         </PopoverTrigger>
         <PopoverContent
-          className={"bg-mainBg w-full text-onMainBg " + themeStyle}
+          className={"bg-mainBg w-full text-onMainBg " + `theme-${color}`}
         >
           <ThemeSelector />
         </PopoverContent>

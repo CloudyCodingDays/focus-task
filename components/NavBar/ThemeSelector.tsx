@@ -33,19 +33,16 @@ const ThemeSelector = () => {
       <RadioGroup defaultValue={color}>
         {themeList.map((themeItem) => (
           <div key={themeItem.name}>
-            <div className="flex items-center space-x-2">
-              <button
+            <div className="flex flex-row items-center">
+              <RadioGroupItem
                 onClick={() => {
                   if (setColor !== undefined) setColor(themeItem.value);
                 }}
-              >
-                <RadioGroupItem
-                  value={themeItem.value}
-                  id={themeItem.value}
-                  className="mr-2"
-                />
-                <div>{themeItem.name}</div>
-              </button>
+                value={themeItem.value}
+                id={themeItem.value}
+                className="mr-2"
+              />
+              <div>{themeItem.name}</div>
             </div>
           </div>
         ))}

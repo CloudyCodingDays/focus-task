@@ -35,11 +35,9 @@ const EditTaskForm: React.FC<EditFormProps> = ({ task, onBack }) => {
   const queryClient = useQueryClient();
   const { handleSubmit, register } = useForm<EditTaskFormData>();
 
-  const recurringTypeValue =
-    task !== undefined && task?.is_recurring ? task?.recurring_type : "";
-
-  const [recurringType, setRecurringType] =
-    useState<string>(recurringTypeValue);
+  const [recurringType, setRecurringType] = useState<string>(
+    task !== undefined && task?.is_recurring ? task?.recurring_type : "",
+  );
   const [recurring, setRecurring] = useState<boolean>(
     JSON.stringify(task?.is_recurring) === "true",
   );
@@ -80,9 +78,10 @@ const EditTaskForm: React.FC<EditFormProps> = ({ task, onBack }) => {
               type="checkbox"
               className="scale-150"
               onChangeCapture={(e) => {
-                setRecurringType("");
+                if (!e.currentTarget.checked) setRecurringType("");
                 setRecurring(e.currentTarget.checked);
               }}
+              checked={recurring}
               {...register("is_recurring")}
             ></input>
           </div>

@@ -22,14 +22,14 @@ const ManageTaskItemLayout: React.FC<ManageTaskItemLayoutProps> = ({
       <div className="flex flex-col text-start pl-2">
         <div className={"text-sm font-semibold flex"}>
           {name.length > 100 ? name.substring(0, 100) + "..." : name}
-          <div className={"ml-auto mr-2"}>
+          <div className={"mx-2"}>
             <AlertCircle size={20} color={priorityStyle} />
           </div>
         </div>
-        <div className="flex flex-row justify-between pt-2 px-2 text-xs w-full">
-          <div className="flex">
+        <div className="flex flex-row py-2 px-2 text-xs w-full">
+          <div className="flex flex-row items-center">
             <CalendarClock size={20} />
-            {format(dueDate, "PP")}
+            <div className={"px-2"}>{format(dueDate, "PP")}</div>
           </div>
           {task.is_recurring ? (
             <div className="flex flex-row items-center text-xs font-light">

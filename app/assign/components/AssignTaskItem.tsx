@@ -8,12 +8,10 @@ import { useState } from "react";
 import AssignForm from "./AssignForm";
 import AssignTaskItemLayout from "./AssignTaskItemLayout";
 import useThemeContext from "@/hooks/useThemeContext";
-import { GetThemeStyle } from "@/components/GetThemeStyle";
 
 const AssignTaskItem = ({ task }: { task: Task }) => {
   const [assignOpen, setAssignOpen] = useState<boolean>(false);
-  const { color, mode } = useThemeContext();
-  const themeStyle = GetThemeStyle(color, mode);
+  const { color } = useThemeContext();
 
   return (
     <div
@@ -31,7 +29,9 @@ const AssignTaskItem = ({ task }: { task: Task }) => {
               <AssignTaskItemLayout task={task} />
             </button>
           </DialogTrigger>
-          <DialogContent className={"bg-mainBg text-onMainBg " + themeStyle}>
+          <DialogContent
+            className={"bg-mainBg text-onMainBg " + `theme-${color}`}
+          >
             <div className="py-12 px-2">
               <AssignForm task={task} onBack={setAssignOpen} />
             </div>

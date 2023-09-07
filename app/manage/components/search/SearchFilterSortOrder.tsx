@@ -13,7 +13,6 @@ import {
 import { Check, ChevronDown } from "lucide-react";
 import { Dispatch, SetStateAction, useState } from "react";
 import useThemeContext from "@/hooks/useThemeContext";
-import { GetThemeStyle } from "@/components/GetThemeStyle";
 
 const SortOrders = [
   {
@@ -34,8 +33,7 @@ const SearchFilterSortOrder = ({
   sortOrder: string;
 }) => {
   const [open, setOpen] = useState(false);
-  const { color, mode } = useThemeContext();
-  const themeStyle = GetThemeStyle(color, mode);
+  const { color } = useThemeContext();
 
   return (
     <div className="md:px-4">
@@ -45,7 +43,9 @@ const SearchFilterSortOrder = ({
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className={"justify-between bg-mainBg text-onMainBg " + themeStyle}
+            className={
+              "justify-between bg-mainBg text-onMainBg " + `theme-${color}`
+            }
           >
             {sortOrder
               ? SortOrders.find((SortOrder) => SortOrder.value === sortOrder)
@@ -55,7 +55,9 @@ const SearchFilterSortOrder = ({
           </Button>
         </PopoverTrigger>
         <PopoverContent
-          className={"bg-mainBg w-[200px] p-0 text-onMainBg " + themeStyle}
+          className={
+            "bg-mainBg w-[200px] p-0 text-onMainBg " + `theme-${color}`
+          }
         >
           <Command>
             <CommandGroup>

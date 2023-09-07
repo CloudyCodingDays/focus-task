@@ -17,8 +17,7 @@ export const ThemeContext = createContext<ThemeContextType>(
   {} as ThemeContextType,
 );
 
-const colors = ["red", "green", "blue"];
-const modes = ["light", "dark"];
+const themes = ["green", "red", "blue"];
 
 interface ThemeContextProviderProps {
   children: React.ReactNode;
@@ -27,11 +26,10 @@ interface ThemeContextProviderProps {
 const ThemeContextProvider: React.FC<ThemeContextProviderProps> = ({
   children,
 }) => {
-  const [color, setColor] = useState(colors[1]);
-  const [mode, setMode] = useState(modes[0]);
+  const [color, setColor] = useState(themes[0]);
 
   return (
-    <ThemeContext.Provider value={{ color, setColor, mode, setMode }}>
+    <ThemeContext.Provider value={{ color, setColor }}>
       {children}
     </ThemeContext.Provider>
   );

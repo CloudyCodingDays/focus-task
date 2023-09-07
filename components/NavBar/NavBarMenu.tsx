@@ -9,12 +9,10 @@ import Routes from "./Routes";
 import { Menu } from "lucide-react";
 import { User } from "@supabase/supabase-js";
 import useThemeContext from "@/hooks/useThemeContext";
-import { GetThemeStyle } from "../GetThemeStyle";
 
 const NavBarMenu = ({ user }: { user: User | null }) => {
   const [open, setOpen] = useState(false);
-  const { color, mode } = useThemeContext();
-  const themeStyle = GetThemeStyle(color, mode);
+  const { color } = useThemeContext();
 
   return (
     <div className="md:hidden">
@@ -27,7 +25,7 @@ const NavBarMenu = ({ user }: { user: User | null }) => {
         <DialogContent
           className={
             "bg-mainBg h-full grid md:w-1/4 md:left-[12%] pt-4 text-onMainBg " +
-            themeStyle
+            `theme-${color}`
           }
         >
           <Routes onRoute={setOpen} user={user} />
