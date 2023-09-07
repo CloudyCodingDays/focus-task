@@ -1,4 +1,5 @@
 import { Task } from "@/types/Task";
+import { FormatDateRemoveTime } from "@/components/task_functions/FormatDateRemoveTime";
 
 export interface TaskGroupType {
   Header: string;
@@ -54,20 +55,13 @@ const SetPriorityGroupByType = (taskList: Task[]) => {
   ] as TaskGroupType[];
 };
 const SetDueGroupByType = (taskList: Task[]) => {
-  function FormatTodayDate(date?: string) {
-    const newDate = date ? new Date(date) : new Date(Date.now());
-    newDate.setHours(0, 0, 0);
-    newDate.setMilliseconds(0);
-    return newDate;
-  }
-
   return [
     {
       Header: "Over Due",
       TaskList: taskList?.filter((task) => {
-        const due = FormatTodayDate(task.due_date);
+        const due = FormatDateRemoveTime(task.due_date);
         due.setDate(due.getDate() + 1); //Add one day to bring it back to current day after date conversion
-        const todayDate = FormatTodayDate();
+        const todayDate = FormatDateRemoveTime();
 
         return due.getTime() < todayDate.getTime();
       }),
@@ -75,9 +69,9 @@ const SetDueGroupByType = (taskList: Task[]) => {
     {
       Header: "Today",
       TaskList: taskList?.filter((task) => {
-        const due = FormatTodayDate(task.due_date);
+        const due = FormatDateRemoveTime(task.due_date);
         due.setDate(due.getDate() + 1); //Add one day to bring it back to current day after date conversion
-        const todayDate = FormatTodayDate();
+        const todayDate = FormatDateRemoveTime();
 
         return due.getTime() === todayDate.getTime();
       }),
@@ -85,9 +79,9 @@ const SetDueGroupByType = (taskList: Task[]) => {
     {
       Header: "Tomorrow",
       TaskList: taskList?.filter((task) => {
-        const due = FormatTodayDate(task.due_date);
+        const due = FormatDateRemoveTime(task.due_date);
         due.setDate(due.getDate() + 1); //Add one day to bring it back to current day after date conversion
-        const tomorrowDate = FormatTodayDate();
+        const tomorrowDate = FormatDateRemoveTime();
         tomorrowDate.setDate(tomorrowDate.getDate() + 1);
 
         return due.getTime() === tomorrowDate.getTime();
@@ -96,9 +90,9 @@ const SetDueGroupByType = (taskList: Task[]) => {
     {
       Header: "Future Due",
       TaskList: taskList?.filter((task) => {
-        const due = FormatTodayDate(task.due_date);
+        const due = FormatDateRemoveTime(task.due_date);
         due.setDate(due.getDate() + 1); //Add one day to bring it back to current day after date conversion
-        const tomorrowDate = FormatTodayDate();
+        const tomorrowDate = FormatDateRemoveTime();
         tomorrowDate.setDate(tomorrowDate.getDate() + 1);
 
         return due.getTime() > tomorrowDate.getTime();

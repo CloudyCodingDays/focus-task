@@ -9,8 +9,7 @@ import { useUserInfo } from "@/hooks/useUserInfo";
 import { useState } from "react";
 import AddTaskForm from "./AddTaskForm";
 import useThemeContext from "@/hooks/useThemeContext";
-import { GetThemeStyle } from "./GetThemeStyle";
-import { PlusSquare } from "lucide-react";
+import { Plus } from "lucide-react";
 import { Settings } from "@/types/Setting";
 import { ReactQueryCache } from "@/components/task_functions/ReactQueryCache";
 import { GetSettings } from "@/components/user_queries/GetSettings";
@@ -20,8 +19,7 @@ import { Skeleton } from "@/components/ui_components/skeleton";
 const AddTaskButton = () => {
   const [addOpen, setAddOpen] = useState<boolean>(false);
   const { user } = useUserInfo();
-  const { color, mode } = useThemeContext();
-  const themeStyle = GetThemeStyle(color, mode);
+  const { color } = useThemeContext();
   const queryClient = useQueryClient();
   const queryKeys = ["Settings", user ? user.id : ""];
   const getNewTaskSettings = async () => {
@@ -56,11 +54,13 @@ const AddTaskButton = () => {
         <DialogTrigger asChild>
           <button className="rounded-lg hover:bg-inverted hover:text-onInvertedBg bg-main text-onMainBg">
             <div className="flex flex-row items-center font-semibold px-2 py-2 text-sm">
-              <PlusSquare size={24} />
+              <Plus size={24} /> New Task
             </div>
           </button>
         </DialogTrigger>
-        <DialogContent className={"bg-mainBg text-onMainBg " + themeStyle}>
+        <DialogContent
+          className={"bg-mainBg text-onMainBg " + `theme-${color}`}
+        >
           {query?.data?.map((setting) => (
             <div key={setting.id}>
               {!user ? (

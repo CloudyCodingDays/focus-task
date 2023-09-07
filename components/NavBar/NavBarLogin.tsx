@@ -8,12 +8,10 @@ import {
 import useThemeContext from "@/hooks/useThemeContext";
 import { User } from "lucide-react";
 import { useState } from "react";
-import { GetThemeStyle } from "../GetThemeStyle";
 
 const NavBarLogin = () => {
   const [open, setOpen] = useState(false);
-  const { color, mode } = useThemeContext();
-  const themeStyle = GetThemeStyle(color, mode);
+  const { color } = useThemeContext();
 
   return (
     <div className="py-2 md:ml-auto">
@@ -21,7 +19,9 @@ const NavBarLogin = () => {
         <PopoverTrigger>
           <User />
         </PopoverTrigger>
-        <PopoverContent className={"bg-mainBg text-onMainBg " + themeStyle}>
+        <PopoverContent
+          className={"bg-mainBg text-onMainBg " + `theme-${color}`}
+        >
           <Login setOpen={setOpen} />
         </PopoverContent>
       </Popover>

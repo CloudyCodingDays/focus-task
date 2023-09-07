@@ -8,7 +8,6 @@ import { Task } from "@/types/Task";
 import React, { useState } from "react";
 import ManageTaskItemLayout from "./ManageTaskItemLayout";
 import useThemeContext from "@/hooks/useThemeContext";
-import { GetThemeStyle } from "@/components/GetThemeStyle";
 import EditTaskForm from "@/components/EditTaskForm";
 import {
   AlertCircle,
@@ -24,8 +23,7 @@ const ManageTaskDetails = ({ task }: { task: Task }) => {
   const [deleteOpen, setDeleteOpen] = useState<boolean>(false);
   const [editOpen, setEditOpen] = useState<boolean>(false);
   const [Open, setOpen] = useState<boolean>(false);
-  const { color, mode } = useThemeContext();
-  const themeStyle = GetThemeStyle(color, mode);
+  const { color } = useThemeContext();
 
   const dueDate = new Date(task.due_date);
   dueDate.setDate(dueDate.getDate() + 1);
@@ -37,7 +35,7 @@ const ManageTaskDetails = ({ task }: { task: Task }) => {
           <ManageTaskItemLayout task={task} />
         </button>
       </DialogTrigger>
-      <DialogContent className={"bg-mainBg text-onMainBg " + themeStyle}>
+      <DialogContent className={"bg-mainBg text-onMainBg " + `theme-${color}`}>
         <div>
           {editOpen ? (
             <EditTaskForm task={task} onBack={setEditOpen} />

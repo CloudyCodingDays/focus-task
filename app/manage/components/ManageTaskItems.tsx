@@ -6,6 +6,8 @@ import { useQuery, useQueryClient } from "react-query";
 import { Skeleton } from "@/components/ui_components/skeleton";
 import GroupAndSortTaskList from "@/app/manage/components/GroupAndSortTaskList";
 import { useUserInfo } from "@/hooks/useUserInfo";
+import AddTaskButton from "@/components/AddTaskButton";
+import React from "react";
 
 const ManageTaskItems = ({
   debouncedValue,
@@ -54,6 +56,9 @@ const ManageTaskItems = ({
 
   return (
     <div className="px-2">
+      <div className={"text-right pt-2 px-4"}>
+        <AddTaskButton />
+      </div>
       <GroupAndSortTaskList
         taskList={query.data}
         groupBy={groupBy}
