@@ -22,16 +22,20 @@ const NavBar: React.FC<NavBarProps> = ({ children }) => {
           <NavBarMenu user={user} />
           <NavBarLogo />
           <div className="flex">
-            <NavTheme />
+            {user ? <NavTheme /> : <div></div>}
             <NavBarLogin />
           </div>
         </div>
-        <div className="flex flex-row md:flex-auto">
-          <div className="lg:block hidden bg-mainBg pt-4">
-            <Routes user={user} />
+        {user ? (
+          <div className="flex flex-row md:flex-auto">
+            <div className="lg:block hidden bg-mainBg pt-4">
+              <Routes user={user} />
+            </div>
+            <div className="w-full">{children}</div>
           </div>
-          <div className="w-full">{children}</div>
-        </div>
+        ) : (
+          <div>{children}</div>
+        )}
       </div>
     </div>
   );
