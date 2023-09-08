@@ -4,9 +4,16 @@ import findTaskImage from "@/public/findTask.jpg";
 import taskDetailImage from "@/public/taskDetail.jpg";
 import Image from "next/image";
 import { Sansita_Swashed } from "next/font/google";
+import { useRouter } from "next/navigation";
 
 const sansita = Sansita_Swashed({ subsets: ["latin"] });
+
 const HomePage = () => {
+  const router = useRouter();
+
+  const HandleTry = () => {
+    router.push("/register");
+  };
   return (
     <div className={"bg-mainBg"}>
       <div className={"px-2 lg:px-12"}>
@@ -23,6 +30,7 @@ const HomePage = () => {
             <button
               id={"TryNow"}
               aria-label={"Try out Focus Task now Button"}
+              onClick={HandleTry}
               className={
                 "hover:bg-green-200 bg-green-400 text-green-800 font-bold mt-4 px-4 py-4 rounded-lg"
               }
@@ -111,6 +119,7 @@ const HomePage = () => {
         <button
           id={"TryNow"}
           aria-label={"Try out Focus Task now Button"}
+          onClick={HandleTry}
           className={
             "hover:bg-green-200 border-2 text-green-800 font-bold px-4 py-4 mb-2 rounded-lg"
           }
