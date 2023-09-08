@@ -8,7 +8,6 @@ import { Toaster } from "react-hot-toast";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import ThemeContextProvider from "@/providers/ThemeContextProvider";
 import TaskContextProvider from "@/providers/TaskContextProvider";
-import { Analytics } from "@vercel/analytics/react";
 import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -31,10 +30,7 @@ export default function RootLayout({
             <TaskContextProvider>
               <ThemeContextProvider>
                 <ReactQueryProvider>
-                  <NavBar>
-                    {children}
-                    <Analytics />
-                  </NavBar>
+                  <NavBar>{children}</NavBar>
                 </ReactQueryProvider>
               </ThemeContextProvider>
             </TaskContextProvider>

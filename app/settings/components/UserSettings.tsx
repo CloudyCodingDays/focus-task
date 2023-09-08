@@ -95,7 +95,8 @@ const UserSettings = () => {
               h-[3em]
               drop-shadow-md
               mx-4
-              mt-8"
+              mt-8
+              mb-4"
           >
             <div className="flex flex-row w-fit mx-4 px-2 py-2 items-baseline">
               Save Changes

@@ -22,9 +22,8 @@ export default function Home() {
     if (user) {
       settingList = ReactQueryCache(queryClient, queryKeys) as [];
 
-      if (settingList === undefined) {
-        settingList = await GetSettings(user.id);
-      }
+      if (settingList === undefined) settingList = await GetSettings(user.id);
+
       return settingList;
     }
     return [] as Settings[];

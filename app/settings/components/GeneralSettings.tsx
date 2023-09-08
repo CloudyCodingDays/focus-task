@@ -37,40 +37,42 @@ const GeneralSettings = ({ settings }: { settings: Settings | undefined }) => {
   return (
     <div>
       <form onSubmit={handleSubmit(HandleGeneralSettings)}>
-        <div className="w-1/2 mx-auto">
-          <div className={"ml-4 mb-4"}>
-            <div className="text-1xl font-semibold mb-4">
-              Default New Task settings
-            </div>
+        <div className="flex flex-col md:px-4 lg:px-8 px-2">
+          <div className="text-1xl font-semibold mb-4">
+            Default New Task settings
+          </div>
 
-            <label htmlFor={"description"} className={"mt-4"}>
-              Description
+          <label htmlFor={"description"} className={"mt-4"}>
+            Description
+          </label>
+          <textarea
+            id={"description"}
+            className="border-2 mb-4 h-[10em] w-full resize-none"
+            defaultValue={settings?.default_desc}
+            {...register("description", { required: true, minLength: 2 })}
+          ></textarea>
+
+          <div className={"flex"}>
+            <label htmlFor={"is_recurring"} className="w-1/2 mb-4">
+              Recurring?
             </label>
-            <textarea
-              id={"description"}
-              className="border-2 mb-4 h-[10em] w-full lg:w-[30em] resize-none"
-              defaultValue={settings?.default_desc}
-              {...register("description", { required: true, minLength: 2 })}
-            ></textarea>
+            <input
+              id={"is_recurring"}
+              type="checkbox"
+              className="scale-150 mb-4"
+              {...register("is_recurring")}
+              defaultChecked={settings?.default_recurring}
+            ></input>
+          </div>
 
-            <div className="mb-4 flex flex-row">
-              <label htmlFor={"is_recurring"} className="w-1/4">
-                Recurring?
-              </label>
-              <input
-                id={"is_recurring"}
-                type="checkbox"
-                className="scale-150"
-                {...register("is_recurring")}
-                defaultChecked={settings?.default_recurring}
-              ></input>
-            </div>
-
-            <label htmlFor={"frequency"}>Frequency</label>
+          <div className={"flex"}>
+            <label htmlFor={"frequency"} className="w-1/2">
+              Frequency
+            </label>
             <select
               id={"frequency"}
               {...register("recurring_type")}
-              className="border-2 mb-4 w-full lg:w-[30em]"
+              className="border-2 mb-4 lg:w-[20em] w-full"
               disabled={!watch("is_recurring")}
               defaultValue={settings?.default_recurring_type}
             >
@@ -80,26 +82,32 @@ const GeneralSettings = ({ settings }: { settings: Settings | undefined }) => {
               <option value="Bi-Weekly">Bi-Weekly</option>
               <option value="Monthly">Monthly</option>
             </select>
+          </div>
 
-            <label htmlFor={"priority"} className="w-1/4">
+          <div className={"flex"}>
+            <label htmlFor={"priority"} className="w-1/2">
               Priority
             </label>
             <select
               id={"priority"}
               {...register("priority")}
-              className="border-2 mb-4 w-full lg:w-[30em]"
+              className="border-2 mb-4 lg:w-[20em] w-full"
               defaultValue={settings?.default_priority}
             >
               <option value="Low">Low</option>
               <option value="Medium">Medium</option>
               <option value="High">High</option>
             </select>
+          </div>
 
-            <label htmlFor={"due_date"}>Due Date</label>
+          <div className={"flex"}>
+            <label htmlFor={"due_date"} className="w-1/2">
+              Due Date
+            </label>
             <select
               id={"due_date"}
               {...register("default_due_date")}
-              className="border-2 mb-4 w-full lg:w-[30em]"
+              className="border-2 mb-4 lg:w-[20em] w-full"
               defaultValue={settings?.default_due_date}
             >
               <option value="today">Today</option>
@@ -107,10 +115,11 @@ const GeneralSettings = ({ settings }: { settings: Settings | undefined }) => {
               <option value="week">One week from today</option>
             </select>
           </div>
+
           <div className="flex flex-col pt-2 ml-2">
             <label
               htmlFor={"catPicture"}
-              className="text-1xl font-semibold mb-4 ml-4"
+              className="text-1xl font-semibold mb-4"
             >
               Cat Picture Settings
             </label>
@@ -118,7 +127,7 @@ const GeneralSettings = ({ settings }: { settings: Settings | undefined }) => {
               <input
                 id={"catPicture"}
                 {...register("catPicture")}
-                className="font-semibold ml-4 scale-150"
+                className="font-semibold scale-150"
                 type="checkbox"
                 defaultChecked={settings?.cat_pic_on_complete}
               ></input>
