@@ -16,6 +16,8 @@ const FormSubmitButtons = ({
   return (
     <div className="text-center mt-4">
       <button
+        id={"cancel"}
+        aria-label="Cancel Form"
         className="
             hover:bg-main
             hover:text-onMainBg 
@@ -38,6 +40,8 @@ const FormSubmitButtons = ({
       </button>
       {!isDelete ? (
         <button
+          id={"submit"}
+          aria-label="Submit Form Button"
           type="submit"
           className="              
           hover:bg-inverted
@@ -54,6 +58,8 @@ const FormSubmitButtons = ({
         </button>
       ) : (
         <button
+          id={"delete"}
+          aria-label="Delete Form Button"
           type="submit"
           className="              
             hover:bg-red-200

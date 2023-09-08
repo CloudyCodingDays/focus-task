@@ -16,7 +16,10 @@ const NavTheme = () => {
   return (
     <div className="py-2 mr-8">
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger>
+        <PopoverTrigger
+          id={"ThemeSelectButton"}
+          aria-label={"Theme Selector Button"}
+        >
           <Palette />
         </PopoverTrigger>
         <PopoverContent

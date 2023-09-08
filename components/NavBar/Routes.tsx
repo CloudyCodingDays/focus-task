@@ -3,12 +3,13 @@ import { User } from "@supabase/supabase-js";
 import { Home, ListTodo, Settings, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Dispatch, SetStateAction, useMemo } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 interface RoutesProp {
   user?: User | null;
   onRoute?: Dispatch<SetStateAction<boolean>>;
 }
+
 const Routes: React.FC<RoutesProp> = ({ user, onRoute }) => {
   const pathname = usePathname();
   const routes = [
@@ -24,14 +25,14 @@ const Routes: React.FC<RoutesProp> = ({ user, onRoute }) => {
       label: "Manage Tasks",
       active: pathname === "/manage",
       href: "/manage",
-      visible: user ? true : false,
+      visible: !!user,
     },
     {
       Icon: <Settings size={18} />,
       label: "Settings",
       active: pathname === "/settings",
       href: "/settings",
-      visible: user ? true : false,
+      visible: !!user,
     },
   ];
 
@@ -44,6 +45,8 @@ const Routes: React.FC<RoutesProp> = ({ user, onRoute }) => {
         <div className="flex flex-row justify-around items-baseline w-full">
           <div className="text-2xl text-main">Focus Task</div>
           <button
+            id="NavigationMenuClose"
+            aria-label="Close Navigation Menu Button"
             onClick={() => {
               onRoute(false);
             }}
@@ -55,8 +58,8 @@ const Routes: React.FC<RoutesProp> = ({ user, onRoute }) => {
         <div></div>
       )}
       <div className="flex flex-col w-full mt-4">
-        {routes.map((item, index) =>
-          item.visible === true ? (
+        {routes.map((item) =>
+          item.visible ? (
             <Link
               key={item.label}
               href={item.href}
@@ -77,7 +80,7 @@ const Routes: React.FC<RoutesProp> = ({ user, onRoute }) => {
             </Link>
           ) : (
             <div key={item.label}></div>
-          )
+          ),
         )}
       </div>
     </div>

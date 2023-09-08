@@ -29,6 +29,8 @@ const SettingsMenu = ({
     <div className="flex flex-row justify-between rounded-md mb-4 border-2 border-main">
       {settingCategories.map((setting) => (
         <button
+          id={"SettingCategory"}
+          aria-label={setting.label + " settings Button"}
           key={setting.label}
           onClick={() => {
             HandleSettingViewChange(setting.label);

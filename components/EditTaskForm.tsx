@@ -65,16 +65,28 @@ const EditTaskForm: React.FC<EditFormProps> = ({ task, onBack }) => {
         <div className="flex flex-col text-gray-600 lg:flex lg:justify-center h-fit">
           <input {...register("id")} type="hidden" value={task?.id}></input>
 
-          <div>Description</div>
+          <input
+            aria-label="Task Name"
+            className="mb-4 w-full lg:w-[30em]"
+            placeholder={"Task Name..."}
+            {...register("name", { required: true, minLength: 2 })}
+            autoFocus
+          ></input>
+
+          <label htmlFor={"description"}>Description</label>
           <textarea
+            id={"description"}
             className="border-2 mb-4 h-[10em] w-full lg:w-[30em] resize-none"
             defaultValue={task?.description}
             {...register("description", { required: true, minLength: 2 })}
           ></textarea>
 
           <div className="mb-4 flex flex-row">
-            <div className="w-1/4">Recurring?</div>
+            <label htmlFor={"is_recurring"} className="w-1/4">
+              Recurring?
+            </label>
             <input
+              id={"is_recurring"}
               type="checkbox"
               className="scale-150"
               onChangeCapture={(e) => {
@@ -86,8 +98,9 @@ const EditTaskForm: React.FC<EditFormProps> = ({ task, onBack }) => {
             ></input>
           </div>
 
-          <div>Frequency</div>
+          <label htmlFor={"frequency"}>Frequency</label>
           <select
+            id={"frequency"}
             {...register("recurring_type")}
             className="border-2 mb-4 w-full lg:w-[30em]"
             disabled={!recurring}
@@ -104,8 +117,11 @@ const EditTaskForm: React.FC<EditFormProps> = ({ task, onBack }) => {
             <option value="Monthly">Monthly</option>
           </select>
 
-          <div className="w-1/4">Priority</div>
+          <label htmlFor={"priority"} className="w-1/4">
+            Priority
+          </label>
           <select
+            id={"priority"}
             {...register("priority")}
             className="border-2 mb-4 w-full lg:w-[30em]"
             defaultValue={task?.priority}
@@ -116,8 +132,9 @@ const EditTaskForm: React.FC<EditFormProps> = ({ task, onBack }) => {
           </select>
 
           <div>
-            <div>Due Date</div>
+            <label htmlFor={"due_date"}>Due Date</label>
             <input
+              id={"due_date"}
               {...register("due_date")}
               type="date"
               className="border-2 mb-4 w-full lg:w-[30em]"

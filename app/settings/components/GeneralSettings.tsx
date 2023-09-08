@@ -43,16 +43,22 @@ const GeneralSettings = ({ settings }: { settings: Settings | undefined }) => {
               Default New Task settings
             </div>
 
-            <div className={"mt-4"}>Description</div>
+            <label htmlFor={"description"} className={"mt-4"}>
+              Description
+            </label>
             <textarea
+              id={"description"}
               className="border-2 mb-4 h-[10em] w-full lg:w-[30em] resize-none"
               defaultValue={settings?.default_desc}
               {...register("description", { required: true, minLength: 2 })}
             ></textarea>
 
             <div className="mb-4 flex flex-row">
-              <div className="w-1/4">Recurring?</div>
+              <label htmlFor={"is_recurring"} className="w-1/4">
+                Recurring?
+              </label>
               <input
+                id={"is_recurring"}
                 type="checkbox"
                 className="scale-150"
                 {...register("is_recurring")}
@@ -60,8 +66,9 @@ const GeneralSettings = ({ settings }: { settings: Settings | undefined }) => {
               ></input>
             </div>
 
-            <div>Frequency</div>
+            <label htmlFor={"frequency"}>Frequency</label>
             <select
+              id={"frequency"}
               {...register("recurring_type")}
               className="border-2 mb-4 w-full lg:w-[30em]"
               disabled={!watch("is_recurring")}
@@ -74,8 +81,11 @@ const GeneralSettings = ({ settings }: { settings: Settings | undefined }) => {
               <option value="Monthly">Monthly</option>
             </select>
 
-            <div className="w-1/4">Priority</div>
+            <label htmlFor={"priority"} className="w-1/4">
+              Priority
+            </label>
             <select
+              id={"priority"}
               {...register("priority")}
               className="border-2 mb-4 w-full lg:w-[30em]"
               defaultValue={settings?.default_priority}
@@ -85,8 +95,9 @@ const GeneralSettings = ({ settings }: { settings: Settings | undefined }) => {
               <option value="High">High</option>
             </select>
 
-            <div>Due Date</div>
+            <label htmlFor={"due_date"}>Due Date</label>
             <select
+              id={"due_date"}
               {...register("default_due_date")}
               className="border-2 mb-4 w-full lg:w-[30em]"
               defaultValue={settings?.default_due_date}
@@ -97,11 +108,15 @@ const GeneralSettings = ({ settings }: { settings: Settings | undefined }) => {
             </select>
           </div>
           <div className="flex flex-col pt-2 ml-2">
-            <div className="text-1xl font-semibold mb-4 ml-4">
+            <label
+              htmlFor={"catPicture"}
+              className="text-1xl font-semibold mb-4 ml-4"
+            >
               Cat Picture Settings
-            </div>
+            </label>
             <div className="flex mb-4">
               <input
+                id={"catPicture"}
                 {...register("catPicture")}
                 className="font-semibold ml-4 scale-150"
                 type="checkbox"
@@ -113,6 +128,8 @@ const GeneralSettings = ({ settings }: { settings: Settings | undefined }) => {
 
           <div className="text-center">
             <button
+              id={"GeneralSettings"}
+              aria-label="Save changes for General Settings Button"
               type={"submit"}
               className="
         hover:bg-inverted

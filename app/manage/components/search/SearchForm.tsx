@@ -40,6 +40,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
           <div className="flex flex-row justify-between items-baseline px-4">
             <form className="flex-grow  mr-4">
               <input
+                aria-label="Search"
                 name="SearchTerm"
                 className="w-full"
                 value={searchTerm}

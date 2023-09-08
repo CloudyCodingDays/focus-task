@@ -18,7 +18,7 @@ const NavBarMenu = ({ user }: { user: User | null }) => {
     <div className="md:hidden">
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <button>
+          <button id="OpenNavigation" aria-label="Open Navigation Menu Button">
             <Menu />
           </button>
         </DialogTrigger>

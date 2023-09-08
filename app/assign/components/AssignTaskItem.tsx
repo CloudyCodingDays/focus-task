@@ -25,7 +25,12 @@ const AssignTaskItem = ({ task }: { task: Task }) => {
       <div className="w-full">
         <Dialog open={assignOpen} onOpenChange={setAssignOpen}>
           <DialogTrigger asChild>
-            <button type="button" className="w-full">
+            <button
+              id={"AssignTaskItem"}
+              aria-label="View Task Item Button"
+              type="button"
+              className="w-full"
+            >
               <AssignTaskItemLayout task={task} />
             </button>
           </DialogTrigger>
