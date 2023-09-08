@@ -22,9 +22,9 @@ const TaskExists: React.FC<CurrentTaskDisplayProps> = ({ user, catQuery }) => {
   const getTasks = async () => {
     if (user) {
       let taskList = ReactQueryCache(queryClient, queryKeys) as Task[];
-      if (taskList === undefined) {
-        return await GetActiveTaskByUserId(user.id);
-      }
+      if (taskList === undefined) return await GetActiveTaskByUserId(user.id);
+
+      return taskList;
     }
     return [];
   };
