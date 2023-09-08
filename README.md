@@ -1,34 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Focus Task
+Focused Task management app that aims to be quick to use, low pressure and easy to pick up. Made using NextJS 13, ReactJS 18, TailwindCSS, ShadCN UI library, Supabase and Typescript.
 
-## Getting Started
+## Try the app out
 
-First, run the development server:
+focus-task-app.vercel.app
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Why yet another todo app?
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Honestly, this space is crowded with great apps that cover just about every niche in my opinion. I am an extremely distracted person so I wanted something that would only focus on one task at a time and hide the rest while I am doing one. That is it. 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+I started this project to reinforce or try out concepts I was learning at the time like how to use react query caching and data-fetching or how to use react Hook forms and so on. Then it slowly turned into this project with no pre-planning or design so things were kinda figured out as I went along.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+It has been really fun to create this pet project and learning how to many things that seemed very simple at the time like theming support or handling dates in JS in general.
 
-## Learn More
+## Functions of the App
 
-To learn more about Next.js, take a look at the following resources:
+- Active task Page where nothing else will be on the page for distraction reasons
+- Manage Task Page where you can add, edit, view or delete tasks.
+    - Tasks can be grouped, sorted and ordered however you like.
+- Settings page to change default values for new task and change email and/or password
+- Random Cat picture on task completion. I love Cats.
+- Account system to keep task information saved in Supabase database no matter what device used.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Things I want to add in the future
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Zod form validation
+- Better themes and proper Dark mode theme
+- Reports page to show stats on how fast tasks were completed, how much were completed each day etc.
+- ...More to come as I think of it.
