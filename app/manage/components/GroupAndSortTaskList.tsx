@@ -30,8 +30,8 @@ const GroupAndSortTaskList = ({
       {SortedGroupTypes.map((SortedGroupType) => (
         <div key={SortedGroupType.Header}>
           {SortedGroupType.TaskList.length > 0 ? (
-            <div>
-              <div className="flex flex-row justify-between items-end text-sm px-2 py-2">
+            <div className={"text-onMainBg"}>
+              <div className="flex flex-row justify-between items-end text-md font-semibold px-2 py-2">
                 {SortedGroupType.Header} tasks(
                 {SortedGroupType.TaskList.length} tasks)
               </div>

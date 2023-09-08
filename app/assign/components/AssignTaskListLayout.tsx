@@ -34,7 +34,7 @@ const AssignTaskListLayout = () => {
     ),
   });
 
-  const queryKeys = ["AssignTasks", user ? user.id : ""];
+  const queryKeys = ["Tasks", user ? user.id : ""];
 
   const getAllTasks = async () => {
     let AllTasks: Task[] = [] as Task[];

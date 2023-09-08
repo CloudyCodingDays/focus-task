@@ -40,7 +40,7 @@ const DeleteTaskForm: React.FC<DeleteFormProps> = ({ task, onBack }) => {
         error: "Unable to Delete Task. Please try again.",
       });
 
-      await queryClient.resetQueries("ManageTasks");
+      await queryClient.resetQueries("Tasks");
       await queryClient.resetQueries("ActiveTask");
       await queryClient.resetQueries("TaskCount");
 

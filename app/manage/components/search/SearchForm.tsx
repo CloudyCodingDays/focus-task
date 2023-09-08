@@ -5,6 +5,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import SearchFilterGrouping from "./SearchFilterGrouping";
 import SearchFilterSorting from "./SearchFilterSorting";
 import SearchFilterSortOrder from "./SearchFilterSortOrder";
+import AddTaskButton from "@/components/AddTaskButton";
 
 interface SearchFormProps {
   setDebouncedValue: Dispatch<SetStateAction<string>>;
@@ -37,7 +38,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
       <div className="mt-4 mx-auto drop-shadow-lg bg-mainBg py-4">
         <div className="my-4">
           <div className="flex flex-row justify-between items-baseline px-4">
-            <form className="flex-grow">
+            <form className="flex-grow  mr-4">
               <input
                 name="SearchTerm"
                 className="w-full"
@@ -49,6 +50,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
               ></input>
               <Separator className="bg-green-200 pt-0.5" />
             </form>
+            <AddTaskButton />
           </div>
           <div className="flex flex-row justify-between lg:justify-end mt-4 mx-4">
             <SearchFilterGrouping setGroupBy={setGroupBy} groupBy={groupBy} />

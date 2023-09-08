@@ -51,7 +51,7 @@ const EditTaskForm: React.FC<EditFormProps> = ({ task, onBack }) => {
       });
     } else toast("User data not found. Please try again.");
 
-    await queryClient.resetQueries("ManageTasks");
+    await queryClient.resetQueries("Tasks");
     await queryClient.resetQueries("ActiveTask");
     await queryClient.resetQueries("TaskCount");
 

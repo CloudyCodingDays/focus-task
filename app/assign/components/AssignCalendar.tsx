@@ -11,7 +11,6 @@ const AssignCalendar = ({
   setDate: Dispatch<SetStateAction<Date | undefined>>;
   taskExistsDays: Date[];
 }) => {
-  console.log(taskExistsDays);
   const [taskExists, setTaskExists] = useState<boolean>(false);
 
   const handleDayClick: DayClickEventHandler = (day, modifiers) => {

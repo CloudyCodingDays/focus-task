@@ -37,7 +37,7 @@ const GeneralSettings = ({ settings }: { settings: Settings | undefined }) => {
   return (
     <div>
       <form onSubmit={handleSubmit(HandleGeneralSettings)}>
-        <div className="bg-mainBg text-onMainBg rounded-lg pt-2">
+        <div className="w-1/2 mx-auto">
           <div className={"ml-4 mb-4"}>
             <div className="text-1xl font-semibold mb-4">
               Default New Task settings
@@ -96,11 +96,11 @@ const GeneralSettings = ({ settings }: { settings: Settings | undefined }) => {
               <option value="week">One week from today</option>
             </select>
           </div>
-          <div className="bg-mainBg text-onMainBg mt-4 flex flex-col pt-2 rounded-lg">
+          <div className="flex flex-col pt-2 ml-2">
             <div className="text-1xl font-semibold mb-4 ml-4">
               Cat Picture Settings
             </div>
-            <div className="mb-4">
+            <div className="flex mb-4">
               <input
                 {...register("catPicture")}
                 className="font-semibold ml-4 scale-150"

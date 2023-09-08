@@ -19,8 +19,8 @@ const AssignForm: React.FC<AssignFormProps> = ({ task, onBack }) => {
   const router = useRouter();
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
-  const dueDate = new Date(task.due_date);
-  addDays(dueDate, 1);
+  let convertedDueDate = new Date(task.due_date);
+  const dueDate = addDays(convertedDueDate, 1);
 
   const HandleAssign: MouseEventHandler<HTMLButtonElement> = async () => {
     if (user) {

@@ -3,7 +3,7 @@ import supabaseClient from "@/lib/supabaseClient";
 
 const InsertCompletedRecurringTaskQuery = async (
   taskData: Task,
-  userId: string
+  userId: string,
 ) => {
   //Insert recurring task id and completed into recurring completed table
   const { error } = await supabaseClient
