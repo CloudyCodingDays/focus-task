@@ -3,7 +3,7 @@ Focused Task management app that aims to be quick to use, low pressure and easy 
 
 ## Try the app out
 
-focus-task-app.vercel.app
+[Try it out here!](https://focus-task-app.vercel.app/)
 
 ## Why yet another todo app?
 
