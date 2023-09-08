@@ -45,10 +45,13 @@ const UserSettings = () => {
           </div>
 
           <div className="flex flex-col ml-4 mt-4">
-            <div className={"mb-2"}>Email</div>
+            <label htmlFor={"email"} className={"mb-2"}>
+              Email
+            </label>
             <div>
               <input
                 autoComplete={"off"}
+                id={"email"}
                 {...register("email", {
                   required: true,
                   pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
@@ -64,9 +67,12 @@ const UserSettings = () => {
               )}
             </div>
 
-            <div className={"mb-2"}>Password</div>
+            <label htmlFor={"password"} className={"mb-2"}>
+              Password
+            </label>
             <input
               {...register("password")}
+              id={"password"}
               type={"password"}
               className="w-full mb-4"
               required
@@ -76,6 +82,8 @@ const UserSettings = () => {
 
         <div className="text-center">
           <button
+            id="SaveUserSettings"
+            aria-label="Save User Settings button"
             type={"submit"}
             className="
         hover:bg-inverted

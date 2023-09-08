@@ -60,6 +60,7 @@ const Register = () => {
               Email
             </label>
             <input
+              id={"email"}
               className="drop-shadow-md border-2 border-main"
               {...register("email", {
                 required: true,
@@ -73,6 +74,7 @@ const Register = () => {
               Password
             </label>
             <input
+              id={"password"}
               className="drop-shadow-md border-2 border-main"
               {...register("password", { required: true, minLength: 2 })}
               type={"password"}
@@ -80,7 +82,12 @@ const Register = () => {
           </div>
 
           <div className="text-center">
-            <button type="submit" className="w-1/3 ">
+            <button
+              id={"Register"}
+              aria-label="Register Form Button"
+              type="submit"
+              className="w-1/3 "
+            >
               <div
                 className="              
                 hover:bg-inverted

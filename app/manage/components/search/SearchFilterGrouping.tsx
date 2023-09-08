@@ -49,16 +49,15 @@ const SearchFilterGrouping = ({
   const { color } = useThemeContext();
 
   return (
-    <div className="md:px-4">
+    <div className={"md:px-4 bg-mainBg text-onMainBg " + `theme-${color}`}>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
+            id={"GroupTaskButton"}
+            aria-label={"Group by Task category Button"}
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className={
-              "justify-between bg-mainBg text-onMainBg " + `theme-${color}`
-            }
           >
             {groupBy
               ? GroupProperties.find(

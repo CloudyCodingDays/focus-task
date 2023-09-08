@@ -16,7 +16,7 @@ const NavBarLogin = () => {
   return (
     <div className="py-2 md:ml-auto">
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger>
+        <PopoverTrigger id={"LoginIconButton"} aria-label={"Login Icon Button"}>
           <User />
         </PopoverTrigger>
         <PopoverContent

@@ -52,7 +52,11 @@ const DeleteTaskForm: React.FC<DeleteFormProps> = ({ task, onBack }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger>
-        <button className="hover:bg-red-200 hover:text-red-500 bg-red-500 text-red-100 rounded-lg w-[7em] h-[3em] drop-shadow-md mx-4">
+        <button
+          id="DeleteTask"
+          aria-label="Delete Task Button"
+          className="hover:bg-red-200 hover:text-red-500 bg-red-500 text-red-100 rounded-lg w-[7em] h-[3em] drop-shadow-md mx-4"
+        >
           <div className="flex flex-row w-fit mx-4 px-2 py-2 items-baseline">
             <Trash2 size={16} /> Delete
           </div>

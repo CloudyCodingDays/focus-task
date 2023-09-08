@@ -72,12 +72,16 @@ const ActiveTaskExists: React.FC<ActiveTaskDisplayProps> = ({
         <ActiveTaskDetailLayout name={task.name} desc={task.description} />
         <div className="flex flex-row justify-center">
           <button
+            id={"UnassignTask"}
+            aria-label="Un-Assign Task Form Button"
             onClick={HandleUnassign}
             className="hover:bg-main hover:text-onMainBg  bg-neutralBg text-onNeutralBg border-2 border-main rounded-lg my-4 mr-8 w-[7em] h-[3em] font-semibold"
           >
             Unassign
           </button>
           <button
+            id={"CompleteTask"}
+            aria-label="Complete Task Form Button"
             onClick={HandleComplete}
             className="hover:bg-inverted hover:text-onInvertedBg bg-main text-onMainBg my-4 mr-8 rounded-lg w-[7em] h-[3em] font-semibold"
           >

@@ -32,7 +32,11 @@ const ManageTaskDetails = ({ task }: { task: Task }) => {
   return (
     <Dialog open={Open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <button className="w-full">
+        <button
+          id={"TaskName-" + task.name}
+          aria-label={"Task Item Name - " + task.name}
+          className="w-full"
+        >
           <ManageTaskItemLayout task={task} />
         </button>
       </DialogTrigger>
@@ -78,6 +82,8 @@ const ManageTaskDetails = ({ task }: { task: Task }) => {
               <div className="text-center mt-4">
                 <DeleteTaskForm task={task} onBack={setDeleteOpen} />
                 <button
+                  id={"Edit"}
+                  aria-label="Edit Task Button"
                   onClick={() => {
                     setEditOpen(true);
                   }}

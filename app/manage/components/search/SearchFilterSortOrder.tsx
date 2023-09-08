@@ -36,16 +36,15 @@ const SearchFilterSortOrder = ({
   const { color } = useThemeContext();
 
   return (
-    <div className="md:px-4">
+    <div className={"md:px-4 bg-mainBg text-onMainBg " + `theme-${color}`}>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
+            id={"SortOrderTaskButton"}
+            aria-label={"Sort Order for Task category Button"}
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className={
-              "justify-between bg-mainBg text-onMainBg " + `theme-${color}`
-            }
           >
             {sortOrder
               ? SortOrders.find((SortOrder) => SortOrder.value === sortOrder)

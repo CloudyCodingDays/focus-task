@@ -48,6 +48,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
             </label>
             <input
               className="drop-shadow-lg"
+              id={"email"}
               {...register("email", {
                 required: true,
                 pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
@@ -60,6 +61,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
               Password
             </label>
             <input
+              id={"password"}
               className="drop-shadow-lg"
               {...register("password", { required: true, minLength: 2 })}
               type={"password"}
@@ -67,7 +69,12 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
           </div>
 
           <div className="text-center">
-            <button type="submit" className="w-1/3">
+            <button
+              id={"loginButton"}
+              aria-label="Login Submit Form Button"
+              type="submit"
+              className="w-1/3"
+            >
               <div className="hover:bg-inverted hover:text-onInvertedBg bg-main text-onMainBg rounded-lg text-center mt-8">
                 Login
               </div>
@@ -77,6 +84,8 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
           <div className="text-sm pt-4 text-onMainBg">
             Don&apos;t have have an account?{" "}
             <button
+              id={"Signup"}
+              aria-label="Sign up form Button"
               type="button"
               onClick={HandleSignUp}
               className="font-semibold"
@@ -89,7 +98,13 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
         <div>
           <div className="text-sm">Logged in as {session?.user?.email}</div>
           <div className="text-center ">
-            <button type="submit" className="w-1/3" onClick={HandleLogOut}>
+            <button
+              id={"Logout"}
+              aria-label="Logout form Button"
+              type="submit"
+              className="w-1/3"
+              onClick={HandleLogOut}
+            >
               <div className="text-center mt-8 hover:bg-inverted hover:text-onInvertedBg bg-main text-onMainBg rounded-lg">
                 Logout
               </div>

@@ -64,6 +64,8 @@ const AssignForm: React.FC<AssignFormProps> = ({ task, onBack }) => {
       </div>
       <div className={"text-center"}>
         <button
+          id={"closeAssign"}
+          aria-label="Close Assign Form Button"
           onClick={() => {
             onBack(false);
           }}
@@ -84,6 +86,8 @@ const AssignForm: React.FC<AssignFormProps> = ({ task, onBack }) => {
           Close
         </button>
         <button
+          id={"AssignTask"}
+          aria-label="Assign Task Form Button"
           onClick={HandleAssign}
           className="
               hover:bg-inverted
