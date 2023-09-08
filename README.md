@@ -1,5 +1,7 @@
 ## Focus Task
-Focused Task management app that aims to be quick to use, low pressure and easy to pick up. Made using NextJS 13, ReactJS 18, TailwindCSS, ShadCN UI library, Supabase and Typescript.
+Focused Task management app that aims to be quick to use, low pressure and easy to pick up. 
+
+Made using NextJS 13, ReactJS 18, TailwindCSS, ShadCN UI library, Supabase and Typescript.
 
 ## Try the app out
 
@@ -10,8 +12,6 @@ Focused Task management app that aims to be quick to use, low pressure and easy 
 Honestly, this space is crowded with great apps that cover just about every niche in my opinion. I am an extremely distracted person so I wanted something that would only focus on one task at a time and hide the rest while I am doing one. That is it. 
 
 I started this project to reinforce or try out concepts I was learning at the time like how to use react query caching and data-fetching or how to use react Hook forms and so on. Then it slowly turned into this project with no pre-planning or design so things were kinda figured out as I went along.
-
-It has been really fun to create this pet project and learning how to many things that seemed very simple at the time like theming support or handling dates in JS in general.
 
 ## Functions of the App
 
