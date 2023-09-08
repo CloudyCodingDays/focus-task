@@ -1,21 +1,25 @@
 import toast from "react-hot-toast";
 import supabase from "@/lib/supabaseClient";
 import { UserSettingsFormData } from "@/app/settings/components/UserSettings";
+import { User } from "@supabase/auth-helpers-nextjs";
 
 export const UpdateUserSettings = async (
   userSettingFormData: UserSettingsFormData,
-  userId?: string,
+  user: User | null,
 ) => {
   const fName = userSettingFormData.fName;
   const lName = userSettingFormData.lName;
   const email = userSettingFormData.email;
   const password = userSettingFormData.password;
 
-  if (userId === undefined) {
+  if (user === undefined) {
     toast("User ID not found");
     throw new Error("Something went wrong.");
   }
 
+  if (email === user?.email) {
+    toast("Email is the same as current so no changes made to email");
+  }
   if (email.length !== 0 && password.length !== 0) {
     const { data, error } = await supabase.auth.updateUser({
       email: email,
@@ -30,6 +34,6 @@ export const UpdateUserSettings = async (
       first_name: fName,
       last_name: lName,
     })
-    .eq("id", userId);
+    .eq("id", user?.id);
   if (UserError) throw new Error(UserError.message);
 };

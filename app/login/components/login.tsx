@@ -48,7 +48,10 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
             </label>
             <input
               className="drop-shadow-lg"
-              {...register("email", { required: true, minLength: 2 })}
+              {...register("email", {
+                required: true,
+                pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+              })}
             ></input>
           </div>
 

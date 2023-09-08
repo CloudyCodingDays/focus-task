@@ -53,8 +53,8 @@ const AddTaskButton = () => {
       <Dialog open={addOpen} onOpenChange={setAddOpen}>
         <DialogTrigger asChild>
           <button className="rounded-lg hover:bg-inverted hover:text-onInvertedBg bg-main text-onMainBg">
-            <div className="flex flex-row items-center font-semibold px-2 py-2 text-sm">
-              <Plus size={24} /> New Task
+            <div className="flex flex-row items-center font-semibold px-2 py-2 text-xs">
+              <Plus size={14} /> New Task
             </div>
           </button>
         </DialogTrigger>

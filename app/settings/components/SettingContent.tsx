@@ -10,7 +10,7 @@ const SettingContent = ({
   settings: Settings | undefined;
 }) => {
   return (
-    <div>
+    <div className={"bg-mainBg text-onMainBg rounded-lg pt-2"}>
       {category === "General" ? <GeneralSettings settings={settings} /> : ""}
       {category === "User" ? <UserSettings /> : ""}
     </div>

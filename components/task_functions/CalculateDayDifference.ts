@@ -1,6 +1,4 @@
-
-import { eachDayOfInterval, intervalToDuration, isEqual } from "date-fns";
-import { addDays, subDays } from "date-fns";
+import {eachDayOfInterval, isEqual} from "date-fns";
 import isAfter from "date-fns/isAfter";
 
 //Does not include start date - It DOES include end date in calculate so tomorrow would be 1 day. Today would be 0 days
@@ -22,7 +20,7 @@ export const CalculateDayDifference = (date: string) => {
       start: new Date(
         parseInt(dateArray[0]),
         parseInt(dateArray[1]) - 1,
-        parseInt(dateArray[2])
+        parseInt(dateArray[2]),
       ),
       end: currentDate,
     });
@@ -34,7 +32,7 @@ export const CalculateDayDifference = (date: string) => {
       end: new Date(
         parseInt(dateArray[0]),
         parseInt(dateArray[1]) - 1,
-        parseInt(dateArray[2])
+        parseInt(dateArray[2]),
       ),
     });
 

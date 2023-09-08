@@ -44,7 +44,7 @@ const AddTaskForm: React.FC<AddFormProps> = ({ onBack, setting }) => {
       });
     } else toast("No user data found. Please try again.");
 
-    await queryClient.resetQueries("ManageTasks");
+    await queryClient.resetQueries("Tasks");
     await queryClient.resetQueries("ActiveTask");
     await queryClient.resetQueries("TaskCount");
 

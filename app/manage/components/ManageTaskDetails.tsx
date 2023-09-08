@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import DeleteTaskForm from "@/components/DeleteTaskForm";
 import format from "date-fns/format";
+import { addDays } from "date-fns";
 
 const ManageTaskDetails = ({ task }: { task: Task }) => {
   const [deleteOpen, setDeleteOpen] = useState<boolean>(false);
@@ -25,8 +26,8 @@ const ManageTaskDetails = ({ task }: { task: Task }) => {
   const [Open, setOpen] = useState<boolean>(false);
   const { color } = useThemeContext();
 
-  const dueDate = new Date(task.due_date);
-  dueDate.setDate(dueDate.getDate() + 1);
+  const convertedDueDate = new Date(task.due_date);
+  const dueDate = addDays(convertedDueDate, 1);
 
   return (
     <Dialog open={Open} onOpenChange={setOpen}>

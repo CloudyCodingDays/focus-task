@@ -88,7 +88,6 @@ const SearchFilterSorting = ({
                       (SortProperty) =>
                         SortProperty.label.toLocaleLowerCase() === currentValue,
                     )?.value;
-                    console.log(newValue);
                     if (newValue === "sort by") {
                       setSortBy(newValue);
                       setSortOrder("sort order");

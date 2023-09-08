@@ -17,12 +17,16 @@ const UserSettings = () => {
   const router = useRouter();
   const { user } = useUserInfo();
   const queryClient = useQueryClient();
-  const { handleSubmit, register } = useForm<UserSettingsFormData>();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<UserSettingsFormData>();
 
   const HandleUserSettings: SubmitHandler<UserSettingsFormData> = async (
     data,
   ) => {
-    await toast.promise(UpdateUserSettings(data, user?.id), {
+    await toast.promise(UpdateUserSettings(data, user), {
       loading: "Saving Settings...",
       success: "Check new email for confirmation mail!",
       error: "Unable to save changes. Please try again.",
@@ -35,25 +39,36 @@ const UserSettings = () => {
   return (
     <div>
       <form onSubmit={handleSubmit(HandleUserSettings)}>
-        <div className="bg-mainBg text-onMainBg pt-2 rounded-lg ">
+        <div className="w-1/2 mx-auto">
           <div className="text-1xl font-semibold ml-4">
             User Profile Settings
           </div>
 
           <div className="flex flex-col ml-4 mt-4">
             <div className={"mb-2"}>Email</div>
-            <input
-              {...register("email")}
-              className="w-fit mb-4"
-              required
-              defaultValue={user?.email}
-            ></input>
+            <div>
+              <input
+                autoComplete={"off"}
+                {...register("email", {
+                  required: true,
+                  pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                })}
+                className="w-full mb-4 mr-2"
+                required
+                defaultValue={user?.email}
+              ></input>
+              {errors.email && (
+                <span className={"text-onMainBg font-semibold"}>
+                  Invalid email
+                </span>
+              )}
+            </div>
 
             <div className={"mb-2"}>Password</div>
             <input
               {...register("password")}
               type={"password"}
-              className="w-fit mb-4"
+              className="w-full mb-4"
               required
             ></input>
           </div>
