@@ -9,7 +9,8 @@ export const AddDefaultUserSettings = async (
     cat_pic_on_complete: true,
     compact_task_view: false,
     created_at: new Date(Date.now()),
-    default_desc: "Description",
+    default_desc:
+      "Default Task Description - This can be changed in General Settings",
     default_due_date: new Date(Date.now()),
     default_priority: "Medium",
     default_recurring: "true",

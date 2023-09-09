@@ -74,7 +74,7 @@ const AddTaskForm: React.FC<AddFormProps> = ({ onBack, setting }) => {
         <div className="flex flex-col text-left text-sm">
           <input
             aria-label="Task Name"
-            className="mb-4 w-full lg:w-[30em]"
+            className="mb-4 w-full text-lg font-semibold"
             placeholder={"Task Name..."}
             {...register("name", { required: true, minLength: 2 })}
             autoFocus
@@ -137,17 +137,15 @@ const AddTaskForm: React.FC<AddFormProps> = ({ onBack, setting }) => {
             <option value="High">High</option>
           </select>
 
-          <div>
-            <label htmlFor={"due_date"}>Due Date</label>
-            <input
-              id={"due_date"}
-              {...register("due_date")}
-              type="date"
-              className="border-2 mb-4 w-full lg:w-[30em]"
-              required
-              defaultValue={defaultDue}
-            ></input>
-          </div>
+          <label htmlFor={"due_date"}>Due Date</label>
+          <input
+            id={"due_date"}
+            {...register("due_date")}
+            type="date"
+            className="border-2 mb-4 w-full lg:w-[30em]"
+            required
+            defaultValue={defaultDue}
+          ></input>
         </div>
         <FormSubmitButtons
           cancelText="Cancel"
