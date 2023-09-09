@@ -5,6 +5,7 @@ import taskDetailImage from "@/public/taskDetail.jpg";
 import Image from "next/image";
 import { Sansita_Swashed } from "next/font/google";
 import { useRouter } from "next/navigation";
+import { ArrowBigRight } from "lucide-react";
 
 const sansita = Sansita_Swashed({ subsets: ["latin"] });
 
@@ -15,14 +16,14 @@ const HomePage = () => {
     router.push("/register");
   };
   return (
-    <div className={"bg-mainBg"}>
+    <div>
       <div className={"px-2 lg:px-12"}>
-        <div className={"text-onMainBg h-1/2 text-center mb-16"}>
-          <div className={"relative bg-neutralBg top-8 w-full py-8"}>
+        <div className={"relative text-onMainBg h-[83vh] top-24 mx-auto w-fit"}>
+          <div className={" bg-neutralBg w-full py-8 text-center"}>
             <div className={"mb-4 text-1xl"}>
               Sometimes you just need to focus on the
             </div>
-            <div className={"text-green-500 font-bold text-6xl my-2"}>
+            <div className={"text-green-500 font-bold text-4xl my-2"}>
               One Task
             </div>
             <div className={"my-4 text-1xl"}>In front of you</div>
@@ -32,43 +33,38 @@ const HomePage = () => {
               aria-label={"Try out Focus Task now Button"}
               onClick={HandleTry}
               className={
-                "hover:bg-green-200 bg-green-400 text-green-800 font-bold mt-4 px-4 py-4 rounded-lg"
+                "bg-green-400 flex flex-row items-center text-white text-2xl mt-[10vh] px-12 py-4 rounded-lg"
               }
             >
-              Try it out!
+              Get Started now
+              <div className={"pl-2"}>
+                <ArrowBigRight />
+              </div>
             </button>
           </div>
         </div>
 
-        <div className={"text-gray-500 h-1/2"}>
-          <div className={"relative bg-neutralBg w-full py-4"}>
-            <div className={" w-fit mx-auto"}>
-              <div
-                className={"mx-auto w-fit font-semibold text-2xl text-center"}
-              >
-                How it works
-              </div>
-            </div>
-          </div>
+        <div className={"text-gray-500 font-bold text-2xl my-2 text-center"}>
+          How it works
         </div>
 
-        <div className={"text-gray-500 h-1/2"}>
-          <div className={"relative bg-neutralBg  w-full"}>
+        <div className={"text-gray-500 h-[70vh]"}>
+          <div className={"relative bg-gray-100 w-full"}>
             <div className={"mt-8 py-8 pl-2 w-fit mx-auto"}>
               <div
                 className={
                   "mb-4 mx-auto w-fit font-semibold text-2xl text-center"
                 }
               >
-                Find a Task!
+                Find Task to do
               </div>
               <Image src={findTaskImage} alt={"Find Task Screenshot"} />
             </div>
           </div>
         </div>
 
-        <div className={"text-gray-500 h-1/2"}>
-          <div className={"relative bg-neutralBg  w-full"}>
+        <div className={"text-gray-500 h-[85vh]"}>
+          <div className={"relative bg-gray-100 w-full"}>
             <div className={"mt-8 py-8 pl-2 w-fit mx-auto"}>
               <div
                 className={
@@ -82,8 +78,8 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div className={"text-gray-500 h-1/2"}>
-          <div className={"relative bg-neutralBg  w-full"}>
+        <div className={"text-gray-500 h-[85vh]"}>
+          <div className={"relative bg-gray-100 w-full"}>
             <div className={"mt-8 py-8 pl-2 w-fit mx-auto"}>
               <div
                 className={
@@ -97,8 +93,8 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div className={"text-gray-500 h-1/2"}>
-          <div className={"relative bg-neutralBg  w-full"}>
+        <div className={"text-gray-500 h-[80vh]"}>
+          <div className={"relative bg-gray-100 w-full"}>
             <div className={"mt-8 py-8 pl-2 w-fit mx-auto"}>
               <div
                 className={
@@ -124,7 +120,7 @@ const HomePage = () => {
             "hover:bg-green-200 border-2 text-green-800 font-bold px-4 py-4 mb-2 rounded-lg"
           }
         >
-          Try it out!
+          Get Started now
         </button>
       </div>
     </div>
