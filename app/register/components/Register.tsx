@@ -86,7 +86,7 @@ const Register = () => {
               id={"Register"}
               aria-label="Register Form Button"
               type="submit"
-              className="w-1/3 "
+              className="w-1/2"
             >
               <div
                 className="              
@@ -95,7 +95,8 @@ const Register = () => {
                 bg-main
                 text-onMainBg  
                 rounded-lg
-                mt-8  
+                mt-8
+                py-2
                 drop-shadow-lg"
               >
                 Register

@@ -23,6 +23,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
     await UserSignIn(data.email, data.password);
     HandleLoginClose();
     router.refresh();
+    router.replace("/");
   };
   const HandleSignUp = () => {
     if (setOpen !== undefined) setOpen(false);
@@ -31,6 +32,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
   const HandleLogOut = async () => {
     await UserSignOut();
     HandleLoginClose();
+    router.refresh();
     router.replace("/");
   };
 
@@ -75,7 +77,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
               type="submit"
               className="w-1/3"
             >
-              <div className="hover:bg-inverted hover:text-onInvertedBg bg-main text-onMainBg rounded-lg text-center mt-8">
+              <div className="hover:bg-inverted hover:text-onInvertedBg bg-main text-onMainBg rounded-lg text-center mt-8 py-2">
                 Login
               </div>
             </button>
@@ -105,7 +107,7 @@ const Login: React.FC<LoginProps> = ({ setOpen }) => {
               className="w-1/3"
               onClick={HandleLogOut}
             >
-              <div className="text-center mt-8 hover:bg-inverted hover:text-onInvertedBg bg-main text-onMainBg rounded-lg">
+              <div className="text-center mt-8 hover:bg-inverted hover:text-onInvertedBg bg-main text-onMainBg rounded-lg py-2">
                 Logout
               </div>
             </button>
