@@ -67,7 +67,7 @@ const EditTaskForm: React.FC<EditFormProps> = ({ task, onBack }) => {
 
           <input
             aria-label="Task Name"
-            className="mb-4 w-full lg:w-[30em]"
+            className="mb-4 w-full text-lg font-semibold"
             placeholder={"Task Name..."}
             {...register("name", { required: true, minLength: 2 })}
             autoFocus
@@ -131,17 +131,15 @@ const EditTaskForm: React.FC<EditFormProps> = ({ task, onBack }) => {
             <option value="High">High</option>
           </select>
 
-          <div>
-            <label htmlFor={"due_date"}>Due Date</label>
-            <input
-              id={"due_date"}
-              {...register("due_date")}
-              type="date"
-              className="border-2 mb-4 w-full lg:w-[30em]"
-              required
-              defaultValue={task.due_date.substring(0, 10)}
-            ></input>
-          </div>
+          <label htmlFor={"due_date"}>Due Date</label>
+          <input
+            id={"due_date"}
+            {...register("due_date")}
+            type="date"
+            className="border-2 mb-4 w-full lg:w-[30em]"
+            required
+            defaultValue={task.due_date.substring(0, 10)}
+          ></input>
         </div>
         <FormSubmitButtons submitText="Edit Task" onBack={onBack} />
       </form>
