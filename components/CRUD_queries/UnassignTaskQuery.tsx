@@ -1,7 +1,9 @@
-import supabaseClient from "@/lib/supabaseClient";
+import { createClient } from "@/utils/supabase/client";
 
 const UnassignTaskQuery = async (taskId: string, userId: string) => {
-  const { error } = await supabaseClient
+  const supabase = createClient();
+
+  const { error } = await supabase
     .from("user_current_task")
     .update({ is_assigned: false, is_current: false, action_at: new Date() })
     .eq("task_id", taskId)

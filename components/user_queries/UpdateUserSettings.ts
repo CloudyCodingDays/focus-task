@@ -1,12 +1,14 @@
 import toast from "react-hot-toast";
-import supabase from "@/lib/supabaseClient";
+import { createClient } from "@/utils/supabase/client";
 import { UserSettingsFormData } from "@/app/settings/components/UserSettings";
 import { User } from "@supabase/auth-helpers-nextjs";
 
 export const UpdateUserSettings = async (
   userSettingFormData: UserSettingsFormData,
-  user: User | null,
+  user: User | null
 ) => {
+  const supabase = createClient();
+
   const fName = userSettingFormData.fName;
   const lName = userSettingFormData.lName;
   const email = userSettingFormData.email;

@@ -1,13 +1,14 @@
 "use client";
 
 import { SessionContextProvider } from "@supabase/auth-helpers-react";
-import supabase from "@/lib/supabaseClient";
+import { createClient } from "@/utils/supabase/client";
 
 interface SupaBaseProviderProps {
   children: React.ReactNode;
 }
 
 const SupaBaseProvider: React.FC<SupaBaseProviderProps> = ({ children }) => {
+  const supabase = createClient();
   return (
     <SessionContextProvider supabaseClient={supabase}>
       {children}

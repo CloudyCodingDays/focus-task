@@ -1,7 +1,8 @@
-import supabase from "@/lib/supabaseClient";
+import { createClient } from "@/utils/supabase/client";
 import { Settings } from "@/types/Setting";
 
 export const GetSettings = async (userId: string) => {
+  const supabase = createClient();
   const { data, error } = await supabase
     .from("user_settings")
     .select(
@@ -16,7 +17,7 @@ export const GetSettings = async (userId: string) => {
       home_image, 
       cat_pic_on_complete, 
       created_at, 
-      updated_at`,
+      updated_at`
     )
     .eq("user_id", userId);
 

@@ -1,11 +1,13 @@
 import toast from "react-hot-toast";
-import supabase from "@/lib/supabaseClient";
+import { createClient } from "@/utils/supabase/client";
 import { GeneralSettingsFormData } from "@/app/settings/components/GeneralSettings";
 
 export const UpdateGeneralSettings = async (
   generalSettingsFormData: GeneralSettingsFormData,
-  userId?: string,
+  userId?: string
 ) => {
+  const supabase = createClient();
+
   const description = generalSettingsFormData.description;
   const priority = generalSettingsFormData.priority;
   const isRecurring = generalSettingsFormData.is_recurring;

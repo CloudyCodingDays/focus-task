@@ -1,7 +1,8 @@
-import supabase from "@/lib/supabaseClient";
+import { createClient } from "@/utils/supabase/client";
 import { Task } from "@/types/Task";
 
 const GetDueTasks = async (userId: string, dueDate: Date) => {
+  const supabase = createClient();
   const { data: TaskData, error: TaskError } = await supabase
     .from("tasks")
     .select(

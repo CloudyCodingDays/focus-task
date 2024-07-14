@@ -1,8 +1,10 @@
-import supabaseClient from "@/lib/supabaseClient";
+import { createClient } from "@/utils/supabase/client";
 import { AddTaskFormData } from "@/components/AddTaskForm";
 
 const AddTaskQuery = async (taskData: AddTaskFormData, userId: string) => {
-  const { error } = await supabaseClient.from("tasks").insert({
+  const supabase = createClient();
+
+  const { error } = await supabase.from("tasks").insert({
     name: taskData.name,
     description: taskData.description,
     is_recurring: taskData.is_recurring,

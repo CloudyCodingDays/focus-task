@@ -1,7 +1,9 @@
-import supabaseClient from "@/lib/supabaseClient";
+import { createClient } from "@/utils/supabase/client";
 
 const DeleteTaskQuery = async (taskId: string, userId: string) => {
-  const { error } = await supabaseClient
+  const supabase = createClient();
+
+  const { error } = await supabase
     .from("tasks")
     .delete()
     .eq("id", taskId)

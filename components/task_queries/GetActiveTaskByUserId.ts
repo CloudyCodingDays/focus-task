@@ -1,7 +1,9 @@
-import supabase from "@/lib/supabaseClient";
+import { createClient } from "@/utils/supabase/client";
 import { Task } from "@/types/Task";
 
 const GetActiveTaskByUserId = async (userId: string) => {
+  const supabase = createClient();
+
   const { data: UserTaskData, error: UserTaskError } = await supabase
     .from("user_current_task")
     .select(

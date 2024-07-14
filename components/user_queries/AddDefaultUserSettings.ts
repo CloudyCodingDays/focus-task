@@ -1,10 +1,11 @@
-import supabase from "@/lib/supabaseClient";
+import { createClient } from "@/utils/supabase/client";
 import { Task } from "@/types/Task";
 
 export const AddDefaultUserSettings = async (
   defaultTask: Task,
-  userId: string,
+  userId: string
 ) => {
+  const supabase = createClient();
   const { error } = await supabase.from("user_settings").insert({
     cat_pic_on_complete: true,
     compact_task_view: false,
